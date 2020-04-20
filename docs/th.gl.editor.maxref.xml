@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
+
+<c74object name="th.gl.commandline">
+
+	<digest>
+		Create a commandline interface in the rendering context
+	</digest>
+
+	<description>
+		A command line text editor (similar to the workflow of the terminal) for the opengl world of Max. Add the object to your setup and initialize it with the name of the render context. Then make sure you send it the render bang in the top inlet. The outlet outputs the typed text as a list that you can use in any way you like. To for example control parameters of gl objects, but it can also be used for controlling musical parameters, lighting shows, whatever you think of!
+	</description>
+
+	<!--METADATA-->
+	<metadatalist>
+		<metadata name="author">Timo Hoogland</metadata>
+		<metadata name="tag">thModules</metadata>
+		<metadata name="tag">max</metadata>
+		<metadata name="tag">jitter</metadata>
+		<metadata name="tag">opengl</metadata>
+		<metadata name="tag">terminal</metadata>
+		<metadata name="tag">command</metadata>
+	</metadatalist>
+
+	<!--INLETS-->
+	<!-- <inletlist>
+		<inlet id="0" type="float">
+			<digest></digest>
+		</inlet>
+		<inlet id="1" type="float">
+			<digest></digest>
+		</inlet>
+	</inletlist> -->
+
+	<!--OUTLETS-->
+	<!-- <outletlist>
+		<outlet id="0" type="int/float">
+			<digest></digest>
+			<description></description>
+		</outlet>
+	</outletlist> -->
+
+	<!--ARGUMENTS-->
+	<objarglist>
+		<objarg name="rendering-context" optional="1" type="string">
+			<digest>
+				The named drawing context in which to draw (default = none).
+			</digest>
+			<description>
+				Set the name of the rendering context. This is the name given to the jit.world, jit.gl.render or jit.gl.node object.
+			</description>
+		</objarg>
+	</objarglist>
+
+	<!--MESSAGES-->
+	<methodlist>
+		<method name="bang">
+			<arglist>
+				<arg name="bang" optional="0" type="int" />
+			</arglist>
+			<digest>
+				Input render bangs per frame.
+			</digest>
+			<description>
+				Input a continuous stream of bangs so parameters stay up to date per frame.
+			</description>
+		</method>
+	</methodlist>
+
+	<!--ATTRIBUTES-->
+	<attributelist>
+		<attribute name="drawto" get='0' set='1' type='float' size='2' >
+			<digest>
+				The named drawing context in which to draw (default = none).
+			</digest>
+			<description>
+				The named drawing context in which to draw (default = none). A named drawing context is a named instace of a jit.window, jit.pwindow, or jit.matrix object taht ahas an instance of the jit.gl.render object associated with it.
+			</description>
+		</attribute>
+	</attributelist>
+
+
+	<!--SEEALSO-->
+	<seealsolist>
+		<seealso name="jit.world"/>
+		<seealso name="jit.gl.text"/>
+		<seealso name="jit.gl.gridshape"/>
+		<seealso name="jit.gl.multiple"/>
+		<seealso name="send"/>
+		<seealso name="receive"/>
+		<seealso name="route"/>
+		<seealso name="routepass"/>
+		<seealso name="js"/>
+		<seealso name="fontlist"/>
+		<seealso name="umenu"/>
+	</seealsolist>
+
+</c74object>
