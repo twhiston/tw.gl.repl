@@ -27,6 +27,7 @@
 
 // GENERAL SETTINGS:
 var CRSR = "<<";
+var CMMT = "//";
 var INDENTATION = 4;
 var EDITOR_LINES = 30;
 var MAX_CHARS = 90;
@@ -493,6 +494,17 @@ function cursor(c){
 	draw();
 }
 
+function comment(c){
+	post("@comment: ", c, "\n");
+	CMMT = c.toString();
+	CMMT_CHARS = [];
+	for (var i=0; i<CMMT.length; i++){
+		CRSR_CHARS.push(CMMT[i].charCodeAt(0));
+	}
+	CMMT_CHARS = CMMT_CHARS.concat(32);
+	draw();
+}
+
 function drawCursor(){
 	crsrMtx.setall(32);
 	// draw at least something at the end of the matrix.
@@ -621,7 +633,7 @@ var NODE_CTX = "node" + UNIQ;
 var ANIM_NODE = "anim" + UNIQ;
 var CAM_CAP = "cam" + UNIQ;
 
-var SIZE = 1;
+var SCALING = 1;
 var FONT_SIZE = 100;
 
 // the main node that all text is drawn to
@@ -650,8 +662,8 @@ function position(x, y){
 
 // the text scaling
 function scale(s){
-	SIZE = s * 100/FONT_SIZE;
-	animNode.scale = [SIZE, SIZE, 0];
+	SCALING = s * 100/FONT_SIZE;
+	animNode.scale = [SCALING, SCALING, 0];
 }
 
 // the anim node and text for the command line
@@ -802,7 +814,7 @@ function fontsize(s){
 	for (var i = 0; i < allTextObj.length; i++){
 		allTextObj[i].size(FONT_SIZE);
 	}
-	scale(SIZE);
+	scale(SCALING);
 	// textAnim.position = [0.9, 0, 0];
 	// crsrAnim.position = [0.9, 0, 0];
 }
