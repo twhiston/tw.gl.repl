@@ -35,7 +35,7 @@ var LINE_CHARS = 140;
 // var UNDO_HISTORY = 5;
 // var CNSL_LINES = 40;
 // var CNSL_CHARS = 24;
-var OUTPUT_MATRIX = 1;
+var OUT_MAT = 0;
 
 var POST_FLAG = 1;
 
@@ -77,6 +77,7 @@ var lineLengths;
 var isDisabled;
 
 var CRSR_CHARS = [];
+var CMMT_CHARS = [];
 
 var UNIQ = Date.now();
 
@@ -110,6 +111,7 @@ function init(){
 	
 	emptyMatrix(totalLines);
 	cursor("<<");
+	comment("//");
 	
 	draw();
 }
@@ -124,14 +126,28 @@ function emptyMatrix(lines){
 
 function run(){
 	// emptyConsole();
-	if (OUTPUT_MATRIX){
-		outlet(0, "jit_matrix", textMtx.name);
-	} else {
-		// for (var i=0; i<textMtx.dim[0]; i++){
-		// 	for (var )
-		// }
-		// parse the code here
+	outlet(0, "jit_matrix", textMtx.name);
+	if (!OUT_MAT){
+		outlet(0, mtxToSymbol(textMtx));
 	}
+}
+
+function output_matrix(v){
+	OUT_MAT = v != 0;
+}
+
+function mtxToSymbol(mat){
+	var text = [];
+	for (var y=0; y<mat.dim[1]; y++){
+		var line = "";
+		for (var x=0; x<mat.dim[0]; x++){
+			line += String.fromCharCode(mat.getcell(x, y));
+		}
+		if (line != ""){
+			text.push(line.replace(/\s\s+/g, ' ').trim());
+		}
+	}
+	return text;
 }
 
 function draw(){
@@ -495,11 +511,11 @@ function cursor(c){
 }
 
 function comment(c){
-	post("@comment: ", c, "\n");
+	// post("@comment: ", c, "\n");
 	CMMT = c.toString();
 	CMMT_CHARS = [];
 	for (var i=0; i<CMMT.length; i++){
-		CRSR_CHARS.push(CMMT[i].charCodeAt(0));
+		CMMT_CHARS.push(CMMT[i].charCodeAt(0));
 	}
 	CMMT_CHARS = CMMT_CHARS.concat(32);
 	draw();
@@ -545,35 +561,37 @@ function drawNumbers(){
 
 function commentLine(){
 	var isCommented = 0;
-	var move = 2;
-	var comment = [47, 47, 32];
+	var comment = CMMT_CHARS;
+	var len = CMMT_CHARS.length-1;
+	var move = CMMT_CHARS.length;
+
 	// check if the line starts with the comment characters
-	for (var i = 0; i < 2; i++){
+	for (var i = 0; i < len; i++){
 		isCommented += textMtx.getcell(i, curLine) == comment[i];
 	}
 	// if true remove the comment sign
-	if (isCommented == 2){
+	if (isCommented == len){
 		// check if extra space is present
-		if (textMtx.getcell(2, curLine) == comment[2]){
-			move = 3;
+		if (textMtx.getcell(len, curLine) == comment[len]){
+			len += 1;
 		}
 		// replace all characters in the line and move position
 		for (var i = 0; i < lineLengths[curLine]; i++){
-			textMtx.setcell2d(i, curLine, textMtx.getcell(i+move, curLine));
+			textMtx.setcell2d(i, curLine, textMtx.getcell(i+len, curLine));
 		}
 		// reposition cursor
-		curCharacter -= move;
+		curCharacter = Math.max(0, curCharacter - len);
 	} else {
 		// reposition all the characters 3 steps further
 		for (var i = lineLengths[curLine]-1; i >= 0; i--){
-			textMtx.setcell2d(i+3, curLine, textMtx.getcell(i, curLine));
+			textMtx.setcell2d(i+move, curLine, textMtx.getcell(i, curLine));
 		}
 		// add the comment sign symbols
-		for (var i = 0; i < 3; i++){
+		for (var i = 0; i < move; i++){
 			textMtx.setcell2d(i, curLine, comment[i]);
 		}
 		// reposition cursor
-		curCharacter += 3;
+		curCharacter += move;
 	}
 	countChars();
 	return true;
