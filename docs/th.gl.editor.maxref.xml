@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
 
-<c74object name="th.gl.commandline">
+<c74object name="th.gl.editor">
 
 	<digest>
-		Create a commandline interface in the rendering context
+		Create a texteditor for the rendering context
 	</digest>
 
 	<description>
-		A command line text editor (similar to the workflow of the terminal) for the opengl world of Max. Add the object to your setup and initialize it with the name of the render context. Then make sure you send it the render bang in the top inlet. The outlet outputs the typed text as a list that you can use in any way you like. To for example control parameters of gl objects, but it can also be used for controlling musical parameters, lighting shows, whatever you think of!
+		A basic code text-editor for the opengl world of Max. Add the object to your setup and initialize it with the name of the render context. Make sure you send it the render bang in the top inlet. The outlet outputs the parsed text as a list of symbols that you can use in any way you like. For example control parameters of gl objects, control musical parameters, lighting shows, just use it as a typewriter or whatever you think of!
 	</description>
 
 	<!--METADATA-->
@@ -18,8 +18,8 @@
 		<metadata name="tag">max</metadata>
 		<metadata name="tag">jitter</metadata>
 		<metadata name="tag">opengl</metadata>
-		<metadata name="tag">terminal</metadata>
-		<metadata name="tag">command</metadata>
+		<metadata name="tag">code</metadata>
+		<metadata name="tag">text</metadata>
 	</metadatalist>
 
 	<!--INLETS-->
@@ -42,7 +42,7 @@
 
 	<!--ARGUMENTS-->
 	<objarglist>
-		<objarg name="rendering-context" optional="1" type="string">
+		<objarg name="rendering-context" optional="0" type="string">
 			<digest>
 				The named drawing context in which to draw (default = none).
 			</digest>
@@ -65,6 +65,30 @@
 				Input a continuous stream of bangs so parameters stay up to date per frame.
 			</description>
 		</method>
+		
+		<method name="run">
+			<arglist>
+				<arg name="run" optional="0" type="symbol" />
+			</arglist>
+			<digest>
+				Output the current textbuffer as a list of symbols per line.
+			</digest>
+			<description>
+				Output the current textbuffer as a list of symbols per line.
+			</description>
+		</method>
+
+		<method name="write">
+			<arglist>
+				<arg name="write" optional="0" type="symbol" />
+			</arglist>
+			<digest>
+				Write the textbuffer to a disk file.
+			</digest>
+			<description>
+				Write the textbuffer to a disk file. Additional filepath + filename sets the destination to store to.
+			</description>
+		</method>
 	</methodlist>
 
 	<!--ATTRIBUTES-->
@@ -77,12 +101,75 @@
 				The named drawing context in which to draw (default = none). A named drawing context is a named instace of a jit.window, jit.pwindow, or jit.matrix object taht ahas an instance of the jit.gl.render object associated with it.
 			</description>
 		</attribute>
+
+		<attribute name="cursor" get='0' set='1' type='symbol' size='2' >
+			<digest>
+				Change the characters for the cursor (default = "&lt;&lt;").
+			</digest>
+			<description>
+				Change the characters for the cursor (default = "&lt;&lt;").
+			</description>
+		</attribute>
+
+		<attribute name="color" get='0' set='1' type='float' size='1' >
+			<digest>
+				Set the text color.
+			</digest>
+			<description>
+				Set the text color.	
+			</description>
+		</attribute>
+
+		<attribute name="cursor_color" get='0' set='1' type='float' size='1' >
+			<digest>
+				Set the color for the cursor.
+			</digest>
+			<description>
+				Set the color for the cursor.
+			</description>
+		</attribute>
+
+		<attribute name="blink_color" get='0' set='1' type='float' size='1' >
+			<digest>
+				Set the blink color for the cursor.
+			</digest>
+			<description>
+				Set the blink color for the cursor. This is the secundary color visible when blinking is enabled.
+			</description>
+		</attribute>
+
+		<attribute name="number_color" get='0' set='1' type='float' size='1' >
+			<digest>
+				Set the color for the line numbers.
+			</digest>
+			<description>
+				Set the color for the line numbers.
+			</description>
+		</attribute>
+
+		<attribute name="tracking" get='0' set='1' type='float' size='1' >
+			<digest>
+				The spacing between characters (default = 1).
+			</digest>
+			<description>
+				The spacing between characters (default = 1).
+			</description>
+		</attribute>
+
+		<attribute name="leadscale" get='0' set='1' type='float' size='1' >
+			<digest>
+				The spacing between lines (default = 0.94)
+			</digest>
+			<description>
+				The spacing between lines (default = 0.94)
+			</description>
+		</attribute>
 	</attributelist>
 
 
 	<!--SEEALSO-->
 	<seealsolist>
-		<seealso name="jit.world"/>
+		<seealso name="th.gl.commandline"/>
 		<seealso name="jit.gl.text"/>
 		<seealso name="jit.gl.gridshape"/>
 		<seealso name="jit.gl.multiple"/>

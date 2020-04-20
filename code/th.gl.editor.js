@@ -27,15 +27,14 @@
 
 // GENERAL SETTINGS:
 var CRSR = "<<";
-// var UNDO_HISTORY = 5;
 var INDENTATION = 4;
-
 var EDITOR_LINES = 30;
 var MAX_CHARS = 90;
 var LINE_CHARS = 140;
-
+// var UNDO_HISTORY = 5;
 // var CNSL_LINES = 40;
 // var CNSL_CHARS = 24;
+var OUTPUT_MATRIX = 1;
 
 var POST_FLAG = 1;
 
@@ -77,9 +76,6 @@ var lineLengths;
 var isDisabled;
 
 var CRSR_CHARS = [];
-for (var i=0; i<CRSR.length; i++){
-	CRSR_CHARS.push(CRSR[i].charCodeAt(0));
-}
 
 var UNIQ = Date.now();
 
@@ -105,21 +101,16 @@ function init(){
 	// hIndex = 0;
 	// histMtxSet = new Array(UNDO_HISTORY);
 
-	setFont("Courier New Bold");
+	font("Courier New Bold");
 	fontsize(100);
 	leadscale(0.94);
 	tracking(1);
-	alpha(1);
-
+	alpha(1);	
+	
 	emptyMatrix(totalLines);
+	cursor("<<");
+	
 	draw();
-}
-
-// custom print function with POST_FLAG enable/disabled
-function println(){
-	if (POST_FLAG){
-		post(arrayfromargs(arguments), "\n");
-	}
 }
 
 function emptyMatrix(lines){
@@ -132,14 +123,21 @@ function emptyMatrix(lines){
 
 function run(){
 	// emptyConsole();
-	outlet(0, "jit_matrix", textMtx.name);
+	if (OUTPUT_MATRIX){
+		outlet(0, "jit_matrix", textMtx.name);
+	} else {
+		// for (var i=0; i<textMtx.dim[0]; i++){
+		// 	for (var )
+		// }
+		// parse the code here
+	}
 }
 
 function draw(){
 	drawCursor(); //set the cursorposition
 	drawNumbers(); //store the numbers in the matrix
-	// drawHighlight();
 	matrixToText(); //set the matrices to the gl text objects
+	// drawHighlight();
 
 	var len = getMaxChar();
 	outlet(1, "lines", totalLines);
@@ -150,8 +148,7 @@ function draw(){
 }
 
 function keyPress(k){
-	println("@char", k);
-
+	// post("@char", k, "\n");
 	if (k == 96){
 		disableText();
 	}
@@ -159,13 +156,13 @@ function keyPress(k){
 		// var hst = false;
 		if (k != 27){
 			// CHARACTER KEYS
-			if (k >= 32 && k <= 126){ hst = addChar(k); }
+			if (k >= 32 && k <= 126){ addChar(k); }
 
 			// FUNCTION KEYS
-			else if (k == 13 || k == -4){ hst = newLine(); }
+			else if (k == 13 || k == -4){ newLine(); }
 			// Backspace Win = 8, Mac = 127
 			// Delete Win = 127, Mac = 127
-			else if (k == 127 || k == 8 || k == -7){ hst = backSpace(); }
+			else if (k == 127 || k == 8 || k == -7){ backSpace(); }
 			// arrow keys ASCII
 			else if (k == 30 || k == 31){ gotoLine(k-30); }
 			else if (k == 28 || k == 29){ gotoCharacter(k-28); }
@@ -174,17 +171,17 @@ function keyPress(k){
 			else if (k == -11 || k == -12){ gotoCharacter(1-(k+12)); }
 
 			
-			else if (k == 9){ hst = addTab(); }
+			else if (k == 9){ addTab(); }
 			
 			// SHORTKEYS
-			else if (k == ALT_FS){ hst = commentLine(); }
+			else if (k == ALT_FS){ commentLine(); }
 			
-			else if (k == ALT_X){ hst = deleteLine(); }
+			else if (k == ALT_X){ deleteLine(); }
 			else if (k == ALT_C){ copyLine(); }
-			else if (k == ALT_V){ hst = pasteInsertLine(); }
-			else if (k == ALT_P){ hst = pasteReplaceLine(); }
+			else if (k == ALT_V){ pasteInsertLine(); }
+			else if (k == ALT_P){ pasteReplaceLine(); }
 			
-			else if (k == ALT_B){ hst = backSpace(); }
+			else if (k == ALT_B){ backSpace(); }
 			
 			// Navigate the editor with ASDW
 			else if (k == ALT_A){ gotoCharacter(0); }
@@ -216,7 +213,6 @@ function addTab(){
 	for(var i = 0; i < numSpaces; i++){
 		addChar(32);
 	}
-	return true;
 }
 
 function addChar(k){
@@ -237,7 +233,6 @@ function addChar(k){
 	textMtx.setcell2d(curCharacter, curLine, k);
 	curCharacter += 1;
 	lineLengths[curLine] = getCharCount(textMtx, curLine);
-	return true;
 }
 
 function backSpace(k){
@@ -254,7 +249,6 @@ function backSpace(k){
 		curCharacter = 0;
 	}
 	lineLengths[curLine] = getCharCount(textMtx, curLine);
-	return true;
 }
 
 function getCharCount(mat, line){
@@ -351,7 +345,6 @@ function newLine(){
 	if (endOfLines()){
 		return;
 	}
-
 	totalLines = textMtx.dim[1] + 1;
 	// copy the matrix
 	var copyMtx = new JitterMatrix(1, "char", LINE_CHARS, textMtx.dim[1]);
@@ -383,7 +376,6 @@ function newLine(){
 	countChars();
 	// jump to beginning
 	curCharacter = 0;
-	return true;
 }
 
 function removeLine(){
@@ -448,7 +440,6 @@ function deleteLine(){
 		}
 		curCharacter = lineLengths[curLine];
 	}
-	return true;
 }
 
 // global pastebin variable to store a line of text
@@ -463,15 +454,16 @@ function copyLine(){
 }
 
 function pasteReplaceLine(){
-	// replace current text with text from pasteBin
-	for (var x = 0; x < pasteBin.dim[0]; x++){
-		textMtx.setcell2d(x, curLine, pasteBin.getcell(x, 0));
+	if (pasteBin !== null){
+		// replace current text with text from pasteBin
+		for (var x = 0; x < pasteBin.dim[0]; x++){
+			textMtx.setcell2d(x, curLine, pasteBin.getcell(x, 0));
+		}
+		// restore character counts in every row
+		countChars();
+		// jump to end of new line
+		jumpTo(1);
 	}
-	// restore character counts in every row
-	countChars();
-	// jump to end of new line
-	jumpTo(1);
-	return true;
 }
 
 function pasteInsertLine(){
@@ -486,9 +478,19 @@ function pasteInsertLine(){
 function endOfLines(){
 	var isEnd = totalLines >= EDITOR_LINES;
 	if (isEnd){
-		println("WARNING: End of lines reached");
+		post("WARNING: End of lines reached \n");
 	}
 	return isEnd;
+}
+
+function cursor(c){
+	// post("@cursor: ", c, "\n");
+	CRSR = c.toString();
+	CRSR_CHARS = [];
+	for (var i=0; i<CRSR.length; i++){
+		CRSR_CHARS.push(CRSR[i].charCodeAt(0));
+	}
+	draw();
 }
 
 function drawCursor(){
@@ -520,15 +522,14 @@ function drawNumbers(){
 	nmbrMtx.setcell2d(1, curLine, 62);
 }
 
-function drawHighlight(){
+/*function drawHighlight(){
 	highlightMtx.setall(0);
-
 	for (var i = 0; i < totalLines; i++){
 		if (i == curLine){
 			highlightMtx.setcell2d(0, i, 1.);
 		}
 	}
-}
+}*/
 
 function commentLine(){
 	var isCommented = 0;
@@ -665,6 +666,15 @@ glText.gl_color = [1, 1, 1, 1];
 glText.screenmode = 0;
 glText.cull_face = 1;
 
+function color(){
+	args = arrayfromargs(arguments);
+	if (args.length !== 4){
+		error("th.gl.editor: Expected an RGBA value in floating-point", "\n");
+	} else {
+		glText.gl_color = args;
+	}
+}
+
 // the anim node and text for the cursor
 var crsrAnim = new JitterObject("jit.anim.node");
 crsrAnim.anim = ANIM_NODE;
@@ -689,19 +699,53 @@ glNmbr.screenmode = 0;
 glNmbr.cull_face = 1;
 glNmbr.layer = 10;
 
-var blinkTog = 0;
-var blinkColor1 = [1, 1, 0];
-var blinkColor2 = [0, 1, 1];
+function number_color(){
+	args = arrayfromargs(arguments);
+	if (args.length !== 4){
+		error("th.gl.editor: Expected an RGBA value in floating-point", "\n");
+	} else {
+		glNmbr.gl_color = args;
+	}
+}
+
+var useBlink = true;
+var blinkToggle = 0;
+var cursorColor = [1, 0.501961, 0, 1];
+var blinkColor = [0.4, 0.8, 1, 1];
 
 function blink(){
-	blinkTog = 1 - blinkTog;
-	if (blinkTog){
-		var c = blinkColor1;
+	if (useBlink){
+		blinkToggle = 1 - blinkToggle;
+		if (blinkToggle){
+			glCrsr.gl_color = blinkColor;
+		} else {
+			glCrsr.gl_color = cursorColor;
+		}
 	} else {
-		var c = blinkColor2;
+		glCrsr.gl_color = cursorColor;
 	}
-	c[3] = textAlpha;
-	glCrsr.gl_color = c;
+}
+
+function blink_enable(v){
+	useBlink = v != 0;
+}
+
+function cursor_color(){
+	args = arrayfromargs(arguments);
+	if (args.length !== 4){
+		error("th.gl.editor: Expected an RGBA value in floating-point", "\n");
+	} else {
+		blinkColor1 = args;
+	}
+}
+
+function blink_color(){
+	args = arrayfromargs(arguments);
+	if (args.length !== 4){
+		error("th.gl.editor: Expected an RGBA value in floating-point", "\n");
+	} else {
+		blinkColor2 = args;
+	}
 }
 
 /*
@@ -747,7 +791,7 @@ function scaleCnsl(x, y, z){
 // var allTextObj = [glText, glCrsr, glNmbr, glCnsl];
 var allTextObj = [glText, glCrsr, glNmbr];
 
-function setFont(f){
+function font(f){
 	for (var i = 0; i < allTextObj.length; i++){
 		allTextObj[i].font(f);
 	}
@@ -787,7 +831,7 @@ function alpha(a){
 	}
 }
 
-function setCullFace(c){
+function cull_face(c){
 	for (var i=0; i<allTextObj.length; i++){
 		allTextObj[i].cull_face = c;
 	}
