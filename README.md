@@ -1,12 +1,14 @@
 # th.gl.texteditor
 
-**Please consider to download and donate via http://gumroad.com/tmhglnd**
+#### [More visuals and code!](http://gumroad.com/tmhglnd)
 
-**or become a patron on http://patreon.com/timohoogland**
+#### [Become a Patron!](https://www.patreon.com/bePatron?u=9649817)
 
 ---
 
 A basic texteditor in the Max Jitter OpenGL window for interaction with your patch in a Livecoding-like style.
+
+![screenshot of the editor with visuals](media/screenshot.png)
 
 ## About
 
