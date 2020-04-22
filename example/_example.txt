@@ -18,6 +18,7 @@ mp rotatexyz 45 45 0
 mp anim turn 0.2 0.03 0.01
 
 cam ortho 1
+cam position 0 0 8
 cam lens_angle 110
 
 light_1 diffuse 0 0.2 0.6 
