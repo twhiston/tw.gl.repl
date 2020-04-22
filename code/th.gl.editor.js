@@ -138,7 +138,6 @@ function emptyMatrix(lines){
 
 // output the parsed code if output_matrix is disabled
 function run(){
-	// emptyConsole();
 	outlet(0, "jit_matrix", textMtx.name);
 	if (!OUT_MAT){
 		outlet(0, mtxToSymbol(textMtx));
@@ -150,6 +149,7 @@ function output_matrix(v){
 	OUT_MAT = v != 0;
 }
 
+// convert the matrix to an array of strings per line
 function mtxToSymbol(mat){
 	var text = [];
 	for (var y=0; y<mat.dim[1]; y++){
@@ -164,6 +164,7 @@ function mtxToSymbol(mat){
 	return text;
 }
 
+// draw the text and output all info
 function draw(){
 	drawCursor(); //set the cursorposition
 	drawNumbers(); //store the numbers in the matrix
@@ -178,6 +179,7 @@ function draw(){
 	outlet(1, "nLines", (totalLines-1)/(EDITOR_LINES-1));
 }
 
+// choose method based on keypress
 function keyPress(k){
 	// post("@char", k, "\n");
 	if (k == 96){
@@ -239,6 +241,7 @@ function keyPress(k){
 	draw();
 }
 
+// add multiple spaces to the text (tab)
 function addTab(){
 	var numSpaces = INDENTATION - (curCharacter % INDENTATION);
 	for(var i = 0; i < numSpaces; i++){
@@ -246,6 +249,7 @@ function addTab(){
 	}
 }
 
+// add a character (alpha-numeric, numeric, special characters)
 function addChar(k){
 	if (curCharacter >= MAX_CHARS){
 		if (endOfLines()) {
@@ -266,6 +270,7 @@ function addChar(k){
 	lineLengths[curLine] = getCharCount(textMtx, curLine);
 }
 
+// backspace a character
 function backSpace(k){
 	curCharacter = Math.max(-1, (curCharacter-=1));
 
@@ -282,8 +287,8 @@ function backSpace(k){
 	lineLengths[curLine] = getCharCount(textMtx, curLine);
 }
 
+// return the amount of characters in one line
 function getCharCount(mat, line){
-	// return amount of characters in one line;
 	var charCount = 0;
 	var len = mat.dim[0];
 	for (var i = 0; i < len; i++){
@@ -294,8 +299,8 @@ function getCharCount(mat, line){
 	}
 }
 
+// set an array of amount of characters per line
 function countChars(){
-	// restore character counts in every row
 	var rows = textMtx.dim[1];
 	// empty the array to reset count
 	lineLengths = [];
@@ -304,8 +309,8 @@ function countChars(){
 	}
 }
 
+// return the highest number of characters in one line
 function getMaxChar(){
-	// return the highest amount of characters in one line
 	var sortArr = lineLengths.slice(0);
 	sortArr.sort(function(a,b){ return b-a });
 
@@ -779,8 +784,9 @@ function cursor_color(){
 	if (args.length !== 4){
 		error("th.gl.editor: Expected an RGBA value in floating-point", "\n");
 	} else {
-		blinkColor1 = args;
+		cursorColor = args;
 	}
+	blink();
 }
 
 function blink_color(){
@@ -788,7 +794,7 @@ function blink_color(){
 	if (args.length !== 4){
 		error("th.gl.editor: Expected an RGBA value in floating-point", "\n");
 	} else {
-		blinkColor2 = args;
+		blinkColor = args;
 	}
 }
 
@@ -902,6 +908,7 @@ function matrixToText(){
 var glCam = new JitterObject("jit.gl.camera");
 glCam.drawto = NODE_CTX;
 glCam.out_name = CAM_CAP;
+glCam.erase_color = [0, 0, 0, 0];
 glCam.capture = 1;
 glCam.ortho = 2;
 
