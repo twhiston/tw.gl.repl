@@ -89,6 +89,18 @@
 				Write the textbuffer to a disk file. Additional filepath + filename sets the destination to store to.
 			</description>
 		</method>
+
+		<method name="read">
+			<arglist>
+				<arg name="read" optional="0" type="symbol" />
+			</arglist>
+			<digest>
+				Read the a textfile from disk.
+			</digest>
+			<description>
+				Read the a textfile from disk.
+			</description>
+		</method>
 	</methodlist>
 
 	<!--ATTRIBUTES-->
@@ -102,12 +114,39 @@
 			</description>
 		</attribute>
 
+		<attribute name="output_matrix" get='0' set='1' type='int' size='2' >
+			<digest>
+				Output the text as a matrix (default = 0).
+			</digest>
+			<description>
+				Output the text as a matrix instead of the list of symbols per line of text (default = 0).
+			</description>
+		</attribute>
+
+		<attribute name="font" get='0' set='1' type='symbol' size='1' >
+			<digest>
+				Set the font for the editor (default = Courier New Bold).
+			</digest>
+			<description>
+				Set the font for the editor (default = Courier New Bold). This must be a mono-spaced font otherwise the cursor won't align properly.
+			</description>
+		</attribute>
+
 		<attribute name="cursor" get='0' set='1' type='symbol' size='2' >
 			<digest>
 				Change the characters for the cursor (default = "&lt;&lt;").
 			</digest>
 			<description>
 				Change the characters for the cursor (default = "&lt;&lt;").
+			</description>
+		</attribute>
+
+		<attribute name="comment" get='0' set='1' type='symbol' size='2' >
+			<digest>
+				Change the characters for commenting text (default = //)
+			</digest>
+			<description>
+				Change the characters for commenting text (default = //).
 			</description>
 		</attribute>
 
@@ -129,6 +168,15 @@
 			</description>
 		</attribute>
 
+		<attribute name="number_color" get='0' set='1' type='float' size='1' >
+			<digest>
+				Set the color for the line numbers.
+			</digest>
+			<description>
+				Set the color for the line numbers.
+			</description>
+		</attribute>
+
 		<attribute name="blink_color" get='0' set='1' type='float' size='1' >
 			<digest>
 				Set the blink color for the cursor.
@@ -138,12 +186,12 @@
 			</description>
 		</attribute>
 
-		<attribute name="number_color" get='0' set='1' type='float' size='1' >
+		<attribute name="enable_blink" get='0' set='1' type='int' size='1' >
 			<digest>
-				Set the color for the line numbers.
+				Enable the blink color of the cursor (default = 1).
 			</digest>
 			<description>
-				Set the color for the line numbers.
+				Enable the blinking of the cursor. This will alternate between the cursor_color and the blink_color (default = 1).
 			</description>
 		</attribute>
 
