@@ -616,14 +616,16 @@ function commentLine(){
 	return true;
 }
 
+// read a textfile from disk to the editor
 function readFile(mat){
 	fillText(mat);
-
 	countChars();
 	jumpTo(2);
+	jumpTo(0);
 	draw();
 }
 
+// fill the matrix with the text from disk
 function fillText(mat){
 	file = new JitterMatrix(mat);
 	dimX = Math.min(MAX_CHARS, file.dim[0]);

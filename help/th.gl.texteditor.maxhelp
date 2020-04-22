@@ -1805,8 +1805,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 735.0, 45.0, 238.0, 22.0 ],
-									"text" : "loadunique th.gl.texteditor-example.maxpat"
+									"patching_rect" : [ 735.0, 45.0, 245.0, 22.0 ],
+									"text" : "loadunique _th.gl.texteditor-example.maxpat"
 								}
 
 							}
