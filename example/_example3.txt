@@ -1,0 +1,24 @@
+wo erase_color 0 0 0.2 1
+
+gs shape cube
+gs poly_mode 0 0
+gs lighting_enable 1
+gs fog 1
+gs fog_range 2 10
+gs color 1 1 1 0.1
+
+mp dim 5 5 5
+mp distance 1
+mp scale 10 0.2 0.01
+mp rotatexyz random 0 20
+mp anim turn 0.3 -0.4 0.1
+
+cam ortho 1
+cam near_clip 0.1
+cam lens_angle 90
+cam position 2 0 0
+
+light_1 diffuse 0 1 1
+light_2 diffuse 0 0 1
+light_3 diffuse 1 1 1
+

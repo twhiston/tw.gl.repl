@@ -16,6 +16,8 @@ Live coding is starting to become more and more popular. As a new form of perfor
 
 This is a basic text editor for the opengl world of Max build in javascript. Add the object to your setup and initialize it with the name of the render context and dimensions for the context. Then make sure you send it the render bang in the top inlet. The outlet outputs the typed text as a list of per-line symbols ready for parsing in any way you like. For example control parameters of gl objects, control musical parameters, lighting shows, just use it as a typewriter or whatever you think of!
 
+![screenshot of the editor with visuals](media/screenshot_2.png)
+
 ## Install
 
 Download zip
@@ -34,6 +36,9 @@ Git clone
 4. Create a new object with "n" and type th.gl.texteditor. (Alt) + Right-click to open the helpfile.
 5. Read the helpfile carefully, open the Big Example to play with some of the jit.gl objects
 ```
+
+![screenshot of the editor with visuals](media/screenshot_3.png)
+
 ## License
 
 The GNU Lesser General Public License v.3
