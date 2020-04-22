@@ -116,6 +116,18 @@ function init(){
 	draw();
 }
 
+/* EXPERIMENTAL
+
+function max_linelength(v){
+	MAX_CHARS = Math.max(1, Math.min(Math.floor(v), LINE_CHARS - 40));
+	init();
+}
+
+function max_lines(v){
+	EDITOR_LINES = Math.max(1, Math.min(Math.floor(v), 40));
+	init();
+}*/
+
 function emptyMatrix(lines){
 	textMtx = new JitterMatrix("text"+UNIQ, 1, "char", LINE_CHARS, lines);
 	crsrMtx = new JitterMatrix("crsr"+UNIQ, 1, "char", LINE_CHARS, lines);
@@ -124,6 +136,7 @@ function emptyMatrix(lines){
 	textMtx.setall(0);
 }
 
+// output the parsed code if output_matrix is disabled
 function run(){
 	// emptyConsole();
 	outlet(0, "jit_matrix", textMtx.name);
@@ -132,6 +145,7 @@ function run(){
 	}
 }
 
+// enable the output_matrix flag
 function output_matrix(v){
 	OUT_MAT = v != 0;
 }
