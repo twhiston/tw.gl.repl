@@ -94,15 +94,7 @@ function init(){
 		drawto(jsarguments[1]);
 	}
 	clear();
-	// curCharacter = 0;
-	// curLine = 0;
-	// totalLines = 1;
-	// lineLengths = new Array(totalLines);
-	// lineLengths[curLine] = 0;
 	isDisabled = false;
-
-	// hIndex = 0;
-	// histMtxSet = new Array(UNDO_HISTORY);
 
 	font("Courier New Bold");
 	fontsize(100);
@@ -110,11 +102,10 @@ function init(){
 	tracking(1);
 	alpha(1);	
 	
-	// emptyMatrix(totalLines);
 	cursor("<<");
 	comment("//");
-	
-	// draw();
+
+	draw();
 }
 
 function clear(){
@@ -729,13 +720,41 @@ glText.gl_color = [1, 1, 1, 1];
 glText.screenmode = 0;
 glText.cull_face = 1;
 
+var textColor = [1, 1, 1, 1];
+var runColor = [0, 0, 0, 1];
+
 function color(){
 	args = arrayfromargs(arguments);
 	if (args.length !== 4){
-		error("th.gl.editor: Expected an RGBA value in floating-point", "\n");
+		error("th.gl.editor: Expected an RGBA value in floating-point \n");
 	} else {
+		textColor = args;
 		glText.gl_color = args;
 	}
+}
+
+function run_color(){
+	args = arrayfromargs(arguments);
+	if (args.length !== 4){
+		error("th.gl.editor: Expected an RGBA value in floating-point \n");
+	} else {
+		runColor = args;
+	}
+}
+
+function runBlink(t){
+
+	var c = [];
+	for (var i=0; i<textColor.length; i++){
+		c[i] = textColor[i] * (1-t) + runColor[i] * t;
+	}
+	glText.gl_color = c;
+
+	// if (t){
+	// 	glText.gl_color = runColor;
+	// } else {
+	// 	glText.gl_color = textColor;
+	// }
 }
 
 // the anim node and text for the cursor
@@ -899,11 +918,6 @@ function cull_face(c){
 	for (var i=0; i<allTextObj.length; i++){
 		allTextObj[i].cull_face = c;
 	}
-}
-
-function runBlink(){
-	c = arrayfromargs(arguments);
-	glText.gl_color = c;
 }
 
 function disableText(){
