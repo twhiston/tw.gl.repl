@@ -92,12 +92,13 @@ function loadbang(){
 function init(){
 	if (jsarguments.length>1) {
 		drawto(jsarguments[1]);
-	}	
-	curCharacter = 0;
-	curLine = 0;
-	totalLines = 1;
-	lineLengths = new Array(totalLines);
-	lineLengths[curLine] = 0;
+	}
+	clear();
+	// curCharacter = 0;
+	// curLine = 0;
+	// totalLines = 1;
+	// lineLengths = new Array(totalLines);
+	// lineLengths[curLine] = 0;
 	isDisabled = false;
 
 	// hIndex = 0;
@@ -109,10 +110,21 @@ function init(){
 	tracking(1);
 	alpha(1);	
 	
-	emptyMatrix(totalLines);
+	// emptyMatrix(totalLines);
 	cursor("<<");
 	comment("//");
 	
+	// draw();
+}
+
+function clear(){
+	curCharacter = 0;
+	curLine = 0;
+	totalLines = 1;
+	lineLengths = new Array(totalLines);
+	lineLengths[curLine] = 0;
+	
+	emptyMatrix(totalLines);
 	draw();
 }
 
