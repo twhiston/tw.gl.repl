@@ -557,8 +557,8 @@ function drawCursor(){
 function drawNumbers(){
 	for (var i = 0; i < totalLines; i++){
 		var digits = new Array(2);
-		digits[0] = String(Math.floor((i)/ 10));
-		digits[1] = String((i) % 10);
+		digits[0] = String(Math.floor((i+1)/ 10));
+		digits[1] = String((i+1) % 10);
 		if (digits[0] == 0){
 			digits[0] = " ";
 		}
