@@ -158,6 +158,15 @@
 				Set the text color.	
 			</description>
 		</attribute>
+		
+		<attribute name="run_color" get='0' set='1' type='float' size='1' >
+			<digest>
+				Set the color for blinking when the code is executed.
+			</digest>
+			<description>
+				Set the color for blinking when the code is executed.
+			</description>
+		</attribute>
 
 		<attribute name="cursor_color" get='0' set='1' type='float' size='1' >
 			<digest>
@@ -192,6 +201,24 @@
 			</digest>
 			<description>
 				Enable the blinking of the cursor. This will alternate between the cursor_color and the blink_color (default = 1).
+			</description>
+		</attribute>
+
+		<attribute name="scale" get='0' set='1' type='float' size='1' >
+			<digest>
+				The relative scale for the entire text (default = 1).
+			</digest>
+			<description>
+				The relative scale for the entire text (default = 1).
+			</description>
+		</attribute>
+
+		<attribute name="position" get='0' set='1' type='float' size='1' >
+			<digest>
+				The relative position of the text (default = 0 0)
+			</digest>
+			<description>
+				The relative position of the text (default = 0 0)
 			</description>
 		</attribute>
 
