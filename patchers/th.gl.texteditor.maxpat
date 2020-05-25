@@ -138,7 +138,7 @@
 									"maxclass" : "inlet",
 									"numinlets" : 0,
 									"numoutlets" : 1,
-									"outlettype" : [ "run" ],
+									"outlettype" : [ "" ],
 									"patching_rect" : [ 50.0, 75.0, 30.0, 30.0 ]
 								}
 
@@ -3193,6 +3193,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-19", 0 ],
+					"order" : 0,
 					"source" : [ "obj-76", 1 ]
 				}
 
@@ -3222,6 +3223,14 @@
 				"patchline" : 				{
 					"destination" : [ "obj-33", 1 ],
 					"source" : [ "obj-76", 7 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-37", 0 ],
+					"order" : 1,
+					"source" : [ "obj-76", 1 ]
 				}
 
 			}
