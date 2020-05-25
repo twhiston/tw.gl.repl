@@ -30,7 +30,7 @@ var CRSR = "<<";
 var CMMT = "//";
 var INDENTATION = 4;
 var EDITOR_LINES = 30;
-var MAX_CHARS = 90;
+var MAX_CHARS = 80;
 var LINE_CHARS = 140;
 // var UNDO_HISTORY = 5;
 // var CNSL_LINES = 40;
@@ -100,6 +100,7 @@ function init(){
 	fontsize(100);
 	leadscale(0.94);
 	tracking(1);
+	line_length(999999);
 	alpha(1);	
 	
 	cursor("<<");
@@ -899,6 +900,18 @@ function leadscale(l){
 function tracking(t){
 	for (var i=0; i<allTextObj.length; i++){
 		allTextObj[i].tracking = t;
+	}
+}
+
+function line_length(l){
+	for (var i=0; i<allTextObj.length; i++){
+		allTextObj[i].line_length = l;
+	}
+}
+
+function line_width(w){
+	for (var i=0; i<allTextObj.length; i++){
+		allTextObj[i].line_length = w;
 	}
 }
 
