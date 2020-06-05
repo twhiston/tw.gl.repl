@@ -179,7 +179,7 @@ function keybindings(n){
 // choose method based on keypress
 function keyPress(k){
 	// post("@char", k, "\n");
-	if (k == 96){
+	if (k == sKeys.get("disable-editor")[1]){
 		disableText();
 	}
 	else if (!isDisabled){
