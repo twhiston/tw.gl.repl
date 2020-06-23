@@ -1,7 +1,7 @@
 {
 	"comment" : [ "alt-/", 2095 ],
 	"execute" : [ "alt-return", 2044 ],
-	"disable-editor" : [ "empty", 0 ],
+	"disable-editor" : [ "empty", 8804 ],
 	"delete-line" : [ "alt-x", 8776 ],
 	"copy-line" : [ "alt-c", 231 ],
 	"paste-line" : [ "alt-v", 8730 ],
