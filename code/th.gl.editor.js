@@ -51,6 +51,7 @@ var keys = {
 	"space" : -2,
 	"return" : -4,
 	"tab" : -5,
+	"delete" : -6,
 	"backspace" : -7,
 	"up" : -9,
 	"down" : -10,
