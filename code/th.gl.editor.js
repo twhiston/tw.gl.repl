@@ -250,12 +250,11 @@ function keyPress(k){
 	}
 	// update number of lines
 	totalLines = textBuf.length;
-
 	draw();
-
-	for (var t=0; t<textBuf.length; t++){
-		post('line: '+ t + "| ", textBuf[t], "\n");
-	}
+	
+	// for (var t=0; t<textBuf.length; t++){
+	// 	post('line: '+ t + "| ", textBuf[t], "\n");
+	// }
 }
 
 // remove a charachter at index
@@ -617,9 +616,13 @@ function fillText(mat){
 	totalLines = Math.min(EDITOR_LINES, file.dim[1]);
 	// empty(totalLines);
 
-	for (var y = 0; y < totalLines; y++){
-		for (var x = 0; x < dimX; x++){
-			textMtx.setcell2d(x, y, file.getcell(x, y));
+	for (var l=0; l<totalLines; l++){
+		textBuf[l] = '';
+		for (var c=0; c<dimX; c++){
+			// read cell ascii value
+			var v = file.getcell(c, l);
+			// filter out values below 31
+			textBuf[l] += (v > 31) ? String.fromCharCode(v) : '';
 		}
 	}
 }
