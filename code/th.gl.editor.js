@@ -1,4 +1,4 @@
-//====================================================================
+//===================================================================
 // th.gl.editor.js
 // A responsive texteditor for the opengl environment
 
@@ -23,7 +23,7 @@
 
 // TO DO:
 // undo/redo history (matrixset?)
-//====================================================================
+//===================================================================
 
 autowatch = 1;
 inlets = 1;
@@ -61,8 +61,7 @@ var keys = {
 }
 
 var key;
-var curLine, curCharacter, totalLines;
-var lineLengths;
+var curLine, curChar, totalLines;
 var isDisabled;
 
 var CRSR_CHARS = [];
@@ -70,7 +69,11 @@ var CMMT_CHARS = [];
 
 var UNIQ = Date.now();
 
+// matrices for text display
 var textMtx, crsrMtx, nmbrMtx;
+// arrays for strings;
+var textBuf;
+
 // var histMtxSet, hIndex;
 // var cnslMtx, cnslText = [];
 
@@ -79,6 +82,8 @@ function loadbang(){
 }
 
 function init(){
+	textBuf = [''];
+
 	if (jsarguments.length>1) {
 		drawto(jsarguments[1]);
 
@@ -100,13 +105,11 @@ function init(){
 }
 
 function clear(){
-	curCharacter = 0;
+	curChar = 0;
 	curLine = 0;
 	totalLines = 1;
-	lineLengths = new Array(totalLines);
-	lineLengths[curLine] = 0;
 	
-	emptyMatrix(totalLines);
+	empty(totalLines);
 	draw();
 }
 
@@ -122,19 +125,24 @@ function max_lines(v){
 	init();
 }*/
 
-function emptyMatrix(lines){
-	textMtx = new JitterMatrix("text"+UNIQ, 1, "char", LINE_CHARS, lines);
-	crsrMtx = new JitterMatrix("crsr"+UNIQ, 1, "char", LINE_CHARS, lines);
-	nmbrMtx = new JitterMatrix("nmbr"+UNIQ, 1, "char", 3, lines);
+function empty(lines){
+	textBuf = [''];
+	// textMtx = new JitterMatrix("text"+UNIQ, 1, "char", LINE_CHARS, lines);
+	// crsrMtx = new JitterMatrix("crsr"+UNIQ, 1, "char", LINE_CHARS, lines);
+	// nmbrMtx = new JitterMatrix("nmbr"+UNIQ, 1, "char", 3, lines);
 	// cnslMtx = new JitterMatrix("cnsl"+UNIQ, 1, "char", LINE_CHARS, CNSL_LINES);
-	textMtx.setall(0);
+	// textMtx.setall(0);
 }
 
 // output the parsed code if output_matrix is disabled
 function run(){
 	outlet(0, "jit_matrix", textMtx.name);
 	if (!OUT_MAT){
-		outlet(0, mtxToSymbol(textMtx));
+		var out = textBuf.map(function(t){
+			return t.replace(/\s+/g, ' ').trim();
+		})
+		outlet(0, out);
+		// outlet(0, mtxToSymbol(textMtx));
 	}
 }
 
@@ -160,17 +168,18 @@ function mtxToSymbol(mat){
 
 // draw the text and output all info
 function draw(){
+	drawText(); //place the strings as text in a matrix
 	drawCursor(); //set the cursorposition
 	drawNumbers(); //store the numbers in the matrix
 	matrixToText(); //set the matrices to the gl text objects
 	// drawHighlight();
 
 	var len = getMaxChar();
-	outlet(1, "lines", totalLines);
+	outlet(1, "lines", textBuf.length);
 	outlet(1, "line", curLine);
 	outlet(1, "length", len);
 	outlet(1, "nLength", len/MAX_CHARS);
-	outlet(1, "nLines", (totalLines-1)/(EDITOR_LINES-1));
+	outlet(1, "nLines", (textBuf.length-1)/(EDITOR_LINES-1));
 }
 
 // load a dictionary of keybindings
@@ -181,7 +190,6 @@ function keybindings(n){
 // choose method based on keypress
 function keyPress(k){
 	// post("@char", k, "\n");
-
 	if (k == sKeys.get("disable-editor")[1]){
 		disableText();
 	}
@@ -230,151 +238,191 @@ function keyPress(k){
 		else if (k == sKeys.get("down")[1]){ gotoLine(1); }
 		else if (k == sKeys.get("up")[1]){ gotoLine(0); }
 
+		else if (k == sKeys.get("jump-word-left")[1]){ gotoWord(0); }
+		else if (k == sKeys.get("jump-word-right")[1]){ gotoWord(1); }
+		
 		// Jumpt to top/bottom
 		// else if (k == ALT_Q){ jumpTo(2); }
 		// else if (k == ALT_SHFT_Q){ jumpTo(3); }
 		
 		// TO-DO
-		// else if (k == ALT_J){ gotoWord(0); }
-		// else if (k == ALT_L){ gotoWord(1); }
 		// else if (k == ALT_Z){ getHistory(); }
 	}
+	// update number of lines
+	totalLines = textBuf.length;
+
 	draw();
+
+	for (var t=0; t<textBuf.length; t++){
+		post('line: '+ t + "| ", textBuf[t], "\n");
+	}
+}
+
+// remove a charachter at index
+String.prototype.removeCharAt = function(i){
+    var tmp = this.split('');
+    tmp.splice(i, 1);
+    return tmp.join(''); 
+}
+
+// instert a character at index
+String.prototype.insertCharAt = function(i, c){
+	var l = this.slice(0, i);
+	var r = this.slice(i);
+	return l + c + r;
 }
 
 // add multiple spaces to the text (tab)
 function addTab(){
-	var numSpaces = INDENTATION - (curCharacter % INDENTATION);
-	for(var i = 0; i < numSpaces; i++){
+	var numSpaces = INDENTATION - (curChar % INDENTATION);
+	for (var i = 0; i < numSpaces; i++){
 		addChar(32);
 	}
 }
 
 // add a character (alpha-numeric, numeric, special characters)
 function addChar(k){
-	if (curCharacter >= MAX_CHARS){
+	if (curChar >= MAX_CHARS){
 		if (endOfLines()) {
 			return;
 		} else {
 			newLine();
 		}
 	}
-	var len = lineLengths[curLine];
-
-	if (curCharacter < len){
-		for (var i = len; i > curCharacter-1; i--){
-			textMtx.setcell2d(i+1, curLine, textMtx.getcell(i, curLine));
-		}
-	}
-	textMtx.setcell2d(curCharacter, curLine, k);
-	curCharacter += 1;
-	lineLengths[curLine] = getCharCount(textMtx, curLine);
+	// ascii code to string
+	var c = String.fromCharCode(k);
+	// insert character at index
+	textBuf[curLine] = textBuf[curLine].insertCharAt(curChar, c);
+	// increment current character
+	curChar++;
 }
 
 // backspace a character
 function backSpace(k){
-	curCharacter = Math.max(-1, (curCharacter-=1));
+	// decrement character index
+	curChar = Math.max(-1, (curChar-=1));
 
-	if (curCharacter >= 0){
-		var len = lineLengths[curLine];
-		for (var i = curCharacter; i < len; i++){
-			textMtx.setcell2d(i, curLine, textMtx.getcell(i+1, curLine));
-		}
+	if (curChar >= 0){
+		// remove character at index
+		textBuf[curLine] = textBuf[curLine].removeCharAt(curChar);
 	} else if (curLine > 0){
+		// remove line if at beginning of line
 		removeLine();
 	} else {
-		curCharacter = 0;
+		// else index is 0
+		curChar = 0;
 	}
-	lineLengths[curLine] = getCharCount(textMtx, curLine);
 }
+
+// ===========
+// Deprecated
 
 // return the amount of characters in one line
-function getCharCount(mat, line){
-	var charCount = 0;
-	var len = mat.dim[0];
-	for (var i = 0; i < len; i++){
-		if (mat.getcell(i, line) < 32){
-			return charCount;
-		}
-		charCount++;
-	}
-}
+// function getCharCount(mat, line){
+// 	var charCount = 0;
+// 	var len = mat.dim[0];
+// 	for (var i = 0; i < len; i++){
+// 		if (mat.getcell(i, line) < 32){
+// 			return charCount;
+// 		}
+// 		charCount++;
+// 	}
+// }
 
 // set an array of amount of characters per line
-function countChars(){
-	var rows = textMtx.dim[1];
-	// empty the array to reset count
-	lineLengths = [];
-	for (var y = 0; y < rows; y++){
-		lineLengths[y] = getCharCount(textMtx, y);
-	}
-}
+// function countChars(){
+// 	var lines = textBuf.length;
+// 	lineLengths = [];
+// 	for (var l=0; l<lines; l++){
+// 		lineLengths[l] = textBuf[l].length;
+// 	}
+// }
+// ===========
 
 // return the highest number of characters in one line
 function getMaxChar(){
-	var sortArr = lineLengths.slice(0);
+	var lengths = [];
+	for (var l=0; l<textBuf.length; l++){
+		lengths[l] = textBuf[l].length;
+	}
+	var sortArr = lengths.slice(0);
 	sortArr.sort(function(a,b){ return b-a });
 
 	return sortArr[0];
 }
 
+// move one character to the right or left
 function gotoCharacter(k){
-	k = k * 2 - 1;
-	curCharacter = curCharacter + k;
-	if (curCharacter < 0 && curLine > 0){
-		curCharacter = lineLengths[curLine];
+	curChar = curChar + (k * 2 - 1);
+	var len = textBuf[curLine].length;
+
+	if (curChar < 0 && curLine > 0){
 		gotoLine(0);
-	} else if (curCharacter > lineLengths[curLine] && curLine != totalLines-1){
+		jumpTo(1);
+	} else if (curChar > len && curLine != totalLines-1){
 		gotoLine(1);
-		curCharacter = 0;
+		jumpTo(0);
 	} else {
-		curCharacter = Math.min(lineLengths[curLine], Math.max(0, curCharacter));
+		curChar = Math.min(len, Math.max(0, curChar));
 	}
 }
 
-/*function gotoWord(k){
-	// var cnt = 0;
-	gotoCharacter(k);
-	var char = textMtx.getcell(curCharacter, curLine);
-	
-	post("@num", curCharacter);
-	post("@lines", totalLines);
-	post("@line", curLine);
-	post("@char", char, "\n");
-
-	if (char > 32 && curLine > 0){
-		gotoWord(k);
-	}
-}*/
-
+// move one line up or down
 function gotoLine(k){
 	k = k * 2 - 1;
-	var prevLen = lineLengths[curLine];
+	var prevLen = textBuf[curLine].length;
 
 	curLine = Math.min(Math.max(0, (curLine+k)), totalLines-1);
-	var len = lineLengths[curLine];
+	var len = textBuf[curLine].length;
 
-	curCharacter = Math.min(len, curCharacter);
+	curChar = Math.min(len, curChar);
 
-	if (curCharacter == prevLen){
-		curCharacter = len;
+	if (curChar == prevLen){
+		curChar = len;
 	} else {
-		curCharacter = Math.min(len, curCharacter);
+		curChar = Math.min(len, curChar);
 	}
 }
 
+// jump to the next or previous word (looks for seprated by spaces)
+function gotoWord(k){
+	if (k === 0){
+		var l = textBuf[curLine].slice(0, curChar);
+		if (l.match(/\ +[^ ]*$/g)){
+			var move = l.match(/\s+[^\s]*(\s?)+$/g)[0].length;
+			curChar -= move;
+		} else {
+			jumpTo(0);
+			gotoCharacter(0);
+		}
+	} else if (k === 1){
+		var l = textBuf[curLine].slice(curChar);
+		if (l.match(/^[^ ]*\ +/g)){
+			var move = l.match(/^(\s?)+[^\s]*/g)[0].length;
+			curChar += move;
+		} else {
+			jumpTo(1);
+			gotoCharacter(1);
+		}
+	}
+}
+
+// jump to beginning/end of line or top/bottom
 function jumpTo(k){
+	var len = textBuf[curLine].length;
 	switch(k){
 		// beginning of line
-		case 0: curCharacter = 0; break;
+		case 0: curChar = 0; break;
 		// end of line
-		case 1: curCharacter = lineLengths[curLine]; break;
+		case 1: curChar = len; break;
 		// to beginning (top)
 		case 2: curLine = 0;
-				curCharacter = lineLengths[curLine]; break;
+				len = textBuf[curLine].length;
+				curChar = Math.min(len, curChar); break;
 		// to end (bottom)
-		case 3: curLine = totalLines-1;
-				curCharacter = lineLengths[curLine]; break;
+		case 3: curLine = textBuf.length - 1;
+				len = textBuf[curLine].length;
+				curChar = Math.min(len, curChar); break;
 	}
 }
 
@@ -382,100 +430,55 @@ function newLine(){
 	if (endOfLines()){
 		return;
 	}
-	totalLines = textMtx.dim[1] + 1;
-	// copy the matrix
-	var copyMtx = new JitterMatrix(1, "char", LINE_CHARS, textMtx.dim[1]);
-	copyMtx.frommatrix(textMtx.name);
-	emptyMatrix(totalLines);
-	// store everything before cursor in text matrix
-	for (var y = 0; y < curLine; y++){
-		for (var x = 0; x < copyMtx.dim[0]; x++){
-			textMtx.setcell2d(x, y, copyMtx.getcell(x, y));
-		}
-	}
-	for (var x = 0; x < curCharacter; x++){
-		if (x < curCharacter){
-			textMtx.setcell2d(x, curLine, copyMtx.getcell(x, curLine));
-		}
-	}
+	// split array in left and right of cursor
+	var line = textBuf[curLine];
+	var l = line.slice(0, curChar);
+	var r = line.slice(curChar);
+	
+	// store line left on current line
+	textBuf[curLine] = l;
+	
 	// update the line position
 	curLine++;
-	// place everything behind cursor in next line matrix
-	for (var x = curCharacter; x < copyMtx.dim[0]; x++){
-		textMtx.setcell2d(x-curCharacter, curLine, copyMtx.getcell(x, curLine-1));
-	}
-	for (var y = copyMtx.dim[1]-1; y >= curLine; y--){
-		for (var x = 0; x < copyMtx.dim[0]; x++){
-			textMtx.setcell2d(x, y+1, copyMtx.getcell(x, y));
-		}
-	}
-	// restore character counts in every row
-	countChars();
-	// jump to beginning
-	curCharacter = 0;
+	
+	// insert new line on right side of cursor
+	var u = textBuf.slice(0, curLine);
+	u = Array.isArray(u)? u : [u];
+	u.push(r);
+	// store to array
+	textBuf = u.concat(textBuf.slice(curLine));
+	// jump to beginning of line
+	jumpTo(0);
 }
 
 function removeLine(){
-	totalLines = Math.max(1, textMtx.dim[1] - 1);
-	// copy the matrix
-	var copyMtx = new JitterMatrix(1, "char", LINE_CHARS, textMtx.dim[1]);
-	copyMtx.frommatrix(textMtx.name);
-	emptyMatrix(totalLines);
-	// store all lines before cursor in text matrix
-	for (var y = 0; y < curLine; y++){
-		for (var x = 0; x < copyMtx.dim[0]; x++){
-			textMtx.setcell2d(x, y, copyMtx.getcell(x, y));
-		}
-	}
+	// cursors at end of previous line
+	curChar = textBuf[curLine-1].length;
+
+	// add current line to line above
+	textBuf[curLine-1] += textBuf[curLine];
+	// remove item from array at index
+	textBuf.splice(curLine, 1);
+
 	// update the line position
-	curLine = Math.max(0, curLine-1);
-	// place everything behind cursor in next line matrix
-	for (var x = 0; x < lineLengths[curLine+1]; x++){
-		textMtx.setcell2d(x + lineLengths[curLine], curLine, copyMtx.getcell(x, curLine+1));
-	}
-	// jump to beginning
-	curCharacter = lineLengths[curLine];
-	for (var y = curLine+2; y < copyMtx.dim[1]; y++){
-		for (var x = 0; x < copyMtx.dim[0]; x++){
-			textMtx.setcell2d(x, y-1, copyMtx.getcell(x, y));
-		}
-	}
-	// restore character counts in every row
-	countChars();
+	curLine = Math.max(0, curLine-1);	
 }
 
 function deleteLine(){
 	if (totalLines == 1){
-		emptyMatrix(totalLines);
-		countChars();
+		empty();
 		curLine = 0;
-		curCharacter = 0;
+		jumpTo(2);
+		jumpTo(0);
 	} else {
-		totalLines = Math.max(1, textMtx.dim[1] - 1);
-		// copy the matrix
-		var copyMtx = new JitterMatrix(1, "char", LINE_CHARS, textMtx.dim[1]);
-		copyMtx.frommatrix(textMtx.name);
-		emptyMatrix(totalLines);
-		// store all lines before cursor in text matrix
-		for (var y = 0; y < curLine+1; y++){
-			for (var x = 0; x < copyMtx.dim[0]; x++){
-				textMtx.setcell2d(x, y, copyMtx.getcell(x, y));
-			}
-		}
-		// update the line position
-		// curLine = Math.max(0, curLine-1);
-		for (var y = curLine+1; y < copyMtx.dim[1]; y++){
-			for (var x = 0; x < copyMtx.dim[0]; x++){
-				textMtx.setcell2d(x, y-1, copyMtx.getcell(x, y));
-			}
-		}
-		// restore character counts in every row
-		countChars();
-		// jump to beginning
-		if (curLine == totalLines){
+		// for the textBufay
+		textBuf.splice(curLine, 1);
+
+		if (curLine == textBuf.length){
 			curLine--;
 		}
-		curCharacter = lineLengths[curLine];
+		// place cursor
+		curChar = Math.min(textBuf[curLine].length, curChar);
 	}
 }
 
@@ -483,21 +486,13 @@ function deleteLine(){
 var pasteBin;
 
 function copyLine(){
-	pasteBin = new JitterMatrix(1, "char", LINE_CHARS, 1);
-	// copy characters from current line to pastebin
-	for (var i = 0; i < lineLengths[curLine]; i++){
-		pasteBin.setcell2d(i, 0, textMtx.getcell(i, curLine));
-	}
+	pasteBin = textBuf[curLine];
 }
 
 function pasteReplaceLine(){
 	if (pasteBin !== null){
-		// replace current text with text from pasteBin
-		for (var x = 0; x < pasteBin.dim[0]; x++){
-			textMtx.setcell2d(x, curLine, pasteBin.getcell(x, 0));
-		}
-		// restore character counts in every row
-		countChars();
+		// replace string with pastebin string
+		textBuf[curLine] = pasteBin;
 		// jump to end of new line
 		jumpTo(1);
 	}
@@ -531,7 +526,7 @@ function cursor(c){
 }
 
 function comment(c){
-	// post("@comment: ", c, "\n");
+	//post("@comment: ", c, "\n");
 	CMMT = c.toString();
 	CMMT_CHARS = [];
 	for (var i=0; i<CMMT.length; i++){
@@ -541,18 +536,33 @@ function comment(c){
 	draw();
 }
 
+function drawText(){
+	textMtx = new JitterMatrix("text"+UNIQ, 1, "char", LINE_CHARS, textBuf.length);
+	textMtx.setall(0);
+	// draw all the characters as ascii code in a matrix
+	for (var l=0; l<textBuf.length; l++){
+		for (var c=0; c<textBuf[l].length; c++){
+			textMtx.setcell2d(c, l, textBuf[l].charCodeAt(c));
+		}
+	}
+}
+
 function drawCursor(){
+	crsrMtx = new JitterMatrix("crsr"+UNIQ, 1, "char", LINE_CHARS, totalLines);
+	
 	crsrMtx.setall(32);
 	// draw at least something at the end of the matrix.
 	for (var i = 0; i < totalLines; i++){
 		crsrMtx.setcell2d(LINE_CHARS-1, i, 46);
 	}
 	for (var c = 0; c < CRSR_CHARS.length; c++){
-		crsrMtx.setcell2d(curCharacter+c, curLine, CRSR_CHARS[c]);
+		crsrMtx.setcell2d(curChar+c, curLine, CRSR_CHARS[c]);
 	}
 }
 
 function drawNumbers(){
+	nmbrMtx = new JitterMatrix("nmbr"+UNIQ, 1, "char", 3, totalLines);
+	
 	for (var i = 0; i < totalLines; i++){
 		var digits = new Array(2);
 		digits[0] = String(Math.floor((i+1)/ 10));
@@ -565,7 +575,6 @@ function drawNumbers(){
 			nmbrMtx.setcell2d(n, i, digits[n].charCodeAt(0));
 		}
 	}
-
 	nmbrMtx.setcell2d(0, curLine, 62);
 	nmbrMtx.setcell2d(1, curLine, 62);
 }
@@ -580,49 +589,24 @@ function drawNumbers(){
 }*/
 
 function commentLine(){
-	var isCommented = 0;
-	var comment = CMMT_CHARS;
-	var len = CMMT_CHARS.length-1;
-	var move = CMMT_CHARS.length;
-
-	// check if the line starts with the comment characters
-	for (var i = 0; i < len; i++){
-		isCommented += textMtx.getcell(i, curLine) == comment[i];
-	}
-	// if true remove the comment sign
-	if (isCommented == len){
-		// check if extra space is present
-		if (textMtx.getcell(len, curLine) == comment[len]){
-			len += 1;
-		}
-		// replace all characters in the line and move position
-		for (var i = 0; i < lineLengths[curLine]; i++){
-			textMtx.setcell2d(i, curLine, textMtx.getcell(i+len, curLine));
-		}
-		// reposition cursor
-		curCharacter = Math.max(0, curCharacter - len);
+	// add comment-characters to regex
+	var rgx = new RegExp('^' + CMMT + ' *', 'g');
+	// if has comment remove it, else add
+	if (textBuf[curLine].match(rgx)){
+		textBuf[curLine] = textBuf[curLine].replace(rgx, '');
 	} else {
-		// reposition all the characters 3 steps further
-		for (var i = lineLengths[curLine]-1; i >= 0; i--){
-			textMtx.setcell2d(i+move, curLine, textMtx.getcell(i, curLine));
-		}
-		// add the comment sign symbols
-		for (var i = 0; i < move; i++){
-			textMtx.setcell2d(i, curLine, comment[i]);
-		}
-		// reposition cursor
-		curCharacter += move;
+		textBuf[curLine] = CMMT + ' ' + textBuf[curLine];
 	}
-	countChars();
-	return true;
+	// return true;
 }
 
 // read a textfile from disk to the editor
 function readFile(mat){
 	fillText(mat);
-	countChars();
+	// jump to top and beginning
 	jumpTo(2);
 	jumpTo(0);
+
 	draw();
 }
 
@@ -631,7 +615,7 @@ function fillText(mat){
 	file = new JitterMatrix(mat);
 	dimX = Math.min(MAX_CHARS, file.dim[0]);
 	totalLines = Math.min(EDITOR_LINES, file.dim[1]);
-	emptyMatrix(totalLines);
+	// empty(totalLines);
 
 	for (var y = 0; y < totalLines; y++){
 		for (var x = 0; x < dimX; x++){
@@ -664,9 +648,9 @@ function emptyConsole(){
 	draw();
 }*/
 
-//====================================================================
+//===================================================================
 // GL TEXT OBJECTS
-//====================================================================
+//===================================================================
 
 var MAIN_CTX = "CTX";
 var NODE_CTX = "node" + UNIQ;
