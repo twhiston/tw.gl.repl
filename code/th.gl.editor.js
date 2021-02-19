@@ -550,6 +550,7 @@ function commentLine(){
 	} else {
 		textBuf[curLine] = CMMT + ' ' + textBuf[curLine];
 	}
+	curChar = textBuf[curLine].length;
 	// return true;
 }
 
