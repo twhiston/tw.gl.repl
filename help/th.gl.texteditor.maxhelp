@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 563.0, 107.0, 861.0, 639.0 ],
+		"rect" : [ 100.0, 100.0, 861.0, 639.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -56,7 +56,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 861.0, 613.0 ],
+						"rect" : [ 100.0, 126.0, 861.0, 613.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -174,7 +174,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 135.0, 315.0, 232.0, 22.0 ],
-									"text" : "insert 4 --> \"Somewhere in the Middle\" <--"
+									"text" : "insert 4 --> \"Somewhere in the middle\" <--"
 								}
 
 							}
@@ -1742,7 +1742,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 563.0, 133.0, 861.0, 613.0 ],
+						"rect" : [ 0.0, 26.0, 861.0, 613.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
