@@ -206,6 +206,7 @@ function keyPress(k){
 		// Backspace Win = 8, Mac = 127
 		// Delete Win = 127, Mac = 127
 		else if (k == keys["backspace"]){ backSpace(); }
+		else if (k == keys["delete"]){ deleteChar(); }
 		// arrow keys Platform-independent
 		else if (k == keys["tab"]){ addTab(); }
 		else if (k == keys["up"] || k == keys["down"]){ 
@@ -298,7 +299,7 @@ function addChar(k){
 }
 
 // backspace a character
-function backSpace(k){
+function backSpace(){
 	// decrement character index
 	curChar = Math.max(-1, (curChar-=1));
 
@@ -311,6 +312,18 @@ function backSpace(k){
 	} else {
 		// else index is 0
 		curChar = 0;
+	}
+}
+
+// delete a character (oposite of backspace)
+function deleteChar(){
+	if (curChar < textBuf[curLine].length){
+		textBuf[curLine] = textBuf[curLine].removeCharAt(curChar);
+	} else {
+		if (curLine < textBuf.length-1){
+			gotoLine(1);
+			removeLine();
+		}
 	}
 }
 
