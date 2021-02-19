@@ -168,6 +168,9 @@ function mtxToSymbol(mat){
 
 // draw the text and output all info
 function draw(){
+	// update number of lines
+	totalLines = textBuf.length;
+	
 	drawText(); //place the strings as text in a matrix
 	drawCursor(); //set the cursorposition
 	drawNumbers(); //store the numbers in the matrix
@@ -241,17 +244,15 @@ function keyPress(k){
 		else if (k == sKeys.get("jump-word-left")[1]){ gotoWord(0); }
 		else if (k == sKeys.get("jump-word-right")[1]){ gotoWord(1); }
 		
-		// Jumpt to top/bottom
+		// Jump to top/bottom
 		// else if (k == ALT_Q){ jumpTo(2); }
 		// else if (k == ALT_SHFT_Q){ jumpTo(3); }
 		
 		// TO-DO
 		// else if (k == ALT_Z){ getHistory(); }
 	}
-	// update number of lines
-	totalLines = textBuf.length;
 	draw();
-	
+
 	// for (var t=0; t<textBuf.length; t++){
 	// 	post('line: '+ t + "| ", textBuf[t], "\n");
 	// }
@@ -514,6 +515,7 @@ function endOfLines(){
 	return isEnd;
 }
 
+// set the cursor characters
 function cursor(c){
 	// post("@cursor: ", c, "\n");
 	CRSR = c.toString();
@@ -524,6 +526,7 @@ function cursor(c){
 	draw();
 }
 
+// set the comment characters
 function comment(c){
 	//post("@comment: ", c, "\n");
 	CMMT = c.toString();
@@ -535,6 +538,22 @@ function comment(c){
 	draw();
 }
 
+// Add or remove comment at start of line
+function commentLine(){
+	// add comment-characters to regex
+	// escape special characters
+	var esc = CMMT.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+	var rgx = new RegExp('^ *' + esc + ' *', 'g');
+	// if has comment remove it, else add
+	if (textBuf[curLine].match(rgx)){
+		textBuf[curLine] = textBuf[curLine].replace(rgx, '');
+	} else {
+		textBuf[curLine] = CMMT + ' ' + textBuf[curLine];
+	}
+	// return true;
+}
+
+// draw the text to a jitter matrix as ascii
 function drawText(){
 	textMtx = new JitterMatrix("text"+UNIQ, 1, "char", LINE_CHARS, textBuf.length);
 	textMtx.setall(0);
@@ -546,6 +565,7 @@ function drawText(){
 	}
 }
 
+// draw the cursor to a jitter matrix as ascii
 function drawCursor(){
 	crsrMtx = new JitterMatrix("crsr"+UNIQ, 1, "char", LINE_CHARS, totalLines);
 	
@@ -559,6 +579,7 @@ function drawCursor(){
 	}
 }
 
+// draw the numbers to a jitter matrix as ascii
 function drawNumbers(){
 	nmbrMtx = new JitterMatrix("nmbr"+UNIQ, 1, "char", 3, totalLines);
 	
@@ -587,18 +608,6 @@ function drawNumbers(){
 	}
 }*/
 
-function commentLine(){
-	// add comment-characters to regex
-	var rgx = new RegExp('^' + CMMT + ' *', 'g');
-	// if has comment remove it, else add
-	if (textBuf[curLine].match(rgx)){
-		textBuf[curLine] = textBuf[curLine].replace(rgx, '');
-	} else {
-		textBuf[curLine] = CMMT + ' ' + textBuf[curLine];
-	}
-	// return true;
-}
-
 // read a textfile from disk to the editor
 function readFile(mat){
 	fillText(mat);
@@ -615,6 +624,7 @@ function fillText(mat){
 	dimX = Math.min(MAX_CHARS, file.dim[0]);
 	totalLines = Math.min(EDITOR_LINES, file.dim[1]);
 	// empty(totalLines);
+	textBuf = [];
 
 	for (var l=0; l<totalLines; l++){
 		textBuf[l] = '';
@@ -625,6 +635,94 @@ function fillText(mat){
 			textBuf[l] += (v > 31) ? String.fromCharCode(v) : '';
 		}
 	}
+}
+
+// replace all the text with the incoming arguments
+// this can be a list of symbols for every line
+function set(){
+	var text = arrayfromargs(arguments);
+	totalLines = Math.min(EDITOR_LINES, text.length);
+	text = text.slice(0, totalLines);
+	// empty buffer
+	textBuf = [];
+	textBuf = Array.isArray(text)? text : [text];
+
+	curLine = textBuf.length-1;
+	jumpTo(2);
+	jumpTo(1);
+	draw();
+}
+
+// append a line of text or multiple symbols per line
+function append(){
+	var text = arrayfromargs(arguments);
+	text = Array.isArray(text)? text : [text];
+
+	if (totalLines + text.length > EDITOR_LINES){
+		post('append(): maximum number of lines reached \n');
+		return;
+	}
+	textBuf = textBuf.concat(text);
+	jumpTo(2);
+	jumpTo(1);
+	draw();
+}
+
+// append a line of text or multiple symbols per line
+function prepend(){
+	var text = arrayfromargs(arguments);
+	text = Array.isArray(text)? text : [text];
+
+	if (totalLines + text.length > EDITOR_LINES){
+		post('append(): maximum number of lines reached \n');
+		return;
+	}
+	textBuf = text.concat(textBuf);
+	jumpTo(2);
+	jumpTo(1);
+	draw();
+}
+
+// remove a line of text at a specified index
+function remove(idx){
+	if (idx === undefined){ idx = textBuf.length-1; }
+	curLine = idx;
+	deleteLine();
+	draw();
+}
+
+// insert a line of text or multiple symbols at a specified index
+// a list of symbols will inserte one line per symbol
+function insert(){
+	var args = arrayfromargs(arguments);
+	if (isNaN(args[0])){
+		post('insert(): index is not a number \n');
+		return;
+	}
+	var idx = Math.min(EDITOR_LINES, args[0]);
+	var text = args.slice(1);
+	text = Array.isArray(text)? text : [text];
+
+	// exit if doesn't fit in editor
+	if (totalLines + text.length > EDITOR_LINES){
+		post('insert(): maximum number of lines reached \n');
+		return;
+	}
+	// if insert between totalLines
+	if (idx < totalLines){	
+		var u = textBuf.slice(0, Math.max(0, idx));
+		u = Array.isArray(u)? u : [u];
+		u = u.concat(text);
+		textBuf = u.concat(textBuf.slice(idx));
+	} else {
+		// else append to code and insert empty strings
+		var diff = idx - totalLines;
+		for (var d=0; d<diff; d++){
+			textBuf.push('');
+		}
+		textBuf = textBuf.concat(text);
+	}
+	draw();
 }
 
 /*function fillConsole(mess){

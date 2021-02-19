@@ -101,6 +101,66 @@
 				Read the a textfile from disk.
 			</description>
 		</method>
+
+		<method name="set">
+			<arglist>
+				<arg name="set" optional="0" type="symbol" />
+			</arglist>
+			<digest>
+				Set the entire textbuffer.
+			</digest>
+			<description>
+				Set the entire textbuffer with a list of symbols. Every symbol is placed on a new line.
+			</description>
+		</method>
+
+		<method name="insert">
+			<arglist>
+				<arg name="insert" optional="0" type="symbol" />
+			</arglist>
+			<digest>
+				Insert a symbol on a line.
+			</digest>
+			<description>
+				Insert a symbol or list of symbols on a specified line. Line index start at 0. Every symbol is placed on a new line.
+			</description>
+		</method>
+
+		<method name="append">
+			<arglist>
+				<arg name="append" optional="0" type="symbol" />
+			</arglist>
+			<digest>
+				Append a symbol at the end.
+			</digest>
+			<description>
+				Append a symbol or list of symbols at the end of the textbuffer. Every symbol is placed on a new line.
+			</description>
+		</method>
+		
+		<method name="prepend">
+			<arglist>
+				<arg name="prepend" optional="0" type="symbol" />
+			</arglist>
+			<digest>
+				Prepend a symbol at the beginning.
+			</digest>
+			<description>
+				Prepend a symbol or list of symbols at the beginning of the textbuffer. Every symbol is placed on a new line.
+			</description>
+		</method>
+
+		<method name="remove">
+			<arglist>
+				<arg name="remove" optional="0" type="symbol" />
+			</arglist>
+			<digest>
+				Remove last or a specified line.
+			</digest>
+			<description>
+				Remove the last line from the textbuffer. Optional index removes a specific line (count from 0).
+			</description>
+		</method>
 	</methodlist>
 
 	<!--ATTRIBUTES-->
