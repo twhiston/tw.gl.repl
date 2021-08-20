@@ -273,6 +273,24 @@
 			</description>
 		</attribute>
 
+		<attribute name="blink_time" get='0' set='1' type='int' size='1' >
+			<digest>
+				The speed of the cursor blinking in ms (default = 250).
+			</digest>
+			<description>
+				The speed of the cursor blinking in ms (default = 250).
+			</description>
+		</attribute>
+
+		<attribute name="slide_time" get='0' set='1' type='int' size='1' >
+			<digest>
+				The speed of the logarithmic scale smoothing of text in frames (default = 15).
+			</digest>
+			<description>
+				The speed of the logarithmic scale smoothing of text in frames (default = 15).
+			</description>
+		</attribute>
+
 		<attribute name="scale" get='0' set='1' type='float' size='1' >
 			<digest>
 				The relative scale for the entire text (default = 1).

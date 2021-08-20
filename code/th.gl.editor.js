@@ -687,6 +687,8 @@ function fillText(mat){
 // this can be a list of symbols for every line
 function set(){
 	var text = arrayfromargs(arguments);
+	text = (text.length < 1) ? '' : text;
+	
 	totalLines = Math.min(EDITOR_LINES, text.length);
 	text = text.slice(0, totalLines);
 	// empty buffer
