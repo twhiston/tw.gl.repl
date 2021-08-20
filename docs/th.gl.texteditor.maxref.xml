@@ -183,6 +183,15 @@
 			</description>
 		</attribute>
 
+		<attribute name="ignore_keys" get='0' set='1' type='int' size='2' >
+			<digest>
+				Ignore keystrokes from keyboard (default = 0).
+			</digest>
+			<description>
+				Ignore the keystrokes from the keyboard (default = 0).
+			</description>
+		</attribute>
+
 		<attribute name="font" get='0' set='1' type='symbol' size='1' >
 			<digest>
 				Set the font for the editor (default = Courier New Bold).
