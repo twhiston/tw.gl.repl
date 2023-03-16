@@ -17,5 +17,6 @@
 	"right" : [ "alt-d", 8706 ],
 	"jump-word-left" : [ "alt-j", 8710 ],
 	"jump-word-right" : [ "alt-l", 172 ],
-	"clear" : [ "alt-k", 730 ]
+	"clear" : [ "alt-k", 730 ],
+	"ephemeral-mode" : ["alt-g", 169]
 }

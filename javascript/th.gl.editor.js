@@ -43,6 +43,8 @@ var OUT_MAT = 0;
 
 var POST_FLAG = 1;
 
+var EPHEMERAL_MODE = 0;
+
 // load keybindings from json file
 var sKeys = new Dict(jsarguments[2]);
 
@@ -144,6 +146,9 @@ function run(){
 		outlet(0, out);
 		// outlet(0, mtxToSymbol(textMtx));
 	}
+	if(EPHEMERAL_MODE){
+		clear();
+	}
 }
 
 // enable the output_matrix flag
@@ -227,7 +232,9 @@ function keyPress(k){
 		else if (k == sKeys.get("copy-line")[1]){ copyLine(); }
 		else if (k == sKeys.get("paste-line")[1]){ pasteInsertLine(); }
 		else if (k == sKeys.get("paste-replace-line")[1]){ pasteReplaceLine(); }
+
 		else if (k == sKeys.get("clear")[1]){ clear(); }
+		else if (k == sKeys.get("ephemeral-mode")[1]){ EPHEMERAL_MODE = !EPHEMERAL_MODE; }
 		// else if (k == ALT_B){ backSpace(); }
 		
 		// Jump Top/Bottom/Start/End with ALT + Arrow Keys
