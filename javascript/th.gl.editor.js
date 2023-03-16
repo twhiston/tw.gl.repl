@@ -227,7 +227,7 @@ function keyPress(k){
 		else if (k == sKeys.get("copy-line")[1]){ copyLine(); }
 		else if (k == sKeys.get("paste-line")[1]){ pasteInsertLine(); }
 		else if (k == sKeys.get("paste-replace-line")[1]){ pasteReplaceLine(); }
-		
+		else if (k == sKeys.get("clear")[1]){ clear(); }
 		// else if (k == ALT_B){ backSpace(); }
 		
 		// Jump Top/Bottom/Start/End with ALT + Arrow Keys
