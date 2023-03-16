@@ -27,7 +27,7 @@
 
 autowatch = 1;
 inlets = 1;
-outlets = 2;
+outlets = 3;
 
 // GENERAL SETTINGS:
 var CRSR = "<<";
@@ -535,6 +535,7 @@ var pasteBin;
 
 function copyLine(){
 	pasteBin = textBuf[curLine];
+	outlet(2, pasteBin);
 }
 
 function pasteReplaceLine(){
