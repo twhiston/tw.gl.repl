@@ -230,6 +230,7 @@ function keyPress(k){
 		
 		else if (k == sKeys.get("delete-line")[1]){ deleteLine(); }
 		else if (k == sKeys.get("copy-line")[1]){ copyLine(); }
+		else if (k == sKeys.get("copy-all")[1]){ copyAll(); }
 		else if (k == sKeys.get("paste-line")[1]){ pasteInsertLine(); }
 		else if (k == sKeys.get("paste-replace-line")[1]){ pasteReplaceLine(); }
 
@@ -536,6 +537,14 @@ var pasteBin;
 function copyLine(){
 	pasteBin = textBuf[curLine];
 	outlet(2, pasteBin);
+}
+function copyAll(){
+	var outBuf = [];
+	for (var i = 0; i < textBuf.length; i++) {
+     outBuf[i] = textBuf[i].trim()
+ 	}
+	//TODO: make work with pasteBin to paste all back in without external commands
+	outlet(2, outBuf.join('\\\n'));
 }
 
 function pasteReplaceLine(){
