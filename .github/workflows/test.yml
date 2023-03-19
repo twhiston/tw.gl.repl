@@ -17,13 +17,13 @@ jobs:
 
       # Runs commands using the runners shell
       - name: 'Run tests'
-        working-directory: ./maxmsp/MotorGurdy/code/gdsl
+        working-directory: ./javascript
         run: npm install && npx nyc ava && npx nyc report --reporter cobertura
 
       - name: Code Coverage Report
         uses: irongut/CodeCoverageSummary@v1.3.0
         with:
-          filename: ./maxmsp/MotorGurdy/code/gdsl/coverage/cobertura-coverage.xml
+          filename: ./javascript/coverage/cobertura-coverage.xml
           badge: true
           fail_below_min: true
           format: markdown
