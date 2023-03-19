@@ -1,0 +1,23 @@
+{
+  "name": "th.gl.texteditor",
+  "version": "1.0.0",
+  "description": "max msp opengl text editor",
+  "main": "th.gl.editor.js",
+  "directories": {
+    "doc": "docs",
+    "example": "examples"
+  },
+  "scripts": {
+    "test": "nyc ava",
+    "fuzz": "jsfuzz ./fuzzTarget.js corpus",
+    "report": "nyc report --reporter=html --exclude-node-modules=false"
+  },
+  "author": "",
+  "license": "GPL",
+  "devDependencies": {
+    "ava": "^5.2.0"
+  },
+  "dependencies": {
+    "nyc": "^15.1.0"
+  }
+}

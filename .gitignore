@@ -1,0 +1,4 @@
+.nyc_output
+corpus
+javascript/coverage
+javascript/node_modules

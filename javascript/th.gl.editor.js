@@ -24,6 +24,7 @@
 // TO DO:
 // undo/redo history (matrixset?)
 //===================================================================
+var bbf = require("./braceBalancedFormatter")
 
 autowatch = 1;
 inlets = 1;
@@ -143,7 +144,8 @@ function run(){
 		var out = textBuf.map(function(t){
 			return t.replace(/\s+/g, ' ').trim();
 		})
-		outlet(0, out);
+		var balanced = bbf.format(out, false);
+		outlet(0, balanced);
 		// outlet(0, mtxToSymbol(textMtx));
 	}
 	if(EPHEMERAL_MODE){
