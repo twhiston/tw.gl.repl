@@ -1,5 +1,14 @@
+String.prototype.replacerec = function (pattern, what) {
+  var newstr = this.replace(pattern, what);
+  if (newstr == this)
+      return newstr;
+  return newstr.replace(pattern, what);
+};
+
+
 exports.format = function (strArr, strict) {
 
+  const reg = /([([])\s+|\s+([)\]])/g
   var balanced = true;
   var history = ""
   var output = [];
@@ -8,12 +17,15 @@ exports.format = function (strArr, strict) {
   for (var i = 0; i < strArr.length; i++) { 
   //for (var v of strArr) {
     var v = strArr[i];
+    
     var data = history + v + " ";
     balanced = isBalanced(data)
     if (!balanced) {
       history = data;
     } else {
-      output.push(data.trim())
+      
+      const bracketSpaceFixed = data.replacerec(reg, "$1$2");
+      output.push(bracketSpaceFixed.trim())
       history = "";
     }
   }

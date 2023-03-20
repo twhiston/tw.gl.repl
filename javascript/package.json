@@ -8,7 +8,7 @@
     "example": "examples"
   },
   "scripts": {
-    "test": "nyc ava",
+    "test": "nyc --reporter=text ava",
     "fuzz": "jsfuzz ./fuzzTarget.js corpus",
     "report": "nyc report --reporter=html --exclude-node-modules=false"
   },

@@ -56,3 +56,13 @@ test('strict unbalanced exception', t => {
 
 	t.is(error.message, 'not balanced: cmd(200');
 });
+
+
+test('incorrect space insertion', t => {
+    t.deepEqual(bb.format(["seq(cmd(100)",")"]), ["seq(cmd(100))"])
+});
+
+
+test('incorrect space insertion at line start after break', t => {
+    t.deepEqual(bb.format(["seq(cmd(", "100)", ")" ]),["seq(cmd(100))"])
+});
