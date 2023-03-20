@@ -46,23 +46,23 @@ test('multiline unbalanced brace formatting', t => {
 });
 
 test('strict balanced pass', t => {
-    t.notThrows(() => {bb.format(["cmd(200)"],true)});
+    t.notThrows(() => { bb.format(["cmd(200)"], true) });
 });
 
 test('strict unbalanced exception', t => {
     const error = t.throws(() => {
-		bb.format(["cmd(200"],true)
-	}, {instanceOf: Error});
+        bb.format(["cmd(200"], true)
+    }, { instanceOf: Error });
 
-	t.is(error.message, 'not balanced: cmd(200');
+    t.is(error.message, 'not balanced: cmd(200');
 });
 
 
 test('incorrect space insertion', t => {
-    t.deepEqual(bb.format(["seq(cmd(100)",")"]), ["seq(cmd(100))"])
+    t.deepEqual(bb.format(["seq(cmd(100)", ")"]), ["seq(cmd(100))"])
 });
 
 
 test('incorrect space insertion at line start after break', t => {
-    t.deepEqual(bb.format(["seq(cmd(", "100)", ")" ]),["seq(cmd(100))"])
+    t.deepEqual(bb.format(["seq(cmd(", "100)", ")"]), ["seq(cmd(100))"])
 });

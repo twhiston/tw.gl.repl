@@ -1,7 +1,7 @@
 String.prototype.replacerec = function (pattern, what) {
   var newstr = this.replace(pattern, what);
   if (newstr == this)
-      return newstr;
+    return newstr;
   return newstr.replace(pattern, what);
 };
 
@@ -14,16 +14,16 @@ exports.format = function (strArr, strict) {
   var output = [];
 
   //max msp javascript is fucking archaic!
-  for (var i = 0; i < strArr.length; i++) { 
-  //for (var v of strArr) {
+  for (var i = 0; i < strArr.length; i++) {
+    //for (var v of strArr) {
     var v = strArr[i];
-    
+
     var data = history + v + " ";
     balanced = isBalanced(data)
     if (!balanced) {
       history = data;
     } else {
-      
+
       const bracketSpaceFixed = data.replacerec(reg, "$1$2");
       output.push(bracketSpaceFixed.trim())
       history = "";
@@ -43,8 +43,8 @@ function isBalanced(input) {
   var brackets = "[]{}()<>"
   var stack = []
 
-  for (var i = 0; i < input.length; i++) { 
-  //for (var bracket of input) {
+  for (var i = 0; i < input.length; i++) {
+    //for (var bracket of input) {
     var bracket = input[i];
     var bracketsIndex = brackets.indexOf(bracket)
 
