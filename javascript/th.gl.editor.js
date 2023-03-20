@@ -24,7 +24,9 @@
 // TO DO:
 // undo/redo history (matrixset?)
 //===================================================================
-var bbf = require("./braceBalancedFormatter")
+const cursor = require("./cursor.js");
+const wm = require("./windowManager.js");
+const pb = require("./pastebin.js");
 
 autowatch = 1;
 inlets = 1;
@@ -46,25 +48,8 @@ var POST_FLAG = 1;
 
 var EPHEMERAL_MODE = 0;
 
-// load keybindings from json file
-var sKeys = new Dict(jsarguments[2]);
-
-// fixed keybindings
-var keys = {
-	"space" : -2,
-	"escape" : -3,
-	"return" : -4,
-	"tab" : -5,
-	"delete" : -6,
-	"backspace" : -7,
-	"up" : -9,
-	"down" : -10,
-	"left" : -11,
-	"right" : -12
-}
-
 var key;
-var curLine, curChar, totalLines;
+//var curLine, curChar, totalLines;
 var isDisabled;
 
 var CRSR_CHARS = [];
@@ -74,20 +59,19 @@ var UNIQ = Date.now();
 
 // matrices for text display
 var textMtx, crsrMtx, nmbrMtx;
-// arrays for strings;
-var textBuf;
 
 // var histMtxSet, hIndex;
 // var cnslMtx, cnslText = [];
 
-function loadbang(){
+function loadbang() {
 	init();
 }
 
-function init(){
-	textBuf = [''];
+function init() {
+	textBuf.clear();
+	kh.setBindings(jsarguments[2]);
 
-	if (jsarguments.length>1) {
+	if (jsarguments.length > 1) {
 		drawto(jsarguments[1]);
 
 	}
@@ -99,21 +83,16 @@ function init(){
 	leadscale(0.94);
 	tracking(1);
 	line_length(999999);
-	alpha(1);	
-	
+	alpha(1);
+
 	cursor("<<");
 	comment("//");
 
 	draw();
 }
 
-function clear(){
-	curChar = 0;
-	curLine = 0;
-	totalLines = 1;
-	
-	empty(totalLines);
-	draw();
+function clear() {
+	wm.clear();
 }
 
 /* EXPERIMENTAL
@@ -128,56 +107,34 @@ function max_lines(v){
 	init();
 }*/
 
-function empty(lines){
-	textBuf = [''];
-	// textMtx = new JitterMatrix("text"+UNIQ, 1, "char", LINE_CHARS, lines);
-	// crsrMtx = new JitterMatrix("crsr"+UNIQ, 1, "char", LINE_CHARS, lines);
-	// nmbrMtx = new JitterMatrix("nmbr"+UNIQ, 1, "char", 3, lines);
-	// cnslMtx = new JitterMatrix("cnsl"+UNIQ, 1, "char", LINE_CHARS, CNSL_LINES);
-	// textMtx.setall(0);
+function empty() {
+	textBuf.clear();
 }
 
 // output the parsed code if output_matrix is disabled
-function run(){
+function run() {
 	outlet(0, "jit_matrix", textMtx.name);
-	if (!OUT_MAT){
-		var out = textBuf.map(function(t){
-			return t.replace(/\s+/g, ' ').trim();
-		})
-		var balanced = bbf.format(out, false);
-		outlet(0, balanced);
+	if (!OUT_MAT) {
+		var out = textBuf.format(false);
+		outlet(0, out);
 		// outlet(0, mtxToSymbol(textMtx));
 	}
-	if(EPHEMERAL_MODE){
+	if (EPHEMERAL_MODE) {
 		clear();
 	}
 }
 
 // enable the output_matrix flag
-function output_matrix(v){
+function output_matrix(v) {
 	OUT_MAT = v != 0;
 }
 
-// convert the matrix to an array of strings per line
-function mtxToSymbol(mat){
-	var text = [];
-	for (var y=0; y<mat.dim[1]; y++){
-		var line = "";
-		for (var x=0; x<mat.dim[0]; x++){
-			line += String.fromCharCode(mat.getcell(x, y));
-		}
-		if (line != ""){
-			text.push(line.replace(/\s\s+/g, ' ').trim());
-		}
-	}
-	return text;
-}
-
 // draw the text and output all info
-function draw(){
+function draw() {
 	// update number of lines
-	totalLines = textBuf.length;
-	
+	//TODO: dont really see why we need this value, try removing everywhere
+	//totalLines = textBuf.length;
+
 	drawText(); //place the strings as text in a matrix
 	drawCursor(); //set the cursorposition
 	drawNumbers(); //store the numbers in the matrix
@@ -185,372 +142,50 @@ function draw(){
 	// drawHighlight();
 
 	var len = getMaxChar();
-	outlet(1, "lines", textBuf.length);
-	outlet(1, "line", curLine);
+	outlet(1, "lines", textBuf.length());
+	outlet(1, "line", cursor.getLine());
 	outlet(1, "length", len);
-	outlet(1, "nLength", len/MAX_CHARS);
-	outlet(1, "nLines", (textBuf.length-1)/(EDITOR_LINES-1));
+	outlet(1, "nLength", len / MAX_CHARS);
+	outlet(1, "nLines", (textBuf.length() - 1) / (EDITOR_LINES - 1));
 }
 
 // load a dictionary of keybindings
-function keybindings(n){
-	sKeys = new Dict(n);
+// ** called via MAX
+function keybindings(n) {
+	kh.setBindings(n);
 }
 
 // choose method based on keypress
-function keyPress(k){
-	// post("@char", k, "\n");
-	if (k == sKeys.get("disable-editor")[1]){
-		disableText();
-	}
-	else if (!isDisabled){
-		// CHARACTER KEYS
-		if (k > 32 && k <= 126){ addChar(k); }
-		else if (k == keys["space"]){ addChar(32); }
-		
-		// FUNCTION KEYS
-		else if (k == keys["return"]){ newLine(); }
-		// Backspace Win = 8, Mac = 127
-		// Delete Win = 127, Mac = 127
-		else if (k == keys["backspace"]){ backSpace(); }
-		else if (k == keys["delete"]){ deleteChar(); }
-		// arrow keys Platform-independent
-		else if (k == keys["tab"]){ addTab(); }
-		else if (k == keys["up"] || k == keys["down"]){ 
-			gotoLine(1-(k+10)); 
-		} 
-		else if (k == keys["left"] || k == keys["right"]){
-			gotoCharacter(1-(k+12)); 
-		}
-		
-		// arrow keys ASCII
-		// else if (k == 30 || k == 31){ gotoLine(k-30); }
-		// else if (k == 28 || k == 29){ gotoCharacter(k-28); }
-		
-		// SHORTKEYS
-		else if (k == sKeys.get("comment")[1]){ commentLine(); }
-		
-		else if (k == sKeys.get("delete-line")[1]){ deleteLine(); }
-		else if (k == sKeys.get("copy-line")[1]){ copyLine(); }
-		else if (k == sKeys.get("copy-all")[1]){ copyAll(); }
-		else if (k == sKeys.get("paste-line")[1]){ pasteInsertLine(); }
-		else if (k == sKeys.get("paste-replace-line")[1]){ pasteReplaceLine(); }
-
-		else if (k == sKeys.get("clear")[1]){ clear(); }
-		else if (k == sKeys.get("ephemeral-mode")[1]){ EPHEMERAL_MODE = !EPHEMERAL_MODE; }
-		// else if (k == ALT_B){ backSpace(); }
-		
-		// Jump Top/Bottom/Start/End with ALT + Arrow Keys
-		else if (k == sKeys.get("jump-top")[1]){ jumpTo(2); }
-		else if (k == sKeys.get("jump-bottom")[1]){ jumpTo(3); }
-		else if (k == sKeys.get("jump-begin")[1]){ jumpTo(0); }
-		else if (k == sKeys.get("jump-end")[1]){ jumpTo(1); }
-
-		// Navigate the editor with ASDW
-		else if (k == sKeys.get("left")[1]){ gotoCharacter(0); }
-		else if (k == sKeys.get("right")[1]){ gotoCharacter(1); }
-		else if (k == sKeys.get("down")[1]){ gotoLine(1); }
-		else if (k == sKeys.get("up")[1]){ gotoLine(0); }
-
-		else if (k == sKeys.get("jump-word-left")[1]){ gotoWord(0); }
-		else if (k == sKeys.get("jump-word-right")[1]){ gotoWord(1); }
-		
-		// Jump to top/bottom
-		// else if (k == ALT_Q){ jumpTo(2); }
-		// else if (k == ALT_SHFT_Q){ jumpTo(3); }
-		
-		// TO-DO
-		// else if (k == ALT_Z){ getHistory(); }
-	}
+// ** called via MAX
+function keyPress(k) {
+	kh.handle(k)
 	draw();
-
-	// for (var t=0; t<textBuf.length; t++){
-	// 	post('line: '+ t + "| ", textBuf[t], "\n");
-	// }
-}
-
-// remove a charachter at index
-String.prototype.removeCharAt = function(i){
-    var tmp = this.split('');
-    tmp.splice(i, 1);
-    return tmp.join(''); 
-}
-
-// instert a character at index
-String.prototype.insertCharAt = function(i, c){
-	var l = this.slice(0, i);
-	var r = this.slice(i);
-	return l + c + r;
-}
-
-// add multiple spaces to the text (tab)
-function addTab(){
-	var numSpaces = INDENTATION - (curChar % INDENTATION);
-	for (var i = 0; i < numSpaces; i++){
-		addChar(32);
-	}
-}
-
-// add a character (alpha-numeric, numeric, special characters)
-function addChar(k){
-	if (curChar >= MAX_CHARS){
-		if (endOfLines()) {
-			return;
-		} else {
-			newLine();
-		}
-	}
-	// ascii code to string
-	var c = String.fromCharCode(k);
-	// insert character at index
-	textBuf[curLine] = textBuf[curLine].insertCharAt(curChar, c);
-	// increment current character
-	curChar++;
-}
-
-// backspace a character
-function backSpace(){
-	// decrement character index
-	curChar = Math.max(-1, (curChar-=1));
-
-	if (curChar >= 0){
-		// remove character at index
-		textBuf[curLine] = textBuf[curLine].removeCharAt(curChar);
-	} else if (curLine > 0){
-		// remove line if at beginning of line
-		removeLine();
-	} else {
-		// else index is 0
-		curChar = 0;
-	}
-}
-
-// delete a character (oposite of backspace)
-function deleteChar(){
-	if (curChar < textBuf[curLine].length){
-		textBuf[curLine] = textBuf[curLine].removeCharAt(curChar);
-	} else {
-		if (curLine < textBuf.length-1){
-			gotoLine(1);
-			removeLine();
-		}
-	}
-}
-
-// ===========
-// Deprecated
-
-// return the amount of characters in one line
-// function getCharCount(mat, line){
-// 	var charCount = 0;
-// 	var len = mat.dim[0];
-// 	for (var i = 0; i < len; i++){
-// 		if (mat.getcell(i, line) < 32){
-// 			return charCount;
-// 		}
-// 		charCount++;
-// 	}
-// }
-
-// set an array of amount of characters per line
-// function countChars(){
-// 	var lines = textBuf.length;
-// 	lineLengths = [];
-// 	for (var l=0; l<lines; l++){
-// 		lineLengths[l] = textBuf[l].length;
-// 	}
-// }
-// ===========
-
-// return the highest number of characters in one line
-function getMaxChar(){
-	var lengths = [];
-	for (var l=0; l<textBuf.length; l++){
-		lengths[l] = textBuf[l].length;
-	}
-	var sortArr = lengths.slice(0);
-	sortArr.sort(function(a,b){ return b-a });
-
-	return sortArr[0];
-}
-
-// move one character to the right or left
-function gotoCharacter(k){
-	curChar = curChar + (k * 2 - 1);
-	var len = textBuf[curLine].length;
-
-	if (curChar < 0 && curLine > 0){
-		gotoLine(0);
-		jumpTo(1);
-	} else if (curChar > len && curLine != totalLines-1){
-		gotoLine(1);
-		jumpTo(0);
-	} else {
-		curChar = Math.min(len, Math.max(0, curChar));
-	}
-}
-
-// move one line up or down
-function gotoLine(k){
-	k = k * 2 - 1;
-	var prevLen = textBuf[curLine].length;
-
-	curLine = Math.min(Math.max(0, (curLine+k)), totalLines-1);
-	var len = textBuf[curLine].length;
-
-	curChar = Math.min(len, curChar);
-
-	if (curChar == prevLen){
-		curChar = len;
-	} else {
-		curChar = Math.min(len, curChar);
-	}
-}
-
-// jump to the next or previous word (looks for seprated by spaces)
-function gotoWord(k){
-	if (k === 0){
-		var l = textBuf[curLine].slice(0, curChar);
-		if (l.match(/\ +[^ ]*$/g)){
-			var move = l.match(/\s+[^\s]*(\s?)+$/g)[0].length;
-			curChar -= move;
-		} else {
-			jumpTo(0);
-			gotoCharacter(0);
-		}
-	} else if (k === 1){
-		var l = textBuf[curLine].slice(curChar);
-		if (l.match(/^[^ ]*\ +/g)){
-			var move = l.match(/^(\s?)+[^\s]*/g)[0].length;
-			curChar += move;
-		} else {
-			jumpTo(1);
-			gotoCharacter(1);
-		}
-	}
-}
-
-// jump to beginning/end of line or top/bottom
-function jumpTo(k){
-	var len = textBuf[curLine].length;
-	switch(k){
-		// beginning of line
-		case 0: curChar = 0; break;
-		// end of line
-		case 1: curChar = len; break;
-		// to beginning (top)
-		case 2: curLine = 0;
-				len = textBuf[curLine].length;
-				curChar = Math.min(len, curChar); break;
-		// to end (bottom)
-		case 3: curLine = textBuf.length - 1;
-				len = textBuf[curLine].length;
-				curChar = Math.min(len, curChar); break;
-	}
 }
 
 // move the cursor to the index of the letter in the full text
-function gotoIndex(i){
-	// go to beginning if index less then 0
-	if (i < 0){
-		jumpTo(0);
-		jumpTo(2);
-		draw();
-		return;
-	}
-	// else move to the index by checking every line length
-	for (var l=0; l<textBuf.length; l++){
-		if (i < textBuf[l].length){
-			curLine = l;
-			curChar = i;
-			draw();
-			return;
-		} else {
-			// curLine = l;
-			// curChar = textBuf[l].length;
-			i -= textBuf[l].length;
-		}
-	}
-	// else jump to end if index greater than max length;
-	jumpTo(3);
-	jumpTo(1);
+function gotoIndex(i) {
+	wm.gotoIndex(i);
 	draw();
-}
-
-function newLine(){
-	if (endOfLines()){
-		return;
-	}
-	// split array in left and right of cursor
-	var line = textBuf[curLine];
-	var l = line.slice(0, curChar);
-	var r = line.slice(curChar);
-	
-	// store line left on current line
-	textBuf[curLine] = l;
-	
-	// update the line position
-	curLine++;
-	
-	// insert new line on right side of cursor
-	var u = textBuf.slice(0, curLine);
-	u = Array.isArray(u)? u : [u];
-	u.push(r);
-	// store to array
-	textBuf = u.concat(textBuf.slice(curLine));
-	// jump to beginning of line
-	jumpTo(0);
-}
-
-function removeLine(){
-	// cursors at end of previous line
-	curChar = textBuf[curLine-1].length;
-
-	// add current line to line above
-	textBuf[curLine-1] += textBuf[curLine];
-	// remove item from array at index
-	textBuf.splice(curLine, 1);
-
-	// update the line position
-	curLine = Math.max(0, curLine-1);	
-}
-
-function deleteLine(){
-	if (totalLines == 1){
-		empty();
-		curLine = 0;
-		jumpTo(2);
-		jumpTo(0);
-	} else {
-		// for the textBufay
-		textBuf.splice(curLine, 1);
-
-		if (curLine == textBuf.length){
-			curLine--;
-		}
-		// place cursor
-		curChar = Math.min(textBuf[curLine].length, curChar);
-	}
 }
 
 // global pastebin variable to store a line of text
 var pasteBin;
 
-function copyLine(){
+function copyLine() {
 	pasteBin = textBuf[curLine];
 	outlet(2, pasteBin);
 }
-function copyAll(){
+function copyAll() {
 	var outBuf = [];
-	for (var i = 0; i < textBuf.length; i++) {
-     outBuf[i] = textBuf[i].trim()
- 	}
+	for (var i = 0; i < textBuf.length(); i++) {
+		outBuf[i] = textBuf[i].trim()
+	}
 	//TODO: make work with pasteBin to paste all back in without external commands
 	outlet(2, outBuf.join('\\\n'));
 }
 
-function pasteReplaceLine(){
-	if (pasteBin !== null){
+function pasteReplaceLine() {
+	if (pasteBin !== null) {
 		// replace string with pastebin string
 		textBuf[curLine] = pasteBin;
 		// jump to end of new line
@@ -558,8 +193,8 @@ function pasteReplaceLine(){
 	}
 }
 
-function pasteInsertLine(){
-	if (!endOfLines()){
+function pasteInsertLine() {
+	if (!endOfLines()) {
 		jumpTo(0);
 		newLine();
 		gotoLine(0);
@@ -567,31 +202,31 @@ function pasteInsertLine(){
 	}
 }
 
-function endOfLines(){
-	var isEnd = totalLines >= EDITOR_LINES;
-	if (isEnd){
+function endOfLines() {
+	var isEnd = textBuf.length() >= EDITOR_LINES;
+	if (isEnd) {
 		post("WARNING: End of lines reached \n");
 	}
 	return isEnd;
 }
 
 // set the cursor characters
-function cursor(c){
+function cursor(c) {
 	// post("@cursor: ", c, "\n");
 	CRSR = c.toString();
 	CRSR_CHARS = [];
-	for (var i=0; i<CRSR.length; i++){
+	for (var i = 0; i < CRSR.length; i++) {
 		CRSR_CHARS.push(CRSR[i].charCodeAt(0));
 	}
 	draw();
 }
 
 // set the comment characters
-function comment(c){
+function comment(c) {
 	//post("@comment: ", c, "\n");
 	CMMT = c.toString();
 	CMMT_CHARS = [];
-	for (var i=0; i<CMMT.length; i++){
+	for (var i = 0; i < CMMT.length; i++) {
 		CMMT_CHARS.push(CMMT[i].charCodeAt(0));
 	}
 	CMMT_CHARS = CMMT_CHARS.concat(32);
@@ -599,64 +234,65 @@ function comment(c){
 }
 
 // Add or remove comment at start of line
-function commentLine(){
+function commentLine() {
 	// add comment-characters to regex
 	// escape special characters
 	var esc = CMMT.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
-	
+
 	var rgx = new RegExp('^ *' + esc + ' ?', 'g');
 	// if has comment remove it, else add
-	if (textBuf[curLine].match(rgx)){
-		textBuf[curLine] = textBuf[curLine].replace(rgx, '');
+	var line = textBuf.getLine(curLine);
+	if (line.match(rgx)) {
+		textBuf.setLine(curLine) = line.replace(rgx, '');
 	} else {
-		textBuf[curLine] = CMMT + ' ' + textBuf[curLine];
+		textBuf.setLine(curLine) = CMMT + ' ' + line;
 	}
-	curChar = textBuf[curLine].length;
+	curChar = textBuf.lineLength(curLine);
 	// return true;
 }
 
 // draw the text to a jitter matrix as ascii
-function drawText(){
-	textMtx = new JitterMatrix("text"+UNIQ, 1, "char", LINE_CHARS, textBuf.length);
+function drawText() {
+	textMtx = new JitterMatrix("text" + UNIQ, 1, "char", LINE_CHARS, textBuf.length());
 	textMtx.setall(0);
 	// draw all the characters as ascii code in a matrix
-	for (var l=0; l<textBuf.length; l++){
+	for (var l = 0; l < textBuf.length(); l++) {
 		// check if not an empty line/string
-		if (!textBuf[l].match(/^[ \t]*$/g)){	
-			for (var c=0; c<textBuf[l].length; c++){
-				textMtx.setcell2d(c, l, textBuf[l].charCodeAt(c));
+		if (!textBuf[l].match(/^[ \t]*$/g)) {
+			for (var c = 0; c < textBuf.lineLength(length); c++) {
+				textMtx.setcell2d(c, l, textBuf.getLine(l).charCodeAt(c));
 			}
 		}
 	}
 }
 
 // draw the cursor to a jitter matrix as ascii
-function drawCursor(){
-	crsrMtx = new JitterMatrix("crsr"+UNIQ, 1, "char", LINE_CHARS, totalLines);
-	
+function drawCursor() {
+	crsrMtx = new JitterMatrix("crsr" + UNIQ, 1, "char", LINE_CHARS, textBuf.length());
+
 	crsrMtx.setall(32);
 	// draw at least something at the end of the matrix.
-	for (var i = 0; i < totalLines; i++){
-		crsrMtx.setcell2d(LINE_CHARS-1, i, 46);
+	for (var i = 0; i < textBuf.length(); i++) {
+		crsrMtx.setcell2d(LINE_CHARS - 1, i, 46);
 	}
-	for (var c = 0; c < CRSR_CHARS.length; c++){
-		crsrMtx.setcell2d(curChar+c, curLine, CRSR_CHARS[c]);
+	for (var c = 0; c < CRSR_CHARS.length; c++) {
+		crsrMtx.setcell2d(curChar + c, curLine, CRSR_CHARS[c]);
 	}
 }
 
 // draw the numbers to a jitter matrix as ascii
-function drawNumbers(){
-	nmbrMtx = new JitterMatrix("nmbr"+UNIQ, 1, "char", 3, totalLines);
-	
-	for (var i = 0; i < totalLines; i++){
+function drawNumbers() {
+	nmbrMtx = new JitterMatrix("nmbr" + UNIQ, 1, "char", 3, textBuf.length());
+
+	for (var i = 0; i < textBuf.length(); i++) {
 		var digits = new Array(2);
-		digits[0] = String(Math.floor((i)/ 10));
+		digits[0] = String(Math.floor((i) / 10));
 		digits[1] = String((i) % 10);
-		if (digits[0] == 0){
+		if (digits[0] == 0) {
 			digits[0] = " ";
 		}
 		// post(digit1.charCodeAt(0), digit2.charCodeAt(0));
-		for (var n = 0; n < 2; n++){
+		for (var n = 0; n < 2; n++) {
 			nmbrMtx.setcell2d(n, i, digits[n].charCodeAt(0));
 		}
 	}
@@ -674,7 +310,7 @@ function drawNumbers(){
 }*/
 
 // read a textfile from disk to the editor
-function readFile(mat){
+function readFile(mat) {
 	fillText(mat);
 	// jump to top and beginning
 	jumpTo(2);
@@ -684,75 +320,62 @@ function readFile(mat){
 }
 
 // fill the matrix with the text from disk
-function fillText(mat){
+function fillText(mat) {
 	file = new JitterMatrix(mat);
 	dimX = Math.min(MAX_CHARS, file.dim[0]);
-	totalLines = Math.min(EDITOR_LINES, file.dim[1]);
+	textBuf.length() = Math.min(EDITOR_LINES, file.dim[1]);
 	// empty(totalLines);
 	textBuf = [];
 
-	for (var l=0; l<totalLines; l++){
-		textBuf[l] = '';
-		for (var c=0; c<dimX; c++){
+	for (var l = 0; l < textBuf.length(); l++) {
+		textBuf.emptyLine(l);
+		for (var c = 0; c < dimX; c++) {
 			// read cell ascii value
 			var v = file.getcell(c, l);
 			// filter out values below 31
-			textBuf[l] += (v > 31) ? String.fromCharCode(v) : '';
+			textBuf.setLine(l, textBuf.getLine(l) + (v > 31) ? String.fromCharCode(v) : '');
 		}
 	}
 }
 
 // replace all the text with the incoming arguments
 // this can be a list of symbols for every line
-function set(){
+function set() {
 	var text = arrayfromargs(arguments);
 	text = (text.length < 1) ? '' : text;
-	
-	totalLines = Math.min(EDITOR_LINES, text.length);
-	text = text.slice(0, totalLines);
+
+	var inputLines = Math.min(EDITOR_LINES, text.length);
+	text = text.slice(0, inputLines);
 	// empty buffer
-	textBuf = [];
-	textBuf = Array.isArray(text)? text : [text];
+	textBuf.set(text);
 
-	curLine = textBuf.length-1;
+	curLine = textBuf.length() - 1;
 	jumpTo(2);
 	jumpTo(1);
 	draw();
 }
 
 // append a line of text or multiple symbols per line
-function append(){
+function append() {
 	var text = arrayfromargs(arguments);
-	text = Array.isArray(text)? text : [text];
-
-	if (totalLines + text.length > EDITOR_LINES){
-		post('append(): maximum number of lines reached \n');
-		return;
-	}
-	textBuf = textBuf.concat(text);
+	textBuf.append(text)
 	jumpTo(2);
 	jumpTo(1);
 	draw();
 }
 
 // append a line of text or multiple symbols per line
-function prepend(){
+function prepend() {
 	var text = arrayfromargs(arguments);
-	text = Array.isArray(text)? text : [text];
-
-	if (totalLines + text.length > EDITOR_LINES){
-		post('append(): maximum number of lines reached \n');
-		return;
-	}
-	textBuf = text.concat(textBuf);
+	textBuf.prepend(text);
 	jumpTo(2);
 	jumpTo(1);
 	draw();
 }
 
 // remove a line of text at a specified index
-function remove(idx){
-	if (idx === undefined){ idx = textBuf.length-1; }
+function remove(idx) {
+	if (idx === undefined) { idx = textBuf.length - 1; }
 	curLine = idx;
 	deleteLine();
 	draw();
@@ -760,31 +383,31 @@ function remove(idx){
 
 // insert a line of text or multiple symbols at a specified index
 // a list of symbols will inserte one line per symbol
-function insert(){
+function insert() {
 	var args = arrayfromargs(arguments);
-	if (isNaN(args[0])){
+	if (isNaN(args[0])) {
 		post('insert(): index is not a number \n');
 		return;
 	}
 	var idx = Math.min(EDITOR_LINES, args[0]);
 	var text = args.slice(1);
-	text = Array.isArray(text)? text : [text];
+	text = Array.isArray(text) ? text : [text];
 
 	// exit if doesn't fit in editor
-	if (totalLines + text.length > EDITOR_LINES){
+	if (totalLines + text.length > EDITOR_LINES) {
 		post('insert(): maximum number of lines reached \n');
 		return;
 	}
 	// if insert between totalLines
-	if (idx < totalLines){	
+	if (idx < totalLines) {
 		var u = textBuf.slice(0, Math.max(0, idx));
-		u = Array.isArray(u)? u : [u];
+		u = Array.isArray(u) ? u : [u];
 		u = u.concat(text);
 		textBuf = u.concat(textBuf.slice(idx));
 	} else {
 		// else append to code and insert empty strings
 		var diff = idx - totalLines;
-		for (var d=0; d<diff; d++){
+		for (var d = 0; d < diff; d++) {
 			textBuf.push('');
 		}
 		textBuf = textBuf.concat(text);
@@ -793,26 +416,26 @@ function insert(){
 }
 
 // add one or multiple characters as a string
-function add(c){
+function add(c) {
 	c = (typeof c !== 'string') ? c.toString() : c;
-	for (var i=0; i<c.length; i++){
+	for (var i = 0; i < c.length; i++) {
 		var char = c.charCodeAt(i);
 		post('char', char, "\n");
-		if (char === 13 || char === 10){
+		if (char === 13 || char === 10) {
 			newLine();
-		} else if (char > 31 && char < 126){
+		} else if (char > 31 && char < 126) {
 			addChar(char);
 		}
 	}
 	draw();
 }
 
-function back(){
+function back() {
 	backSpace();
 	draw();
 }
 
-function del(){
+function del() {
 	deleteChar();
 	draw();
 }
@@ -861,7 +484,7 @@ textNode.type = "float32";
 textNode.name = NODE_CTX;
 textNode.adapt = 0;
 
-function drawto(v){
+function drawto(v) {
 	MAIN_CTX = v;
 	textNode.drawto = MAIN_CTX;
 	glVid.drawto = MAIN_CTX;
@@ -873,13 +496,13 @@ animNode.name = ANIM_NODE;
 animNode.position = [0, 0, 0];
 
 // the text position
-function position(x, y){
+function position(x, y) {
 	animNode.position = [x, y, 0];
 }
 
 // the text scaling
-function scale(s){
-	SCALING = s * 100/FONT_SIZE;
+function scale(s) {
+	SCALING = s * 100 / FONT_SIZE;
 	animNode.scale = [SCALING, SCALING, 0];
 }
 
@@ -898,9 +521,9 @@ glText.cull_face = 1;
 var textColor = [1, 1, 1, 1];
 var runColor = [0, 0, 0, 1];
 
-function color(){
+function color() {
 	args = arrayfromargs(arguments);
-	if (args.length !== 4){
+	if (args.length !== 4) {
 		error("th.gl.editor: Expected an RGBA value in floating-point \n");
 	} else {
 		textColor = args;
@@ -908,20 +531,20 @@ function color(){
 	}
 }
 
-function run_color(){
+function run_color() {
 	args = arrayfromargs(arguments);
-	if (args.length !== 4){
+	if (args.length !== 4) {
 		error("th.gl.editor: Expected an RGBA value in floating-point \n");
 	} else {
 		runColor = args;
 	}
 }
 
-function runBlink(t){
+function runBlink(t) {
 
 	var c = [];
-	for (var i=0; i<textColor.length; i++){
-		c[i] = textColor[i] * (1-t) + runColor[i] * t;
+	for (var i = 0; i < textColor.length; i++) {
+		c[i] = textColor[i] * (1 - t) + runColor[i] * t;
 	}
 	glText.gl_color = c;
 
@@ -956,9 +579,9 @@ glNmbr.screenmode = 0;
 glNmbr.cull_face = 1;
 glNmbr.layer = 10;
 
-function number_color(){
+function number_color() {
 	args = arrayfromargs(arguments);
-	if (args.length !== 4){
+	if (args.length !== 4) {
 		error("th.gl.editor: Expected an RGBA value in floating-point", "\n");
 	} else {
 		glNmbr.gl_color = args;
@@ -970,10 +593,10 @@ var blinkToggle = 0;
 var cursorColor = [1, 0.501961, 0, 1];
 var blinkColor = [0.4, 0.8, 1, 1];
 
-function blink(){
-	if (useBlink){
+function blink() {
+	if (useBlink) {
 		blinkToggle = 1 - blinkToggle;
-		if (blinkToggle){
+		if (blinkToggle) {
 			glCrsr.gl_color = blinkColor;
 		} else {
 			glCrsr.gl_color = cursorColor;
@@ -983,13 +606,13 @@ function blink(){
 	}
 }
 
-function blink_enable(v){
+function blink_enable(v) {
 	useBlink = v != 0;
 }
 
-function cursor_color(){
+function cursor_color() {
 	args = arrayfromargs(arguments);
-	if (args.length !== 4){
+	if (args.length !== 4) {
 		error("th.gl.editor: Expected an RGBA value in floating-point", "\n");
 	} else {
 		cursorColor = args;
@@ -997,9 +620,9 @@ function cursor_color(){
 	blink();
 }
 
-function blink_color(){
+function blink_color() {
 	args = arrayfromargs(arguments);
-	if (args.length !== 4){
+	if (args.length !== 4) {
 		error("th.gl.editor: Expected an RGBA value in floating-point", "\n");
 	} else {
 		blinkColor = args;
@@ -1049,15 +672,15 @@ function scaleCnsl(x, y, z){
 // var allTextObj = [glText, glCrsr, glNmbr, glCnsl];
 var allTextObj = [glText, glCrsr, glNmbr];
 
-function font(f){
-	for (var i = 0; i < allTextObj.length; i++){
+function font(f) {
+	for (var i = 0; i < allTextObj.length; i++) {
 		allTextObj[i].font(f);
 	}
 }
 
-function fontsize(s){
+function fontsize(s) {
 	FONT_SIZE = s;
-	for (var i = 0; i < allTextObj.length; i++){
+	for (var i = 0; i < allTextObj.length; i++) {
 		allTextObj[i].size(FONT_SIZE);
 	}
 	scale(SCALING);
@@ -1065,54 +688,54 @@ function fontsize(s){
 	// crsrAnim.position = [0.9, 0, 0];
 }
 
-function leadscale(l){
-	for (var i=0; i<allTextObj.length; i++){
+function leadscale(l) {
+	for (var i = 0; i < allTextObj.length; i++) {
 		allTextObj[i].leadscale = l;
 	}
 }
 
-function tracking(t){
-	for (var i=0; i<allTextObj.length; i++){
+function tracking(t) {
+	for (var i = 0; i < allTextObj.length; i++) {
 		allTextObj[i].tracking = t;
 	}
 }
 
-function line_length(l){
-	for (var i=0; i<allTextObj.length; i++){
+function line_length(l) {
+	for (var i = 0; i < allTextObj.length; i++) {
 		allTextObj[i].line_length = l;
 	}
 }
 
-function line_width(w){
-	for (var i=0; i<allTextObj.length; i++){
+function line_width(w) {
+	for (var i = 0; i < allTextObj.length; i++) {
 		allTextObj[i].line_length = w;
 	}
 }
 
 var textAlpha = 1;
 
-function alpha(a){
+function alpha(a) {
 	textAlpha = Math.max(0, Math.min(1, a));
 
-	for (var i = 0; i < allTextObj.length; i++){
+	for (var i = 0; i < allTextObj.length; i++) {
 		var c = allTextObj[i].gl_color;
 		c[3] = textAlpha;
 		allTextObj[i].gl_color = c;
 	}
 }
 
-function cull_face(c){
-	for (var i=0; i<allTextObj.length; i++){
+function cull_face(c) {
+	for (var i = 0; i < allTextObj.length; i++) {
 		allTextObj[i].cull_face = c;
 	}
 }
 
-function disableText(){
+function disableText() {
 	isDisabled = 1 - isDisabled;
 	alpha(1.0 - isDisabled * 0.5);
 }
 
-function matrixToText(){
+function matrixToText() {
 	glText.jit_matrix(textMtx.name);
 	glCrsr.jit_matrix(crsrMtx.name);
 	glNmbr.jit_matrix(nmbrMtx.name);
