@@ -168,10 +168,8 @@ function gotoIndex(i) {
 	draw();
 }
 
-// global pastebin variable to store a line of text
-var pasteBin;
-
 function copyLine() {
+
 	pasteBin = textBuf[curLine];
 	outlet(2, pasteBin);
 }
@@ -375,7 +373,7 @@ function prepend() {
 
 // remove a line of text at a specified index
 function remove(idx) {
-	if (idx === undefined) { idx = textBuf.length - 1; }
+	if (idx === undefined) { idx = textBuf.length() - 1; }
 	curLine = idx;
 	deleteLine();
 	draw();
@@ -730,10 +728,6 @@ function cull_face(c) {
 	}
 }
 
-function disableText() {
-	isDisabled = 1 - isDisabled;
-	alpha(1.0 - isDisabled * 0.5);
-}
 
 function matrixToText() {
 	glText.jit_matrix(textMtx.name);

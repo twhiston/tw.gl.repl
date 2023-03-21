@@ -46,12 +46,12 @@ test('multiline unbalanced brace formatting', t => {
 });
 
 test('strict balanced pass', t => {
-    t.notThrows(() => { bb.format(["cmd(200)"], true) });
+    t.notThrows(() => { bb.format(["cmd(200)"], { strict: true }) });
 });
 
 test('strict unbalanced exception', t => {
     const error = t.throws(() => {
-        bb.format(["cmd(200"], true)
+        bb.format(["cmd(200"], { strict: true })
     }, { instanceOf: Error });
 
     t.is(error.message, 'not balanced: cmd(200');

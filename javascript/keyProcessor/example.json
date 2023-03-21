@@ -1,0 +1,15 @@
+[
+    {
+        "id": "testFunc4",
+        "asciiCode": 67,
+        "functions": [
+            "return(k+' pressed function 1');",
+            "return('C pressed function 2');"
+        ]
+    },
+    {
+        "id": "testFunc5",
+        "asciiCode": 68,
+        "functions": "myFunctionName"
+    }
+]

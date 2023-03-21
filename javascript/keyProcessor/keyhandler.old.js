@@ -1,70 +1,87 @@
-// fixed keybindings
-var keys = {
-    "execute": ["alt-return", 2044],
-    "comment": ["alt-/", 247],
-    "silence": ["alt-.", 8805],
-    "disable-editor": ["alt-,", 8804],
-    "clear": ["alt-z", 937],
-    "delete-line": ["alt-x", 8776],
-    "copy-line": ["alt-c", 231],
-    "copy-all": ["alt-k", 730],
-    "paste-line": ["alt-v", 8730],
-    "paste-replace-line": ["alt-p", 960],
-    "jump-top": ["alt-up", 2039],
-    "jump-bottom": ["alt-down", 2038],
-    "jump-begin": ["alt-left", 2037],
-    "jump-end": ["alt-right", 2036],
-    "up": ["alt-w", 8721],
-    "down": ["alt-s", 223],
-    "left": ["alt-a", 229],
-    "right": ["alt-d", 8706],
-    "jump-word-left": ["alt-j", 8710],
-    "jump-word-right": ["alt-l", 172],
-    "ephemeral-mode": ["alt-g", 169]
+
+//Keybindings
+var keyList = []
+function keyDef(id, code, hint) {
+    return {
+        id: id,
+        code: code,
+        hint: hint
+    }
+}
+var intKeys = [
+    keyDef("space", -2, ""),
+    keyDef("escape", -3, ""),
+    keyDef("return", -4, ""),
+    keyDef("tab", -5, ""),
+    keyDef("delete", -6, ""),
+    keyDef("backspace", -7, ""),
+    keyDef("up", -9, ""),
+    keyDef("down", -10, ""),
+    keyDef("left", -11, ""),
+    keyDef("right", -12, ""),
+];
+
+
+function procDef(id, call) {
+    return {
+        id: id,
+        call: call,
+    }
+}
+const intProc = [
+    procDef(-2, function (k, wm) { wm.addChar(32); }),
+    procDef(-3, function (k, wm) { }),
+    procDef(-4, function (k, wm) { wm.newLine(); }),
+    procDef(-5, function (k, wm) { addTab(); }),
+    procDef(-6, function (k, wm) { wm.deleteChar(); }),
+    procDef(-7, function (k, wm) { wm.backSpace(); }),
+    procDef(-9, upDown),
+    procDef(-10, upDown),
+    procDef(-11, leftRight),
+    procDef(-12, leftRight),
+]
+
+function upDown(k, wm) {
+    wm.gotoLine(1 - (k + 10));
 }
 
-const intProcessors = {
-    "space": function () { addChar(32); }
+function leftRight(k, wm) {
+    wm.gotoCharacter(1 - (k + 12));
 }
-var keyList = []
-var intKeys = {
-    "space": ["", -2],
-    "escape": ["", -3],
-    "return": ["", -4],
-    "tab": ["", -5],
-    "delete": ["", -6],
-    "backspace": ["", -7],
-    "up": ["", -9],
-    "down": ["", -10],
-    "left": ["", -11],
-    "right": ["", -12]
-}
+
+
+var processors = intProc;
 
 // load keybindings from json file
-var sKeys = new Dict();
-var processors = new Dict();
-
 exports.setBindings = function (dict) {
     keyList = intKeys;
-    sKeys = new Dict(dict);
     var keys = sKeys.getkeys()
     for (let i = 0; i < keys.length; i++) {
-        keyList.append(sKeys.get(i)[1]);
+        var binding = sKeys.get(keys[i]);
+        keyList.append(keyDef(keys[i], binding[1], binding[0]));
     }
+}
+
+exports.addProcessor = function (proc) {
+    processors.append(proc);
 }
 
 // choose method based on keypress
 exports.handle = function (k) {
 
-    let exists = keyList.find(k);
-    if (exists) {
-        if (processors.contains(k)) {
-            processors.get(k).process(k);
-        }
+    var exists = keyList.filter(obj => {
+        return obj.code === k
+    })
+    if (exists !== undefined || exists.length > 0) {
+        var pList = processors.filter(obj => {
+            return obj.code === k
+        })
+        return pList;
     } else if (k > 32 && k <= 126) {
-
+        return [function (k, wm) { wm.addChar(k) }]
     } else {
         post("unknown keypress: @char", k, "\n");
+        return [];
     }
     // post("@char", k, "\n");
     if (k == sKeys.get("disable-editor")[1]) {
@@ -73,22 +90,7 @@ exports.handle = function (k) {
     else if (!isDisabled) {
         // CHARACTER KEYS
         if (k > 32 && k <= 126) { addChar(k); }
-        else if (k == keys["space"]) { addChar(32); }
 
-        // FUNCTION KEYS
-        else if (k == keys["return"]) { newLine(); }
-        // Backspace Win = 8, Mac = 127
-        // Delete Win = 127, Mac = 127
-        else if (k == keys["backspace"]) { backSpace(); }
-        else if (k == keys["delete"]) { deleteChar(); }
-        // arrow keys Platform-independent
-        else if (k == keys["tab"]) { addTab(); }
-        else if (k == keys["up"] || k == keys["down"]) {
-            gotoLine(1 - (k + 10));
-        }
-        else if (k == keys["left"] || k == keys["right"]) {
-            gotoCharacter(1 - (k + 12));
-        }
 
         // arrow keys ASCII
         // else if (k == 30 || k == 31){ gotoLine(k-30); }
@@ -129,7 +131,6 @@ exports.handle = function (k) {
         // TO-DO
         // else if (k == ALT_Z){ getHistory(); }
     }
-    draw();
 
     // for (var t=0; t<textBuf.length; t++){
     // 	post('line: '+ t + "| ", textBuf[t], "\n");

@@ -2,7 +2,7 @@ const cursor = require("./cursor.js");
 
 // add multiple spaces to the text (tab)
 exports.addTab = function () {
-    const pos = cursor.position
+    const pos = cursor.position()
     var numSpaces = INDENTATION - (cursor.char % INDENTATION);
     for (var i = 0; i < numSpaces; i++) {
         addChar(32);
@@ -22,6 +22,11 @@ exports.addTab = function () {
     for (var i = 0; i < numSpaces; i++) {
         addChar(32);
     }
+}
+
+function disableText() {
+    isDisabled = 1 - isDisabled;
+    alpha(1.0 - isDisabled * 0.5);
 }
 
 // add a character (alpha-numeric, numeric, special characters)

@@ -6,7 +6,10 @@ String.prototype.replacerec = function (pattern, what) {
 };
 
 
-exports.format = function (strArr, strict) {
+exports.format = function (strArr, ctx) {
+
+  if (ctx === undefined)
+    ctx = { strict: false }
 
   const reg = /([([])\s+|\s+([)\]])/g
   var balanced = true;
@@ -30,7 +33,7 @@ exports.format = function (strArr, strict) {
     }
   }
 
-  if (strict && !balanced) {
+  if (ctx.strict && !balanced) {
     throw new Error("not balanced: " + history.trim())
   }
   return output;
