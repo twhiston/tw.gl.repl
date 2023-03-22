@@ -232,7 +232,7 @@ function removeLine() {
     const line = cursor.getLine()
     cursor.setChar(textBuf.lineLength(line - 1))
 
-    textBuf.removeLine(line)
+    textBuf.spliceLine(line)
 
     // update the line position
     cursor.setLine(Math.max(0, line - 1));

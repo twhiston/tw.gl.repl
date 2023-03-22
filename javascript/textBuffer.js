@@ -1,103 +1,118 @@
-//Written in archaic JS for max, so no nice of loops or ESM etc.
-var bbf = require("./textFormatters/braceBalancedFormatter")
-var wf = require("./textFormatters/whitespaceFormatter")
-
-// arrays for strings;
-var textBuf;
-//executed in order they are in the array
-var formatters = [wf, bbf];
-
-exports.clear = function () {
-    textBuf = [''];
-}
-
-exports.get = function () {
-    return textBuf;
-}
-
-exports.getLine = function (line) {
-    return textBuf[line];
-}
-
-exports.set = function (strArr) {
-    textBuf = [];
-    textBuf = Array.isArray(strArr) ? strArr : [strArr];
-}
-
-exports.setLine = function (line, str) {
-    textBuf[line] = str;
-}
-
-exports.append = function (strArr) {
-    strArr = Array.isArray(strArr) ? strArr : [strArr];
-
-    if (textBuf.length + strArr.length > EDITOR_LINES) {
-        post('append(): maximum number of lines reached \n');
-        return;
+class TextBuffer {
+    constructor(maxLines) {
+        this.maxLines = maxLines;
+        this.textBuf = [''];
+        this.formatters = [];
     }
-    textBuf = textBuf.concat(strArr);
-}
 
-exports.prepend = function (strArr) {
-    strArr = Array.isArray(strArr) ? strArr : [strArr];
-    if (textBuf.length + strArr.length > EDITOR_LINES) {
-        post('prepend(): maximum number of lines reached \n');
-        return;
+    clear() {
+        this.textBuf = [''];
     }
-    textBuf = strArr.concat(textBuf);
-}
 
-exports.emptyLine = function (line) {
-    textBuf[line] = '';
-}
-
-function length() {
-    return textBuf.length
-}
-exports.length = length
-exports.lines = length
-
-exports.lineLength = function (line) {
-    return textBuf[line].length
-}
-
-exports.format = function (strict = false) {
-    var formatted = textBuf;
-    for (var i = 0; i < formatters.length; i++) {
-        formatted = formatters.format(strict);
+    get() {
+        return this.textBuf;
     }
-    return formatted;
+
+    getLine(line) {
+        return this.textBuf[line];
+    }
+
+    set(strArr) {
+        this.textBuf = [];
+        this.textBuf = Array.isArray(strArr) ? strArr : [strArr];
+    }
+
+    setLine(line, str) {
+        this.textBuf[line] = str;
+    }
+
+    append(strArr) {
+        strArr = Array.isArray(strArr) ? strArr : [strArr];
+
+        if (this.textBuf.length + strArr.length > this.maxLines) {
+            console.log('append(): maximum number of lines reached \n');
+            return;
+        }
+
+        this.textBuf = this.textBuf.concat(strArr);
+    }
+
+    prepend(strArr) {
+        strArr = Array.isArray(strArr) ? strArr : [strArr];
+
+        if (this.textBuf.length + strArr.length > this.maxLines) {
+            console.log('prepend(): maximum number of lines reached \n');
+            return;
+        }
+
+        this.textBuf = strArr.concat(this.textBuf);
+    }
+
+    emptyLine(line) {
+        this.textBuf[line] = '';
+    }
+
+    //TODO: get rid of one of these 2
+    length() {
+        return this.textBuf.length;
+    }
+
+    lines() {
+        return this.length();
+    }
+
+    lineLength(line) {
+        return this.textBuf[line].length;
+    }
+
+    addFormatter(formatter) {
+        this.formatters.push(formatter);
+    }
+
+    setFormatters(formatters) {
+        this.formatters = formatters;
+    }
+
+    format(ctx = {}) {
+        let formatted = this.textBuf;
+        for (let i = 0; i < this.formatters.length; i++) {
+            formatted = this.formatters[i](formatted, ctx);
+        }
+        return formatted;
+    }
+
+    insertCharAt(line, i, c) {
+        this.textBuf[line] = this.textBuf[line].insertCharAt(i, c);
+    }
+
+    removeCharAt(line, i) {
+        this.textBuf[line] = this.textBuf[line].removeCharAt(i);
+    }
+
+    spliceLine(line) {
+        if (line > 0) {
+            // add current line to line above
+            this.textBuf[line - 1] += this.textBuf[line];
+        }
+        // remove item from array at index
+        this.textBuf.splice(line, 1);
+    }
+
+    deleteLine(line) {
+        this.textBuf.splice(line, 1);
+    }
 }
 
-exports.insertCharAt = function (line, i, c) {
-    textBuf[line] = textBuf[line].insertCharAt(i, c);
-}
-
-exports.removeCharAt = function (line, i) {
-    textBuf[line] = textBuf[line].removeCharAt(i);
-}
-
-exports.removeLine = function (line) {
-    // add current line to line above
-    textBuf[line - 1] += textBuf[line];
-    // remove item from array at index
-    textBuf.splice(line, 1);
-}
-
-exports.deleteLine = function (line) {
-    textBuf.splice(line, 1);
-}
-
-// remove a charachter at index
 String.prototype.removeCharAt = function (i) {
-    var tmp = this.split('');
+    const tmp = this.split('');
     tmp.splice(i, 1);
     return tmp.join('');
-}
+};
 
-// instert a character at index
 String.prototype.insertCharAt = function (i, c) {
-    var l = this.slice(0, i);
-    var r = this.slice(i);
+    const l = this.slice(0, i);
+    const r = this.slice(i);
     return l + c + r;
-}
+};
+
+module.exports = TextBuffer;
