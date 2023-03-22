@@ -3,6 +3,7 @@ class TextBuffer {
         this.maxLines = maxLines;
         this.textBuf = [''];
         this.formatters = [];
+        this.pasteBin = [];
     }
 
     clear() {
@@ -100,6 +101,59 @@ class TextBuffer {
 
     deleteLine(line) {
         this.textBuf.splice(line, 1);
+    }
+
+    endOfLines() {
+        return this.textBuf.length >= this.maxLines;
+    }
+
+    pasteBinCopyLine(line) {
+        if (line < 0 || line > this.textBuf.length) {
+            throw new Error('pastebin line index out of range')
+        }
+        this.pasteBin = [this.textBuf[line]];
+        return this.pasteBin;
+    }
+
+    pasteBinCopyAll() {
+        this.pasteBin = [];
+        for (var i = 0; i < this.textBuf.length; i++) {
+            this.pasteBin[i] = this.textBuf[i].trim()
+        }
+        return this.pasteBin;
+    }
+
+    pasteBinGet() {
+        return this.pasteBin;
+    }
+
+    pasteBinInsertLine(lineIndex) {
+        // if (!endOfLines()) {
+        //     jumpTo(0);
+        //     newLine();
+        //     gotoLine(0);
+        //     return pasteReplaceLine();
+        // }
+        if (this.pasteBin !== null) {
+            // inserts pastebin contents at line index
+            this.pasteBinMutateLine(lineIndex, 0)
+
+            // jump to end of new line
+            //jumpTo(1);
+        }
+    }
+
+    pasteBinReplaceLine(lineIndex) {
+        //replaced a line with pastebin content. could be a multiline insert!
+        this.pasteBinMutateLine(lineIndex, lineIndex)
+    }
+
+    //Mutate the text buffer by inserting and optionally removing an element from the pasteBin
+    pasteBinMutateLine(insertID, removeID) {
+        if (!this.endOfLines() && insertID < this.maxLines && removeID < this.maxLines)
+            Array.prototype.splice.apply(this.textBuf, [insertID, removeID].concat(this.pasteBin));
+        else
+            throw new Error('insert or remove ID out of range @insert @remove', insertID, removeID);
     }
 }
 

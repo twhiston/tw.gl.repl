@@ -219,3 +219,119 @@ test('length returns the number of lines in the buffer', t => {
     tb.set(['Line 1', 'Line 2', 'Line 3']);
     t.is(tb.length(), 3);
 });
+
+test('pasteBinCopyLine should return the line specified in pasteBin', t => {
+    const buffer = new TextBuffer(10);
+    buffer.set(['Line 1', 'Line 2', 'Line 3']);
+
+    const pasteBinLine = 1;
+    const result = buffer.pasteBinCopyLine(pasteBinLine);
+
+    t.deepEqual(result, ['Line 2']);
+});
+
+test('pasteBinCopyLine should throw an error if line index is out of range > ', t => {
+    const buffer = new TextBuffer(10);
+    buffer.set(['Line 1', 'Line 2', 'Line 3']);
+
+    const pasteBinLine = 5;
+    const error = t.throws(() => {
+        buffer.pasteBinCopyLine(pasteBinLine);
+    }, { instanceOf: Error });
+
+    t.is(error.message, 'pastebin line index out of range');
+});
+
+test('pasteBinCopyLine should throw an error if line index is out of range < 0', t => {
+    const buffer = new TextBuffer(10);
+    buffer.set(['Line 1', 'Line 2', 'Line 3']);
+
+    const pasteBinLine = -2;
+    const error = t.throws(() => {
+        buffer.pasteBinCopyLine(pasteBinLine);
+    }, { instanceOf: Error });
+
+    t.is(error.message, 'pastebin line index out of range');
+});
+
+test('pasteBinCopyLine should set the pasteBin array with the line specified', t => {
+    const buffer = new TextBuffer(10);
+    buffer.set(['Line 1', 'Line 2', 'Line 3']);
+
+    const pasteBinLine = 1;
+    buffer.pasteBinCopyLine(pasteBinLine);
+
+    t.deepEqual(buffer.pasteBin, ['Line 2']);
+});
+
+
+test('pasteBinCopyAll', t => {
+    const tb = new TextBuffer(10);
+    tb.set([' line 1', ' line 2 ', 'line 3']);
+    const copy = tb.pasteBinCopyAll();
+    t.deepEqual(copy, ['line 1', 'line 2', 'line 3']);
+});
+
+test('pasteBinGet', t => {
+    const tb = new TextBuffer(10);
+    tb.pasteBin = ['line 1', 'line 2'];
+    const pasteBin = tb.pasteBinGet();
+    t.deepEqual(pasteBin, ['line 1', 'line 2']);
+});
+
+test('pasteBinInsertLine', t => {
+    const tb = new TextBuffer(10);
+    tb.set(['line 1', 'line 2', 'line 3']);
+    tb.pasteBin = ['new line 1', 'new line 2'];
+    tb.pasteBinInsertLine(1);
+    t.deepEqual(tb.get(), ['line 1', 'new line 1', 'new line 2', 'line 2', 'line 3']);
+});
+
+test('pasteBinReplaceLine replaces line with pasteBin content', t => {
+    const tb = new TextBuffer(5);
+    const originalText = ['This is line 1', 'This is line 2', 'This is line 3'];
+    tb.set(originalText);
+
+    const pasteBinContent = ['New line 1', 'New line 2'];
+    tb.pasteBin = pasteBinContent;
+
+    const lineIndex = 1;
+    tb.pasteBinReplaceLine(lineIndex);
+
+    const expectedText = ['This is line 1', 'New line 1', 'New line 2', 'This is line 3'];
+    const actualText = tb.get();
+
+    t.deepEqual(actualText, expectedText);
+});
+
+test('pasteBinMutateLine should insert and remove elements from textBuf', t => {
+    const tb = new TextBuffer(5);
+    tb.set(['Hello', 'World']);
+    tb.pasteBin = ['new', 'text'];
+    tb.pasteBinMutateLine(1, 2);
+    t.deepEqual(tb.textBuf, ['Hello', 'new', 'text']);
+});
+
+test('pasteBinMutateLine throws an error if insert or remove ID out of range', t => {
+    const tb = new TextBuffer(3);
+    tb.set(['line 1', 'line 2']);
+
+    t.throws(() => {
+        tb.pasteBinMutateLine(5, 0); // insertID out of range
+    }, { instanceOf: Error, message: 'insert or remove ID out of range @insert @remove' });
+
+    t.throws(() => {
+        tb.pasteBinMutateLine(0, 5); // removeID out of range
+    }, { instanceOf: Error, message: 'insert or remove ID out of range @insert @remove' });
+});
+
+test('endOfLines returns true when maximum number of lines is reached', t => {
+    const buffer = new TextBuffer(2);
+    buffer.append('line 1');
+    buffer.append('line 2');
+
+    t.true(buffer.endOfLines());
+
+    buffer.deleteLine(1);
+    t.false(buffer.endOfLines());
+});
