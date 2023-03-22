@@ -335,3 +335,20 @@ test('endOfLines returns true when maximum number of lines is reached', t => {
     buffer.deleteLine(1);
     t.false(buffer.endOfLines());
 });
+
+test('getMaxChar should return the number of characters in the longest line in the buffer', t => {
+    const buffer = new TextBuffer(10);
+    buffer.set(['one', 'two', 'three', 'four', 'five']);
+    t.is(buffer.getMaxChar(), 5);
+
+    buffer.append('a really long line here');
+    t.is(buffer.getMaxChar(), 23);
+
+    buffer.prepend('another long line');
+    //the previously added line is still longer
+    t.is(buffer.getMaxChar(), 23);
+
+    buffer.prepend('supercalirfagilisticexpialidocious');
+    //newly longest line
+    t.is(buffer.getMaxChar(), 34);
+});

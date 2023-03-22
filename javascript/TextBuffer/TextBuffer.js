@@ -31,7 +31,7 @@ class TextBuffer {
         strArr = Array.isArray(strArr) ? strArr : [strArr];
 
         if (this.textBuf.length + strArr.length > this.maxLines) {
-            console.log('append(): maximum number of lines reached \n');
+            console.log('append: maximum number of lines reached \n');
             return;
         }
 
@@ -42,7 +42,7 @@ class TextBuffer {
         strArr = Array.isArray(strArr) ? strArr : [strArr];
 
         if (this.textBuf.length + strArr.length > this.maxLines) {
-            console.log('prepend(): maximum number of lines reached \n');
+            console.log('prepend: maximum number of lines reached \n');
             return;
         }
 
@@ -105,6 +105,18 @@ class TextBuffer {
 
     endOfLines() {
         return this.textBuf.length >= this.maxLines;
+    }
+
+    // return the number of characters in the longest line in the buffer
+    getMaxChar() {
+        var lengths = [];
+        for (var l = 0; l < this.textBuf.length; l++) {
+            lengths[l] = this.lineLength(l);
+        }
+        var sortArr = lengths.slice(0);
+        sortArr.sort(function (a, b) { return b - a });
+
+        return sortArr[0];
     }
 
     pasteBinCopyLine(line) {
