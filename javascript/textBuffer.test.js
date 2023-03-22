@@ -1,4 +1,4 @@
-import test from 'ava';
+const test = require('ava');
 const TextBuffer = require('./TextBuffer');
 
 test('TextBuffer initializes with empty array and maxLines', t => {
