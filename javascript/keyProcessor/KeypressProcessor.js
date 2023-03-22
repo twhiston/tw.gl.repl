@@ -2,6 +2,7 @@ class KeypressProcessor {
     constructor() {
         // Object to store arrays of functions attached to specific ASCII codes
         this.attachedFunctions = {};
+        this.preloadedFunctions = {};
         //this.attachFunctions('alphanum hint', 127, () => { return 'to customize call replaceFunctions on 127' });
         this.overrideAlphaNum = false
     }
@@ -11,6 +12,12 @@ class KeypressProcessor {
     //recurse keypress function with output context to do this
     customAlphaNum(state) {
         this.overrideAlphaNum = state;
+    }
+
+    //preload a function so we can refer to it in our json config later
+    //function should have the signature (k, ctx) where k is the key pressed and context is whatever you need to send to it
+    preloadFunction(id, func) {
+        this.preloadedFunctions[id] = func;
     }
 
     // Function to attach a function to an ASCII code
@@ -58,7 +65,15 @@ class KeypressProcessor {
             const functions = item.functions;
             const functionArray = Array.isArray(functions) ? functions : [functions];
             const parsedFunctions = functionArray.map((funcString) => {
-                const f = new Function('k', 'wm', funcString);
+                //If we have preloaded a function with this name then include it
+                const func = this.preloadedFunctions[funcString];
+                let f = undefined;
+                if (func !== undefined) {
+                    f = func;
+                } else {
+                    //otherwise assume it is a direct function body and wrap it in a Function
+                    f = new Function('k', 'wm', funcString);
+                }
                 return f;
             });
             this.attachFunctions(id, asciiCode, parsedFunctions);

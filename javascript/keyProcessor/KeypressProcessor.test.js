@@ -69,24 +69,6 @@ test('Test loadConfigFromJSON', t => {
 
 });
 
-test('Test function reference from JSON', t => {
-  const jsonConfig = `[
-    {
-      "id": "funcReference",
-      "asciiCode": 12,
-      "functions": "testReply"
-    }
-  ]`;
-
-  const keypressProcessor = new KeypressProcessor();
-  keypressProcessor.loadConfigFromJSON(jsonConfig);
-
-  const funcs = keypressProcessor.processKeypress(12);
-  t.is(funcs.length, 1);
-  t.is(funcs[0](), 'hello');
-
-});
-
 test('Test processKeypress with character keys', t => {
   const keypressProcessor = new KeypressProcessor();
   const funcs = keypressProcessor.processKeypress(34);
@@ -148,3 +130,33 @@ test('customAlphaNum sets overrideAlphaNum property correctly', t => {
   kp.customAlphaNum(false);
   t.false(kp.overrideAlphaNum);
 });
+
+test('loadConfigFromJSON should attach functions specified in JSON config', (t) => {
+  const processor = new KeypressProcessor();
+
+  const functionOne = (k, ctx) => {
+    console.log(`Function One called with key: ${k} and context: ${ctx}`);
+  };
+
+  const functionTwo = (k, ctx) => {
+    console.log(`Function Two called with key: ${k} and context: ${ctx}`);
+  };
+
+  processor.preloadFunction('functionOne', functionOne);
+  processor.preloadFunction('functionTwo', functionTwo);
+
+  const config = JSON.stringify([
+    {
+      id: 'testConfig',
+      asciiCode: 65,
+      functions: ['functionOne', 'functionTwo'],
+    },
+  ]);
+
+  processor.loadConfigFromJSON(config);
+
+  t.is(processor.attachedFunctions[65].length, 1);
+  t.is(processor.attachedFunctions[65][0].id, 'testConfig');
+  t.is(processor.attachedFunctions[65][0].functions.length, 2);
+});
+
