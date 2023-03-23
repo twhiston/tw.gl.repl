@@ -33,6 +33,7 @@ export class KeypressProcessor {
 
     //preload a function so we can refer to it in our json config later
     //function should have the signature (k, ctx) where k is the key pressed and context is whatever you need to send to it
+    //preloaded functions can ONLY be bound via json files. They are not meant to be added in code!!!! attach functions directly instead
     preloadFunction(id: string, func: Function) {
         this.preloadedFunctions[id] = func;
     }

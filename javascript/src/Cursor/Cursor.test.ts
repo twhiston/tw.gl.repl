@@ -25,10 +25,10 @@ test('decrement char', (t) => {
     t.deepEqual(actual, expected);
 });
 
-test('cannot decrement char below 0', t => {
+test('cannot decrement char below -1', t => {
     const cursor = new Cursor();
     cursor.decrementChar();
-    t.is(cursor.char(), 0);
+    t.is(cursor.char(), -1);
 });
 
 test('increment line', (t) => {
@@ -116,12 +116,12 @@ test('decrementLine method should reduce curLine by 1', t => {
     t.is(cursor.line(), 0);
 });
 
-test('decrementLine method should not reduce curLine below 0', t => {
+test('decrementLine method should not reduce curLine below -1', t => {
     const cursor = new Cursor();
     cursor.decrementLine();
-    t.is(cursor.line(), 0);
+    t.is(cursor.line(), -1);
     cursor.incrementLine();
     cursor.decrementLine();
     cursor.decrementLine();
-    t.is(cursor.line(), 0);
+    t.is(cursor.line(), -1);
 });

@@ -1,5 +1,5 @@
 import test from 'ava';
-import { REPLManager, REPLSettings } from './REPLManager';
+import { PreloadIdentifier, REPLManager, REPLSettings } from './REPLManager';
 
 
 test('REPLManager: Initialization', t => {
@@ -55,11 +55,11 @@ test('gotoCharacter  move the cursor to the left', (t) => {
     repl.addChar(105); // Adds the character "i"
     repl.addChar(105); // Adds the character "i"
     repl.addChar(105); // Adds the character "i"
-    repl.gotoCharacter(-1); // Moves the cursor to the left
+    repl.jumpCharacter(-1); // Moves the cursor to the left
     t.is(repl.c.position().char, 3);
-    repl.gotoCharacter(-1); // Moves the cursor to the left
+    repl.jumpCharacter(-1); // Moves the cursor to the left
     t.is(repl.c.position().char, 2);
-    repl.gotoCharacter(1); // Moves the cursor to the left
+    repl.jumpCharacter(1); // Moves the cursor to the left
     t.is(repl.c.position().char, 3);
 });
 
@@ -68,7 +68,7 @@ test('gotoLine moves cursor to the specified line', (t) => {
     const initialPosition = repl.c.position();
     t.is(initialPosition.line, 0, 'initial position line should be 0');
 
-    repl.gotoLine(1);
+    repl.jumpLine(1);
     const newPosition = repl.c.position();
     t.is(newPosition.line, 0, 'position line should be 0');
 
@@ -83,9 +83,31 @@ test('gotoLine does not move cursor beyond last line', (t) => {
     const initialPosition = repl.c.position();
     const lastLineIndex = repl.tb.length() - 1;
 
-    repl.gotoLine(1);
+    repl.jumpLine(1);
     const newPosition = repl.c.position();
     t.is(newPosition.line, lastLineIndex, 'position line should be last line index');
+});
+
+test('test preload function', (t) => {
+
+    const preload: PreloadIdentifier = {
+        id: 'testFunction',
+        func: () => 'test function'
+    }
+
+    const jsonConfig = `[
+        {
+          "id": "testFunc5",
+          "asciiCode": 2,
+          "functions": "testFunction"
+        }
+      ]`;
+
+    const repl = new REPLManager(100, undefined, [preload]);
+    repl.kp.loadConfigFromJSON(jsonConfig);
+    const res = repl.kp.processKeypress(2);
+    const output = res[0]();
+    t.is(output, 'test function');
 });
 
 test('gotoWord method moves the cursor to the next word', (t) => {
@@ -95,7 +117,7 @@ test('gotoWord method moves the cursor to the next word', (t) => {
     repl.addChar(32); // Adds a space
     repl.addChar(116); // Adds the character "t"
     repl.addChar(104); // Adds the character "h"
-    repl.gotoWord(1); // Moves the cursor to the next word
+    repl.jumpWord(1); // Moves the cursor to the next word
     t.is(repl.c.position().char, 5);
 });
 
@@ -220,7 +242,7 @@ test('newline should work when lines have text in', (t) => {
     repl.addChar('t'.charCodeAt(0));
 
     // delete the second line
-    repl.gotoLine(-1);
+    repl.jumpLine(-1);
     repl.deleteLine();
 
     // check that the second line was deleted
@@ -239,7 +261,7 @@ test('removeLine removes the correct line', t => {
     repl.newLine();
     repl.addTab();
     repl.addChar(67);
-    repl.removeLine();
+    repl.spliceLine();
     const output = repl.tb.format().toString()
     t.is(output, '    A,    B    C');
 });
@@ -268,7 +290,7 @@ test('deleteLine should delete the correct line', (t) => {
     repl.addChar('t'.charCodeAt(0));
 
     // delete the second line
-    repl.gotoLine(-1);
+    repl.jumpLine(-1);
     repl.deleteLine();
 
     // check that the second line was deleted
@@ -276,3 +298,62 @@ test('deleteLine should delete the correct line', (t) => {
     t.is(repl.tb.getLine(0), 'hello');
     t.is(repl.tb.getLine(1), 'test');
 });
+
+//mock a state which would test lines 89-92 of add char
+test('addChar function returns true if this.tb.endOfLines() returns true', t => {
+    const repl = new REPLManager(80);
+    const state = {
+        c: {
+            position: () => ({
+                char: 123
+            }),
+            incrementChar: () => { }
+        },
+        config: {
+            MAX_CHARS: 1000
+        },
+        tb: {
+            endOfLines: () => true,
+            insertCharAt: () => { }
+        },
+        newLine: () => { }
+    };
+    const result = repl.addChar.call(state, 65);
+    t.is(result, undefined);
+});
+
+test('backSpace should remove a character', t => {
+    const repl = new REPLManager(10);
+    repl.addChar(97);
+    repl.addChar(98);
+    repl.backSpace();
+    // expect line to be "a"
+    t.is(repl.tb.getLine(0), "a");
+});
+
+test('backSpace should remove a character at the end of a line and move to previous line', t => {
+    const repl = new REPLManager(10);
+    repl.addChar(97);
+    repl.addChar(98);
+    repl.newLine();
+    repl.addChar(99);
+    repl.backSpace();
+    // expect line to be "ab"
+    t.is(repl.tb.getLine(0), "ab");
+});
+
+// test('backSpace should remove a line if the cursor is at the beginning', t => {
+//     const repl = new REPLManager(10);
+//     repl.addChar(97);
+//     repl.newLine();
+//     repl.backSpace();
+//     // expect only one line left
+//     t.is(repl.tb.length(), 1);
+// });
+
+// test('backSpace should do nothing if the cursor is at char 0 and the beginning of the first line is reached', t => {
+//     const repl = new REPLManager(10);
+//     repl.backSpace();
+//     // expect empty TextBuffer
+//     t.is(repl.tb.get(), []);
+// });

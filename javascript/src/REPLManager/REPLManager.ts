@@ -66,6 +66,10 @@ export class REPLManager {
         }
     }
 
+    keypress(k: number) {
+        const res = this.kp.processKeypress(k)
+    }
+
 
     // add multiple spaces to the text (tab)
     addTab() {
@@ -107,7 +111,7 @@ export class REPLManager {
             this.tb.removeCharAt(pos.line, pos.char);
         } else if (pos.char > 0) {
             // remove line if at beginning of line
-            this.removeLine();
+            this.spliceLine();
         } else {
             // else index is 0
             this.c.resetChar();
@@ -128,15 +132,15 @@ export class REPLManager {
             this.tb.setLine(pos.line, this.tb.getLine(pos.line).removeCharAt(pos.char))
         } else {
             if (pos.line < this.tb.length() - 1) {
-                this.gotoLine(1);
-                this.removeLine();
+                this.jumpLine(1);
+                this.spliceLine();
             }
         }
     }
 
     // move one character to the right or left
-    //TODO: better naming
-    gotoCharacter(dir: Direction) {
+    //NB used to be called gotoCharacter
+    jumpCharacter(dir: Direction) {
 
         if (dir !== -1 && dir !== 1) {
             throw new Error('gotoCharacter direction out of bounds: ' + dir);
@@ -147,10 +151,10 @@ export class REPLManager {
         var len = this.tb.lineLength(pos.line);
 
         if (pos.char < 0 && pos.line > 0) {
-            this.gotoLine(-1);
+            this.jumpLine(-1);
             this.jumpTo(1);
         } else if (pos.char > len && pos.line != this.tb.length() - 1) {
-            this.gotoLine(1);
+            this.jumpLine(1);
             this.jumpTo(0);
         } else {
             this.c.setChar(Math.min(len, Math.max(0, pos.char)))
@@ -158,8 +162,8 @@ export class REPLManager {
     }
 
     // move one line up or down
-    //TODO: rename
-    gotoLine(k: Direction) {
+    //NB used to be called gotoLine
+    jumpLine(k: Direction) {
         var pos = this.c.position()
         //k = k * 2 - 1;
         var prevLen = this.tb.lineLength(pos.line);
@@ -176,7 +180,8 @@ export class REPLManager {
     }
 
     // jump to the next or previous word (looks for seprated by spaces)
-    gotoWord(k: Direction) {
+    //NB used to be called gotoWord
+    jumpWord(k: Direction) {
         var pos = this.c.position()
         if (k === -1) {
             var l = this.tb.getLine(pos.line).slice(0, pos.char);
@@ -188,7 +193,7 @@ export class REPLManager {
                 }
             } else {
                 this.jumpTo(0);
-                this.gotoCharacter(-1);
+                this.jumpCharacter(-1);
             }
         } else if (k === 1) {
             var l = this.tb.getLine(pos.line).slice(pos.char);
@@ -200,7 +205,7 @@ export class REPLManager {
                 }
             } else {
                 this.jumpTo(1);
-                this.gotoCharacter(1);
+                this.jumpCharacter(1);
             }
         }
     }
@@ -283,8 +288,8 @@ export class REPLManager {
         this.jumpTo(0);
     }
 
-    //TODO: rename, this does not 'remove' it only removes the newline!
-    removeLine(): void {
+    //NB: This used to be called removeLine
+    spliceLine(): void {
         // cursors at end of previous line
         const line = this.c.line()
         this.c.setChar(this.tb.lineLength(line - 1))

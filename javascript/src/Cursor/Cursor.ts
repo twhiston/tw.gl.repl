@@ -40,8 +40,8 @@ export class Cursor {
     }
 
     decrementChar(): number {
-        //TODO: is there a good reason this was -1 and not 0 originally?
-        this.pos.char = Math.max(0, (this.pos.char -= 1));
+        //This is minimum -1 to cover the case where it should go back a line
+        this.pos.char = Math.max(-1, (this.pos.char -= 1));
         return this.pos.char;
     }
 
@@ -49,9 +49,10 @@ export class Cursor {
         return ++this.pos.line;
     }
 
+    //TODO: check this is really the behavious we want when we get to the first line
     decrementLine(): number {
-        //TODO: is there a good reason this was -1 and not 0 originally?
-        this.pos.line = Math.max(0, (this.pos.line -= 1));
+        //This is minimum -1 to cover the case where it should go back a line
+        this.pos.line = Math.max(-1, (this.pos.line -= 1));
         return this.pos.line;
     }
 
