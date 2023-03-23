@@ -1,4 +1,20 @@
-class KeypressProcessor {
+interface FunctionIdentifier {
+    id: string
+    functions: Array<Function>
+}
+
+interface FunctionBinding {
+    id: string
+    asciiCode: number
+    functions: Array<string>
+}
+
+export class KeypressProcessor {
+
+    private attachedFunctions: { [key: string]: Array<FunctionIdentifier> } = {};
+    private preloadedFunctions: { [key: string]: Function } = {};
+    overrideAlphaNum: boolean
+
     constructor() {
         // Object to store arrays of functions attached to specific ASCII codes
         this.attachedFunctions = {};
@@ -10,36 +26,35 @@ class KeypressProcessor {
     //if you dont want to invoke the generic handler for alphanumerical characters set this to true
     //TODO: do we want to also execute specifcally attached functions to keys when false?
     //recurse keypress function with output context to do this
-    customAlphaNum(state) {
+    customAlphaNum(state: boolean) {
         this.overrideAlphaNum = state;
     }
 
     //preload a function so we can refer to it in our json config later
     //function should have the signature (k, ctx) where k is the key pressed and context is whatever you need to send to it
-    preloadFunction(id, func) {
+    preloadFunction(id: string, func: Function) {
         this.preloadedFunctions[id] = func;
     }
 
     // Function to attach a function to an ASCII code
-    attachFunctions(id, keyCode, func) {
+    attachFunctions(id: string, keyCode: number, funcs: Array<Function>) {
         if (!this.attachedFunctions[keyCode]) {
             this.attachedFunctions[keyCode] = [];
         }
-        const funcArray = Array.isArray(func) ? func : [func];
         this.attachedFunctions[keyCode].push({
             id: id,
-            functions: funcArray,
+            functions: funcs,
         });
     }
 
     // Function to replace functions attached to an ASCII code
-    replaceFunctions(id, keyCode, func) {
+    replaceFunctions(id: string, keyCode: number, func: Array<Function>) {
         this.attachedFunctions[keyCode] = [];
         this.attachFunctions(id, keyCode, func);
     }
 
     // Function to process a keypress and return any attached functions
-    processKeypress(k) {
+    processKeypress(k: number) {
         //to handle general alphanumeric keys we do a little trickery here
         const fId = (k > 32 && k <= 126 && this.overrideAlphaNum == false) ? 127 : k;
         const funcs = this.attachedFunctions[fId]; // Get the attached functions, if any
@@ -57,9 +72,9 @@ class KeypressProcessor {
     }
 
     // Function to load configuration from a JSON object
-    loadConfigFromJSON(config) {
+    loadConfigFromJSON(config: string) {
         const json = JSON.parse(config);
-        json.forEach((item) => {
+        json.forEach((item: FunctionBinding) => {
             const id = item.id;
             const asciiCode = item.asciiCode;
             const functions = item.functions;
@@ -80,4 +95,3 @@ class KeypressProcessor {
         });
     }
 }
-module.exports = KeypressProcessor;

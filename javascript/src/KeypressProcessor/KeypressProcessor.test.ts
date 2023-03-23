@@ -1,10 +1,10 @@
-const test = require('ava');
-const KeypressProcessor = require('./KeypressProcessor');
+import test from 'ava';
+import { KeypressProcessor } from './KeypressProcessor';
 
 test('Test attachFunctions and processKeypress', t => {
   const keypressProcessor = new KeypressProcessor();
-  keypressProcessor.attachFunctions('testFunc1', 25, () => { return 'A pressed'; });
-  keypressProcessor.attachFunctions('testFunc2', 25, () => { return 'A pressed again'; });
+  keypressProcessor.attachFunctions('testFunc1', 25, [() => { return 'A pressed'; }]);
+  keypressProcessor.attachFunctions('testFunc2', 25, [() => { return 'A pressed again'; }]);
   const funcs = keypressProcessor.processKeypress(25);
   t.is(funcs.length, 2);
   t.is(funcs[0](), 'A pressed');
@@ -25,7 +25,7 @@ function testReply() {
 }
 test('Test attachFunctions with a function reference', t => {
   const keypressProcessor = new KeypressProcessor();
-  keypressProcessor.attachFunctions('testFunc1', -3, testReply);
+  keypressProcessor.attachFunctions('testFunc1', -3, [testReply]);
   const funcs = keypressProcessor.processKeypress(-3);
   t.is(funcs.length, 1);
   t.is(funcs[0](), 'hello!');
@@ -33,7 +33,7 @@ test('Test attachFunctions with a function reference', t => {
 
 test('Test replaceFunctions and processKeypress', t => {
   const keypressProcessor = new KeypressProcessor();
-  keypressProcessor.replaceFunctions('testFunc3', 10, () => console.log('B pressed'));
+  keypressProcessor.replaceFunctions('testFunc3', 10, [() => console.log('B pressed')]);
   const funcs = keypressProcessor.processKeypress(10);
   t.is(funcs.length, 1);
 });
@@ -75,7 +75,7 @@ test('Test processKeypress with character keys', t => {
   t.is(funcs.length, 0);
   //t.is(funcs[0](), 'to customize call replaceFunctions on 127');
 
-  keypressProcessor.replaceFunctions('alphanum', 127, () => { return 'ok' });
+  keypressProcessor.replaceFunctions('alphanum', 127, [() => { return 'ok' }]);
   for (let index = 33; index < 127; index++) {
     const funcs = keypressProcessor.processKeypress(index);
     t.is(funcs.length, 1);
@@ -92,7 +92,7 @@ test('Test processKeypress with non-existent key code', t => {
 test('customAlphaNum overrides alphanum key processing when set to true', t => {
   const kp = new KeypressProcessor();
   const testFunc = () => { return 'testing'; };
-  kp.replaceFunctions('alphanum', 127, testFunc);
+  kp.replaceFunctions('alphanum', 127, [testFunc]);
 
   kp.customAlphaNum(true);
   const results = kp.processKeypress(36); //
@@ -108,7 +108,7 @@ test('customAlphaNum overrides alphanum key processing when set to true', t => {
 test('customAlphaNum does not override alphanum key processing when set to false', t => {
   const kp = new KeypressProcessor();
   const testFunc = () => { return 'override' };
-  kp.replaceFunctions('alphanum', 127, testFunc);
+  kp.replaceFunctions('alphanum', 127, [testFunc]);
 
   kp.customAlphaNum(false);
   const results = kp.processKeypress(65); // 'A' key
@@ -134,16 +134,19 @@ test('customAlphaNum sets overrideAlphaNum property correctly', t => {
 test('loadConfigFromJSON should attach functions specified in JSON config', (t) => {
   const processor = new KeypressProcessor();
 
-  const functionOne = (k, ctx) => {
+  const functionOne = (k: number, ctx: {}) => {
     console.log(`Function One called with key: ${k} and context: ${ctx}`);
   };
 
-  const functionTwo = (k, ctx) => {
+  const functionTwo = (k: number, ctx: {}) => {
     console.log(`Function Two called with key: ${k} and context: ${ctx}`);
   };
 
   processor.preloadFunction('functionOne', functionOne);
   processor.preloadFunction('functionTwo', functionTwo);
+
+  //Need to say this is custom alpha as we will bind to key id 65
+  processor.customAlphaNum(true)
 
   const config = JSON.stringify([
     {
@@ -155,8 +158,10 @@ test('loadConfigFromJSON should attach functions specified in JSON config', (t) 
 
   processor.loadConfigFromJSON(config);
 
-  t.is(processor.attachedFunctions[65].length, 1);
-  t.is(processor.attachedFunctions[65][0].id, 'testConfig');
-  t.is(processor.attachedFunctions[65][0].functions.length, 2);
+  const res = processor.processKeypress(65);
+
+  t.is(res.length, 2);
+  const res1 = res[0](65, {})
+  const res2 = res[1](65, {})
 });
 
