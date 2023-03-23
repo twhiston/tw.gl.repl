@@ -1,5 +1,5 @@
 import test from 'ava';
-import { PreloadIdentifier, REPLManager, REPLSettings } from './REPLManager';
+import { Direction, JumpDirection, PreloadIdentifier, REPLManager, REPLSettings } from './REPLManager';
 
 
 test('REPLManager: Initialization', t => {
@@ -182,7 +182,7 @@ test('gotoIndex moves to correct index', (t) => {
 });
 
 
-test('newLine() should add a new line to the text buffer and move the cursor to the start of the new line', t => {
+test('newLine should add a new line to the text buffer and move the cursor to the start of the new line', t => {
     const repl = new REPLManager(80, { INDENTATION: 4, MAX_CHARS: 80 });
 
     // Simulate typing some text
@@ -251,7 +251,7 @@ test('newline should work when lines have text in', (t) => {
     t.is(repl.tb.getLine(1), 'test');
 });
 
-test('removeLine removes the correct line', t => {
+test('spliceLine removes the correct line', t => {
     const repl = new REPLManager(3);
     repl.addTab();
     repl.addChar(65);
@@ -342,18 +342,258 @@ test('backSpace should remove a character at the end of a line and move to previ
     t.is(repl.tb.getLine(0), "ab");
 });
 
-// test('backSpace should remove a line if the cursor is at the beginning', t => {
-//     const repl = new REPLManager(10);
-//     repl.addChar(97);
-//     repl.newLine();
-//     repl.backSpace();
-//     // expect only one line left
-//     t.is(repl.tb.length(), 1);
-// });
+test('backSpace should remove a line if the cursor is at the beginning', t => {
+    const repl = new REPLManager(10);
+    repl.addChar(97);
+    repl.newLine();
+    repl.backSpace();
+    // expect only one line left
+    t.is(repl.tb.length(), 1);
+});
 
-// test('backSpace should do nothing if the cursor is at char 0 and the beginning of the first line is reached', t => {
-//     const repl = new REPLManager(10);
-//     repl.backSpace();
-//     // expect empty TextBuffer
-//     t.is(repl.tb.get(), []);
-// });
+test('backSpace should do nothing if the cursor is at char 0 and the beginning of the first line is reached', t => {
+    const repl = new REPLManager(10);
+    repl.backSpace();
+    // expect empty TextBuffer
+    t.deepEqual(repl.tb.get(), ['']);
+});
+
+test('should return position at the left end of the line when direction is -1', t => {
+    const replManager = new REPLManager(10);
+    replManager.jumpTo(3); // go to bottom
+    replManager.jumpTo(1); // go to end of the line
+    replManager.jumpCharacter(-1);
+    const pos = replManager.c.position();
+    t.is(pos.char, 0);
+});
+
+test('should return position at the beginning of the line when already at the beginning of the line and direction is -1', t => {
+    const replManager = new REPLManager(10);
+    replManager.jumpTo(0); // go to the beginning of the line
+    replManager.jumpCharacter(-1);
+    const pos = replManager.c.position();
+    t.is(pos.char, 0);
+});
+
+test('should return position at the right end of the line when direction is 1', t => {
+    const replManager = new REPLManager(10);
+    replManager.addChar(65); // Add A
+    replManager.addChar(65); // Add A
+    replManager.jumpCharacter(1);
+    const pos = replManager.c.position();
+    t.is(pos.char, 2);
+});
+
+test('should return position at the end of the line when already at the end of the line and direction is 1', t => {
+    const replManager = new REPLManager(10);
+    replManager.addChar(65); // Add A
+    replManager.jumpCharacter(1);
+    const pos = replManager.c.position();
+    t.is(pos.char, 1);
+});
+
+test('jumpLine - else branch', t => {
+    const rl = new REPLManager(20);
+
+    rl.tb.set(['a'.repeat(20), 'b'.repeat(20)]);
+
+    rl.c.setLine(1);
+    rl.c.setChar(5);
+
+    rl.jumpLine(-1);
+
+    const currentLine = rl.c.line();
+
+    t.is(currentLine, 0); // Check if lines are the same before and after the operation
+});
+
+test('jumpWord', (t) => {
+    const manager = new REPLManager(20)
+    const input = 'word1 word2 word3 word4'
+    for (const char of input) {
+        manager.addChar(char.charCodeAt(0));
+    }
+    var pos = manager.c.position()
+    var len = manager.tb.lineLength(pos.line)
+
+    t.deepEqual(pos, { line: 0, char: 23 })
+
+    manager.jumpWord(-1)
+    pos = manager.c.position()
+    t.deepEqual(pos, { line: 0, char: 17 })
+
+    manager.jumpWord(1)
+    pos = manager.c.position()
+    t.deepEqual(pos, { line: 0, char: 23 })
+
+    manager.jumpWord(-1)
+    manager.jumpWord(-1)
+    pos = manager.c.position()
+    t.deepEqual(pos, { line: 0, char: 11 })
+
+    manager.tb.append(['word5 word6 word7 word8 word9'])
+
+    manager.jumpTo(JumpDirection.END)
+    manager.jumpTo(JumpDirection.EOL)
+    pos = manager.c.position()
+    t.deepEqual(pos, { line: 1, char: 29 })
+
+    manager.jumpWord(-1)
+    pos = manager.c.position()
+    t.deepEqual(pos, { line: 1, char: 23 })
+
+    manager.jumpWord(1)
+    pos = manager.c.position()
+    t.deepEqual(pos, { line: 1, char: 29 })
+
+    manager.jumpLine(-1)
+    pos = manager.c.position()
+    t.deepEqual(pos, { line: 0, char: 23 })
+
+    manager.jumpWord(-1)
+    pos = manager.c.position()
+    t.deepEqual(pos, { line: 0, char: 17 })
+
+})
+
+test('jumpword else clause', t => {
+    const repl = new REPLManager(80);
+    repl.jumpTo(3);
+    t.is(repl.c.line(), 0);
+    repl.jumpWord(-1);
+    t.is(repl.c.char(), 0);
+});
+
+test('jumpTo function tests all branches', t => {
+    //beginning of line
+    let repl = new REPLManager(2);
+    repl.addTab(); repl.addTab(); repl.addTab();
+    //jump to beginning of line
+    repl.jumpTo(JumpDirection.BOL)
+    let pos = repl.c.position();
+    t.is(pos.char, 0)
+
+    //end of line
+    repl = new REPLManager(2);
+    repl.addTab(); repl.addTab(); repl.addTab();
+    //jump to end of line
+    repl.jumpTo(JumpDirection.EOL)
+    pos = repl.c.position();
+    t.is(pos.char, 12)
+
+    //top of text array
+    repl = new REPLManager(2);
+    repl.addTab(); repl.addTab(); repl.addTab();
+    repl.newLine(); repl.addTab(); repl.addTab(); repl.addTab();
+    //jump to beginning (top) 
+    repl.jumpTo(JumpDirection.TOP)
+    pos = repl.c.position();
+    t.is(pos.char, 12)
+    t.is(pos.line, 0);
+
+    //bottom of text array
+    repl = new REPLManager(3);
+    repl.addTab();
+    repl.newLine(); repl.addTab();
+    repl.newLine(); repl.addTab();
+    //jump to end (bottom)
+    repl.jumpTo(JumpDirection.END)
+    pos = repl.c.position();
+    t.is(pos.char, 4)
+    t.is(pos.line, 2);
+});
+
+test('gotoIndex', t => {
+    // create an empty REPLManager
+    const rm = new REPLManager(2);
+
+    // add some chars to the buffer
+    rm.addChar(72); rm.addChar(101); rm.addChar(108); rm.addChar(108); rm.addChar(111);
+
+    // move the cursor to the index 2
+    rm.gotoIndex(2);
+
+    // check that the cursor is at the correct position
+    t.deepEqual(rm.c.position(), { line: 0, char: 2 });
+
+    // move the cursor to the index -1
+    rm.gotoIndex(-1);
+
+    // check that the cursor is at the correct position
+    t.deepEqual(rm.c.position(), { line: 0, char: 0 });
+
+    // move the cursor to an index greater than the max length
+    rm.gotoIndex(100);
+
+    // check that the cursor is at the end of the last line
+    t.deepEqual(rm.c.position(), { line: 0, char: 5 });
+});
+
+test('newLine adds a new line after the current line', t => {
+    const replManager = new REPLManager(10); // initialize the text buffer with size 10
+    replManager.addChar(65); // add A to the first line
+    replManager.addChar(66); // add B to the first line
+    replManager.newLine(); // add a new line, now we should be on the second line
+    replManager.addChar(67); // add C to the second line
+
+    t.is(replManager.tb.getLine(0), 'AB');
+    t.is(replManager.tb.getLine(1), 'C');
+});
+
+test('When user tries to create new line and reaches the end of the buffer, an exception should be thrown', t => {
+    const replManager = new REPLManager(1);
+    const error = t.throws(() => {
+        replManager.newLine();
+    }, { instanceOf: Error });
+    if (error !== undefined)
+        t.is(error.message, 'End of lines reached, cannot create new line');
+});
+
+test('deleteLine function should work properly', t => {
+    const replManager = new REPLManager(30);
+
+    replManager.tb.set(['line1'])
+    let pos = replManager.c.position();
+    replManager.deleteLine();
+    let after = replManager.c.position();
+
+    // Test 1 - for a line within range
+    replManager.tb.set([
+        "line1",
+        "line2",
+        "line3",
+        "line4",
+        "line5",
+        "line6",
+        "line7",
+        "line8",
+        "line9",
+        "line10"
+    ]);
+    replManager.c.setLine(5);
+    let posBefore = replManager.c.position();
+    replManager.deleteLine();
+    let posAfter = replManager.c.position();
+    t.is(replManager.tb.length(), 9);
+    t.is(posAfter.line, posBefore.line);
+    t.is(posAfter.char, replManager.tb.lineLength(posAfter.line));
+
+    // Test 2 - delete last line
+    replManager.c.setLine(replManager.tb.length() - 1);
+    let posBeforeLast = replManager.c.position();
+    replManager.deleteLine();
+    let posAfterLast = replManager.c.position();
+    t.is(replManager.tb.length(), 8);
+    t.is(posAfterLast.line, posBeforeLast.line - 1);
+    t.is(posAfterLast.char, posBeforeLast.char);
+
+    // Test 3 - for the last line
+    replManager.c.setLine(replManager.tb.length() - 1);
+    const posLast = replManager.c.position();
+    replManager.deleteLine();
+    t.is(replManager.tb.length(), 7);
+    t.is(replManager.c.line(), 6);
+    t.is(replManager.c.char(), replManager.tb.lineLength(6));
+
+
+});

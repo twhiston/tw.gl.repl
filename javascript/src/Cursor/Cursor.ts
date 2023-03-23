@@ -24,7 +24,8 @@ export class Cursor {
     }
 
     position(): CursorPosition {
-        return this.pos;
+        //shallow copy
+        return { ...this.pos };
     }
 
     line(): number {

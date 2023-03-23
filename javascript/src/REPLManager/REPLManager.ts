@@ -27,7 +27,7 @@ export interface PreloadIdentifier {
 
 export type Direction = 1 | -1;
 
-enum JumpDirection {
+export enum JumpDirection {
     // beginning of line
     BOL,
     // end of line
@@ -109,7 +109,7 @@ export class REPLManager {
         if (pos.char >= 0) {
             // remove character at index
             this.tb.removeCharAt(pos.line, pos.char);
-        } else if (pos.char > 0) {
+        } else if (pos.line > 0) {
             // remove line if at beginning of line
             this.spliceLine();
         } else {
@@ -263,7 +263,7 @@ export class REPLManager {
     newLine(): void {
         if (this.tb.endOfLines()) {
             //TODO: should this throw? currently it silently fails with this return
-            return;
+            throw new Error('End of lines reached, cannot create new line');
         }
         // split array in left and right of cursor
         var pos = this.c.position();
@@ -278,14 +278,13 @@ export class REPLManager {
         pos.line = this.c.incrementLine();
 
         // insert new line on right side of cursor
-
         var u = this.tb.get().slice(0, pos.line);
         u = Array.isArray(u) ? u : [u];
         u.push(r);
         // store to text buffer
         this.tb.set(u.concat(this.tb.get().slice(pos.line)));
         // jump to beginning of line
-        this.jumpTo(0);
+        this.jumpTo(JumpDirection.BOL);
     }
 
     //NB: This used to be called removeLine
@@ -304,17 +303,16 @@ export class REPLManager {
         if (this.tb.length() == 1) {
             this.tb.clear();
             this.c.setLine(0);
-            this.jumpTo(2);
-            this.jumpTo(0);
+            this.jumpTo(JumpDirection.TOP);
+            this.jumpTo(JumpDirection.BOL);
         } else {
-            var pos = this.c.position()
-            this.tb.deleteLine(pos.line)
+            this.tb.deleteLine(this.c.line())
 
-            if (pos.line == this.tb.length()) {
+            if (this.c.line() == this.tb.length()) {
                 this.c.decrementLine()
             }
             // place cursor
-            this.c.setChar(Math.min(this.tb.lineLength(this.c.line()), this.c.char()))
+            this.c.setChar(Math.max(this.tb.lineLength(this.c.line()), this.c.char()))
         }
     }
 

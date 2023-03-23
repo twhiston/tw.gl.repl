@@ -125,3 +125,29 @@ test('decrementLine method should not reduce curLine below -1', t => {
     cursor.decrementLine();
     t.is(cursor.line(), -1);
 });
+
+test('cursor mutation', t => {
+
+    const cursor = new Cursor();
+    cursor.setLine(1);
+    cursor.setChar(10);
+
+    const l1 = cursor.position();
+    const line1 = cursor.line();
+    const char1 = cursor.char();
+    t.is(l1.line, 1)
+    t.is(l1.char, 10)
+    t.is(line1, 1)
+    t.is(char1, 10)
+
+    cursor.setLine(5);
+    cursor.setChar(99);
+    const l2 = cursor.position();
+    t.is(l2.line, 5)
+    t.is(l2.char, 99)
+    t.is(l1.line, 1)
+    t.is(l1.char, 10)
+    t.is(line1, 1)
+    t.is(char1, 10)
+
+});
