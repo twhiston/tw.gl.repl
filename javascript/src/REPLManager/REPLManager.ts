@@ -1,7 +1,6 @@
-const Cursor = require('../Cursor/Cursor');
-const KeypressProcessor = require('../KeypressProcessor/KeypressProcessor');
-const TextBuffer = require('../TextBuffer/TextBuffer');
-
+import { TextBuffer } from "../TextBuffer/TextBuffer";
+import { Cursor } from "../Cursor/Cursor";
+import { KeypressProcessor } from '../KeypressProcessor/KeypressProcessor';
 
 //DEFAULT SETTINGS
 // MAX_CHARS = 80;
@@ -11,18 +10,49 @@ const TextBuffer = require('../TextBuffer/TextBuffer');
 // CMMT = "//";
 // EDITOR_LINES = 30;
 // LINE_CHARS = 140;
+export class REPLSettings {
+    MAX_CHARS: number
+    INDENTATION: number
+    constructor(maxChars: number = 4, indentation: number = 80) {
+        this.INDENTATION = maxChars
+        this.MAX_CHARS = indentation
+    }
+}
 
-class REPLManager {
+//We use this externally so we have a type we can use to ensure we get both an id and a function when preloading
+export interface PreloadIdentifier {
+    id: string
+    func: Function
+}
+
+export type Direction = 1 | -1;
+
+enum JumpDirection {
+    // beginning of line
+    BOL,
+    // end of line
+    EOL,
+    // top of text array
+    TOP,
+    //bottom of text array
+    END
+}
+
+export class REPLManager {
     //TODO: - buffSize can be a config option
+    tb: TextBuffer
+    c: Cursor
+    kp: KeypressProcessor
+    config: REPLSettings
 
-    constructor(buffSize, config, functionPreloads, bufferFormatters) {
+    constructor(buffSize: number, config?: REPLSettings, functionPreloads?: Array<PreloadIdentifier>, bufferFormatters?: Array<TextFormatter>) {
         this.tb = new TextBuffer(buffSize);
         this.c = new Cursor()
         this.kp = new KeypressProcessor()
-        this.config = {}
+        //apply default settings if none are passed in
         if (config === undefined)
-            config = {}
-        this.#processConfig(config)
+            config = new REPLSettings
+        this.config = config
 
         //set an array of formatters. Note that the text buffer will call them in the order they are listed in the array
         if (bufferFormatters !== undefined)
@@ -36,11 +66,6 @@ class REPLManager {
         }
     }
 
-    //private function to process a config and set some defaults. ensures config is given in constructor
-    #processConfig(config) {
-        this.config.INDENTATION = (config.INDENTATION !== undefined) ? config.INDENTATION : 4;
-        this.config.MAX_CHARS = (config.MAX_CHARS !== undefined) ? config.MAX_CHARS : 80;
-    }
 
     // add multiple spaces to the text (tab)
     addTab() {
@@ -54,7 +79,7 @@ class REPLManager {
     }
 
     // add a character (alpha-numeric, numeric, special characters)
-    addChar(k) {
+    addChar(k: number) {
         var pos = this.c.position();
         if (pos.char >= this.config.MAX_CHARS) {
             if (this.tb.endOfLines()) {
@@ -111,19 +136,18 @@ class REPLManager {
 
     // move one character to the right or left
     //TODO: better naming
-    gotoCharacter(dir) {
+    gotoCharacter(dir: Direction) {
 
         if (dir !== -1 && dir !== 1) {
             throw new Error('gotoCharacter direction out of bounds: ' + dir);
         }
-
         var pos = this.c.position()
         this.c.setChar(pos.char + dir);
         pos = this.c.position()
         var len = this.tb.lineLength(pos.line);
 
         if (pos.char < 0 && pos.line > 0) {
-            this.gotoLine(0);
+            this.gotoLine(-1);
             this.jumpTo(1);
         } else if (pos.char > len && pos.line != this.tb.length() - 1) {
             this.gotoLine(1);
@@ -134,9 +158,10 @@ class REPLManager {
     }
 
     // move one line up or down
-    gotoLine(k) {
+    //TODO: rename
+    gotoLine(k: Direction) {
         var pos = this.c.position()
-        k = k * 2 - 1;
+        //k = k * 2 - 1;
         var prevLen = this.tb.lineLength(pos.line);
 
         this.c.setLine(Math.min(Math.max(0, (pos.line + k)), this.tb.length() - 1))
@@ -151,13 +176,16 @@ class REPLManager {
     }
 
     // jump to the next or previous word (looks for seprated by spaces)
-    gotoWord(k) {
+    gotoWord(k: Direction) {
         var pos = this.c.position()
-        if (k === 0) {
+        if (k === -1) {
             var l = this.tb.getLine(pos.line).slice(0, pos.char);
             if (l.match(/\ +[^ ]*$/g)) {
-                var move = l.match(/\s+[^\s]*(\s?)+$/g)[0].length;
-                this.c.setChar(pos.char - move);
+                const match = l.match(/\s+[^\s]*(\s?)+$/g)
+                if (match !== null) {
+                    var move = match[0].length;
+                    this.c.setChar(pos.char - move);
+                }
             } else {
                 this.jumpTo(0);
                 this.gotoCharacter(-1);
@@ -165,8 +193,11 @@ class REPLManager {
         } else if (k === 1) {
             var l = this.tb.getLine(pos.line).slice(pos.char);
             if (l.match(/^[^ ]*\ +/g)) {
-                var move = l.match(/^(\s?)+[^\s]*/g)[0].length;
-                this.c.setChar(pos.char + move);
+                const match = l.match(/\s+[^\s]*(\s?)+$/g)
+                if (match !== null) {
+                    var move = match[0].length;
+                    this.c.setChar(pos.char + move);
+                }
             } else {
                 this.jumpTo(1);
                 this.gotoCharacter(1);
@@ -175,23 +206,23 @@ class REPLManager {
     }
 
     // jump to beginning/end of line or top/bottom of the tb string array
-    jumpTo(k) {
+    jumpTo(k: JumpDirection): void {
         var pos = this.c.position()
         var len = this.tb.lineLength(pos.line);
         switch (k) {
             // beginning of line
-            case 0: this.c.setChar(0); break;
+            case JumpDirection.BOL: this.c.setChar(0); break;
             // end of line
-            case 1: this.c.setChar(len); break;
+            case JumpDirection.EOL: this.c.setChar(len); break;
             // to beginning (top)
-            case 2:
+            case JumpDirection.TOP:
                 this.c.setLine(0);
                 len = this.tb.lineLength(0);
                 //TODO: test this logic!
                 this.c.setChar(Math.min(len, pos.char))
                 break;
             // to end (bottom)
-            case 3:
+            case JumpDirection.END:
                 this.c.setLine(this.tb.length() - 1);
                 len = this.tb.lineLength(this.c.line());
                 this.c.setChar(Math.min(len, pos.char))
@@ -200,7 +231,7 @@ class REPLManager {
     }
 
     // move the cursor to the index of the letter in the full text
-    gotoIndex(i) {
+    gotoIndex(i: number): void {
         // go to beginning if index less then 0
         if (i < 0) {
             this.jumpTo(0);
@@ -224,8 +255,9 @@ class REPLManager {
         this.jumpTo(1);
     }
 
-    newLine() {
+    newLine(): void {
         if (this.tb.endOfLines()) {
+            //TODO: should this throw? currently it silently fails with this return
             return;
         }
         // split array in left and right of cursor
@@ -251,7 +283,8 @@ class REPLManager {
         this.jumpTo(0);
     }
 
-    removeLine() {
+    //TODO: rename, this does not 'remove' it only removes the newline!
+    removeLine(): void {
         // cursors at end of previous line
         const line = this.c.line()
         this.c.setChar(this.tb.lineLength(line - 1))
@@ -262,7 +295,7 @@ class REPLManager {
         this.c.setLine(Math.max(0, line - 1));
     }
 
-    deleteLine() {
+    deleteLine(): void {
         if (this.tb.length() == 1) {
             this.tb.clear();
             this.c.setLine(0);
@@ -281,7 +314,6 @@ class REPLManager {
     }
 
 }
-module.exports = REPLManager;
 
 // ===========
 // Deprecated

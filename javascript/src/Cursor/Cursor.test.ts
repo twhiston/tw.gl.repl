@@ -33,10 +33,11 @@ test('cannot decrement char below 0', t => {
 
 test('increment line', (t) => {
     const cursor = new Cursor();
-    cursor.incrementLine();
+    const ival = cursor.incrementLine();
     const expected = { line: 1, char: 0 };
     const actual = cursor.position();
     t.deepEqual(actual, expected);
+    t.is(ival, 1)
 });
 
 test('set char', (t) => {

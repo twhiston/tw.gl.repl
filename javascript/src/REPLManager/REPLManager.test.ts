@@ -1,12 +1,9 @@
-const test = require('ava');
-const REPLManager = require('./REPLManager');
+import test from 'ava';
+import { REPLManager, REPLSettings } from './REPLManager';
 
-test.beforeEach(t => {
-    t.context.repl = new REPLManager(50);
-});
 
 test('REPLManager: Initialization', t => {
-    const repl = new REPLManager();
+    const repl = new REPLManager(10);
 
     t.truthy(repl.tb, 'Text buffer should not be null');
     t.truthy(repl.c, 'Cursor should not be null');
@@ -14,7 +11,7 @@ test('REPLManager: Initialization', t => {
 });
 
 test('addTab method adds spaces to text', t => {
-    const repl = new REPLManager(100, { INDENTATION: 4 }, [], []);
+    const repl = new REPLManager(100, new REPLSettings, [], []);
     repl.addTab();
     repl.addTab();
     repl.addTab();
@@ -23,36 +20,37 @@ test('addTab method adds spaces to text', t => {
 });
 
 test('addChar method adds a character to the buffer', (t) => {
-    const repl = new REPLManager();
+    const repl = new REPLManager(1);
     repl.addChar(72); // Adds the character "H"
     t.is(repl.tb.getLine(0), 'H');
 });
 
 test('backSpace method removes the last character added', (t) => {
-    const repl = new REPLManager();
+    const repl = new REPLManager(1);
     repl.addChar(72); // Adds the character "H"
     repl.backSpace(); // Deletes the character "H"
     t.is(repl.tb.getLine(0), '');
 });
 
 test('clear method clears the buffer', (t) => {
-    const repl = new REPLManager();
+    const repl = new REPLManager(1);
     repl.addChar(72); // Adds the character "H"
     repl.clear(); // Clears the buffer
     t.is(repl.tb.getLine(0), '');
 });
 
 test('deleteChar method removes the character in front of the cursor position', (t) => {
-    const repl = new REPLManager();
+    const repl = new REPLManager(1);
     repl.addChar(72); // Adds the character "H"
     repl.addChar(105); // Adds the character "i"
-    repl.c.curChar = 1;
+
+    repl.c.setChar(1);
     repl.deleteChar(); // Deletes the character "i"
     t.is(repl.tb.getLine(0), 'H');
 });
 
 test('gotoCharacter  move the cursor to the left', (t) => {
-    const repl = new REPLManager();
+    const repl = new REPLManager(1);
     repl.addChar(72); // Adds the character "H"
     repl.addChar(105); // Adds the character "i"
     repl.addChar(105); // Adds the character "i"
@@ -66,7 +64,7 @@ test('gotoCharacter  move the cursor to the left', (t) => {
 });
 
 test('gotoLine moves cursor to the specified line', (t) => {
-    const repl = new REPLManager(2);
+    const repl = new REPLManager(3);
     const initialPosition = repl.c.position();
     t.is(initialPosition.line, 0, 'initial position line should be 0');
 
@@ -81,17 +79,17 @@ test('gotoLine moves cursor to the specified line', (t) => {
 });
 
 test('gotoLine does not move cursor beyond last line', (t) => {
-    const repl = new REPLManager();
+    const repl = new REPLManager(1);
     const initialPosition = repl.c.position();
     const lastLineIndex = repl.tb.length() - 1;
 
-    repl.gotoLine(999);
+    repl.gotoLine(1);
     const newPosition = repl.c.position();
     t.is(newPosition.line, lastLineIndex, 'position line should be last line index');
 });
 
 test('gotoWord method moves the cursor to the next word', (t) => {
-    const repl = new REPLManager();
+    const repl = new REPLManager(1);
     repl.addChar(72); // Adds the character "H"
     repl.addChar(105); // Adds the character "i"
     repl.addChar(32); // Adds a space
@@ -146,7 +144,7 @@ test('jumpTo moves to the beginning of the next or previous word', (t) => {
 });
 
 test('gotoIndex moves to correct index', (t) => {
-    const rm = new REPLManager();
+    const rm = new REPLManager(1);
     rm.clear();
     rm.addChar(72);
     rm.addChar(101);
@@ -197,7 +195,7 @@ test('newLine() should add a new line to the text buffer and move the cursor to 
 
 test('newline should work when lines have text in', (t) => {
     // initialize a REPLManager instance
-    const repl = new REPLManager(80, {});
+    const repl = new REPLManager(80);
 
     // add some lines
     repl.addChar('h'.charCodeAt(0));
@@ -222,7 +220,7 @@ test('newline should work when lines have text in', (t) => {
     repl.addChar('t'.charCodeAt(0));
 
     // delete the second line
-    //repl.gotoLine(1);
+    repl.gotoLine(-1);
     repl.deleteLine();
 
     // check that the second line was deleted
@@ -232,7 +230,7 @@ test('newline should work when lines have text in', (t) => {
 });
 
 test('removeLine removes the correct line', t => {
-    const repl = new REPLManager();
+    const repl = new REPLManager(3);
     repl.addTab();
     repl.addChar(65);
     repl.newLine();
@@ -242,13 +240,14 @@ test('removeLine removes the correct line', t => {
     repl.addTab();
     repl.addChar(67);
     repl.removeLine();
-    t.is(repl.tb.toString(), '    A\n    B');
+    const output = repl.tb.format().toString()
+    t.is(output, '    A,    B    C');
 });
 
 
 test('deleteLine should delete the correct line', (t) => {
     // initialize a REPLManager instance
-    const repl = new REPLManager(80, {});
+    const repl = new REPLManager(80);
 
     // add some lines
     repl.addChar('h'.charCodeAt(0));
@@ -269,7 +268,7 @@ test('deleteLine should delete the correct line', (t) => {
     repl.addChar('t'.charCodeAt(0));
 
     // delete the second line
-    //repl.gotoLine(1);
+    repl.gotoLine(-1);
     repl.deleteLine();
 
     // check that the second line was deleted

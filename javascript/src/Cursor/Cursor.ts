@@ -46,7 +46,7 @@ export class Cursor {
     }
 
     incrementLine(): number {
-        return this.pos.line++;
+        return ++this.pos.line;
     }
 
     decrementLine(): number {
