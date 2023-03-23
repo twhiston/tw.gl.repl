@@ -1,11 +1,11 @@
-const bb = require("./braceBalancedFormatter.js");
+const bb = require("./BraceBalancedFormatter.js");
 
 function fuzz(buf) {
 
     try {
         let output = bb.braceBalancedFormatter(buf, true)
         output.forEach(element => {
-            if(!bb.isBalanced(element)){
+            if (!bb.isBalanced(element)) {
                 throw new Error('Not Balanced');
             }
         });
@@ -17,6 +17,6 @@ function fuzz(buf) {
         }
     }
 }
-  module.exports = {
-      fuzz
-  };
+module.exports = {
+    fuzz
+};

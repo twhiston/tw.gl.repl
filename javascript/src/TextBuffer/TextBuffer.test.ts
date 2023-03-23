@@ -1,6 +1,27 @@
 import test from 'ava';
 import { TextBuffer } from './TextBuffer';
 
+class TestWhiteSpaceTrimFormatter implements TextFormatter {
+    format(strArr: Array<string>, ctx: {}): Array<string> {
+        // Your implementation goes here
+        return strArr.map(str => str.trim()); // Example implementation that returns all strings in uppercase
+    }
+}
+
+class TestWhiteSpaceReplacerFormatter implements TextFormatter {
+    format(strArr: Array<string>, ctx: {}): Array<string> {
+        // Your implementation goes here
+        return strArr.map(str => str.replace(/\{/g, '').replace(/\}/g, '').trim()); // Example implementation that returns all strings in uppercase
+    }
+}
+
+class TestUppercaseFormatter implements TextFormatter {
+    format(strArr: Array<string>, ctx: {}): Array<string> {
+        // Your implementation goes here
+        return strArr.map(str => str.toUpperCase()); // Example implementation that returns all strings in uppercase
+    }
+}
+
 test('TextBuffer initializes with empty array and maxLines', t => {
     const tb = new TextBuffer(10);
     t.deepEqual(tb.get(), ['']);
@@ -50,8 +71,8 @@ test('lineLength returns the length of a specific line in the buffer', t => {
 test('format applies all registered formatters to the buffer', t => {
     const tb = new TextBuffer(10);
     tb.set(['  Line 1  ', ' { Line 2 } ']);
-    tb.addFormatter((lines: Array<string>, ctx: {}) => lines.map(txt => { return txt.trim() }));
-    tb.addFormatter((lines: Array<string>, ctx: {}) => lines.map(txt => txt.replace(/\{/g, '').replace(/\}/g, '').trim()));
+    tb.addFormatter(new TestWhiteSpaceTrimFormatter);
+    tb.addFormatter(new TestWhiteSpaceReplacerFormatter);
     const formatted = tb.format();
     t.deepEqual(formatted, ['Line 1', 'Line 2']);
 });
@@ -197,11 +218,11 @@ test('clear() removes all lines from the buffer and sets the first line to an em
 
 test('setFormatters sets the formatters array', t => {
     const tb = new TextBuffer(10);
-    tb.addFormatter((lines: Array<string>, ctx: {}) => lines.map(txt => { return txt.trim() }));
-    tb.addFormatter((lines: Array<string>, ctx: {}) => lines.map(txt => txt.replace(/\{/g, '').replace(/\}/g, '').trim()));
+    tb.addFormatter(new TestWhiteSpaceTrimFormatter);
+    tb.addFormatter(new TestWhiteSpaceReplacerFormatter);
 
-    const formatter1 = (lines: Array<string>, ctx: {}) => lines.map(txt => { return txt.toUpperCase() })
-    const formatter2 = (lines: Array<string>, ctx: {}) => lines.map(txt => { return txt.toUpperCase() })
+    const formatter1 = new TestUppercaseFormatter
+    const formatter2 = new TestUppercaseFormatter
     const formatters = [formatter1, formatter2];
 
     tb.setFormatters(formatters);

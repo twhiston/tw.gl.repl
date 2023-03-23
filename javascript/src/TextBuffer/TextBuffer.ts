@@ -1,9 +1,10 @@
 import './string.extensions';
+import './TextFormatter'
 
 export class TextBuffer {
     maxLines: number
     textBuf: Array<string>
-    formatters: Array<Function>
+    formatters: Array<TextFormatter>
     pasteBin: Array<string>
 
     constructor(maxLines: number) {
@@ -73,18 +74,18 @@ export class TextBuffer {
         return this.textBuf[line].length;
     }
 
-    addFormatter(formatter: Function): void {
+    addFormatter(formatter: TextFormatter): void {
         this.formatters.push(formatter);
     }
 
-    setFormatters(formatters: Array<Function>): void {
+    setFormatters(formatters: Array<TextFormatter>): void {
         this.formatters = formatters;
     }
 
     format(ctx = {}): Array<string> {
         let formatted = this.textBuf;
         for (let i = 0; i < this.formatters.length; i++) {
-            formatted = this.formatters[i](formatted, ctx);
+            formatted = this.formatters[i].format(formatted, ctx);
         }
         return formatted;
     }
