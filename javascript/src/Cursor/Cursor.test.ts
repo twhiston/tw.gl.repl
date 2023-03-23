@@ -1,5 +1,5 @@
-const test = require('ava');
-const Cursor = require('./Cursor');
+import test from 'ava';
+import { Cursor, CursorPosition } from './Cursor';
 
 test('initial position', (t) => {
     const cursor = new Cursor();
@@ -87,7 +87,7 @@ test('reset line', t => {
     const cursor = new Cursor();
     cursor.incrementLine();
     cursor.resetLine();
-    t.is(cursor.curLine, 0);
+    t.is(cursor.line(), 0);
 });
 
 test('Position returns object with current line and char values', t => {

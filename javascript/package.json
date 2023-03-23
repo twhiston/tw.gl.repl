@@ -8,6 +8,7 @@
     "example": "examples"
   },
   "scripts": {
+    "compile": "npx tsc",
     "test": "nyc --cwd ./../ --report-dir=javascript/coverage --temp-dir=javascript/.nyc_output --reporter=lcov --reporter=text ava",
     "fuzz": "jsfuzz ./fuzzTarget.js corpus",
     "report": "nyc report --reporter=html --exclude-node-modules=false"
@@ -15,15 +16,17 @@
   "author": "",
   "license": "GPL",
   "devDependencies": {
-    "@ava/babel": "^2.0.0",
-    "@babel/preset-env": "^7.20.2",
-    "@babel/register": "^7.21.0",
     "ava": "^5.2.0",
-    "nyc": "^15.1.0"
+    "nyc": "^15.1.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.2"
   },
   "ava": {
+    "extensions": [
+      "ts"
+    ],
     "require": [
-      "@babel/register"
+      "ts-node/register"
     ]
   }
 }

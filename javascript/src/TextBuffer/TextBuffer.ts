@@ -1,5 +1,12 @@
-class TextBuffer {
-    constructor(maxLines) {
+import './string.extensions';
+
+export class TextBuffer {
+    maxLines: number
+    textBuf: Array<string>
+    formatters: Array<Function>
+    pasteBin: Array<string>
+
+    constructor(maxLines: number) {
         this.maxLines = maxLines;
         this.textBuf = [''];
         this.formatters = [];
@@ -14,21 +21,21 @@ class TextBuffer {
         return this.textBuf;
     }
 
-    getLine(line) {
+    getLine(line: number): string {
         return this.textBuf[line];
     }
 
-    set(strArr) {
-        this.textBuf = [];
-        this.textBuf = Array.isArray(strArr) ? strArr : [strArr];
+    set(strArr: Array<string>): void {
+        this.textBuf = strArr;
+        //this.textBuf = Array.isArray(strArr) ? strArr : [strArr];
     }
 
-    setLine(line, str) {
+    setLine(line: number, str: string): void {
         this.textBuf[line] = str;
     }
 
-    append(strArr) {
-        strArr = Array.isArray(strArr) ? strArr : [strArr];
+    append(strArr: Array<string>): void {
+        //strArr = Array.isArray(strArr) ? strArr : [strArr];
 
         if (this.textBuf.length + strArr.length > this.maxLines) {
             console.log('append: maximum number of lines reached \n');
@@ -38,8 +45,8 @@ class TextBuffer {
         this.textBuf = this.textBuf.concat(strArr);
     }
 
-    prepend(strArr) {
-        strArr = Array.isArray(strArr) ? strArr : [strArr];
+    prepend(strArr: Array<string>): void {
+        //strArr = Array.isArray(strArr) ? strArr : [strArr];
 
         if (this.textBuf.length + strArr.length > this.maxLines) {
             console.log('prepend: maximum number of lines reached \n');
@@ -49,12 +56,12 @@ class TextBuffer {
         this.textBuf = strArr.concat(this.textBuf);
     }
 
-    emptyLine(line) {
+    emptyLine(line: number): void {
         this.textBuf[line] = '';
     }
 
     //TODO: get rid of one of these 2
-    length() {
+    length(): number {
         return this.textBuf.length;
     }
 
@@ -62,19 +69,19 @@ class TextBuffer {
         return this.length();
     }
 
-    lineLength(line) {
+    lineLength(line: number): number {
         return this.textBuf[line].length;
     }
 
-    addFormatter(formatter) {
+    addFormatter(formatter: Function): void {
         this.formatters.push(formatter);
     }
 
-    setFormatters(formatters) {
+    setFormatters(formatters: Array<Function>): void {
         this.formatters = formatters;
     }
 
-    format(ctx = {}) {
+    format(ctx = {}): Array<string> {
         let formatted = this.textBuf;
         for (let i = 0; i < this.formatters.length; i++) {
             formatted = this.formatters[i](formatted, ctx);
@@ -82,15 +89,15 @@ class TextBuffer {
         return formatted;
     }
 
-    insertCharAt(line, i, c) {
+    insertCharAt(line: number, i: number, c: string): void {
         this.textBuf[line] = this.textBuf[line].insertCharAt(i, c);
     }
 
-    removeCharAt(line, i) {
+    removeCharAt(line: number, i: number): void {
         this.textBuf[line] = this.textBuf[line].removeCharAt(i);
     }
 
-    spliceLine(line) {
+    spliceLine(line: number): void {
         if (line > 0) {
             // add current line to line above
             this.textBuf[line - 1] += this.textBuf[line];
@@ -99,16 +106,16 @@ class TextBuffer {
         this.textBuf.splice(line, 1);
     }
 
-    deleteLine(line) {
+    deleteLine(line: number): void {
         this.textBuf.splice(line, 1);
     }
 
-    endOfLines() {
+    endOfLines(): boolean {
         return this.textBuf.length >= this.maxLines;
     }
 
     // return the number of characters in the longest line in the buffer
-    getMaxChar() {
+    getMaxChar(): number {
         var lengths = [];
         for (var l = 0; l < this.textBuf.length; l++) {
             lengths[l] = this.lineLength(l);
@@ -119,7 +126,7 @@ class TextBuffer {
         return sortArr[0];
     }
 
-    pasteBinCopyLine(line) {
+    pasteBinCopyLine(line: number): Array<string> {
         if (line < 0 || line > this.textBuf.length) {
             throw new Error('pastebin line index out of range')
         }
@@ -127,7 +134,7 @@ class TextBuffer {
         return this.pasteBin;
     }
 
-    pasteBinCopyAll() {
+    pasteBinCopyAll(): Array<string> {
         this.pasteBin = [];
         for (var i = 0; i < this.textBuf.length; i++) {
             this.pasteBin[i] = this.textBuf[i].trim()
@@ -135,11 +142,11 @@ class TextBuffer {
         return this.pasteBin;
     }
 
-    pasteBinGet() {
+    pasteBinGet(): Array<string> {
         return this.pasteBin;
     }
 
-    pasteBinInsertLine(lineIndex) {
+    pasteBinInsertLine(lineIndex: number): void {
         // if (!endOfLines()) {
         //     jumpTo(0);
         //     newLine();
@@ -155,30 +162,18 @@ class TextBuffer {
         }
     }
 
-    pasteBinReplaceLine(lineIndex) {
+    pasteBinReplaceLine(lineIndex: number) {
         //replaced a line with pastebin content. could be a multiline insert!
         this.pasteBinMutateLine(lineIndex, lineIndex)
     }
 
     //Mutate the text buffer by inserting and optionally removing an element from the pasteBin
-    pasteBinMutateLine(insertID, removeID) {
+    pasteBinMutateLine(insertID: number, removeID: number) {
+        let catId = [insertID, removeID];
         if (!this.endOfLines() && insertID < this.maxLines && removeID < this.maxLines)
-            Array.prototype.splice.apply(this.textBuf, [insertID, removeID].concat(this.pasteBin));
+            Array.prototype.splice.apply(this.textBuf, <Parameters<Array<string>['splice']>>[insertID, removeID, ...this.pasteBin]);
+        //Array.prototype.splice.apply(this.textBuf, [insertID, removeID].concat(this.pasteBin));
         else
-            throw new Error('insert or remove ID out of range @insert @remove', insertID, removeID);
+            throw new Error('insert or remove ID out of range: ' + insertID + " " + removeID);
     }
 }
-
-String.prototype.removeCharAt = function (i) {
-    const tmp = this.split('');
-    tmp.splice(i, 1);
-    return tmp.join('');
-};
-
-String.prototype.insertCharAt = function (i, c) {
-    const l = this.slice(0, i);
-    const r = this.slice(i);
-    return l + c + r;
-};
-
-module.exports = TextBuffer;

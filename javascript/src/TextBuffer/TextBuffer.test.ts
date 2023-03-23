@@ -1,5 +1,5 @@
-const test = require('ava');
-const TextBuffer = require('./TextBuffer');
+import test from 'ava';
+import { TextBuffer } from './TextBuffer';
 
 test('TextBuffer initializes with empty array and maxLines', t => {
     const tb = new TextBuffer(10);
@@ -9,7 +9,7 @@ test('TextBuffer initializes with empty array and maxLines', t => {
 
 test('set sets the buffer to the input string', t => {
     const tb = new TextBuffer(10);
-    tb.set('Hello world!');
+    tb.set(['Hello world!']);
     t.deepEqual(tb.get(), ['Hello world!']);
 });
 
@@ -23,14 +23,14 @@ test('setLine sets a specific line in the buffer to the input string', t => {
 test('append adds the input string to the end of the buffer', t => {
     const tb = new TextBuffer(10);
     tb.set(['Line 1', 'Line 2']);
-    tb.append('Line 3');
+    tb.append(['Line 3']);
     t.deepEqual(tb.get(), ['Line 1', 'Line 2', 'Line 3']);
 });
 
 test('prepend adds the input string to the beginning of the buffer', t => {
     const tb = new TextBuffer(10);
     tb.set(['Line 1', 'Line 2']);
-    tb.prepend('New Line 1');
+    tb.prepend(['New Line 1']);
     t.deepEqual(tb.get(), ['New Line 1', 'Line 1', 'Line 2']);
 });
 
@@ -50,8 +50,8 @@ test('lineLength returns the length of a specific line in the buffer', t => {
 test('format applies all registered formatters to the buffer', t => {
     const tb = new TextBuffer(10);
     tb.set(['  Line 1  ', ' { Line 2 } ']);
-    tb.addFormatter((lines, ctx) => lines.map(txt => { return txt.trim() }));
-    tb.addFormatter((lines, ctx) => lines.map(txt => txt.replace(/\{/g, '').replace(/\}/g, '').trim()));
+    tb.addFormatter((lines: Array<string>, ctx: {}) => lines.map(txt => { return txt.trim() }));
+    tb.addFormatter((lines: Array<string>, ctx: {}) => lines.map(txt => txt.replace(/\{/g, '').replace(/\}/g, '').trim()));
     const formatted = tb.format();
     t.deepEqual(formatted, ['Line 1', 'Line 2']);
 });
@@ -130,9 +130,9 @@ test('set sets the text buffer to the given array of strings', t => {
 
 test('set sets the text buffer to an array containing the given string if a string is provided', t => {
     const tb = new TextBuffer(10);
-    const input = 'line 1';
+    const input = ['line 1'];
     tb.set(input);
-    t.deepEqual(tb.get(), [input]);
+    t.deepEqual(tb.get(), input);
 });
 
 test('setLine sets the given line to the given string', t => {
@@ -197,11 +197,11 @@ test('clear() removes all lines from the buffer and sets the first line to an em
 
 test('setFormatters sets the formatters array', t => {
     const tb = new TextBuffer(10);
-    tb.addFormatter((lines, ctx) => lines.map(txt => { return txt.trim() }));
-    tb.addFormatter((lines, ctx) => lines.map(txt => txt.replace(/\{/g, '').replace(/\}/g, '').trim()));
+    tb.addFormatter((lines: Array<string>, ctx: {}) => lines.map(txt => { return txt.trim() }));
+    tb.addFormatter((lines: Array<string>, ctx: {}) => lines.map(txt => txt.replace(/\{/g, '').replace(/\}/g, '').trim()));
 
-    const formatter1 = (lines, ctx) => lines.map(txt => { return txt.toUpperCase() })
-    const formatter2 = (lines, ctx) => lines.map(txt => { return txt.toUpperCase() })
+    const formatter1 = (lines: Array<string>, ctx: {}) => lines.map(txt => { return txt.toUpperCase() })
+    const formatter2 = (lines: Array<string>, ctx: {}) => lines.map(txt => { return txt.toUpperCase() })
     const formatters = [formatter1, formatter2];
 
     tb.setFormatters(formatters);
@@ -238,8 +238,8 @@ test('pasteBinCopyLine should throw an error if line index is out of range > ', 
     const error = t.throws(() => {
         buffer.pasteBinCopyLine(pasteBinLine);
     }, { instanceOf: Error });
-
-    t.is(error.message, 'pastebin line index out of range');
+    if (error !== undefined)
+        t.is(error.message, 'pastebin line index out of range');
 });
 
 test('pasteBinCopyLine should throw an error if line index is out of range < 0', t => {
@@ -250,8 +250,8 @@ test('pasteBinCopyLine should throw an error if line index is out of range < 0',
     const error = t.throws(() => {
         buffer.pasteBinCopyLine(pasteBinLine);
     }, { instanceOf: Error });
-
-    t.is(error.message, 'pastebin line index out of range');
+    if (error !== undefined)
+        t.is(error.message, 'pastebin line index out of range');
 });
 
 test('pasteBinCopyLine should set the pasteBin array with the line specified', t => {
@@ -318,17 +318,17 @@ test('pasteBinMutateLine throws an error if insert or remove ID out of range', t
 
     t.throws(() => {
         tb.pasteBinMutateLine(5, 0); // insertID out of range
-    }, { instanceOf: Error, message: 'insert or remove ID out of range @insert @remove' });
+    }, { instanceOf: Error, message: 'insert or remove ID out of range: 5 0' });
 
     t.throws(() => {
         tb.pasteBinMutateLine(0, 5); // removeID out of range
-    }, { instanceOf: Error, message: 'insert or remove ID out of range @insert @remove' });
+    }, { instanceOf: Error, message: 'insert or remove ID out of range: 0 5' });
 });
 
 test('endOfLines returns true when maximum number of lines is reached', t => {
     const buffer = new TextBuffer(2);
-    buffer.append('line 1');
-    buffer.append('line 2');
+    buffer.append(['line 1']);
+    buffer.append(['line 2']);
 
     t.true(buffer.endOfLines());
 
@@ -341,14 +341,14 @@ test('getMaxChar should return the number of characters in the longest line in t
     buffer.set(['one', 'two', 'three', 'four', 'five']);
     t.is(buffer.getMaxChar(), 5);
 
-    buffer.append('a really long line here');
+    buffer.append(['a really long line here']);
     t.is(buffer.getMaxChar(), 23);
 
-    buffer.prepend('another long line');
+    buffer.prepend(['another long line']);
     //the previously added line is still longer
     t.is(buffer.getMaxChar(), 23);
 
-    buffer.prepend('supercalirfagilisticexpialidocious');
+    buffer.prepend(['supercalirfagilisticexpialidocious']);
     //newly longest line
     t.is(buffer.getMaxChar(), 34);
 });
