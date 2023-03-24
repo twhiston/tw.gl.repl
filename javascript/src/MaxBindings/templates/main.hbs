@@ -1,0 +1,23 @@
+///////////////////////////////////////////////////////
+//  THIS FILE IS AUTO GENERATED, DO NOT EDIT BY HAND
+//   See README.md and ./src/MaxBindings for more
+///////////////////////////////////////////////////////
+
+{{#each imports}}
+import '{{ this }}'
+{{/each}}   
+
+inlets = 1;
+outlets = 3;
+
+function loadbang() {
+	init();
+}
+
+// REPL BINDINGS
+// Functions below here are generated from class methods decorated with @maxMspBinding
+// This exposes functions to the max api so they can be called in max
+{{#each functions}}
+{{rendered }}
+
+{{/each}} 

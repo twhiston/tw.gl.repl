@@ -1,6 +1,7 @@
 import { TextBuffer } from "../TextBuffer/TextBuffer";
 import { Cursor } from "../Cursor/Cursor";
 import { KeypressProcessor } from '../KeypressProcessor/KeypressProcessor';
+import { maxMspBinding } from "../MaxBindings/MaxBindings";
 
 //DEFAULT SETTINGS
 // MAX_CHARS = 80;
@@ -66,12 +67,14 @@ export class REPLManager {
         }
     }
 
+    @maxMspBinding
     keypress(k: number) {
         const res = this.kp.processKeypress(k)
     }
 
 
     // add multiple spaces to the text (tab)
+    @maxMspBinding
     addTab() {
         const pos = this.c.position()
         //TODO: why does the original do this?

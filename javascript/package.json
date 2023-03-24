@@ -8,6 +8,7 @@
     "example": "examples"
   },
   "scripts": {
+    "generate-max-binding": "npx ts-node --skip-project ./src/MaxBindings/generateMaxBindings.ts",
     "compile": "npx tsc",
     "test": "nyc --cwd ./../ --report-dir=javascript/coverage --temp-dir=javascript/.nyc_output --reporter=lcov --reporter=text ava",
     "fuzz": "jsfuzz ./fuzzTarget.js corpus",
@@ -16,8 +17,11 @@
   "author": "",
   "license": "GPL",
   "devDependencies": {
+    "@types/glob": "^8.1.0",
     "ava": "^5.2.0",
+    "handlebars": "^4.7.7",
     "nyc": "^15.1.0",
+    "reflect-metadata": "^0.1.13",
     "ts-node": "^10.9.1",
     "typescript": "^5.0.2"
   },

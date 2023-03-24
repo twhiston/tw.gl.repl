@@ -1,3 +1,5 @@
+import { maxMspBinding } from "../MaxBindings/MaxBindings"
+
 //Used internally but not exposed as users add functions directly
 interface FunctionIdentifier {
     id: string
