@@ -154,13 +154,11 @@ export class TextBuffer {
         //     gotoLine(0);
         //     return pasteReplaceLine();
         // }
-        if (this.pasteBin !== null) {
-            // inserts pastebin contents at line index
-            this.pasteBinMutateLine(lineIndex, 0)
+        // inserts pastebin contents at line index
+        this.pasteBinMutateLine(lineIndex, 0)
 
-            // jump to end of new line
-            //jumpTo(1);
-        }
+        // jump to end of new line
+        //jumpTo(1);
     }
 
     pasteBinReplaceLine(lineIndex: number) {
