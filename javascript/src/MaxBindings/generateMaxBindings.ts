@@ -36,7 +36,7 @@ export function generateBindingCode(name: string, options: MaxMspBindingOptions)
     }
 }
 
-function uniqByFilter<T>(array: T[]) {
+function uniq<T>(array: T[]) {
     return array.filter((value, index) => array.indexOf(value) === index);
 }
 
@@ -45,13 +45,14 @@ export function writeGeneratedCode(bindings: Map<string, { filePath: string, opt
     let genFuncs: any = []
     let importPaths: Array<string> = []
     for (const b of bindingArr) {
-        const relativePath = path.relative(path.dirname(b[1].filePath), __dirname);
+        //const dirname = path.dirname(b[1].filePath)
+        const relativePath = path.relative("src", path.dirname(b[1].filePath));
         //const requirePath = `./${relativePath}/${b[1].filePath}`;
         importPaths.push(relativePath)
         const o = generateBindingCode(b[0], b[1].options)
         genFuncs.push(o)
     }
-    importPaths = uniqByFilter(importPaths)
+    importPaths = uniq(importPaths)
     const generatedCode = templates.mainTemplate({ imports: importPaths, functions: genFuncs })
 
     fs.writeFileSync(outputPath, generatedCode);
@@ -61,7 +62,9 @@ export function findMaxMspBindings(sourceFile: ts.SourceFile, checker: ts.TypeCh
     const bindings = new Map<string, { filePath: string, options: MaxMspBindingOptions }>();
     function visit(node: ts.Node) {
         const kindName = ts.SyntaxKind[node.kind];
-        if (ts.isMethodDeclaration(node)) {
+        if (ts.isClassDeclaration(node)) {
+            //TODO - add class decorator stuff
+        } else if (ts.isMethodDeclaration(node)) {
             const decorators = ts.canHaveDecorators(node) ? ts.getDecorators(node) : undefined;
             if (decorators === undefined)
                 return;

@@ -4,7 +4,7 @@
 ///////////////////////////////////////////////////////
 
 {{#each imports}}
-import '{{ this }}'
+const cursor = require("{{this}}");
 {{/each}}   
 
 inlets = 1;
