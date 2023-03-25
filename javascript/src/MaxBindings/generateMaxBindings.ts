@@ -29,10 +29,8 @@ const templates = Object.fromEntries(
 );
 
 export function generateBindingCode(name: string, options: MaxMspBindingOptions) {
-    const functionName = options.functionName || name;
-    const functionTemplate = templates.functionTemplate({ functionName });
     return {
-        rendered: templates.functionTemplate({ functionName })
+        rendered: templates.functionTemplate({ options })
     }
 }
 
@@ -65,17 +63,36 @@ export function findMaxMspBindings(sourceFile: ts.SourceFile, checker: ts.TypeCh
         if (ts.isClassDeclaration(node)) {
             //TODO - add class decorator stuff
         } else if (ts.isMethodDeclaration(node)) {
+            //const decorators = ts.canHaveModifiers(node) ? ts.getModifiers(node) : undefined;
             const decorators = ts.canHaveDecorators(node) ? ts.getDecorators(node) : undefined;
             if (decorators === undefined)
                 return;
-            let maxMspBindingDecorator = decorators.find(dec => ts.isIdentifier(dec.expression) && dec.expression.text === 'maxMspBinding');
+            let maxMspBindingDecorator = decorators.find(dec => ts.isIdentifier((<any>dec.expression).expression) && ((<any>dec.expression).expression.escapedText === 'maxMspBinding'));
             if (maxMspBindingDecorator) {
-                const expression = maxMspBindingDecorator.expression;
+
+                const options: MaxMspBindingOptions = {};
+                const optionsArg = (<any>maxMspBindingDecorator.expression).arguments[0];
+
+                if (!ts.isObjectLiteralExpression(optionsArg)) {
+                    // Handle invalid argument types
+                    console.warn('maxMspBinding decorator called with invalid arguments:', optionsArg);
+                    return;
+                }
+
+                // Extract the options from the object literal
+                for (const prop of optionsArg.properties) {
+                    if (ts.isPropertyAssignment(prop) && ts.isIdentifier(prop.name)) {
+                        const propName = prop.name.escapedText.toString();
+                        const propValue = checker.typeToString(checker.getTypeAtLocation(prop.initializer));
+                        //strip any quotes
+                        options[propName] = propValue.replace(/['"]+/g, '');
+                    }
+                }
 
                 const name = node.name?.getText() || 'anonymousFunction';
                 const filePath = sourceFile.fileName;
-                const options: MaxMspBindingOptions = {};
-                options.functionName = name;
+                options.functionName = options.functionName || name;
+                options.callName = name;
                 bindings.set(name, { filePath, options });
             }
         }

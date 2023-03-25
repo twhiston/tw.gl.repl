@@ -10,7 +10,6 @@ import { maxMspBinding } from "../MaxBindings/MaxBindings";
 // CRSR = "<<";
 // CMMT = "//";
 // EDITOR_LINES = 30;
-// LINE_CHARS = 140;
 export class REPLSettings {
     MAX_CHARS: number
     INDENTATION: number
@@ -67,14 +66,14 @@ export class REPLManager {
         }
     }
 
-    @maxMspBinding
+    @maxMspBinding({ instanceName: 'repl', draw: true })
     keypress(k: number) {
         const res = this.kp.processKeypress(k)
     }
 
 
     // add multiple spaces to the text (tab)
-    @maxMspBinding
+    @maxMspBinding({ instanceName: 'repl', draw: true })
     addTab() {
         const pos = this.c.position()
         //TODO: why does the original do this?
@@ -104,6 +103,7 @@ export class REPLManager {
     }
 
     // backspace a character
+    @maxMspBinding({ functionName: 'back', instanceName: 'repl', draw: true })
     backSpace() {
         // decrement character index
         this.c.decrementChar()

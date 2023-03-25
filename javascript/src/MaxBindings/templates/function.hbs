@@ -1,3 +1,7 @@
-function {{functionName}}(k){
-    {{id}}.{{functionName}}(k)
+
+function {{options.functionName}}(k){
+    {{options.instanceName}}.{{options.callName}}(k)
+    {{#if options.draw}}
+    draw()
+    {{/if}}
 }

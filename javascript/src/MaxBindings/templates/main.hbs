@@ -7,11 +7,47 @@
 const cursor = require("{{this}}");
 {{/each}}   
 
+//TODO - move all this into a js file so we can test it and then render it into this template later
+
 inlets = 1;
 outlets = 3;
 
+var glRender = new GLRender();
+var repl = new ReplManager(80);
+
 function loadbang() {
 	init();
+}
+
+// output the parsed code if output_matrix is disabled
+//TODO: fix this function to new code
+function run() {
+	outlet(0, "jit_matrix", textMtx.name);
+	if (!OUT_MAT) {
+		var out = textBuf.format(false);
+		outlet(0, out);
+		// outlet(0, mtxToSymbol(textMtx));
+	}
+	if (EPHEMERAL_MODE) {
+		clear();
+	}
+}
+
+// draw the text and output all info
+function draw() {
+
+	glRender.draw(repl.tb, repl.c)
+
+	//Send some data out about the state
+	//TODO: assumed needed for dynamic resizing which we want to bring into code anyway
+	// Should at least be abstracted into a repl class status function
+	var len = repl.tb.getMaxChar();
+	var tbLen = repl.tb.length();
+	outlet(1, "lines", tbLen);
+	outlet(1, "line", cursor.getLine());
+	outlet(1, "length", len);
+	outlet(1, "nLength", len / repl.config.MAX_CHARS);
+	outlet(1, "nLines", (tbLen - 1) / (EDITOR_LINES - 1));
 }
 
 // REPL BINDINGS

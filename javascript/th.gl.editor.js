@@ -24,9 +24,8 @@
 // TO DO:
 // undo/redo history (matrixset?)
 //===================================================================
-const cursor = require("./cursor.js");
+const cursor = require("./src/Cursor/Cursor.js.js");
 const wm = require("./windowManager.js");
-const pb = require("./pastebin.js");
 
 autowatch = 1;
 inlets = 1;
@@ -52,20 +51,13 @@ var key;
 //var curLine, curChar, totalLines;
 var isDisabled;
 
-var CRSR_CHARS = [];
 var CMMT_CHARS = [];
 
-var UNIQ = Date.now();
 
-// matrices for text display
-var textMtx, crsrMtx, nmbrMtx;
 
 // var histMtxSet, hIndex;
 // var cnslMtx, cnslText = [];
 
-function loadbang() {
-	init();
-}
 
 function init() {
 	textBuf.clear();
@@ -91,6 +83,11 @@ function init() {
 	draw();
 }
 
+function disableText() {
+	isDisabled = 1 - isDisabled;
+	alpha(1.0 - isDisabled * 0.5);
+}
+
 function clear() {
 	wm.clear();
 }
@@ -111,42 +108,10 @@ function empty() {
 	textBuf.clear();
 }
 
-// output the parsed code if output_matrix is disabled
-function run() {
-	outlet(0, "jit_matrix", textMtx.name);
-	if (!OUT_MAT) {
-		var out = textBuf.format(false);
-		outlet(0, out);
-		// outlet(0, mtxToSymbol(textMtx));
-	}
-	if (EPHEMERAL_MODE) {
-		clear();
-	}
-}
 
 // enable the output_matrix flag
 function output_matrix(v) {
 	OUT_MAT = v != 0;
-}
-
-// draw the text and output all info
-function draw() {
-	// update number of lines
-	//TODO: dont really see why we need this value, try removing everywhere
-	//totalLines = textBuf.length;
-
-	drawText(); //place the strings as text in a matrix
-	drawCursor(); //set the cursorposition
-	drawNumbers(); //store the numbers in the matrix
-	matrixToText(); //set the matrices to the gl text objects
-	// drawHighlight();
-
-	var len = getMaxChar();
-	outlet(1, "lines", textBuf.length());
-	outlet(1, "line", cursor.getLine());
-	outlet(1, "length", len);
-	outlet(1, "nLength", len / MAX_CHARS);
-	outlet(1, "nLines", (textBuf.length() - 1) / (EDITOR_LINES - 1));
 }
 
 // load a dictionary of keybindings
@@ -249,54 +214,55 @@ function commentLine() {
 	// return true;
 }
 
-// draw the text to a jitter matrix as ascii
-function drawText() {
-	textMtx = new JitterMatrix("text" + UNIQ, 1, "char", LINE_CHARS, textBuf.length());
-	textMtx.setall(0);
-	// draw all the characters as ascii code in a matrix
-	for (var l = 0; l < textBuf.length(); l++) {
-		// check if not an empty line/string
-		if (!textBuf[l].match(/^[ \t]*$/g)) {
-			for (var c = 0; c < textBuf.lineLength(length); c++) {
-				textMtx.setcell2d(c, l, textBuf.getLine(l).charCodeAt(c));
-			}
-		}
-	}
-}
+// MOVED TO GL BUT KEPT FOR INTERACTIONS!
+// // draw the text to a jitter matrix as ascii
+// function drawText() {
+// 	textMtx = new JitterMatrix("text" + UNIQ, 1, "char", LINE_CHARS, textBuf.length());
+// 	textMtx.setall(0);
+// 	// draw all the characters as ascii code in a matrix
+// 	for (var l = 0; l < textBuf.length(); l++) {
+// 		// check if not an empty line/string
+// 		if (!textBuf[l].match(/^[ \t]*$/g)) {
+// 			for (var c = 0; c < textBuf.lineLength(length); c++) {
+// 				textMtx.setcell2d(c, l, textBuf.getLine(l).charCodeAt(c));
+// 			}
+// 		}
+// 	}
+// }
 
-// draw the cursor to a jitter matrix as ascii
-function drawCursor() {
-	crsrMtx = new JitterMatrix("crsr" + UNIQ, 1, "char", LINE_CHARS, textBuf.length());
+// // draw the cursor to a jitter matrix as ascii
+// function drawCursor() {
+// 	crsrMtx = new JitterMatrix("crsr" + UNIQ, 1, "char", LINE_CHARS, textBuf.length());
 
-	crsrMtx.setall(32);
-	// draw at least something at the end of the matrix.
-	for (var i = 0; i < textBuf.length(); i++) {
-		crsrMtx.setcell2d(LINE_CHARS - 1, i, 46);
-	}
-	for (var c = 0; c < CRSR_CHARS.length; c++) {
-		crsrMtx.setcell2d(curChar + c, curLine, CRSR_CHARS[c]);
-	}
-}
+// 	crsrMtx.setall(32);
+// 	// draw at least something at the end of the matrix.
+// 	for (var i = 0; i < textBuf.length(); i++) {
+// 		crsrMtx.setcell2d(LINE_CHARS - 1, i, 46);
+// 	}
+// 	for (var c = 0; c < CRSR_CHARS.length; c++) {
+// 		crsrMtx.setcell2d(curChar + c, curLine, CRSR_CHARS[c]);
+// 	}
+// }
 
-// draw the numbers to a jitter matrix as ascii
-function drawNumbers() {
-	nmbrMtx = new JitterMatrix("nmbr" + UNIQ, 1, "char", 3, textBuf.length());
+// // draw the numbers to a jitter matrix as ascii
+// function drawNumbers() {
+// 	nmbrMtx = new JitterMatrix("nmbr" + UNIQ, 1, "char", 3, textBuf.length());
 
-	for (var i = 0; i < textBuf.length(); i++) {
-		var digits = new Array(2);
-		digits[0] = String(Math.floor((i) / 10));
-		digits[1] = String((i) % 10);
-		if (digits[0] == 0) {
-			digits[0] = " ";
-		}
-		// post(digit1.charCodeAt(0), digit2.charCodeAt(0));
-		for (var n = 0; n < 2; n++) {
-			nmbrMtx.setcell2d(n, i, digits[n].charCodeAt(0));
-		}
-	}
-	nmbrMtx.setcell2d(0, curLine, 62);
-	nmbrMtx.setcell2d(1, curLine, 62);
-}
+// 	for (var i = 0; i < textBuf.length(); i++) {
+// 		var digits = new Array(2);
+// 		digits[0] = String(Math.floor((i) / 10));
+// 		digits[1] = String((i) % 10);
+// 		if (digits[0] == 0) {
+// 			digits[0] = " ";
+// 		}
+// 		// post(digit1.charCodeAt(0), digit2.charCodeAt(0));
+// 		for (var n = 0; n < 2; n++) {
+// 			nmbrMtx.setcell2d(n, i, digits[n].charCodeAt(0));
+// 		}
+// 	}
+// 	nmbrMtx.setcell2d(0, curLine, 62);
+// 	nmbrMtx.setcell2d(1, curLine, 62);
+// }
 
 /*function drawHighlight(){
 	highlightMtx.setall(0);
@@ -466,167 +432,6 @@ function emptyConsole(){
 // GL TEXT OBJECTS
 //===================================================================
 
-var MAIN_CTX = "CTX";
-var NODE_CTX = "node" + UNIQ;
-var ANIM_NODE = "anim" + UNIQ;
-var CAM_CAP = "cam" + UNIQ;
-
-var SCALING = 1;
-var FONT_SIZE = 100;
-
-// the main node that all text is drawn to
-// for display on videoplane through camera capture
-var textNode = new JitterObject("jit.gl.node");
-textNode.fsaa = 1;
-textNode.type = "float32";
-textNode.name = NODE_CTX;
-textNode.adapt = 0;
-
-function drawto(v) {
-	MAIN_CTX = v;
-	textNode.drawto = MAIN_CTX;
-	glVid.drawto = MAIN_CTX;
-}
-
-// the main anim node to position all text according to screensize
-var animNode = new JitterObject("jit.anim.node");
-animNode.name = ANIM_NODE;
-animNode.position = [0, 0, 0];
-
-// the text position
-function position(x, y) {
-	animNode.position = [x, y, 0];
-}
-
-// the text scaling
-function scale(s) {
-	SCALING = s * 100 / FONT_SIZE;
-	animNode.scale = [SCALING, SCALING, 0];
-}
-
-// the anim node and text for the command line
-var textAnim = new JitterObject("jit.anim.node");
-textAnim.anim = ANIM_NODE;
-textAnim.position = [0.9, 0, 0];
-
-var glText = new JitterObject("jit.gl.text");
-glText.drawto = NODE_CTX;
-glText.anim = textAnim.name;
-glText.gl_color = [1, 1, 1, 1];
-glText.screenmode = 0;
-glText.cull_face = 1;
-
-var textColor = [1, 1, 1, 1];
-var runColor = [0, 0, 0, 1];
-
-function color() {
-	args = arrayfromargs(arguments);
-	if (args.length !== 4) {
-		error("th.gl.editor: Expected an RGBA value in floating-point \n");
-	} else {
-		textColor = args;
-		glText.gl_color = args;
-	}
-}
-
-function run_color() {
-	args = arrayfromargs(arguments);
-	if (args.length !== 4) {
-		error("th.gl.editor: Expected an RGBA value in floating-point \n");
-	} else {
-		runColor = args;
-	}
-}
-
-function runBlink(t) {
-
-	var c = [];
-	for (var i = 0; i < textColor.length; i++) {
-		c[i] = textColor[i] * (1 - t) + runColor[i] * t;
-	}
-	glText.gl_color = c;
-
-	// if (t){
-	// 	glText.gl_color = runColor;
-	// } else {
-	// 	glText.gl_color = textColor;
-	// }
-}
-
-// the anim node and text for the cursor
-var crsrAnim = new JitterObject("jit.anim.node");
-crsrAnim.anim = ANIM_NODE;
-crsrAnim.position = [0.9, 0, 0];
-
-var glCrsr = new JitterObject("jit.gl.text");
-glCrsr.drawto = NODE_CTX;
-glCrsr.anim = crsrAnim.name;
-glCrsr.screenmode = 0;
-glCrsr.cull_face = 1;
-glCrsr.layer = 10;
-
-// the anim node and text for the line numbers
-var nmbrAnim = new JitterObject("jit.anim.node");
-nmbrAnim.anim = ANIM_NODE;
-
-var glNmbr = new JitterObject("jit.gl.text");
-glNmbr.drawto = NODE_CTX;
-glNmbr.anim = nmbrAnim.name;
-glNmbr.gl_color = [0.6, 0.6, 0.6, 1];
-glNmbr.screenmode = 0;
-glNmbr.cull_face = 1;
-glNmbr.layer = 10;
-
-function number_color() {
-	args = arrayfromargs(arguments);
-	if (args.length !== 4) {
-		error("th.gl.editor: Expected an RGBA value in floating-point", "\n");
-	} else {
-		glNmbr.gl_color = args;
-	}
-}
-
-var useBlink = true;
-var blinkToggle = 0;
-var cursorColor = [1, 0.501961, 0, 1];
-var blinkColor = [0.4, 0.8, 1, 1];
-
-function blink() {
-	if (useBlink) {
-		blinkToggle = 1 - blinkToggle;
-		if (blinkToggle) {
-			glCrsr.gl_color = blinkColor;
-		} else {
-			glCrsr.gl_color = cursorColor;
-		}
-	} else {
-		glCrsr.gl_color = cursorColor;
-	}
-}
-
-function blink_enable(v) {
-	useBlink = v != 0;
-}
-
-function cursor_color() {
-	args = arrayfromargs(arguments);
-	if (args.length !== 4) {
-		error("th.gl.editor: Expected an RGBA value in floating-point", "\n");
-	} else {
-		cursorColor = args;
-	}
-	blink();
-}
-
-function blink_color() {
-	args = arrayfromargs(arguments);
-	if (args.length !== 4) {
-		error("th.gl.editor: Expected an RGBA value in floating-point", "\n");
-	} else {
-		blinkColor = args;
-	}
-}
-
 /*
 var barAnim = new JitterObject("jit.anim.node");
 barAnim.anim = ANIM_NODE;
@@ -665,93 +470,10 @@ function scaleCnsl(x, y, z){
 }
 */
 
-// add all objects to array for easy access when
-// changing multiple parameters
-// var allTextObj = [glText, glCrsr, glNmbr, glCnsl];
-var allTextObj = [glText, glCrsr, glNmbr];
-
-function font(f) {
-	for (var i = 0; i < allTextObj.length; i++) {
-		allTextObj[i].font(f);
-	}
-}
-
-function fontsize(s) {
-	FONT_SIZE = s;
-	for (var i = 0; i < allTextObj.length; i++) {
-		allTextObj[i].size(FONT_SIZE);
-	}
-	scale(SCALING);
-	// textAnim.position = [0.9, 0, 0];
-	// crsrAnim.position = [0.9, 0, 0];
-}
-
-function leadscale(l) {
-	for (var i = 0; i < allTextObj.length; i++) {
-		allTextObj[i].leadscale = l;
-	}
-}
-
-function tracking(t) {
-	for (var i = 0; i < allTextObj.length; i++) {
-		allTextObj[i].tracking = t;
-	}
-}
-
-function line_length(l) {
-	for (var i = 0; i < allTextObj.length; i++) {
-		allTextObj[i].line_length = l;
-	}
-}
-
-function line_width(w) {
-	for (var i = 0; i < allTextObj.length; i++) {
-		allTextObj[i].line_length = w;
-	}
-}
-
-var textAlpha = 1;
-
-function alpha(a) {
-	textAlpha = Math.max(0, Math.min(1, a));
-
-	for (var i = 0; i < allTextObj.length; i++) {
-		var c = allTextObj[i].gl_color;
-		c[3] = textAlpha;
-		allTextObj[i].gl_color = c;
-	}
-}
-
-function cull_face(c) {
-	for (var i = 0; i < allTextObj.length; i++) {
-		allTextObj[i].cull_face = c;
-	}
-}
 
 
-function matrixToText() {
-	glText.jit_matrix(textMtx.name);
-	glCrsr.jit_matrix(crsrMtx.name);
-	glNmbr.jit_matrix(nmbrMtx.name);
-	// glCnsl.jit_matrix(cnslMtx.name);
-}
 
-// the camera for capture
-var glCam = new JitterObject("jit.gl.camera");
-glCam.drawto = NODE_CTX;
-glCam.out_name = CAM_CAP;
-glCam.erase_color = [0, 0, 0, 0];
-glCam.capture = 1;
-glCam.ortho = 2;
 
-// the videoplane for display in world
-var glVid = new JitterObject("jit.gl.videoplane");
-glVid.texture = CAM_CAP;
-glVid.transform_reset = 2;
-glVid.blend_enable = 1;
-glVid.depth_enable = 0;
-glVid.layer = 1000;
-glVid.blend = "difference";
 
 //====================================================================
 // written by Timo Hoogland (c) 2020
