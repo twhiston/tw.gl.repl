@@ -3,51 +3,75 @@
 //   See README.md and ./src/MaxBindings for more
 ///////////////////////////////////////////////////////
 
-{{#each imports}}
-const cursor = require("{{this}}");
-{{/each}}   
 
-//TODO - move all this into a js file so we can test it and then render it into this template later
+// glRender , repl
+//include("includes")
+var i = require("includes")
 
 inlets = 1;
 outlets = 3;
-
-var glRender = new GLRender();
-var repl = new ReplManager(80);
+var OUT_MAT = false;
 
 function loadbang() {
 	init();
 }
 
+function init() {
+
+    if (jsarguments.length > 1) {
+        i.glRender.drawto(jsarguments[1]);
+
+    }
+    i.repl.clear();
+    //isDisabled = false;
+
+    i.glRender.font("Courier New Bold");
+    i.glRender.fontsize(100);
+    i.glRender.leadscale(0.94);
+    i.glRender.tracking(1);
+    i.glRender.line_length(999999);
+    i.glRender.alpha(1);
+
+    //cursor("<<");
+    //comment("//");
+
+    draw();
+}
+
 // output the parsed code if output_matrix is disabled
 //TODO: fix this function to new code
 function run() {
-	outlet(0, "jit_matrix", textMtx.name);
+	outlet(0, "jit_matrix", i.glRender.textMtx.name);
 	if (!OUT_MAT) {
-		var out = textBuf.format(false);
+		var out = i.repl.tb.format(false);
 		outlet(0, out);
 		// outlet(0, mtxToSymbol(textMtx));
 	}
 	if (EPHEMERAL_MODE) {
-		clear();
+		i.glRender.clear();
 	}
+}
+
+// TODO: maybe move this into a class?
+function output_matrix(v) {
+    OUT_MAT = v != 0;
 }
 
 // draw the text and output all info
 function draw() {
 
-	glRender.draw(repl.tb, repl.c)
+	i.glRender.draw(repl.tb, repl.c)
 
 	//Send some data out about the state
 	//TODO: assumed needed for dynamic resizing which we want to bring into code anyway
 	// Should at least be abstracted into a repl class status function
-	var len = repl.tb.getMaxChar();
-	var tbLen = repl.tb.length();
+	var len = i.repl.tb.getMaxChar();
+	var tbLen = i.repl.tb.length();
 	outlet(1, "lines", tbLen);
-	outlet(1, "line", cursor.getLine());
+	outlet(1, "line", i.repl.c.getLine());
 	outlet(1, "length", len);
-	outlet(1, "nLength", len / repl.config.MAX_CHARS);
-	outlet(1, "nLines", (tbLen - 1) / (EDITOR_LINES - 1));
+	outlet(1, "nLength", len / i.repl.config.MAX_CHARS);
+	outlet(1, "nLines", (tbLen - 1) / (i.repl.config.EDITOR_LINES - 1));
 }
 
 // REPL BINDINGS

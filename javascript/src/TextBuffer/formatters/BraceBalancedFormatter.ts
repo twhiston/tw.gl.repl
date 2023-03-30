@@ -1,5 +1,5 @@
 import '../string.extensions';
-import '../TextFormatter';
+import { TextFormatter } from '../TextFormatter';
 
 export class BraceBalancedFormatter implements TextFormatter {
   format(strArr: Array<string>, ctx?: { strict: boolean }) {

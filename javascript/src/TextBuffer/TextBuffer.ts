@@ -1,5 +1,5 @@
 import './string.extensions';
-import './TextFormatter'
+import { TextFormatter } from 'TextFormatter';
 
 export class TextBuffer {
     maxLines: number
@@ -28,7 +28,6 @@ export class TextBuffer {
 
     set(strArr: Array<string>): void {
         this.textBuf = strArr;
-        //this.textBuf = Array.isArray(strArr) ? strArr : [strArr];
     }
 
     setLine(line: number, str: string): void {
@@ -36,24 +35,18 @@ export class TextBuffer {
     }
 
     append(strArr: Array<string>): void {
-        //strArr = Array.isArray(strArr) ? strArr : [strArr];
-
         if (this.textBuf.length + strArr.length > this.maxLines) {
             console.log('append: maximum number of lines reached \n');
             return;
         }
-
         this.textBuf = this.textBuf.concat(strArr);
     }
 
     prepend(strArr: Array<string>): void {
-        //strArr = Array.isArray(strArr) ? strArr : [strArr];
-
         if (this.textBuf.length + strArr.length > this.maxLines) {
             console.log('prepend: maximum number of lines reached \n');
             return;
         }
-
         this.textBuf = strArr.concat(this.textBuf);
     }
 

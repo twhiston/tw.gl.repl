@@ -1,5 +1,5 @@
 //import '../string.extensions';
-import '../TextFormatter';
+import { TextFormatter } from '../TextFormatter';
 
 export class WhitespaceFormatter implements TextFormatter {
     //replaces all forms of whitespace with a space and trims the end

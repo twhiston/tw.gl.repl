@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 504.0, 248.0, 941.0, 700.0 ],
+		"rect" : [ 613.0, 325.0, 523.0, 700.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -39,6 +39,18 @@
 		"subpatcher_template" : "",
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
+				"box" : 				{
+					"id" : "obj-7",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 118.0, 202.0, 29.5, 22.0 ],
+					"text" : "init"
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"id" : "obj-4",
 					"maxclass" : "newobj",
@@ -359,7 +371,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 468.0, 119.0, 978.0, 763.0 ],
+						"rect" : [ 807.0, 181.0, 551.0, 763.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -387,6 +399,7 @@
 						"style" : "",
 						"subpatcher_template" : "",
 						"assistshowspatchername" : 0,
+						"visible" : 1,
 						"boxes" : [ 							{
 								"box" : 								{
 									"id" : "obj-28",
@@ -413,13 +426,13 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-34",
-									"linecount" : 2,
+									"linecount" : 3,
 									"maxclass" : "message",
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 13.0, 386.0, 18.0, 35.0 ],
-									"text" : "-2"
+									"patching_rect" : [ 13.0, 386.0, 18.0, 49.0 ],
+									"text" : "371"
 								}
 
 							}
@@ -982,7 +995,7 @@
 																	"numoutlets" : 1,
 																	"outlettype" : [ "" ],
 																	"patching_rect" : [ 287.0, 199.0, 50.0, 22.0 ],
-																	"text" : "32"
+																	"text" : "109"
 																}
 
 															}
@@ -4641,15 +4654,15 @@
 									"id" : "obj-153",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
-									"numoutlets" : 1,
-									"outlettype" : [ "" ],
-									"patching_rect" : [ 153.0, 510.0, 185.0, 22.0 ],
+									"numoutlets" : 3,
+									"outlettype" : [ "", "", "" ],
+									"patching_rect" : [ 153.0, 510.0, 120.0, 22.0 ],
 									"saved_object_attributes" : 									{
-										"filename" : "th.gl.editor",
+										"filename" : "tw.gl.repl.js",
 										"parameter_enable" : 0
 									}
 ,
-									"text" : "js th.gl.editor #1 #0_sk"
+									"text" : "js tw.gl.repl #1 #0_sk"
 								}
 
 							}
@@ -5323,11 +5336,18 @@
 				}
 
 			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-1", 0 ],
+					"source" : [ "obj-7", 0 ]
+				}
+
+			}
  ],
 		"dependency_cache" : [ 			{
-				"name" : "th.gl.editor.js",
-				"bootpath" : "~/Documents/Max 8/Packages/th.gl.texteditor/javascript",
-				"patcherrelativepath" : "../javascript",
+				"name" : "tw.gl.repl.js",
+				"bootpath" : "~/.Trash/dist 19-48-07-516",
+				"patcherrelativepath" : "../../../../../.Trash/dist 19-48-07-516",
 				"type" : "TEXT",
 				"implicit" : 1
 			}

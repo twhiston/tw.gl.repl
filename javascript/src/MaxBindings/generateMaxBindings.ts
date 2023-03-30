@@ -8,7 +8,7 @@ import { MaxMspBindingOptions } from './MaxBindings';
 const projectDir = './';
 const srcDir = path.join(projectDir, 'src');
 const outputDir = path.join(projectDir, 'dist');
-const outputPath = path.join(outputDir, 'generated.js');
+const outputPath = path.join(outputDir, 'tw.gl.repl.js');
 
 // Options to configure the TypeScript Compiler API
 const options: ts.CompilerOptions = {

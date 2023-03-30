@@ -1,21 +1,25 @@
-import { TextBuffer } from "../TextBuffer/TextBuffer";
-import { Cursor } from "../Cursor/Cursor";
-import { KeypressProcessor } from '../KeypressProcessor/KeypressProcessor';
-import { maxMspBinding } from "../MaxBindings/MaxBindings";
+import { TextBuffer } from "TextBuffer";
+import { Cursor } from "Cursor";
+import { KeypressProcessor } from 'KeypressProcessor';
+import { maxMspBinding } from 'MaxBindings';
+import { TextFormatter } from "TextFormatter";
 
 //DEFAULT SETTINGS
 // MAX_CHARS = 80;
 // INDENTATION = 4;
+// EDITOR_LINES = 30;
 // NOT IMPLEMENTED YET:
 // CRSR = "<<";
 // CMMT = "//";
-// EDITOR_LINES = 30;
+
 export class REPLSettings {
     MAX_CHARS: number
     INDENTATION: number
-    constructor(maxChars: number = 4, indentation: number = 80) {
-        this.INDENTATION = maxChars
-        this.MAX_CHARS = indentation
+    BUFFER_SIZE: number
+    constructor(editorLines: number = 30, maxChars: number = 80, indentation: number = 4) {
+        this.INDENTATION = indentation
+        this.MAX_CHARS = maxChars
+        this.BUFFER_SIZE = editorLines
     }
 }
 
@@ -39,20 +43,21 @@ export enum JumpDirection {
 }
 
 export class REPLManager {
-    //TODO: - buffSize can be a config option
+
     tb: TextBuffer
     c: Cursor
     kp: KeypressProcessor
     config: REPLSettings
 
-    constructor(buffSize: number, config?: REPLSettings, functionPreloads?: Array<PreloadIdentifier>, bufferFormatters?: Array<TextFormatter>) {
-        this.tb = new TextBuffer(buffSize);
+    //TODO: remove buffSize as unused now
+    constructor(config?: REPLSettings, functionPreloads?: Array<PreloadIdentifier>, bufferFormatters?: Array<TextFormatter>) {
         this.c = new Cursor()
         this.kp = new KeypressProcessor()
         //apply default settings if none are passed in
         if (config === undefined)
             config = new REPLSettings
         this.config = config
+        this.tb = new TextBuffer(this.config.BUFFER_SIZE);
 
         //set an array of formatters. Note that the text buffer will call them in the order they are listed in the array
         if (bufferFormatters !== undefined)
@@ -66,8 +71,9 @@ export class REPLManager {
         }
     }
 
+    // process a keypress
     @maxMspBinding({ instanceName: 'repl', draw: true })
-    keypress(k: number) {
+    keyPress(k: number) {
         const res = this.kp.processKeypress(k)
     }
 
@@ -85,6 +91,7 @@ export class REPLManager {
     }
 
     // add a character (alpha-numeric, numeric, special characters)
+    @maxMspBinding({ instanceName: 'repl', draw: true })
     addChar(k: number) {
         var pos = this.c.position();
         if (pos.char >= this.config.MAX_CHARS) {
@@ -101,6 +108,87 @@ export class REPLManager {
         // increment current character
         this.c.incrementChar();
     }
+
+    // add one or multiple characters as a string
+    @maxMspBinding({ instanceName: 'repl', draw: true })
+    add(c: string) {
+        for (var i = 0; i < c.length; i++) {
+            var char = c.charCodeAt(i);
+            if (char === 13 || char === 10) {
+                this.newLine();
+            } else if (char > 31 && char < 126) {
+                this.addChar(char);
+            }
+        }
+    }
+
+    // append a line of text or multiple symbols per line
+    @maxMspBinding({ instanceName: 'repl', draw: true })
+    append(text: Array<string>) {
+        this.tb.append(text)
+        this.jumpTo(JumpDirection.TOP);
+        this.jumpTo(JumpDirection.EOL);
+    }
+
+    // prepend a line of text or multiple symbols per line
+    @maxMspBinding({ instanceName: 'repl', draw: true })
+    prepend(text: Array<string>) {
+        this.tb.prepend(text);
+        this.jumpTo(JumpDirection.TOP);
+        this.jumpTo(JumpDirection.EOL);
+    }
+
+    // remove a line of text at a specified index
+    @maxMspBinding({ instanceName: 'repl', draw: true })
+    remove(idx: number) {
+        if (idx === undefined) { idx = this.tb.length() - 1; }
+        this.c.setLine(idx);
+        this.deleteLine();
+    }
+
+    // insert a line of text or multiple symbols at a specified index
+    // a list of symbols will inserte one line per symbol
+    @maxMspBinding({ instanceName: 'repl', draw: true })
+    insert(idx: number, text: Array<string>) {
+        var idx = Math.min(this.config.BUFFER_SIZE, idx);
+
+        // exit if doesn't fit in editor
+        if (this.tb.lines() + text.length > this.config.BUFFER_SIZE) {
+            throw new Error('too many lines')
+            return;
+        }
+        // if insert between totalLines
+        if (idx < this.tb.lines()) {
+            var u = this.tb.textBuf.slice(0, Math.max(0, idx));
+            u = Array.isArray(u) ? u : [u];
+            u = u.concat(text);
+            this.tb.set(u.concat(this.tb.textBuf.slice(idx)))
+        } else {
+            // else append to code and insert empty strings
+            var diff = idx - this.tb.lines();
+            for (var d = 0; d < diff; d++) {
+                this.tb.textBuf.push('');
+            }
+            this.tb.set(this.tb.textBuf.concat(text))
+        }
+    }
+
+    // replace all the text with the incoming arguments
+    // this can be a list of symbols for every line
+    @maxMspBinding({ instanceName: 'repl', draw: true })
+    set(text: Array<string>) {
+        text = (text.length < 1) ? [''] : text;
+
+        var inputLines = Math.min(this.config.BUFFER_SIZE, text.length);
+        text = text.slice(0, inputLines);
+        // empty buffer
+        this.tb.set(text);
+
+        this.c.setLine(this.tb.length() - 1)
+        this.jumpTo(JumpDirection.TOP);
+        this.jumpTo(JumpDirection.EOL);
+    }
+
 
     // backspace a character
     @maxMspBinding({ functionName: 'back', instanceName: 'repl', draw: true })
@@ -121,14 +209,15 @@ export class REPLManager {
         }
     }
 
+    //used to be called clear
+    @maxMspBinding({ instanceName: 'repl', draw: true })
     clear() {
         this.c.reset()
-        ////totalLines = 1;
         this.tb.clear();
-        //draw();
     }
 
     // delete the character in front of the cursor
+    @maxMspBinding({ functionName: 'del', instanceName: 'repl', draw: true })
     deleteChar() {
         var pos = this.c.position()
         if (pos.char < this.tb.lineLength(pos.line)) {
@@ -239,6 +328,7 @@ export class REPLManager {
     }
 
     // move the cursor to the index of the letter in the full text
+    @maxMspBinding({ instanceName: 'repl', draw: true })
     gotoIndex(i: number): void {
         // go to beginning if index less then 0
         if (i < 0) {
@@ -265,7 +355,6 @@ export class REPLManager {
 
     newLine(): void {
         if (this.tb.endOfLines()) {
-            //TODO: should this throw? currently it silently fails with this return
             throw new Error('End of lines reached, cannot create new line');
         }
         // split array in left and right of cursor

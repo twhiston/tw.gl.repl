@@ -5,4 +5,5 @@ We transpile so we can use modern js. See:
 
 ## TODO
 
-* the functions tied to keys should be able to also alter the output somehow, so the context needs that in too.
+* the functions tied to keys should be able to also alter or generate output
+ somehow, so the context needs that in too.

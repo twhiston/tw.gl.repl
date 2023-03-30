@@ -1,4 +1,17 @@
-import { CursorPosition } from '../Cursor/Cursor';
+import { CursorPosition } from 'Cursor';
+import { maxMspBinding } from 'MaxBindings';
+
+if (!Object.entries)
+    Object.entries = function (obj) {
+        var ownProps = Object.keys(obj),
+            i = ownProps.length,
+            resArray = new Array(i); // preallocate the Array
+
+        while (i--)
+            resArray[i] = [ownProps[i], obj[ownProps[i]]];
+        return resArray;
+    };
+
 export class Color {
     r: number
     g: number
@@ -14,6 +27,34 @@ export class Color {
         return [this.r, this.g, this.b, this.a];
     }
 };
+
+// class JitterObject {  // The fake B
+//     type: string
+//     constructor(type: string) {
+//         this.type = type
+//     }
+//     font(name: string) {
+
+//     }
+// }
+
+// class JitterMatrix {  // The fake B
+//     args: any
+//     name: string
+//     fnt: string
+//     constructor(...args: any[]) {
+//         this.args = args
+//         this.name = "";
+//         this.fnt = "";
+//     }
+//     setall(a: any) {
+
+//     }
+//     setcell2d(a: any, b: any, c: any) {
+
+//     }
+
+// }
 
 //There's a lot of casting to any in this class to make typescript happy, it's a bit tedious
 //but hopefully it never has to be touched ;) 
@@ -61,6 +102,7 @@ export class GLRender {
     private readonly ANIM_NODE = "anim" + this.UNIQ;
     private readonly CAM_CAP = "cam" + this.UNIQ;
     private readonly LINE_CHARS = 140;
+    private readonly DEFAULT_FONT = 'Arial';
     private FONT_SIZE = 100;
     private MAIN_CTX = "CTX";
     private SCALING = 1;
@@ -70,7 +112,7 @@ export class GLRender {
     private textAlpha = 1; //TODO: why are we not using the a from the rgba?
     private useBlink = true;
     private blinkToggle = 0;
-    //TODO: convert to use color type
+
     private textColor = new Color(1, 1, 1, 1);
     private runColor = new Color(0, 0, 0, 1);
     private cursorColor = new Color(1, 0.501961, 0, 1);
@@ -101,6 +143,7 @@ export class GLRender {
 
         (<any>this.glTextObj.crsr).drawto = this.NODE_CTX;
         (<any>this.glTextObj.crsr).anim = (<any>this.crsrAnim).name;
+        (<any>this.glTextObj.crsr).gl_color = [1, 1, 1, 1];
         (<any>this.glTextObj.crsr).screenmode = 0;
         (<any>this.glTextObj.crsr).cull_face = 1;
         (<any>this.glTextObj.crsr).layer = 10;
@@ -126,6 +169,8 @@ export class GLRender {
         (<any>this.glVid).depth_enable = 0;
         (<any>this.glVid).layer = 1000;
         (<any>this.glVid).blend = "difference";
+
+        this.font(this.DEFAULT_FONT)
     }
 
     drawto(v: string) {
@@ -135,11 +180,13 @@ export class GLRender {
     }
 
     // the text position
+    @maxMspBinding({ instanceName: 'glRender' })
     position(x: number, y: number) {
         (<any>this.textNode).position = [x, y, 0];
     }
 
     // the text scaling
+    @maxMspBinding({ instanceName: 'glRender' })
     scale(s: number) {
         this.SCALING = s * 100 / this.FONT_SIZE;
         (<any>this.textNode).scale = [this.SCALING, this.SCALING, 0];
@@ -237,6 +284,7 @@ export class GLRender {
         // }
     }
 
+    @maxMspBinding({ instanceName: 'glRender' })
     blink() {
         if (this.useBlink) {
             this.blinkToggle = 1 - this.blinkToggle;
@@ -250,6 +298,7 @@ export class GLRender {
         }
     }
 
+    @maxMspBinding({ instanceName: 'glRender' })
     blink_enable(v: boolean) {
         this.useBlink = v;
     }

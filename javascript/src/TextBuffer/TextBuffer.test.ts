@@ -1,5 +1,6 @@
 import test from 'ava';
 import { TextBuffer } from './TextBuffer';
+import { TextFormatter } from './TextFormatter';
 
 class TestWhiteSpaceTrimFormatter implements TextFormatter {
     format(strArr: Array<string>, ctx: {}): Array<string> {
