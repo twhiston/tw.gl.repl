@@ -1,6 +1,6 @@
 import { TextBuffer } from "TextBuffer";
 import { Cursor } from "Cursor";
-import { KeypressProcessor } from 'KeypressProcessor';
+import { KeypressProcessor, KeyProcessor } from 'KeypressProcessor';
 import { maxMspBinding } from 'MaxBindings';
 import { TextFormatter } from "TextFormatter";
 
@@ -26,7 +26,7 @@ export class REPLSettings {
 //We use this externally so we have a type we can use to ensure we get both an id and a function when preloading
 export interface PreloadIdentifier {
     id: string
-    func: Function
+    func: KeyProcessor
 }
 
 export type Direction = 1 | -1;
@@ -64,7 +64,7 @@ export class REPLManager {
             this.tb.setFormatters(Array.isArray(bufferFormatters) ? bufferFormatters : [bufferFormatters])
         //preload any functions that we want users to be able to refer to in json config files
         if (functionPreloads !== undefined) {
-            functionPreloads = Array.isArray(functionPreloads) ? functionPreloads : [functionPreloads]
+            //functionPreloads = Array.isArray(functionPreloads) ? functionPreloads : [functionPreloads]
             for (const func of functionPreloads) {
                 this.kp.preloadFunction(func.id, func.func);
             }
@@ -72,14 +72,25 @@ export class REPLManager {
     }
 
     // process a keypress
-    @maxMspBinding({ instanceName: 'repl', draw: true })
+    //This needs more around it so it's not a simple bind
     keyPress(k: number) {
+        post("repl keyPress \n");
         const res = this.kp.processKeypress(k)
+        // post(res);
+        let msgs: Array<string>
+        for (const func of res) {
+            let m = func(k, this);
+            if (m !== "") {
+                msgs.push(m)
+            }
+        }
+        // post(msgs)
+        return msgs;
     }
 
 
     // add multiple spaces to the text (tab)
-    @maxMspBinding({ instanceName: 'repl', draw: true })
+    @maxMspBinding({ instanceName: 'i.repl', draw: true })
     addTab() {
         const pos = this.c.position()
         //TODO: why does the original do this?
@@ -91,7 +102,7 @@ export class REPLManager {
     }
 
     // add a character (alpha-numeric, numeric, special characters)
-    @maxMspBinding({ instanceName: 'repl', draw: true })
+    @maxMspBinding({ instanceName: 'i.repl', draw: true })
     addChar(k: number) {
         var pos = this.c.position();
         if (pos.char >= this.config.MAX_CHARS) {
@@ -110,7 +121,7 @@ export class REPLManager {
     }
 
     // add one or multiple characters as a string
-    @maxMspBinding({ instanceName: 'repl', draw: true })
+    @maxMspBinding({ instanceName: 'i.repl', draw: true })
     add(c: string) {
         for (var i = 0; i < c.length; i++) {
             var char = c.charCodeAt(i);
@@ -123,7 +134,7 @@ export class REPLManager {
     }
 
     // append a line of text or multiple symbols per line
-    @maxMspBinding({ instanceName: 'repl', draw: true })
+    @maxMspBinding({ instanceName: 'i.repl', draw: true })
     append(text: Array<string>) {
         this.tb.append(text)
         this.jumpTo(JumpDirection.TOP);
@@ -131,7 +142,7 @@ export class REPLManager {
     }
 
     // prepend a line of text or multiple symbols per line
-    @maxMspBinding({ instanceName: 'repl', draw: true })
+    @maxMspBinding({ instanceName: 'i.repl', draw: true })
     prepend(text: Array<string>) {
         this.tb.prepend(text);
         this.jumpTo(JumpDirection.TOP);
@@ -139,7 +150,7 @@ export class REPLManager {
     }
 
     // remove a line of text at a specified index
-    @maxMspBinding({ instanceName: 'repl', draw: true })
+    @maxMspBinding({ instanceName: 'i.repl', draw: true })
     remove(idx: number) {
         if (idx === undefined) { idx = this.tb.length() - 1; }
         this.c.setLine(idx);
@@ -148,7 +159,7 @@ export class REPLManager {
 
     // insert a line of text or multiple symbols at a specified index
     // a list of symbols will inserte one line per symbol
-    @maxMspBinding({ instanceName: 'repl', draw: true })
+    @maxMspBinding({ instanceName: 'i.repl', draw: true })
     insert(idx: number, text: Array<string>) {
         var idx = Math.min(this.config.BUFFER_SIZE, idx);
 
@@ -175,7 +186,7 @@ export class REPLManager {
 
     // replace all the text with the incoming arguments
     // this can be a list of symbols for every line
-    @maxMspBinding({ instanceName: 'repl', draw: true })
+    @maxMspBinding({ instanceName: 'i.repl', draw: true })
     set(text: Array<string>) {
         text = (text.length < 1) ? [''] : text;
 
@@ -191,7 +202,7 @@ export class REPLManager {
 
 
     // backspace a character
-    @maxMspBinding({ functionName: 'back', instanceName: 'repl', draw: true })
+    @maxMspBinding({ functionName: 'back', instanceName: 'i.repl', draw: true })
     backSpace() {
         // decrement character index
         this.c.decrementChar()
@@ -210,14 +221,14 @@ export class REPLManager {
     }
 
     //used to be called clear
-    @maxMspBinding({ instanceName: 'repl', draw: true })
+    @maxMspBinding({ instanceName: 'i.repl', draw: true })
     clear() {
         this.c.reset()
         this.tb.clear();
     }
 
     // delete the character in front of the cursor
-    @maxMspBinding({ functionName: 'del', instanceName: 'repl', draw: true })
+    @maxMspBinding({ functionName: 'del', instanceName: 'i.repl', draw: true })
     deleteChar() {
         var pos = this.c.position()
         if (pos.char < this.tb.lineLength(pos.line)) {
@@ -328,7 +339,7 @@ export class REPLManager {
     }
 
     // move the cursor to the index of the letter in the full text
-    @maxMspBinding({ instanceName: 'repl', draw: true })
+    @maxMspBinding({ instanceName: 'i.repl', draw: true })
     gotoIndex(i: number): void {
         // go to beginning if index less then 0
         if (i < 0) {

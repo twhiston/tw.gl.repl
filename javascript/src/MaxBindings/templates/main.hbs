@@ -10,6 +10,10 @@ var i = require("includes")
 
 inlets = 1;
 outlets = 3;
+autowatch = 1;
+
+var sKeys = new Dict(jsarguments[2]);
+
 var OUT_MAT = false;
 
 function loadbang() {
@@ -23,6 +27,8 @@ function init() {
 
     }
     i.repl.clear();
+	//load config from json via a dict
+	loadConfigFromJSON(sKeys.stringify())
     //isDisabled = false;
 
     i.glRender.font("Courier New Bold");
@@ -36,6 +42,14 @@ function init() {
     //comment("//");
 
     draw();
+}
+
+function keyPress(k) {
+	post("@char", k, "\n");
+	var msgs = i.repl.keyPress(k)
+	for(var a = 0; a < msgs.length; a++){
+		outlet(2, msgs[a]);
+	}
 }
 
 // output the parsed code if output_matrix is disabled
@@ -60,7 +74,7 @@ function output_matrix(v) {
 // draw the text and output all info
 function draw() {
 
-	i.glRender.draw(repl.tb, repl.c)
+	i.glRender.draw(i.repl.tb, i.repl.c)
 
 	//Send some data out about the state
 	//TODO: assumed needed for dynamic resizing which we want to bring into code anyway
@@ -68,10 +82,10 @@ function draw() {
 	var len = i.repl.tb.getMaxChar();
 	var tbLen = i.repl.tb.length();
 	outlet(1, "lines", tbLen);
-	outlet(1, "line", i.repl.c.getLine());
+	outlet(1, "line", i.repl.tb.getLine());
 	outlet(1, "length", len);
 	outlet(1, "nLength", len / i.repl.config.MAX_CHARS);
-	outlet(1, "nLines", (tbLen - 1) / (i.repl.config.EDITOR_LINES - 1));
+	outlet(1, "nLines", (tbLen - 1) / (i.repl.config.BUFFER_SIZE - 1));
 }
 
 // REPL BINDINGS

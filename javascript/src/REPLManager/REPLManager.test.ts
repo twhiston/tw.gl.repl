@@ -88,26 +88,43 @@ test('gotoLine does not move cursor beyond last line', (t) => {
     t.is(newPosition.line, lastLineIndex, 'position line should be last line index');
 });
 
+function preloadTest(k: number, ctx: any): any {
+    return 'external test function'
+}
+
 test('test preload function', (t) => {
 
     const preload: PreloadIdentifier = {
         id: 'testFunction',
-        func: () => 'test function'
+        func: (k: number, ctx: any) => 'test function'
+    }
+
+    const extPreload: PreloadIdentifier = {
+        id: 'extTestFunction',
+        func: preloadTest
     }
 
     const jsonConfig = `[
         {
-          "id": "testFunc5",
+          "id": "testFunc2",
           "asciiCode": 2,
           "functions": "testFunction"
-        }
+        },
+        {
+            "id": "testFunc3",
+            "asciiCode": 3,
+            "functions": "extTestFunction"
+          }
       ]`;
 
-    const repl = new REPLManager(new REPLSettings(100), [preload]);
+    const repl = new REPLManager(new REPLSettings(100), [preload, extPreload]);
     repl.kp.loadConfigFromJSON(jsonConfig);
     const res = repl.kp.processKeypress(2);
-    const output = res[0]();
+    const output = res[0](1, {});
     t.is(output, 'test function');
+    const res1 = repl.kp.processKeypress(3);
+    const output1 = res1[0](1, {});
+    t.is(output1, 'external test function');
 });
 
 test('gotoWord method moves the cursor to the next word', (t) => {
@@ -407,54 +424,55 @@ test('jumpLine - else branch', t => {
     t.is(currentLine, 0); // Check if lines are the same before and after the operation
 });
 
-// test('jumpWord', (t) => {
-//     const manager = new REPLManager(new REPLSettings())
-//     const input = 'word1 word2 word3 word4'
-// for (const char of input) {
-//     manager.addChar(char.charCodeAt(0));
-// }
-// var pos = manager.c.position()
-// var len = manager.tb.lineLength(pos.line)
+test('jumpWord', (t) => {
+    const manager = new REPLManager(new REPLSettings())
+    const input = 'word1 word2 word3 word4'
+    for (var i = 0; i < input.length; i++) {
+        manager.addChar(input.charCodeAt(i));
+    }
 
-// t.deepEqual(pos, { line: 0, char: 23 })
+    var pos = manager.c.position()
+    var len = manager.tb.lineLength(pos.line)
 
-// manager.jumpWord(-1)
-// pos = manager.c.position()
-// t.deepEqual(pos, { line: 0, char: 17 })
+    t.deepEqual(pos, { line: 0, char: 23 })
 
-// manager.jumpWord(1)
-// pos = manager.c.position()
-// t.deepEqual(pos, { line: 0, char: 23 })
+    manager.jumpWord(-1)
+    pos = manager.c.position()
+    t.deepEqual(pos, { line: 0, char: 17 })
 
-// manager.jumpWord(-1)
-// manager.jumpWord(-1)
-// pos = manager.c.position()
-// t.deepEqual(pos, { line: 0, char: 11 })
+    manager.jumpWord(1)
+    pos = manager.c.position()
+    t.deepEqual(pos, { line: 0, char: 23 })
 
-// manager.tb.append(['word5 word6 word7 word8 word9'])
+    manager.jumpWord(-1)
+    manager.jumpWord(-1)
+    pos = manager.c.position()
+    t.deepEqual(pos, { line: 0, char: 11 })
 
-// manager.jumpTo(JumpDirection.END)
-// manager.jumpTo(JumpDirection.EOL)
-// pos = manager.c.position()
-// t.deepEqual(pos, { line: 1, char: 29 })
+    manager.tb.append(['word5 word6 word7 word8 word9'])
 
-// manager.jumpWord(-1)
-// pos = manager.c.position()
-// t.deepEqual(pos, { line: 1, char: 23 })
+    manager.jumpTo(JumpDirection.END)
+    manager.jumpTo(JumpDirection.EOL)
+    pos = manager.c.position()
+    t.deepEqual(pos, { line: 1, char: 29 })
 
-// manager.jumpWord(1)
-// pos = manager.c.position()
-// t.deepEqual(pos, { line: 1, char: 29 })
+    manager.jumpWord(-1)
+    pos = manager.c.position()
+    t.deepEqual(pos, { line: 1, char: 23 })
 
-// manager.jumpLine(-1)
-// pos = manager.c.position()
-// t.deepEqual(pos, { line: 0, char: 23 })
+    manager.jumpWord(1)
+    pos = manager.c.position()
+    t.deepEqual(pos, { line: 1, char: 29 })
 
-// manager.jumpWord(-1)
-// pos = manager.c.position()
-// t.deepEqual(pos, { line: 0, char: 17 })
+    manager.jumpLine(-1)
+    pos = manager.c.position()
+    t.deepEqual(pos, { line: 0, char: 23 })
 
-//})
+    manager.jumpWord(-1)
+    pos = manager.c.position()
+    t.deepEqual(pos, { line: 0, char: 17 })
+
+})
 
 test('jumpword else clause', t => {
     const repl = new REPLManager();

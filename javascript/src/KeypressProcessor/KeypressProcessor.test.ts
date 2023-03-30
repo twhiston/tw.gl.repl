@@ -1,5 +1,5 @@
 import test from 'ava';
-import { KeypressProcessor } from './KeypressProcessor';
+import { KeypressProcessor, KeyProcessor } from './KeypressProcessor';
 
 test('Test attachFunctions and processKeypress', t => {
   const keypressProcessor = new KeypressProcessor();
@@ -7,8 +7,8 @@ test('Test attachFunctions and processKeypress', t => {
   keypressProcessor.attachFunctions('testFunc2', 25, [() => { return 'A pressed again'; }]);
   const funcs = keypressProcessor.processKeypress(25);
   t.is(funcs.length, 2);
-  t.is(funcs[0](), 'A pressed');
-  t.is(funcs[1](), 'A pressed again');
+  t.is(funcs[0](1, {}), 'A pressed');
+  t.is(funcs[1](1, {}), 'A pressed again');
 });
 
 test('Test attachFunctions with an array', t => {
@@ -16,8 +16,8 @@ test('Test attachFunctions with an array', t => {
   keypressProcessor.attachFunctions('testFunc1', 20, [() => { return 'A pressed'; }, () => { return 'A pressed again'; }]);
   const funcs = keypressProcessor.processKeypress(20);
   t.is(funcs.length, 2);
-  t.is(funcs[0](), 'A pressed');
-  t.is(funcs[1](), 'A pressed again');
+  t.is(funcs[0](1, {}), 'A pressed');
+  t.is(funcs[1](1, {}), 'A pressed again');
 });
 
 function testReply() {
@@ -28,18 +28,20 @@ test('Test attachFunctions with a function reference', t => {
   keypressProcessor.attachFunctions('testFunc1', -3, [testReply]);
   const funcs = keypressProcessor.processKeypress(-3);
   t.is(funcs.length, 1);
-  t.is(funcs[0](), 'hello!');
+  t.is(funcs[0](1, {}), 'hello!');
 });
 
 test('Test replaceFunctions and processKeypress', t => {
   const keypressProcessor = new KeypressProcessor();
-  keypressProcessor.replaceFunctions('testFunc3', 10, [() => console.log('B pressed')]);
+  keypressProcessor.replaceFunctions('testFunc3', 10, [() => { return 'B pressed' }]);
   const funcs = keypressProcessor.processKeypress(10);
   t.is(funcs.length, 1);
+  t.is(funcs[0](1, {}), 'B pressed');
 });
 
 test('Test loadConfigFromJSON', t => {
-  const jsonConfig = `[
+  const jsonConfig = `{
+    "bindings":[
     {
       "id": "testFunc4",
       "asciiCode": 1,
@@ -53,19 +55,19 @@ test('Test loadConfigFromJSON', t => {
       "asciiCode": 2,
       "functions": "return('D pressed');"
     }
-  ]`;
+  ]}`;
 
   const keypressProcessor = new KeypressProcessor();
   keypressProcessor.loadConfigFromJSON(jsonConfig);
 
   const funcsC = keypressProcessor.processKeypress(1);
   t.is(funcsC.length, 2);
-  t.is(funcsC[0](), 'C pressed function 1');
-  t.is(funcsC[1](), 'C pressed function 2');
+  t.is(funcsC[0](1, {}), 'C pressed function 1');
+  t.is(funcsC[1](1, {}), 'C pressed function 2');
 
   const funcsD = keypressProcessor.processKeypress(2);
   t.is(funcsD.length, 1);
-  t.is(funcsD[0](), 'D pressed');
+  t.is(funcsD[0](1, {}), 'D pressed');
 
 });
 
@@ -79,7 +81,7 @@ test('Test processKeypress with character keys', t => {
   for (let index = 33; index < 127; index++) {
     const funcs = keypressProcessor.processKeypress(index);
     t.is(funcs.length, 1);
-    t.is(funcs[0](), 'ok');
+    t.is(funcs[0](1, {}), 'ok');
   }
 });
 test('Test processKeypress with non-existent key code', t => {
@@ -102,7 +104,7 @@ test('customAlphaNum overrides alphanum key processing when set to true', t => {
   kp.customAlphaNum(false);
   const results2 = kp.processKeypress(36); //
   t.is(results2.length, 1);
-  t.deepEqual(results2[0](), 'testing');
+  t.deepEqual(results2[0](1, {}), 'testing');
 });
 
 test('customAlphaNum does not override alphanum key processing when set to false', t => {
@@ -113,7 +115,7 @@ test('customAlphaNum does not override alphanum key processing when set to false
   kp.customAlphaNum(false);
   const results = kp.processKeypress(65); // 'A' key
   t.is(results.length, 1);
-  t.deepEqual(results[0](), 'override');
+  t.deepEqual(results[0](1, {}), 'override');
 
   kp.customAlphaNum(true);
   const results2 = kp.processKeypress(65); // 'A' key
@@ -135,11 +137,11 @@ test('loadConfigFromJSON should attach functions specified in JSON config', (t) 
   const processor = new KeypressProcessor();
 
   const functionOne = (k: number, ctx: {}) => {
-    console.log(`Function One called with key: ${k} and context: ${ctx}`);
+    return `Function One called with key: ${k} and context: ${ctx}`;
   };
 
   const functionTwo = (k: number, ctx: {}) => {
-    console.log(`Function Two called with key: ${k} and context: ${ctx}`);
+    return `Function Two called with key: ${k} and context: ${ctx}`;
   };
 
   processor.preloadFunction('functionOne', functionOne);
@@ -148,13 +150,15 @@ test('loadConfigFromJSON should attach functions specified in JSON config', (t) 
   //Need to say this is custom alpha as we will bind to key id 65
   processor.customAlphaNum(true)
 
-  const config = JSON.stringify([
-    {
-      id: 'testConfig',
-      asciiCode: 65,
-      functions: ['functionOne', 'functionTwo'],
-    },
-  ]);
+  const config = JSON.stringify({
+    "bindings": [
+      {
+        id: 'testConfig',
+        asciiCode: 65,
+        functions: ['functionOne', 'functionTwo'],
+      },
+    ]
+  });
 
   processor.loadConfigFromJSON(config);
 
@@ -163,5 +167,7 @@ test('loadConfigFromJSON should attach functions specified in JSON config', (t) 
   t.is(res.length, 2);
   const res1 = res[0](65, {})
   const res2 = res[1](65, {})
+  t.is(res1, "Function One called with key: 65 and context: [object Object]")
+  t.is(res2, "Function Two called with key: 65 and context: [object Object]")
 });
 

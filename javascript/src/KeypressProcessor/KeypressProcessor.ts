@@ -1,7 +1,9 @@
+import { maxMspBinding } from "MaxBindings"
+
 //Used internally but not exposed as users add functions directly
 interface FunctionIdentifier {
     id: string
-    functions: Array<Function>
+    functions: Array<KeyProcessor>
 }
 
 interface FunctionBinding {
@@ -10,10 +12,12 @@ interface FunctionBinding {
     functions: Array<string>
 }
 
+export type KeyProcessor = (k: number, ctx: any) => any
+
 export class KeypressProcessor {
 
     private attachedFunctions: { [key: string]: Array<FunctionIdentifier> } = {};
-    private preloadedFunctions: { [key: string]: Function } = {};
+    private preloadedFunctions: { [key: string]: KeyProcessor } = {};
     overrideAlphaNum: boolean
 
     constructor() {
@@ -34,12 +38,12 @@ export class KeypressProcessor {
     //preload a function so we can refer to it in our json config later
     //function should have the signature (k, ctx) where k is the key pressed and context is whatever you need to send to it
     //preloaded functions can ONLY be bound via json files. They are not meant to be added in code!!!! attach functions directly instead
-    preloadFunction(id: string, func: Function) {
+    preloadFunction(id: string, func: KeyProcessor) {
         this.preloadedFunctions[id] = func;
     }
 
     // Function to attach a function to an ASCII code
-    attachFunctions(id: string, keyCode: number, funcs: Array<Function>) {
+    attachFunctions(id: string, keyCode: number, funcs: Array<KeyProcessor>) {
         if (!this.attachedFunctions[keyCode]) {
             this.attachedFunctions[keyCode] = [];
         }
@@ -50,17 +54,16 @@ export class KeypressProcessor {
     }
 
     // Function to replace functions attached to an ASCII code
-    replaceFunctions(id: string, keyCode: number, func: Array<Function>) {
+    replaceFunctions(id: string, keyCode: number, func: Array<KeyProcessor>) {
         this.attachedFunctions[keyCode] = [];
         this.attachFunctions(id, keyCode, func);
     }
 
     // Function to process a keypress and return any attached functions
-    processKeypress(k: number) {
+    processKeypress(k: number): Array<KeyProcessor> {
         //to handle general alphanumeric keys we do a little trickery here
-        const fId = (k > 32 && k <= 126 && this.overrideAlphaNum == false) ? 127 : k;
+        const fId = (k > 32 && k <= 126 && this.overrideAlphaNum === false) ? 127 : k;
         const funcs = this.attachedFunctions[fId]; // Get the attached functions, if any
-
         const results = [];
         if (funcs && funcs.length > 0) {
             // If there are attached functions, call each one with the event object as the argument
@@ -74,9 +77,12 @@ export class KeypressProcessor {
     }
 
     // Function to load configuration from a JSON object
+    @maxMspBinding({ instanceName: 'i.repl.kp' })
     loadConfigFromJSON(config: string) {
         const json = JSON.parse(config);
-        json.forEach((item: FunctionBinding) => {
+        if (json.bindings === undefined)
+            return;
+        json.bindings.forEach((item: FunctionBinding) => {
             const id = item.id;
             const asciiCode = item.asciiCode;
             const functions = item.functions;
@@ -89,7 +95,7 @@ export class KeypressProcessor {
                     f = func;
                 } else {
                     //otherwise assume it is a direct function body and wrap it in a Function
-                    f = new Function('k', 'wm', funcString);
+                    f = new Function('k', 'ctx', funcString);
                 }
                 return f;
             });

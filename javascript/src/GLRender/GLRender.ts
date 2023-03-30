@@ -180,13 +180,13 @@ export class GLRender {
     }
 
     // the text position
-    @maxMspBinding({ instanceName: 'glRender' })
+    @maxMspBinding({ instanceName: 'i.glRender' })
     position(x: number, y: number) {
         (<any>this.textNode).position = [x, y, 0];
     }
 
     // the text scaling
-    @maxMspBinding({ instanceName: 'glRender' })
+    @maxMspBinding({ instanceName: 'i.glRender' })
     scale(s: number) {
         this.SCALING = s * 100 / this.FONT_SIZE;
         (<any>this.textNode).scale = [this.SCALING, this.SCALING, 0];
@@ -284,7 +284,7 @@ export class GLRender {
         // }
     }
 
-    @maxMspBinding({ instanceName: 'glRender' })
+    @maxMspBinding({ instanceName: 'i.glRender' })
     blink() {
         if (this.useBlink) {
             this.blinkToggle = 1 - this.blinkToggle;
@@ -298,7 +298,7 @@ export class GLRender {
         }
     }
 
-    @maxMspBinding({ instanceName: 'glRender' })
+    @maxMspBinding({ instanceName: 'i.glRender' })
     blink_enable(v: boolean) {
         this.useBlink = v;
     }

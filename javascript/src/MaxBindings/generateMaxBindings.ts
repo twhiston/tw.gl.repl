@@ -123,7 +123,7 @@ for (const file of filteredFiles) {
     bindings = mergeMaps(bindings, findMaxMspBindings(file, checker))
 }
 
-console.log(bindings);
+//console.log(bindings);
 
 // // Write the generated code to a file
 writeGeneratedCode(bindings, outputPath);
