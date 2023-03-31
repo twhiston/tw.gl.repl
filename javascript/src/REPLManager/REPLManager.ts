@@ -74,9 +74,7 @@ export class REPLManager {
     // process a keypress
     //This needs more around it so it's not a simple bind
     keyPress(k: number) {
-        post("repl keyPress \n");
         const res = this.kp.processKeypress(k)
-        // post(res);
         let msgs: Array<string>
         for (const func of res) {
             let m = func(k, this);

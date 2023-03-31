@@ -3,7 +3,7 @@ import { Direction, JumpDirection, PreloadIdentifier, REPLManager, REPLSettings 
 
 
 test('REPLManager: Initialization', t => {
-    const repl = new REPLManager(new REPLSettings(10));
+    const repl = new REPLManager();
 
     t.truthy(repl.tb, 'Text buffer should not be null');
     t.truthy(repl.c, 'Cursor should not be null');
@@ -96,7 +96,7 @@ test('test preload function', (t) => {
 
     const preload: PreloadIdentifier = {
         id: 'testFunction',
-        func: (k: number, ctx: any) => 'test function'
+        func: (k: number, ctx: any): any => 'test function'
     }
 
     const extPreload: PreloadIdentifier = {
@@ -104,7 +104,8 @@ test('test preload function', (t) => {
         func: preloadTest
     }
 
-    const jsonConfig = `[
+    const jsonConfig = `{
+        "bindings":[
         {
           "id": "testFunc2",
           "asciiCode": 2,
@@ -115,7 +116,7 @@ test('test preload function', (t) => {
             "asciiCode": 3,
             "functions": "extTestFunction"
           }
-      ]`;
+      ]}`;
 
     const repl = new REPLManager(new REPLSettings(100), [preload, extPreload]);
     repl.kp.loadConfigFromJSON(jsonConfig);
