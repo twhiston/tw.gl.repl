@@ -1,4 +1,4 @@
-import './string.extensions';
+import 'string.extensions';
 import { TextFormatter } from 'TextFormatter';
 
 export class TextBuffer {
