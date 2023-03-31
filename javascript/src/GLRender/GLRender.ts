@@ -1,6 +1,7 @@
 import { CursorPosition } from 'Cursor';
 import { maxMspBinding } from 'MaxBindings';
 
+//polyfill Object.entries for archaic max runtimes
 if (!Object.entries)
     Object.entries = function (obj) {
         var ownProps = Object.keys(obj),
@@ -27,34 +28,6 @@ export class Color {
         return [this.r, this.g, this.b, this.a];
     }
 };
-
-// class JitterObject {  // The fake B
-//     type: string
-//     constructor(type: string) {
-//         this.type = type
-//     }
-//     font(name: string) {
-
-//     }
-// }
-
-// class JitterMatrix {  // The fake B
-//     args: any
-//     name: string
-//     fnt: string
-//     constructor(...args: any[]) {
-//         this.args = args
-//         this.name = "";
-//         this.fnt = "";
-//     }
-//     setall(a: any) {
-
-//     }
-//     setcell2d(a: any, b: any, c: any) {
-
-//     }
-
-// }
 
 //There's a lot of casting to any in this class to make typescript happy, it's a bit tedious
 //but hopefully it never has to be touched ;) 
@@ -85,7 +58,6 @@ export class GLRender {
         crsr: new JitterObject("jit.gl.text"),
         lnmr: new JitterObject("jit.gl.text")
     }
-    //allTextObj = [this.glText, this.glCrsr, this.glNmbr];
 
     // the camera for capture
     glCam = new JitterObject("jit.gl.camera");
@@ -106,7 +78,10 @@ export class GLRender {
     private FONT_SIZE = 100;
     private MAIN_CTX = "CTX";
     private SCALING = 1;
+    private CRSR = "<<";
     private CRSR_CHARS = [];
+    private CMNT = "//";
+    private CMNT_CHARS = [];
     //TODO: can get rid of most accessor functions for these
     // and use an annotation to make a binding
     private textAlpha = 1; //TODO: why are we not using the a from the rgba?
@@ -125,9 +100,7 @@ export class GLRender {
         (<any>this.textNode).type = "float32";
         (<any>this.textNode).name = this.NODE_CTX;
         (<any>this.textNode).adapt = 0;
-
-        (<any>this.textNode).name = this.ANIM_NODE;
-        (<any>this.textNode).position = [0, 0, 0];
+        (<any>this.textNode).drawto = this.MAIN_CTX;
 
         (<any>this.textAnim).anim = this.ANIM_NODE;
         (<any>this.textAnim).position = [0.9, 0, 0];
@@ -164,6 +137,7 @@ export class GLRender {
         (<any>this.glCam).ortho = 2;
 
         (<any>this.glVid).texture = this.CAM_CAP;
+        (<any>this.glVid).drawto = this.MAIN_CTX;
         (<any>this.glVid).transform_reset = 2;
         (<any>this.glVid).blend_enable = 1;
         (<any>this.glVid).depth_enable = 0;
@@ -171,8 +145,11 @@ export class GLRender {
         (<any>this.glVid).blend = "difference";
 
         this.font(this.DEFAULT_FONT)
+        this.setCursorChars(this.CRSR)
+        this.setCommentChars(this.CMNT);
     }
 
+    @maxMspBinding({ instanceName: 'i.glRender' })
     drawto(v: string) {
         this.MAIN_CTX = v;
         (<any>this.textNode).drawto = this.MAIN_CTX;
@@ -265,6 +242,29 @@ export class GLRender {
 
     number_color(color: Color) {
         (<any>this.glTextObj.lnmr).gl_color = color.toArray();
+    }
+
+    // set the cursor characters
+    @maxMspBinding({ instanceName: 'i.glRender', draw: true, functionName: 'cursor' })
+    setCursorChars(c) {
+        // post("@cursor: ", c, "\n");
+        this.CRSR = c.toString();
+        this.CRSR_CHARS = [];
+        for (var i = 0; i < this.CRSR.length; i++) {
+            this.CRSR_CHARS.push(this.CRSR[i].charCodeAt(0));
+        }
+    }
+
+    // set the comment characters
+    @maxMspBinding({ instanceName: 'i.glRender', draw: true, functionName: "comment" })
+    setCommentChars(c) {
+        //post("@comment: ", c, "\n");
+        this.CMNT = c.toString();
+        this.CMNT_CHARS = [];
+        for (var i = 0; i < this.CMNT.length; i++) {
+            this.CMNT_CHARS.push(this.CMNT[i].charCodeAt(0));
+        }
+        this.CMNT_CHARS = this.CMNT_CHARS.concat(32);
     }
 
     @maxMspBinding({ instanceName: 'i.glRender' })

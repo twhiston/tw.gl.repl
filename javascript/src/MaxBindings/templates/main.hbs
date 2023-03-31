@@ -26,7 +26,7 @@ function init() {
 
     if (jsarguments.length > 1) {
         i.glRender.drawto(jsarguments[1]);
-
+		post("drawing to context: ", jsarguments[1], "\n");
     }
     i.repl.clear();
 	//load config from json via a dict string (ie json)
@@ -40,9 +40,6 @@ function init() {
     i.glRender.line_length(999999);
     i.glRender.alpha(1);
 
-    //cursor("<<");
-    //comment("//");
-
     draw();
 }
 
@@ -53,6 +50,7 @@ function keyPress(k) {
 	for(var a = 0; a < msgs.length; a++){
 		outlet(2, msgs[a]);
 	}
+	draw();
 }
 
 // output the parsed code if output_matrix is disabled
@@ -77,7 +75,7 @@ function output_matrix(v) {
 // draw the text and output all info
 function draw() {
 
-	i.glRender.draw(i.repl.tb, i.repl.c)
+	i.glRender.draw(i.repl.tb.get(), i.repl.c.position())
 
 	//Send some data out about the state
 	//TODO: assumed needed for dynamic resizing which we want to bring into code anyway
