@@ -267,6 +267,7 @@ export class GLRender {
         (<any>this.glTextObj.lnmr).gl_color = color.toArray();
     }
 
+    @maxMspBinding({ instanceName: 'i.glRender' })
     runBlink(t: number) {
 
         var c = [];

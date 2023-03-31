@@ -14,7 +14,9 @@ autowatch = 1;
 
 var sKeys = new Dict(jsarguments[2]);
 
+//TODO: move these out of here
 var OUT_MAT = false;
+var EPHEMERAL_MODE = false;
 
 function loadbang() {
 	init();
@@ -45,7 +47,8 @@ function init() {
 }
 
 function keyPress(k) {
-	post("@char", k, "\n");
+	//our functions might return something which we want to output
+	//these will usually be messages for max such as the run command
 	var msgs = i.repl.keyPress(k)
 	for(var a = 0; a < msgs.length; a++){
 		outlet(2, msgs[a]);

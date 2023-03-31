@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 404.0, 407.0, 640.0, 480.0 ],
+		"rect" : [ 355.0, 313.0, 740.0, 564.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -78,7 +78,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 278.0, 547.0, 67.0, 22.0 ],
+					"patching_rect" : [ 307.0, 561.0, 67.0, 22.0 ],
 					"text" : "print jsout2"
 				}
 
@@ -136,8 +136,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 13.0, 386.0, 18.0, 35.0 ],
-					"text" : "-7"
+					"patching_rect" : [ 13.0, 386.0, 22.0, 35.0 ],
+					"text" : "2044"
 				}
 
 			}
@@ -700,7 +700,7 @@
 													"numoutlets" : 1,
 													"outlettype" : [ "" ],
 													"patching_rect" : [ 287.0, 199.0, 50.0, 22.0 ],
-													"text" : "127"
+													"text" : "13"
 												}
 
 											}
@@ -3601,7 +3601,7 @@
 					"outlettype" : [ "", "", "" ],
 					"patching_rect" : [ 153.0, 510.0, 173.0, 22.0 ],
 					"saved_object_attributes" : 					{
-						"filename" : "tw.gl.repl",
+						"filename" : "tw.gl.repl.js",
 						"parameter_enable" : 0
 					}
 ,
@@ -3692,6 +3692,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-32", 0 ],
+					"order" : 0,
 					"source" : [ "obj-153", 2 ]
 				}
 
@@ -3701,6 +3702,14 @@
 					"destination" : [ "obj-5", 0 ],
 					"order" : 0,
 					"source" : [ "obj-153", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-76", 0 ],
+					"order" : 1,
+					"source" : [ "obj-153", 2 ]
 				}
 
 			}
