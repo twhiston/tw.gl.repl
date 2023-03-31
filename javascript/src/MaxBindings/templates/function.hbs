@@ -1,7 +1,7 @@
 
 //auto-bound to max via annotation
-function {{options.functionName}}(k){
-    {{options.instanceName}}.{{options.callName}}(k)
+function {{options.functionName}}({{#each options.params}}{{this}}{{#unless @last}},{{/unless}}{{/each}}) {
+    {{options.instanceName}}.{{options.callName}}({{#each options.params}}{{this}}{{#unless @last}},{{/unless}}{{/each}})
     {{#if options.draw}}
     draw()
     {{/if}}

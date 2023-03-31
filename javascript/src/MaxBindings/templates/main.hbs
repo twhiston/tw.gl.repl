@@ -4,8 +4,8 @@
 ///////////////////////////////////////////////////////
 
 
+// This require loads all our source code and importantly gives access to the following items
 // glRender , repl
-//include("includes")
 var i = require("includes")
 
 inlets = 1;
@@ -27,7 +27,7 @@ function init() {
 
     }
     i.repl.clear();
-	//load config from json via a dict
+	//load config from json via a dict string (ie json)
 	loadConfigFromJSON(sKeys.stringify())
     //isDisabled = false;
 

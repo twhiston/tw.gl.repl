@@ -93,6 +93,11 @@ export function findMaxMspBindings(sourceFile: ts.SourceFile, checker: ts.TypeCh
                 const filePath = sourceFile.fileName;
                 options.functionName = options.functionName || name;
                 options.callName = name;
+                options.paramCount = node.parameters.length
+                options.params = []
+                for (const param of node.parameters) {
+                    options.params.push(param.name.getText(sourceFile))
+                }
                 bindings.set(name, { filePath, options });
             }
         }
