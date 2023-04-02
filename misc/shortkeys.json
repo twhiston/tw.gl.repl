@@ -50,6 +50,27 @@
             ]
         },
         {
+            "id": "comment-alt-/",
+            "asciiCode": 247,
+            "functions": [
+                "ctx.commentLine()"
+            ]
+        },
+        {
+            "id": "clear-alt-z",
+            "asciiCode": 937,
+            "functions": [
+                "ctx.clear()"
+            ]
+        },
+        {
+            "id": "deleteLine-alt-x",
+            "asciiCode": 8776,
+            "functions": [
+                "ctx.deleteLine()"
+            ]
+        },
+        {
             "id": "up",
             "asciiCode": -9,
             "functions": [
@@ -78,10 +99,45 @@
             ]
         },
         {
-            "id": "comment-alt-/",
-            "asciiCode": 247,
+            "id": "jump-top-alt-up",
+            "asciiCode": 2039,
             "functions": [
-                "ctx.commentLine()"
+                "ctx.jumpTo(2)"
+            ]
+        },
+        {
+            "id": "jump-bottom-alt-down",
+            "asciiCode": 2038,
+            "functions": [
+                "ctx.jumpTo(3)"
+            ]
+        },
+        {
+            "id": "jump-begin-alt-left",
+            "asciiCode": 2037,
+            "functions": [
+                "ctx.jumpTo(0)"
+            ]
+        },
+        {
+            "id": "jump-end-alt-right",
+            "asciiCode": 2036,
+            "functions": [
+                "ctx.jumpTo(1)"
+            ]
+        },
+        {
+            "id": "jumpWord-left-cmd-left",
+            "asciiCode": 8804,
+            "functions": [
+                "ctx.jumpWord(-1)"
+            ]
+        },
+        {
+            "id": "jumpWord-right-cmd-right",
+            "asciiCode": 8805,
+            "functions": [
+                "ctx.jumpWord(1)"
             ]
         }
     ]
