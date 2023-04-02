@@ -81,7 +81,7 @@ export class KeypressProcessor {
     loadConfigFromJSON(config: string) {
         const json = JSON.parse(config);
         if (json.bindings === undefined)
-            return;
+            throw new Error('bindings undefined');
 
 
         json.bindings.forEach((item: FunctionBinding) => {

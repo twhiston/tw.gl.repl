@@ -4,6 +4,7 @@ export interface MaxMspBindingOptions extends Record<string, any> {
     instanceName?: string;
     functionName?: string;
     draw?: boolean;
+    throws?: boolean;
 }
 
 //This is used effectively as a compile time decorator as we are using it for code generation

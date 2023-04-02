@@ -171,3 +171,11 @@ test('loadConfigFromJSON should attach functions specified in JSON config', (t) 
   t.is(res2, "Function Two called with key: 65 and context: [object Object]")
 });
 
+test('loadConfigFromJSON with json.bindings === undefined', (t) => {
+  const kp = new KeypressProcessor();
+
+  const configString = JSON.stringify({ someKey: "someValue" });
+  const error = t.throws(() => kp.loadConfigFromJSON(configString));
+
+  t.is(error?.message, 'bindings undefined');
+});

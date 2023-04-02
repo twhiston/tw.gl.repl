@@ -1,6 +1,6 @@
 import test from 'ava';
 import { Direction, JumpDirection, PreloadIdentifier, REPLManager, REPLSettings } from './REPLManager';
-
+import { TextFormatter } from '../TextBuffer/TextFormatter';
 
 test('REPLManager: Initialization', t => {
     const repl = new REPLManager();
@@ -8,6 +8,20 @@ test('REPLManager: Initialization', t => {
     t.truthy(repl.tb, 'Text buffer should not be null');
     t.truthy(repl.c, 'Cursor should not be null');
     t.truthy(repl.kp, 'Keypress processor should not be null');
+});
+
+class TestFormatter implements TextFormatter {
+    //replaces all forms of whitespace with a space and trims the end
+    format(strArr: Array<string>, ctx?: {}) { return strArr; }
+
+}
+test('REPLManager constructor with bufferFormatters not undefined', t => {
+    const config = new REPLSettings();
+    const bufferFormatterMock = new TestFormatter();
+    const replManager = new REPLManager(config, [], [bufferFormatterMock]);
+    const formatters = replManager.tb.formatters;
+
+    t.deepEqual(formatters, [bufferFormatterMock]);
 });
 
 test('addTab method adds spaces to text', t => {
@@ -615,4 +629,276 @@ test('deleteLine function should work properly', t => {
     t.is(replManager.c.char(), replManager.tb.lineLength(6));
 
 
+});
+
+test('jumpChar with dir === 1 at end of line with no new line maintains position', t => {
+    const repl = new REPLManager();
+    repl.add("abc");
+    repl.jumpChar(1 as Direction);
+    //stays in the same place
+    t.is(repl.c.position().char, 3);
+});
+
+test('jumpChar with dir === -1 moves the cursor one character to the left', t => {
+    const repl = new REPLManager();
+    repl.add("abc");
+    repl.jumpChar(-1 as Direction);
+    t.is(repl.c.position().char, 2);
+});
+
+test('jumpChar with dir === 1 not at end line moves the cursor one character to the left', t => {
+    const repl = new REPLManager();
+    repl.add("abc");
+    repl.jumpChar(-1 as Direction);
+    repl.jumpChar(-1 as Direction);
+    t.is(repl.c.position().char, 1);
+    repl.jumpChar(1 as Direction);
+    t.is(repl.c.position().char, 2);
+    repl.jumpChar(1 as Direction);
+    t.is(repl.c.position().char, 3);
+    repl.jumpChar(1 as Direction);
+    t.is(repl.c.position().char, 3);
+});
+
+test('jumpChar with dir === -1 at the beginning of the line moves the cursor to the previous line', t => {
+    const repl = new REPLManager();
+    repl.add("abc");
+    repl.newLine();
+    repl.add("def");
+    repl.jumpTo(JumpDirection.BOL);
+    repl.jumpChar(-1 as Direction);
+    t.is(repl.c.position().line, 0);
+    t.is(repl.c.position().char, 3);
+});
+
+test('jumpChar with dir === 1 at the end of the line moves the cursor to the next line', t => {
+    const repl = new REPLManager();
+    repl.add("abc");
+    repl.newLine();
+    repl.add("def");
+    repl.jumpTo(JumpDirection.TOP);
+    repl.jumpChar(1 as Direction);
+    repl.jumpChar(1 as Direction);
+    repl.jumpChar(1 as Direction);
+    t.is(repl.c.position().line, 1);
+    t.is(repl.c.position().char, 2);
+});
+
+test('deleteChar else branch - when cursor is at the end of last line', t => {
+    const repl = new REPLManager();
+    repl.add("abc");
+    repl.jumpTo(JumpDirection.EOL); // cursor is at the end of last line
+    repl.deleteChar(); // should not delete anything
+    t.is(repl.tb.getLine(0), "abc");
+});
+
+test('deleteChar if clause inside the else branch', t => {
+    const repl = new REPLManager();
+    repl.add("abc");
+    repl.newLine();
+    repl.add("def");
+    repl.jumpTo(JumpDirection.TOP);
+    repl.jumpTo(JumpDirection.EOL);
+    repl.deleteChar();
+    t.is(repl.tb.getLine(0), "abcdef");
+    t.is(repl.c.position().line, 0);
+    t.is(repl.c.position().char, 3);
+});
+
+test('set method - replace all text', t => {
+    const repl = new REPLManager();
+    repl.add("abc");
+    repl.set(["xyz", "123"]);
+
+
+    t.is(repl.tb.getLine(0), "xyz");
+    t.is(repl.tb.getLine(1), "123");
+    t.is(repl.tb.length(), 2);
+    t.is(repl.c.position().line, 1);
+    t.is(repl.c.position().char, 3);
+
+});
+
+test('insert method - insert between totalLines', t => {
+    const repl = new REPLManager();
+    repl.add("abc");
+    repl.newLine();
+    repl.add("def");
+    repl.insert(1, ["xyz", "123"]);
+    t.is(repl.tb.getLine(0), "abc");
+    t.is(repl.tb.getLine(1), "xyz");
+    t.is(repl.tb.getLine(2), "123");
+    t.is(repl.tb.getLine(3), "def");
+    t.is(repl.tb.length(), 4);
+});
+
+
+test('insert method - append to code and insert empty strings', t => {
+    const repl = new REPLManager();
+    repl.add("abc");
+    repl.insert(2, ["xyz", "123"]);
+    t.is(repl.tb.getLine(0), "abc");
+    t.is(repl.tb.getLine(1), "");
+    t.is(repl.tb.getLine(2), "xyz");
+    t.is(repl.tb.getLine(3), "123");
+    t.is(repl.tb.length(), 4);
+});
+
+
+test('insert method - too many lines', t => {
+    const repl = new REPLManager(new REPLSettings(4));
+    repl.add("abc");
+    repl.newLine();
+    repl.add("def");
+    const error = t.throws(() => {
+        repl.insert(1, ["xyz", "123", "456"]);
+    }, { instanceOf: Error });
+    t.is(error?.message, 'too many lines');
+});
+
+test('remove method - remove at specified index', t => {
+    const repl = new REPLManager();
+    repl.add("abc");
+    repl.newLine();
+    repl.add("def");
+    repl.newLine();
+    repl.add("ghi");
+    repl.remove(1);
+    t.is(repl.tb.getLine(0), "abc");
+    t.is(repl.tb.getLine(1), "ghi");
+    t.is(repl.tb.length(), 2);
+});
+
+test('remove method - remove last line if no index provided', t => {
+    const repl = new REPLManager();
+    repl.add("abc");
+    repl.newLine();
+    repl.add("def");
+    repl.remove();
+    t.is(repl.tb.getLine(0), "abc");
+    t.is(repl.tb.length(), 1);
+});
+
+test('prepend method - prepend lines to the beginning', t => {
+    const repl = new REPLManager();
+    repl.add("abc");
+    repl.newLine()
+    repl.add("def");
+    repl.prepend(["123", "456"]);
+    t.is(repl.tb.getLine(0), "123");
+    t.is(repl.tb.getLine(1), "456");
+    t.is(repl.tb.getLine(2), "abc");
+    t.is(repl.tb.getLine(3), "def");
+    t.is(repl.tb.length(), 4);
+});
+
+test('append method - append lines to the end', t => {
+    const repl = new REPLManager();
+    repl.add("abc");
+    repl.newLine();
+    repl.add("def");
+    repl.append(["123", "456"]);
+    t.is(repl.tb.getLine(0), "abc");
+    t.is(repl.tb.getLine(1), "def");
+    t.is(repl.tb.getLine(2), "123");
+    t.is(repl.tb.getLine(3), "456");
+    t.is(repl.tb.length(), 4);
+});
+
+test('add method - char code 13 or 10', t => {
+    const repl = new REPLManager();
+    repl.add("abc\r\ndef");
+    t.is(repl.tb.getLine(0), "abc");
+    t.is(repl.tb.getLine(1), "");
+    t.is(repl.tb.getLine(2), "def");
+    t.is(repl.tb.length(), 3);
+});
+
+test('addChar method - endOfLines() is true', t => {
+    const repl = new REPLManager();
+    const maxLength = repl.config.BUFFER_SIZE * (repl.config.MAX_CHARS + 1); // ensure we reach the end of lines
+
+    let errorThrown = false;
+
+    try {
+        for (let i = 0; i < maxLength; i++) {
+            repl.addChar(65); // Add 'A' character
+        }
+    } catch (error) {
+        errorThrown = true;
+        t.is(error.message, "reached end of lines");
+    }
+
+    t.true(errorThrown);
+});
+
+
+test('keyPress should not execute when no matching key is found', t => {
+    const repl = new REPLManager();
+    const messages = repl.keyPress(5);
+    t.deepEqual(messages, []);
+});
+
+test('keyPress should execute a single matching function', t => {
+    const repl = new REPLManager();
+    let executed = false;
+    repl.kp.attachFunctions("test", 1, [() => { executed = true; }]);
+    const messages = repl.keyPress(1);
+    t.true(executed);
+    t.deepEqual(messages, []);
+});
+
+test('keyPress should execute multiple matching functions', t => {
+    const repl = new REPLManager();
+    let executed1 = false;
+    let executed2 = false;
+    repl.kp.attachFunctions("test", 1, [() => { executed1 = true; }, () => { executed2 = true; }]);
+    const messages = repl.keyPress(1);
+    t.true(executed1);
+    t.true(executed2);
+    t.deepEqual(messages, []);
+});
+
+test('keyPress should return messages from matching functions', t => {
+    const repl = new REPLManager();
+    repl.kp.attachFunctions("test", 1, [() => { return ['message1', 'message2']; }]);
+    const messages = repl.keyPress(1);
+    t.deepEqual(messages, ['message1', 'message2']);
+});
+
+test('keyPress should catch and return errors thrown by matching functions', t => {
+    const repl = new REPLManager();
+    repl.kp.attachFunctions("test", 1, [() => {
+        throw new Error('Function failed');
+    }]);
+    const messages = repl.keyPress(1);
+    t.deepEqual(messages, ['error Function failed']);
+});
+
+test('keyPress should execute all matching functions even if some fail', t => {
+    const repl = new REPLManager();
+    let executed1 = false;
+    let executed2 = false;
+    repl.kp.attachFunctions("test", 1, [
+        () => { executed1 = true; },
+        () => { throw new Error('Function failed'); },
+        () => { executed2 = true; }
+    ]);
+    const messages = repl.keyPress(1);
+    t.true(executed1);
+    t.true(executed2);
+    t.deepEqual(messages, ['error Function failed']);
+});
+
+test('keyPress should execute all matching functions in order', t => {
+    const repl = new REPLManager();
+    let order = 0;
+    repl.kp.attachFunctions("test", 1, [
+        () => { t.is(order, 0); order++; },
+        () => { t.is(order, 1); order++; },
+        () => { t.is(order, 2); order++; },
+        () => { t.is(order, 3); }
+    ]);
+    repl.keyPress(1);
+    t.is(order, 3);
 });

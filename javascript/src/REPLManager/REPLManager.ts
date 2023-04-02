@@ -73,13 +73,20 @@ export class REPLManager {
 
     // process a keypress
     //This needs more around it so it's not a simple bind
+    //if a function which is called throws it is expected that
+    //it should return some info about why in the error, which will
+    //be output with the word error prepended as a msg
     keyPress(k: number) {
         const res = this.kp.processKeypress(k)
-        let msgs: Array<string> = []
+        let msgs: Array<string> = [];
         for (const func of res) {
-            let m = func(k, this);
-            if (m !== "") {
-                msgs.push(m)
+            try {
+                let msg = func(k, this)
+                if (msg !== "" && msg !== undefined) {
+                    msgs.push(...msg);
+                }
+            } catch (error) {
+                msgs.push("error " + error.message)
             }
         }
         return msgs;
@@ -99,12 +106,12 @@ export class REPLManager {
     }
 
     // add a character (alpha-numeric, numeric, special characters)
-    @maxMspBinding({ instanceName: 'i.repl', draw: true })
+    @maxMspBinding({ instanceName: 'i.repl', draw: true, throws: true })
     addChar(k: number) {
         var pos = this.c.position();
         if (pos.char >= this.config.MAX_CHARS) {
             if (this.tb.endOfLines()) {
-                return;
+                throw new Error("reached end of lines");
             } else {
                 this.newLine();
             }
@@ -148,22 +155,22 @@ export class REPLManager {
 
     // remove a line of text at a specified index
     @maxMspBinding({ instanceName: 'i.repl', draw: true })
-    remove(idx: number) {
-        if (idx === undefined) { idx = this.tb.length() - 1; }
+    remove(idx: number = -1) {
+        if (idx === -1) { idx = this.tb.length() - 1; }
         this.c.setLine(idx);
         this.deleteLine();
     }
 
     // insert a line of text or multiple symbols at a specified index
     // a list of symbols will inserte one line per symbol
-    @maxMspBinding({ instanceName: 'i.repl', draw: true })
+    @maxMspBinding({ instanceName: 'i.repl', draw: true, throws: true })
     insert(idx: number, text: Array<string>) {
         var idx = Math.min(this.config.BUFFER_SIZE, idx);
 
         // exit if doesn't fit in editor
+        const iSize = this.tb.lines() + text.length;
         if (this.tb.lines() + text.length > this.config.BUFFER_SIZE) {
             throw new Error('too many lines')
-            return;
         }
         // if insert between totalLines
         if (idx < this.tb.lines()) {
@@ -193,7 +200,7 @@ export class REPLManager {
         this.tb.set(text);
 
         this.c.setLine(this.tb.length() - 1)
-        this.jumpTo(JumpDirection.TOP);
+        this.jumpTo(JumpDirection.END);
         this.jumpTo(JumpDirection.EOL);
     }
 
@@ -232,7 +239,7 @@ export class REPLManager {
             this.tb.setLine(pos.line, this.tb.getLine(pos.line).removeCharAt(pos.char))
         } else {
             if (pos.line < this.tb.length() - 1) {
-                this.jumpLine(1);
+                this.jumpLine(1 as Direction);
                 this.spliceLine();
             }
         }
@@ -242,9 +249,9 @@ export class REPLManager {
     //NB used to be called gotoCharacter
     jumpChar(dir: Direction) {
 
-        if (dir !== -1 && dir !== 1) {
-            throw new Error('gotoCharacter direction out of bounds: ' + dir);
-        }
+        // if (dir !== -1 && dir !== 1) {
+        //     throw new Error('gotoCharacter direction out of bounds: ' + dir);
+        // }
         var pos = this.c.position()
         this.c.setChar(pos.char + dir);
         pos = this.c.position()
@@ -417,28 +424,3 @@ export class REPLManager {
     }
 
 }
-
-// ===========
-// Deprecated
-
-// return the amount of characters in one line
-// function getCharCount(mat, line){
-// 	var charCount = 0;
-// 	var len = mat.dim[0];
-// 	for (var i = 0; i < len; i++){
-// 		if (mat.getcell(i, line) < 32){
-// 			return charCount;
-// 		}
-// 		charCount++;
-// 	}
-// }
-
-// set an array of amount of characters per line
-// function countChars(){
-// 	var lines = textBuf.length;
-// 	lineLengths = [];
-// 	for (var l=0; l<lines; l++){
-// 		lineLengths[l] = textBuf[l].length;
-// 	}
-// }
-// ===========
