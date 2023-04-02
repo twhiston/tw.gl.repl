@@ -82,6 +82,8 @@ export class KeypressProcessor {
         const json = JSON.parse(config);
         if (json.bindings === undefined)
             return;
+
+
         json.bindings.forEach((item: FunctionBinding) => {
             const id = item.id;
             const asciiCode = item.asciiCode;
@@ -99,7 +101,7 @@ export class KeypressProcessor {
                 }
                 return f;
             });
-            this.attachFunctions(id, asciiCode, parsedFunctions);
+            this.replaceFunctions(id, asciiCode, parsedFunctions);
         });
     }
 }

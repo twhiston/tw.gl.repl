@@ -34,6 +34,48 @@
             "functions": [
                 "ctx.addTab()"
             ]
+        },
+        {
+            "id": "delete",
+            "asciiCode": -6,
+            "functions": [
+                "ctx.deleteChar()"
+            ]
+        },
+        {
+            "id": "backspace",
+            "asciiCode": -7,
+            "functions": [
+                "ctx.backSpace()"
+            ]
+        },
+        {
+            "id": "up",
+            "asciiCode": -9,
+            "functions": [
+                "ctx.jumpLine(-1)"
+            ]
+        },
+        {
+            "id": "down",
+            "asciiCode": -10,
+            "functions": [
+                "ctx.jumpLine(1)"
+            ]
+        },
+        {
+            "id": "left",
+            "asciiCode": -11,
+            "functions": [
+                "ctx.jumpChar(-1)"
+            ]
+        },
+        {
+            "id": "right",
+            "asciiCode": -12,
+            "functions": [
+                "ctx.jumpChar(1)"
+            ]
         }
     ]
 }

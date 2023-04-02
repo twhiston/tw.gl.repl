@@ -240,7 +240,7 @@ export class REPLManager {
 
     // move one character to the right or left
     //NB used to be called gotoCharacter
-    jumpCharacter(dir: Direction) {
+    jumpChar(dir: Direction) {
 
         if (dir !== -1 && dir !== 1) {
             throw new Error('gotoCharacter direction out of bounds: ' + dir);
@@ -293,7 +293,7 @@ export class REPLManager {
                 }
             } else {
                 this.jumpTo(0);
-                this.jumpCharacter(-1);
+                this.jumpChar(-1);
             }
         } else if (k === 1) {
             var l = this.tb.getLine(pos.line).slice(pos.char);
@@ -305,7 +305,7 @@ export class REPLManager {
                 }
             } else {
                 this.jumpTo(1);
-                this.jumpCharacter(1);
+                this.jumpChar(1);
             }
         }
     }

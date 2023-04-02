@@ -41,15 +41,15 @@ export class GLRender {
     // the anim node and text for the command line
     textAnim = new JitterObject("jit.anim.node");
 
-    //glText = new JitterObject("jit.gl.text");
+    glText = new JitterObject("jit.gl.text");
 
     // the anim node and text for the cursor
     crsrAnim = new JitterObject("jit.anim.node");
-    //glCrsr = new JitterObject("jit.gl.text");
+    glCrsr = new JitterObject("jit.gl.text");
 
     // the anim node and text for the line numbers
     nmbrAnim = new JitterObject("jit.anim.node");
-    //glNmbr = new JitterObject("jit.gl.text");
+    glNmbr = new JitterObject("jit.gl.text");
 
     // add all objects to array for easy access when
     // changing multiple parameters
@@ -100,7 +100,7 @@ export class GLRender {
         (<any>this.textNode).type = "float32";
         (<any>this.textNode).name = this.NODE_CTX;
         (<any>this.textNode).adapt = 0;
-        (<any>this.textNode).drawto = this.MAIN_CTX;
+        // (<any>this.textNode).drawto = this.MAIN_CTX;
 
         (<any>this.textAnim).anim = this.ANIM_NODE;
         (<any>this.textAnim).position = [0.9, 0, 0];
@@ -137,7 +137,7 @@ export class GLRender {
         (<any>this.glCam).ortho = 2;
 
         (<any>this.glVid).texture = this.CAM_CAP;
-        (<any>this.glVid).drawto = this.MAIN_CTX;
+        //(<any>this.glVid).drawto = this.MAIN_CTX;
         (<any>this.glVid).transform_reset = 2;
         (<any>this.glVid).blend_enable = 1;
         (<any>this.glVid).depth_enable = 0;
