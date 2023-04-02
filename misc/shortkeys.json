@@ -76,6 +76,13 @@
             "functions": [
                 "ctx.jumpChar(1)"
             ]
+        },
+        {
+            "id": "comment-alt-/",
+            "asciiCode": 247,
+            "functions": [
+                "ctx.commentLine()"
+            ]
         }
     ]
 }

@@ -78,8 +78,6 @@ export class GLRender {
     private SCALING = 1;
     private CRSR = "<<";
     private CRSR_CHARS = [];
-    private CMNT = "//";
-    private CMNT_CHARS = [];
     //TODO: can get rid of most accessor functions for these
     // and use an annotation to make a binding
     private textAlpha = 1; //TODO: why are we not using the a from the rgba?
@@ -151,7 +149,6 @@ export class GLRender {
 
         this.font(this.DEFAULT_FONT)
         this.setCursorChars(this.CRSR)
-        this.setCommentChars(this.CMNT);
     }
 
     @maxMspBinding({ instanceName: 'i.glRender' })
@@ -260,17 +257,6 @@ export class GLRender {
         }
     }
 
-    // set the comment characters
-    @maxMspBinding({ instanceName: 'i.glRender', draw: true, functionName: "comment" })
-    setCommentChars(c) {
-        //post("@comment: ", c, "\n");
-        this.CMNT = c.toString();
-        this.CMNT_CHARS = [];
-        for (var i = 0; i < this.CMNT.length; i++) {
-            this.CMNT_CHARS.push(this.CMNT[i].charCodeAt(0));
-        }
-        this.CMNT_CHARS = this.CMNT_CHARS.concat(32);
-    }
 
     @maxMspBinding({ instanceName: 'i.glRender' })
     runBlink(t: number) {

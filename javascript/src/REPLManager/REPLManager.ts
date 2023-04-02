@@ -8,19 +8,29 @@ import { TextFormatter } from "TextFormatter";
 // MAX_CHARS = 80;
 // INDENTATION = 4;
 // EDITOR_LINES = 30;
-// NOT IMPLEMENTED YET:
-// CRSR = "<<";
-// CMMT = "//";
+// CMNT = "//";
 
 export class REPLSettings {
     MAX_CHARS: number
     INDENTATION: number
     BUFFER_SIZE: number
+    CMNT: string;
+    //TODO: Do we need this?
+    CMNT_CHARS = [];
     constructor(editorLines: number = 30, maxChars: number = 80, indentation: number = 4) {
         this.INDENTATION = indentation
         this.MAX_CHARS = maxChars
         this.BUFFER_SIZE = editorLines
+        this.CMNT = "//"
     }
+    // set CMNT(cmnt: string) {
+    //     this._CMNT = cmnt.toString();
+    //     this.CMNT_CHARS = [];
+    //     for (var i = 0; i < this.CMNT.length; i++) {
+    //         this.CMNT_CHARS.push(this.CMNT[i].charCodeAt(0));
+    //     }
+    //     this.CMNT_CHARS = this.CMNT_CHARS.concat(32);
+    // }
 }
 
 //We use this externally so we have a type we can use to ensure we get both an id and a function when preloading
@@ -69,6 +79,7 @@ export class REPLManager {
                 this.kp.preloadFunction(func.id, func.func);
             }
         }
+        this.setCommentChars(this.config.CMNT);
     }
 
     // process a keypress
@@ -90,6 +101,18 @@ export class REPLManager {
             }
         }
         return msgs;
+    }
+
+    // set the comment characters
+    @maxMspBinding({ instanceName: 'i.repl', draw: true, functionName: "comment" })
+    setCommentChars(c) {
+        //post("@comment: ", c, "\n");
+        this.config.CMNT = c.toString();
+        this.config.CMNT_CHARS = [];
+        for (var i = 0; i < this.config.CMNT.length; i++) {
+            this.config.CMNT_CHARS.push(this.config.CMNT[i].charCodeAt(0));
+        }
+        this.config.CMNT_CHARS = this.config.CMNT_CHARS.concat(32);
     }
 
 
@@ -421,6 +444,23 @@ export class REPLManager {
             // place cursor
             this.c.setChar(Math.max(this.tb.lineLength(this.c.line()), this.c.char()))
         }
+    }
+
+    // Add or remove comment at start of line
+    commentLine() {
+        // add comment-characters to regex
+        // escape special characters
+        var esc = this.config.CMNT.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+
+        var rgx = new RegExp('^ *' + esc + ' ?', 'g');
+        // if has comment remove it, else add
+        let cLine = this.c.line();
+        if (this.tb.getLine(cLine).match(rgx)) {
+            this.tb.setLine(cLine, this.tb.getLine(cLine).replace(rgx, ''));
+        } else {
+            this.tb.setLine(cLine, this.config.CMNT + ' ' + this.tb.getLine(cLine));
+        }
+        this.c.setChar(this.tb.lineLength(this.c.line()));
     }
 
 }

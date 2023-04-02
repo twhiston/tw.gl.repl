@@ -902,3 +902,20 @@ test('keyPress should execute all matching functions in order', t => {
     repl.keyPress(1);
     t.is(order, 3);
 });
+
+test('commentLine', t => {
+    const repl = new REPLManager(new REPLSettings());
+    const testInput = ['Test line 1', 'Test line 2', '// Test line 3'];
+    repl.set(testInput);
+    repl.jumpTo(JumpDirection.TOP);
+    repl.commentLine(); // Comment first line
+    t.is(repl.tb.getLine(0), '// Test line 1');
+
+    repl.jumpLine(1); // Move to second line
+    repl.commentLine(); // Comment second line
+    t.is(repl.tb.getLine(1), '// Test line 2');
+
+    repl.jumpLine(1); // Move to third line
+    repl.commentLine(); // Uncomment third line
+    t.is(repl.tb.getLine(2), 'Test line 3');
+});
