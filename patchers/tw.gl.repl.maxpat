@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 698.0, 139.0, 780.0, 621.0 ],
+		"rect" : [ 322.0, 219.0, 780.0, 621.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -44,7 +44,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 441.399999999999977, 291.0, 42.0, 22.0 ],
+					"patching_rect" : [ 441.399999999999977, 325.0, 42.0, 22.0 ],
 					"text" : "s toJS"
 				}
 
@@ -55,7 +55,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 565.0, 460.0, 42.0, 22.0 ],
+					"patching_rect" : [ 565.0, 510.0, 42.0, 22.0 ],
 					"text" : "s toJS"
 				}
 
@@ -135,7 +135,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 210.0, 460.0, 42.0, 22.0 ],
+					"patching_rect" : [ 218.5, 460.0, 42.0, 22.0 ],
 					"text" : "s toJS"
 				}
 
@@ -252,7 +252,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 153.0, 435.0, 42.0, 22.0 ],
+					"patching_rect" : [ 153.0, 418.5, 42.0, 22.0 ],
 					"text" : "gate 1"
 				}
 

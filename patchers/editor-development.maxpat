@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 650.0, 156.0, 520.0, 700.0 ],
+		"rect" : [ 746.0, 199.0, 390.0, 700.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -39,18 +39,6 @@
 		"subpatcher_template" : "",
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
-				"box" : 				{
-					"id" : "obj-16",
-					"maxclass" : "toggle",
-					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "int" ],
-					"parameter_enable" : 0,
-					"patching_rect" : [ 180.0, 46.0, 24.0, 24.0 ]
-				}
-
-			}
-, 			{
 				"box" : 				{
 					"id" : "obj-8",
 					"maxclass" : "message",
@@ -425,7 +413,7 @@
 					"numoutlets" : 3,
 					"outlettype" : [ "jit_matrix", "bang", "" ],
 					"patching_rect" : [ 63.0, 142.0, 384.0, 22.0 ],
-					"text" : "jit.world editor-dev @fsaa 1 @fsmenubar 0 @size 480 270 @floating 1"
+					"text" : "jit.world editor-dev @fsaa 1 @fsmenubar 0 @size 640 480 @floating 1"
 				}
 
 			}
@@ -451,7 +439,7 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
 					"patching_rect" : [ 245.5, 184.0, 159.0, 22.0 ],
-					"text" : "tw.gl.repl editor-dev 480 270"
+					"text" : "tw.gl.repl editor-dev 640 480"
 				}
 
 			}

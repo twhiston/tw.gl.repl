@@ -45,11 +45,9 @@ export class GLRender {
 
     // the anim node and text for the cursor
     crsrAnim = new JitterObject("jit.anim.node");
-    glCrsr = new JitterObject("jit.gl.text");
 
     // the anim node and text for the line numbers
     nmbrAnim = new JitterObject("jit.anim.node");
-    glNmbr = new JitterObject("jit.gl.text");
 
     // add all objects to array for easy access when
     // changing multiple parameters
@@ -69,10 +67,10 @@ export class GLRender {
     crsrMtx = new JitterMatrix
     nmbrMtx = new JitterMatrix
 
-    private readonly UNIQ = Date.now();
-    private readonly NODE_CTX = "node" + this.UNIQ;
-    private readonly ANIM_NODE = "anim" + this.UNIQ;
-    private readonly CAM_CAP = "cam" + this.UNIQ;
+    private readonly UNIQ: number;
+    private readonly NODE_CTX: string;
+    private readonly ANIM_NODE: string;
+    private readonly CAM_CAP: string;
     private readonly LINE_CHARS = 140;
     private readonly DEFAULT_FONT = 'Arial';
     private FONT_SIZE = 100;
@@ -87,6 +85,7 @@ export class GLRender {
     private textAlpha = 1; //TODO: why are we not using the a from the rgba?
     private useBlink = true;
     private blinkToggle = 0;
+    private isDisabled = false;
 
     private textColor = new Color(1, 1, 1, 1);
     private runColor = new Color(0, 0, 0, 1);
@@ -95,12 +94,20 @@ export class GLRender {
 
 
     // THE HORROR!!
-    constructor() {
+    constructor(uuid: number) {
+
+        this.UNIQ = uuid;
+        this.NODE_CTX = "node" + this.UNIQ;
+        this.ANIM_NODE = "anim" + this.UNIQ;
+        this.CAM_CAP = "cam" + this.UNIQ;
+
         (<any>this.textNode).fsaa = 1;
         (<any>this.textNode).type = "float32";
         (<any>this.textNode).name = this.NODE_CTX;
         (<any>this.textNode).adapt = 0;
-        // (<any>this.textNode).drawto = this.MAIN_CTX;
+
+        (<any>this.animNode).name = this.ANIM_NODE;
+        (<any>this.animNode).position = [0, 0, 0];
 
         (<any>this.textAnim).anim = this.ANIM_NODE;
         (<any>this.textAnim).position = [0.9, 0, 0];
@@ -116,7 +123,6 @@ export class GLRender {
 
         (<any>this.glTextObj.crsr).drawto = this.NODE_CTX;
         (<any>this.glTextObj.crsr).anim = (<any>this.crsrAnim).name;
-        (<any>this.glTextObj.crsr).gl_color = [1, 1, 1, 1];
         (<any>this.glTextObj.crsr).screenmode = 0;
         (<any>this.glTextObj.crsr).cull_face = 1;
         (<any>this.glTextObj.crsr).layer = 10;
@@ -137,7 +143,6 @@ export class GLRender {
         (<any>this.glCam).ortho = 2;
 
         (<any>this.glVid).texture = this.CAM_CAP;
-        //(<any>this.glVid).drawto = this.MAIN_CTX;
         (<any>this.glVid).transform_reset = 2;
         (<any>this.glVid).blend_enable = 1;
         (<any>this.glVid).depth_enable = 0;
@@ -159,14 +164,14 @@ export class GLRender {
     // the text position
     @maxMspBinding({ instanceName: 'i.glRender' })
     position(x: number, y: number) {
-        (<any>this.textNode).position = [x, y, 0];
+        (<any>this.animNode).position = [x, y, 0];
     }
 
     // the text scaling
     @maxMspBinding({ instanceName: 'i.glRender' })
     scale(s: number) {
         this.SCALING = s * 100 / this.FONT_SIZE;
-        (<any>this.textNode).scale = [this.SCALING, this.SCALING, 0];
+        (<any>this.animNode).scale = [this.SCALING, this.SCALING, 0];
     }
 
     draw(textBuf: Array<string>, pos: CursorPosition) {
@@ -352,6 +357,11 @@ export class GLRender {
         for (const [k, v] of Object.entries(this.glTextObj)) {
             (<any>v).leadscale = l;
         }
+    }
+
+    disableText(state: boolean) {
+        this.isDisabled = state;
+        this.alpha(1.0 - Number(this.isDisabled) * 0.5);
     }
 
     //TODO: tighten type

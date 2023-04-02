@@ -55,11 +55,11 @@ test('gotoCharacter  move the cursor to the left', (t) => {
     repl.addChar(105); // Adds the character "i"
     repl.addChar(105); // Adds the character "i"
     repl.addChar(105); // Adds the character "i"
-    repl.jumpCharacter(-1); // Moves the cursor to the left
+    repl.jumpChar(-1); // Moves the cursor to the left
     t.is(repl.c.position().char, 3);
-    repl.jumpCharacter(-1); // Moves the cursor to the left
+    repl.jumpChar(-1); // Moves the cursor to the left
     t.is(repl.c.position().char, 2);
-    repl.jumpCharacter(1); // Moves the cursor to the left
+    repl.jumpChar(1); // Moves the cursor to the left
     t.is(repl.c.position().char, 3);
 });
 
@@ -380,7 +380,7 @@ test('should return position at the left end of the line when direction is -1', 
     const replManager = new REPLManager(new REPLSettings(10));
     replManager.jumpTo(3); // go to bottom
     replManager.jumpTo(1); // go to end of the line
-    replManager.jumpCharacter(-1);
+    replManager.jumpChar(-1);
     const pos = replManager.c.position();
     t.is(pos.char, 0);
 });
@@ -388,7 +388,7 @@ test('should return position at the left end of the line when direction is -1', 
 test('should return position at the beginning of the line when already at the beginning of the line and direction is -1', t => {
     const replManager = new REPLManager(new REPLSettings(10));
     replManager.jumpTo(0); // go to the beginning of the line
-    replManager.jumpCharacter(-1);
+    replManager.jumpChar(-1);
     const pos = replManager.c.position();
     t.is(pos.char, 0);
 });
@@ -397,7 +397,7 @@ test('should return position at the right end of the line when direction is 1', 
     const replManager = new REPLManager(new REPLSettings(10));
     replManager.addChar(65); // Add A
     replManager.addChar(65); // Add A
-    replManager.jumpCharacter(1);
+    replManager.jumpChar(1);
     const pos = replManager.c.position();
     t.is(pos.char, 2);
 });
@@ -405,7 +405,7 @@ test('should return position at the right end of the line when direction is 1', 
 test('should return position at the end of the line when already at the end of the line and direction is 1', t => {
     const replManager = new REPLManager(new REPLSettings(10));
     replManager.addChar(65); // Add A
-    replManager.jumpCharacter(1);
+    replManager.jumpChar(1);
     const pos = replManager.c.position();
     t.is(pos.char, 1);
 });
