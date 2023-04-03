@@ -3,8 +3,12 @@ import glob from 'glob';
 import path from 'path';
 import { MaxBindingGenerator } from './MaxBindingGenerator';
 
+const templates = {
+    mainTemplate: './src/MaxBindings/templates/main.hbs',
+    functionTemplate: './src/MaxBindings/templates/function.hbs'
+};
 //new rendered with the route path
-const mbg = new MaxBindingGenerator("./")
+const mbg = new MaxBindingGenerator("./", templates)
 
 // Options to configure the TypeScript Compiler API
 const options: ts.CompilerOptions = {

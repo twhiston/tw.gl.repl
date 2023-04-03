@@ -4,29 +4,29 @@ import ts from 'typescript';
 import Handlebars from 'handlebars';
 import { MaxMspBindingOptions } from './MaxBindings';
 
-export class MaxBindingGenerator {
+export class MaxGenerator {
 
     readonly projectDir: string;
     readonly srcDir: string;
     readonly outputDir: string;
     readonly outputPath: string;
 
-    templateFiles = {
-        mainTemplate: './src/MaxBindings/templates/main.hbs',
-        functionTemplate: './src/MaxBindings/templates/function.hbs'
-    };
+    templateFiles = {}
 
-    templates = Object.fromEntries(
-        Object.entries(this.templateFiles).map(([name, filePath]) => {
-            return [name, Handlebars.compile(fs.readFileSync(filePath, 'utf8'))];
-        })
-    );
+    templates: { [k: string]: HandlebarsTemplateDelegate<any>; }
 
-    constructor(projectDir: string) {
+    constructor(projectDir: string, templateFiles: any) {
+        this.templateFiles = templateFiles
         this.projectDir = projectDir
         this.srcDir = path.join(this.projectDir, 'src');
         this.outputDir = path.join(this.projectDir, 'dist');
         this.outputPath = path.join(this.outputDir, 'tw.gl.repl.js');
+
+        this.templates = Object.fromEntries(
+            Object.entries(this.templateFiles).map(([name, filePath]) => {
+                return [name, Handlebars.compile(fs.readFileSync(filePath as any, 'utf8'))];
+            })
+        );
     }
 
     generate(filteredFiles: Array<ts.SourceFile>, checker: ts.TypeChecker) {
@@ -40,39 +40,20 @@ export class MaxBindingGenerator {
     }
 
     //helper function to merge all the maps we are going to make of bindings
-    mergeMaps<K, V>(map1: Map<K, V>, map2: Map<K, V>): Map<K, V> {
+    protected mergeMaps<K, V>(map1: Map<K, V>, map2: Map<K, V>): Map<K, V> {
         return new Map([...map1, ...map2]);
     }
 
-    generateBindingCode(name: string, options: MaxMspBindingOptions) {
-        return {
-            rendered: this.templates.functionTemplate({ options })
-        }
-    }
-
-    uniq<T>(array: T[]) {
+    protected uniq<T>(array: T[]) {
         return array.filter((value, index) => array.indexOf(value) === index);
     }
 
     writeGeneratedCode(bindings: Map<string, { filePath: string, options: MaxMspBindingOptions }>) {
-        const bindingArr = Array.from(bindings.entries())
-        let genFuncs: any = []
-        let importPaths: Array<string> = []
-        for (const b of bindingArr) {
-            //const dirname = path.dirname(b[1].filePath)
-            const relativePath = path.relative("src", path.dirname(b[1].filePath));
-            //const requirePath = `./${relativePath}/${b[1].filePath}`;
-            importPaths.push(relativePath)
-            const o = this.generateBindingCode(b[0], b[1].options)
-            genFuncs.push(o)
-        }
-        importPaths = this.uniq(importPaths)
-        const generatedCode = this.templates.mainTemplate({ imports: importPaths, functions: genFuncs })
-
-        fs.writeFileSync(this.outputPath, generatedCode);
+        //Implement this in a child class and write a file
+        //fs.writeFileSync(this.outputPath, generatedCode);
     }
 
-    findMaxMspBindings(sourceFile: ts.SourceFile, checker: ts.TypeChecker): Map<string, { filePath: string, options: MaxMspBindingOptions }> {
+    protected findMaxMspBindings(sourceFile: ts.SourceFile, checker: ts.TypeChecker): Map<string, { filePath: string, options: MaxMspBindingOptions }> {
         const bindings = new Map<string, { filePath: string, options: MaxMspBindingOptions }>();
         let classOptions: MaxMspBindingOptions = {};
         const visit = (node: ts.Node) => {
@@ -116,7 +97,6 @@ export class MaxBindingGenerator {
                         options.comment = sourceFile.text.substring(commentRange.pos, commentRange.end).trim();
                     }
 
-
                     bindings.set(name, { filePath, options });
                 }
             }
@@ -126,7 +106,7 @@ export class MaxBindingGenerator {
         return bindings;
     }
 
-    extractBindings(optionsArg: any, checker: ts.TypeChecker): MaxMspBindingOptions {
+    protected extractBindings(optionsArg: any, checker: ts.TypeChecker): MaxMspBindingOptions {
 
         const options: MaxMspBindingOptions = {};
 
@@ -147,6 +127,32 @@ export class MaxBindingGenerator {
         }
 
         return options;
+    }
+
+}
+
+export class MaxBindingGenerator extends MaxGenerator {
+
+    protected generateFunctionCode(name: string, options: MaxMspBindingOptions) {
+        return {
+            rendered: this.templates.functionTemplate({ options })
+        }
+    }
+
+    writeGeneratedCode(bindings: Map<string, { filePath: string, options: MaxMspBindingOptions }>) {
+        const bindingArr = Array.from(bindings.entries())
+        let genFuncs: any = []
+        let importPaths: Array<string> = []
+        for (const b of bindingArr) {
+            const relativePath = path.relative("src", path.dirname(b[1].filePath));
+            importPaths.push(relativePath)
+            const o = this.generateFunctionCode(b[0], b[1].options)
+            genFuncs.push(o)
+        }
+        importPaths = this.uniq(importPaths)
+        const generatedCode = this.templates.mainTemplate({ imports: importPaths, functions: genFuncs })
+
+        fs.writeFileSync(this.outputPath, generatedCode);
     }
 
 }
