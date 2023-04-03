@@ -11,7 +11,7 @@
     "generate-max-binding": "npx ts-node --skip-project ./src/MaxBindings/generateMaxBindings.ts",
     "compile": "npx tsc; npm run generate-max-binding",
     "test": "nyc --cwd ./../ --report-dir=javascript/coverage --temp-dir=javascript/.nyc_output --reporter=lcov --reporter=text ava",
-    "fuzz": "jsfuzz ./fuzzTarget.js corpus",
+    "fuzz": "jsfuzz ./TextBuffer/formatters/fuzzTarget.js corpus",
     "report": "nyc report --reporter=html --exclude-node-modules=false"
   },
   "author": "",
