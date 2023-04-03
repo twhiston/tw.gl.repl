@@ -233,7 +233,9 @@ export class REPLManager {
     // this can be a list of symbols for every line
     @maxMspBinding({ draw: true })
     set(text: Array<string>) {
+
         text = (text.length < 1) ? [''] : text;
+        text = (!Array.isArray(text)) ? [text] : text;
 
         var inputLines = Math.min(this.config.BUFFER_SIZE, text.length);
         text = text.slice(0, inputLines);

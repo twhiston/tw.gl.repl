@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 636.0, 100.0, 572.0, 621.0 ],
+		"rect" : [ 635.0, 99.0, 572.0, 621.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -1399,7 +1399,7 @@
 													"numoutlets" : 1,
 													"outlettype" : [ "" ],
 													"patching_rect" : [ 287.0, 199.0, 50.0, 22.0 ],
-													"text" : "127"
+													"text" : "109"
 												}
 
 											}
@@ -4072,7 +4072,7 @@
 					"outlettype" : [ "", "", "" ],
 					"patching_rect" : [ 153.0, 504.0, 173.0, 22.0 ],
 					"saved_object_attributes" : 					{
-						"filename" : "tw.gl.repl",
+						"filename" : "tw.gl.repl.js",
 						"parameter_enable" : 0
 					}
 ,

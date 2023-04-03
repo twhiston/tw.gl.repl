@@ -225,7 +225,7 @@ and needs to be transpiled.
 
 ### Build cycle
 
-`npm compile` will render the max compatible javascript from our typescript and
+`npm run compile` will render the max compatible javascript from our typescript and
 generate the `tw.gl.repl.js` file which we will load into max.
 
 ### Testing
@@ -234,7 +234,7 @@ Testing is done with the `ava` framework. If you are going to add a new feature
 and contribute it back (please do!) then you'll need to write tests for it as well.
 The code here has pretty good test coverage so look at the `moduleName.test.ts` files
 for lots of examples.
-`npm test` will run all the tests and output coverage. `npm report` will generate
+`npm run test` will run all the tests and output coverage. `npm run report` will generate
 an html report you can use to see where you are missing test coverage.
 
 Github pipelines will run on push, these run all tests and output coverage and also
