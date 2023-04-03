@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
+
+<c74object name="tw.gl.repl">
+
+	<digest>
+		Create a repl with javascipt and opengl.
+	</digest>
+
+	<description>
+		A configurable repl for opengl in Max. Add the object to your setup and initialize it with the
+		name of the render context. Make sure you send it the render bang in the top inlet. You can execute
+		the text in the repl to pass it through some formatters and output it, where you can do whatever you
+		like with it in max.For example control parameters of gl objects, control musical parameters, 
+		lighting shows, just use it as a typewriter or whatever you think of!
+		You can also attach functions to each key that the repl processes, this allows you to easily create
+		dsl's or command languages, you could output commands, or output messages that the repl itself responds to.
+		All messages output from functions attached to keys are processed by the repl, and then if not matched
+		are output outlet 2, where you can route them yourself.
+	</description>
+
+	<!--METADATA-->
+	<metadatalist>
+		<metadata name="author">Tom Whiston</metadata>
+		<metadata name="tag">twModules</metadata>
+		<metadata name="tag">max</metadata>
+		<metadata name="tag">jitter</metadata>
+		<metadata name="tag">opengl</metadata>
+		<metadata name="tag">code</metadata>
+		<metadata name="tag">repl</metadata>
+		<metadata name="tag">text</metadata>
+	</metadatalist>
+
+	<!--INLETS-->
+	<!-- <inletlist>
+		<inlet id="0" type="float">
+			<digest></digest>
+		</inlet>
+		<inlet id="1" type="float">
+			<digest></digest>
+		</inlet>
+	</inletlist> -->
+
+	<!--OUTLETS-->
+	<!-- <outletlist>
+		<outlet id="0" type="int/float">
+			<digest></digest>
+			<description></description>
+		</outlet>
+	</outletlist> -->
+
+	<!--ARGUMENTS-->
+	<objarglist>
+		<objarg name="rendering-context" optional="0" type="string">
+			<digest>
+				The named drawing context in which to draw (default = none).
+			</digest>
+			<description>
+				Set the name of the rendering context. This is the name given to the jit.world, jit.gl.render or
+				jit.gl.node object.
+			</description>
+		</objarg>
+		<objarg name="width" optional="0" type="number">
+			<digest>
+				Width of the render context
+			</digest>
+			<description>
+				Set the width of the render context for scaling etc.
+			</description>
+		</objarg>
+		<objarg name="height" optional="0" type="number">
+			<digest>
+				Height of the render context
+			</digest>
+			<description>
+				Set the height of the render context for scaling etc.
+			</description>
+		</objarg>
+	</objarglist>
+
+	<!--MESSAGES-->
+	<methodlist>
+		{{#each methods}}
+		{{{rendered }}}
+		{{/each}}
+	</methodlist>
+
+	<!--ATTRIBUTES-->
+	<attributelist>
+		{{#each attributes}}
+		{{{rendered }}}
+		{{/each}}
+	</attributelist>
+
+	<!--SEEALSO-->
+	<seealsolist>
+		<seealso name="th.gl.textedit" />
+		<seealso name="th.gl.commandline" />
+		<seealso name="jit.gl.text" />
+		<seealso name="jit.gl.gridshape" />
+		<seealso name="jit.gl.multiple" />
+		<seealso name="send" />
+		<seealso name="receive" />
+		<seealso name="route" />
+		<seealso name="routepass" />
+		<seealso name="js" />
+		<seealso name="fontlist" />
+		<seealso name="umenu" />
+	</seealsolist>
+
+</c74object>

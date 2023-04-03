@@ -1,14 +1,21 @@
 import ts from 'typescript';
 import glob from 'glob';
 import path from 'path';
-import { MaxBindingGenerator } from './MaxBindingGenerator';
+import { MaxBindingGenerator, MaxXmlGenerator } from './MaxBindingGenerator';
 
 const templates = {
     mainTemplate: './src/MaxBindings/templates/main.hbs',
     functionTemplate: './src/MaxBindings/templates/function.hbs'
 };
+
+const xmlTemplates = {
+    mainTemplate: './src/MaxBindings/templates/xml/main.hbs',
+    attributeTemplate: './src/MaxBindings/templates/xml/attribute.hbs',
+    methodTemplate: './src/MaxBindings/templates/xml/method.hbs'
+};
 //new rendered with the route path
 const mbg = new MaxBindingGenerator("./", templates)
+const mbgXml = new MaxXmlGenerator("./", xmlTemplates, './../docs', 'tw.tl.repl.maxref.xml')
 
 // Options to configure the TypeScript Compiler API
 const options: ts.CompilerOptions = {
@@ -30,4 +37,6 @@ const filteredFiles = program.getSourceFiles().filter(sourceFile => files.includ
 
 // Find bindings and generate
 mbg.generate(filteredFiles, checker);
+// Generate xml helper file
+mbgXml.generate(filteredFiles, checker);
 

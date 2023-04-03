@@ -4,6 +4,26 @@ import ts from 'typescript';
 import Handlebars from 'handlebars';
 import { MaxMspBindingOptions } from './MaxBindings';
 
+function cleanComment(comment: string) {
+    return
+}
+
+Handlebars.registerHelper('cutComment', function (comment: string) {
+    const cleanComment = comment.split('\\n')
+        .map(line => line.replace(/(\/\/|[\/*])/g, ''))
+        .join(' ')
+        .trim();
+    return cleanComment;
+});
+
+Handlebars.registerHelper('firstSentanceOrLine', function (comment: string) {
+    const cleanComment = comment.split('\\n')
+        .map(line => line.replace(/(\/\/|[\/*])/g, ''))
+        .join('\n')
+        .trim();
+    return cleanComment.split(/[.\n]/, 1)[0];
+});
+
 export class MaxGenerator {
 
     readonly projectDir: string;
@@ -15,12 +35,12 @@ export class MaxGenerator {
 
     templates: { [k: string]: HandlebarsTemplateDelegate<any>; }
 
-    constructor(projectDir: string, templateFiles: any) {
+    constructor(projectDir: string, templateFiles: any, outDir: string = 'dist', fileName: string = 'tw.gl.repl.js') {
         this.templateFiles = templateFiles
         this.projectDir = projectDir
         this.srcDir = path.join(this.projectDir, 'src');
-        this.outputDir = path.join(this.projectDir, 'dist');
-        this.outputPath = path.join(this.outputDir, 'tw.gl.repl.js');
+        this.outputDir = path.join(this.projectDir, outDir);
+        this.outputPath = path.join(this.outputDir, fileName);
 
         this.templates = Object.fromEntries(
             Object.entries(this.templateFiles).map(([name, filePath]) => {
@@ -127,6 +147,40 @@ export class MaxGenerator {
         }
 
         return options;
+    }
+
+}
+
+export class MaxXmlGenerator extends MaxGenerator {
+
+    protected generateMethodCode(name: string, options: MaxMspBindingOptions) {
+        return {
+            rendered: this.templates.methodTemplate({ options })
+        }
+    }
+
+    protected generateAttributeCode(name: string, options: MaxMspBindingOptions) {
+        return {
+            rendered: this.templates.attributeTemplate({ options })
+        }
+    }
+
+    writeGeneratedCode(bindings: Map<string, { filePath: string, options: MaxMspBindingOptions }>) {
+        const bindingArr = Array.from(bindings.entries())
+        let genMethods: any = []
+        let genAttributes: any = []
+        for (const b of bindingArr) {
+            const o = this.generateMethodCode(b[0], b[1].options)
+            if (o.rendered !== '')
+                genMethods.push(o)
+
+            const a = this.generateAttributeCode(b[0], b[1].options)
+            if (a.rendered !== '')
+                genAttributes.push(a)
+        }
+        const generatedCode = this.templates.mainTemplate({ methods: genMethods, attributes: genAttributes })
+
+        fs.writeFileSync(this.outputPath, generatedCode);
     }
 
 }

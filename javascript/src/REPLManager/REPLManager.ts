@@ -83,11 +83,13 @@ export class REPLManager {
         this.setCommentChars(this.config.CMNT);
     }
 
-    // process a keypress
-    //This needs more around it so it's not a simple bind
-    //if a function which is called throws it is expected that
-    //it should return some info about why in the error, which will
-    //be output with the word error prepended as a msg
+    /*
+     process a keypress
+     This needs more around it so it's not a simple bind
+     if a function which is called throws it is expected that
+     it should return some info about why in the error, which will
+     be output with the word error prepended as a msg
+    */
     keyPress(k: number) {
         const res = this.kp.processKeypress(k)
         let msgs: Array<string> = [];
@@ -121,10 +123,9 @@ export class REPLManager {
         return type + " " + arg;
     }
 
-    // set the comment characters
+    // set the comment characters. bind the comment function to a key combo to use
     @maxMspBinding({ draw: true, functionName: "comment" })
     setCommentChars(c) {
-        //post("@comment: ", c, "\n");
         this.config.CMNT = c.toString();
         this.config.CMNT_CHARS = [];
         for (var i = 0; i < this.config.CMNT.length; i++) {
@@ -229,8 +230,10 @@ export class REPLManager {
         }
     }
 
-    // replace all the text with the incoming arguments
-    // this can be a list of symbols for every line
+    /*
+    * replace all the text with the incoming arguments
+    * this can be a list of symbols for every line
+    */
     @maxMspBinding({ draw: true })
     set(text: Array<string>) {
 
