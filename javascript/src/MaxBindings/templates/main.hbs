@@ -60,7 +60,6 @@ function run() {
 	if (!OUT_MAT) {
 		var out = i.repl.tb.format(false);
 		outlet(0, out);
-		// outlet(0, mtxToSymbol(textMtx));
 	}
 	if (EPHEMERAL_MODE) {
 		i.glRender.clear();
@@ -77,16 +76,6 @@ function draw() {
 
 	i.glRender.draw(i.repl.tb.get(), i.repl.c.position())
 
-	//Send some data out about the state
-	//TODO: assumed needed for dynamic resizing which we want to bring into code anyway
-	// Should at least be abstracted into a repl class status function
-	{{!-- var len = i.repl.tb.getMaxChar();
-	var tbLen = i.repl.tb.length();
-	outlet(1, "lines", tbLen);
-	outlet(1, "line", i.repl.tb.getLine());
-	outlet(1, "length", len);
-	outlet(1, "nLength", len / i.repl.config.MAX_CHARS);
-	outlet(1, "nLines", (tbLen - 1) / (i.repl.config.BUFFER_SIZE - 1)); --}}
 	//Send some data out about the state
 	var status = i.repl.status()
 	for (var a = 0; a < status.length; a++) {
