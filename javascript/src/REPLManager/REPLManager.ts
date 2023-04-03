@@ -104,6 +104,23 @@ export class REPLManager {
         return msgs;
     }
 
+    status(): Array<string> {
+        var len = this.tb.getMaxChar();
+        var tbLen = this.tb.length();
+        let msg: Array<string> = []
+        msg.push(this.msgFormatter("lines", tbLen.toString()))
+        msg.push(this.msgFormatter("line", this.tb.getLine(this.c.line())))
+        msg.push(this.msgFormatter("length", len.toString()))
+        msg.push(this.msgFormatter("nLength", (len / this.config.MAX_CHARS).toString()))
+        msg.push(this.msgFormatter("nLines", ((tbLen - 1) / (this.config.BUFFER_SIZE - 1)).toString()))
+        return msg;
+    }
+
+    //Need to fromSymbol these messages when we output them in max
+    msgFormatter(type: string, arg) {
+        return type + " " + arg;
+    }
+
     // set the comment characters
     @maxMspBinding({ draw: true, functionName: "comment" })
     setCommentChars(c) {
