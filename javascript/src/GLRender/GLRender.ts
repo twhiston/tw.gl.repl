@@ -152,6 +152,7 @@ export class GLRender {
         this.setCursorChars(this.CRSR)
     }
 
+    //Set the render context for displaying the repl.
     @maxMspBinding({})
     drawto(v: string) {
         this.MAIN_CTX = v;

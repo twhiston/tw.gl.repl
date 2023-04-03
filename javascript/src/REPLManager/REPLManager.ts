@@ -265,7 +265,7 @@ export class REPLManager {
         }
     }
 
-    //used to be called clear
+    //reset the cursor and empty the buffer
     @maxMspBinding({ draw: true })
     clear() {
         this.c.reset()

@@ -94,6 +94,7 @@ export class MaxBindingGenerator {
                 let maxMspBindingDecorator = decorators.find(dec => ts.isIdentifier((<any>dec.expression).expression) && ((<any>dec.expression).expression.escapedText === 'maxMspBinding'));
                 if (maxMspBindingDecorator) {
 
+
                     const options = this.extractBindings((<any>maxMspBindingDecorator?.expression).arguments[0], checker)
 
                     const name = node.name?.getText() || 'anonymousFunction';
@@ -108,6 +109,14 @@ export class MaxBindingGenerator {
                     for (const param of node.parameters) {
                         options.params.push(param.name.getText(sourceFile))
                     }
+
+                    const leadingTrivia = ts.getLeadingCommentRanges(sourceFile.text, maxMspBindingDecorator.getFullStart());
+                    if (leadingTrivia && leadingTrivia.length > 0) {
+                        const commentRange = leadingTrivia[leadingTrivia.length - 1];
+                        options.comment = sourceFile.text.substring(commentRange.pos, commentRange.end).trim();
+                    }
+
+
                     bindings.set(name, { filePath, options });
                 }
             }
