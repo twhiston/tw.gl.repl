@@ -23,7 +23,6 @@
     "handlebars": "^4.7.7",
     "nyc": "^15.1.0",
     "reflect-metadata": "^0.1.13",
-    "sinon": "^15.0.3",
     "ts-node": "^10.9.1",
     "tsconfig-paths": "^4.2.0",
     "typescript": "^5.0.2"

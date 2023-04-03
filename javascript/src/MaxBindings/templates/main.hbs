@@ -18,6 +18,11 @@ var sKeys = new Dict(jsarguments[2]);
 var OUT_MAT = false;
 var EPHEMERAL_MODE = false;
 
+// Optionally include a user-repl file where you can define some additional things
+// You will have access to i.glRender and i.repl in ths code at runtime so
+// you can preload or attach your custom functions etc.
+include("user-repl")
+
 function loadbang() {
 	init();
 }

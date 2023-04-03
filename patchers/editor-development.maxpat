@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 746.0, 199.0, 390.0, 700.0 ],
+		"rect" : [ 784.0, 149.0, 390.0, 700.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -39,6 +39,18 @@
 		"subpatcher_template" : "",
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
+				"box" : 				{
+					"id" : "obj-13",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 63.0, 219.0, 35.0, 22.0 ],
+					"text" : "clear"
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"id" : "obj-8",
 					"maxclass" : "message",
@@ -475,6 +487,13 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-1", 0 ],
+					"source" : [ "obj-13", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-1", 0 ],
 					"source" : [ "obj-14", 0 ]
 				}
 
@@ -558,13 +577,6 @@
 			}
  ],
 		"dependency_cache" : [ 			{
-				"name" : "includes.js",
-				"bootpath" : "~/Documents/Max 8/Packages/tw.gl.repl/javascript/dist",
-				"patcherrelativepath" : "../javascript/dist",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
 				"name" : "tw.gl.repl.js",
 				"bootpath" : "~/Documents/Max 8/Packages/tw.gl.repl/javascript/dist",
 				"patcherrelativepath" : "../javascript/dist",
@@ -576,6 +588,13 @@
 				"bootpath" : "~/Documents/Max 8/Packages/tw.gl.repl/patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "user-repl.js",
+				"bootpath" : "~/Documents/Max 8/Packages/tw.gl.repl/patchers",
+				"patcherrelativepath" : ".",
+				"type" : "TEXT",
 				"implicit" : 1
 			}
  ],

@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 209.0, 200.0, 780.0, 621.0 ],
+		"rect" : [ 647.0, 192.0, 780.0, 621.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -3942,7 +3942,7 @@
 					"outlettype" : [ "", "", "" ],
 					"patching_rect" : [ 153.0, 504.0, 173.0, 22.0 ],
 					"saved_object_attributes" : 					{
-						"filename" : "tw.gl.repl",
+						"filename" : "tw.gl.repl.js",
 						"parameter_enable" : 0
 					}
 ,
@@ -4010,7 +4010,6 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-31", 0 ],
-					"midpoints" : [ 239.5, 536.0 ],
 					"order" : 0,
 					"source" : [ "obj-153", 1 ]
 				}
