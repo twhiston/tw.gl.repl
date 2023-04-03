@@ -108,7 +108,20 @@ export class MaxGenerator {
                     options.paramCount = node.parameters.length
                     options.params = []
                     for (const param of node.parameters) {
-                        options.params.push(param.name.getText(sourceFile))
+                        const parameterName = param.name.getText(sourceFile);
+                        let parameterType: string
+                        if (param.type === undefined)
+                            parameterType = 'unknown'
+                        else
+                            parameterType = checker.typeToString(checker.getTypeAtLocation(param.type));
+
+                        const hasDefaultValue = param.initializer !== undefined;
+                        const defaultValue = hasDefaultValue ? param.initializer.getText(sourceFile) : false;
+                        options.params.push({
+                            name: parameterName,
+                            type: parameterType,
+                            default: defaultValue
+                        })
                     }
 
                     const leadingTrivia = ts.getLeadingCommentRanges(sourceFile.text, maxMspBindingDecorator.getFullStart());

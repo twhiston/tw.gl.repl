@@ -195,7 +195,9 @@ export class REPLManager {
         this.jumpTo(JumpDirection.EOL);
     }
 
-    // remove a line of text at a specified index
+    /* remove a line of text at a specified index
+    * if no idx is provided it will remove the last line of the buffer.
+    */
     @maxMspBinding({ draw: true })
     remove(idx: number = -1) {
         if (idx === -1) { idx = this.tb.length() - 1; }
@@ -203,8 +205,9 @@ export class REPLManager {
         this.deleteLine();
     }
 
-    // insert a line of text or multiple symbols at a specified index
-    // a list of symbols will inserte one line per symbol
+    /* insert a line of text or multiple symbols at a specified index
+    * a list of symbols will insert one line per symbol
+    */
     @maxMspBinding({ draw: true, throws: true })
     insert(idx: number, text: Array<string>) {
         var idx = Math.min(this.config.BUFFER_SIZE, idx);
