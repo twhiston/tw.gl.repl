@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 888.0, 145.0, 297.0, 700.0 ],
+		"rect" : [ 941.0, 141.0, 617.0, 700.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -40,13 +40,46 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-31",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 15.0, 504.0, 53.0, 22.0 ],
+					"text" : "s toRepl"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-24",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "bang" ],
+					"patching_rect" : [ 366.5, 289.0, 58.0, 22.0 ],
+					"text" : "loadbang"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-17",
+					"maxclass" : "dict.view",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 366.5, 382.0, 232.0, 277.0 ]
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-28",
 					"maxclass" : "message",
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 63.0, 539.0, 173.0, 22.0 ],
-					"text" : "set \"this is a buffer nIt has text\""
+					"patching_rect" : [ 93.0, 471.0, 197.0, 22.0 ],
+					"text" : "set \"this is a buffer. It has text\""
 				}
 
 			}
@@ -128,7 +161,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 188.25, 298.0, 35.0, 22.0 ],
+					"patching_rect" : [ 78.0, 289.0, 35.0, 22.0 ],
 					"text" : "clear"
 				}
 
@@ -140,7 +173,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 176.5, 353.0, 91.0, 22.0 ],
+					"patching_rect" : [ 204.0, 406.0, 91.0, 22.0 ],
 					"text" : "output_matrix 1"
 				}
 
@@ -152,7 +185,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 78.0, 451.0, 101.0, 22.0 ],
+					"patching_rect" : [ 93.0, 371.0, 101.0, 22.0 ],
 					"text" : "drawto editor-dev"
 				}
 
@@ -164,7 +197,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 62.0, 371.0, 91.0, 22.0 ],
+					"patching_rect" : [ 204.0, 371.0, 91.0, 22.0 ],
 					"text" : "output_matrix 0"
 				}
 
@@ -176,7 +209,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 58.0, 315.0, 86.0, 22.0 ],
+					"patching_rect" : [ 204.0, 437.0, 86.0, 22.0 ],
 					"text" : "blink_enable 1"
 				}
 
@@ -188,7 +221,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 132.5, 252.0, 35.0, 22.0 ],
+					"patching_rect" : [ 132.5, 245.0, 35.0, 22.0 ],
 					"text" : "draw"
 				}
 
@@ -200,7 +233,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 4,
 					"outlettype" : [ "dictionary", "", "", "" ],
-					"patching_rect" : [ 157.0, 385.0, 130.0, 22.0 ],
+					"patching_rect" : [ 366.5, 322.0, 130.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"embed" : 0,
 						"parameter_enable" : 0,
@@ -563,6 +596,13 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-20", 0 ],
+					"source" : [ "obj-13", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-20", 0 ],
 					"source" : [ "obj-15", 0 ]
 				}
 
@@ -618,6 +658,13 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-5", 0 ],
+					"source" : [ "obj-24", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-2", 0 ],
 					"source" : [ "obj-26", 0 ]
 				}
@@ -625,7 +672,7 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-20", 0 ],
+					"destination" : [ "obj-31", 0 ],
 					"source" : [ "obj-28", 0 ]
 				}
 
@@ -653,8 +700,22 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-17", 0 ],
+					"source" : [ "obj-5", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-20", 0 ],
 					"source" : [ "obj-7", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-20", 0 ],
+					"source" : [ "obj-9", 0 ]
 				}
 
 			}
