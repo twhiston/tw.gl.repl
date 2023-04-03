@@ -15,7 +15,7 @@ const xmlTemplates = {
 };
 //new rendered with the route path
 const mbg = new MaxBindingGenerator("./", templates)
-const mbgXml = new MaxXmlGenerator("./", xmlTemplates, './../docs', 'tw.tl.repl.maxref.xml')
+const mbgXml = new MaxXmlGenerator("./", xmlTemplates, './../docs', 'tw.gl.repl.maxref.xml')
 
 // Options to configure the TypeScript Compiler API
 const options: ts.CompilerOptions = {

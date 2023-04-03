@@ -2,8 +2,8 @@
 
 ## TODO
 
+* Do attributes properly in xml ref file and patch
 * Pastebin functionality
-* Render the maxref automatically
 * add some settings to the shortkeys.json for repl config (eg alphanumerical override)
 * figure out automating releases without source in pipelines for tags
 
