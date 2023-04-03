@@ -88,6 +88,32 @@ function draw() {
 	}
 
 }
+draw.local = 1
+
+//Read from a filename (provided by opendialog) and replay it's keypresses
+function read(filename) {
+    f = new File(filename, "read", "TEXT")
+    f.open()
+    var data = f.readbytes(f.eof);
+    f.close()
+
+    for (var index = 0; index < data.length; index++) {
+        keyPress(data[index]);
+    }
+    draw()
+}
+
+//write the buffer to a file, to be played back later
+function write(filename) {
+    f = new File(filename, "write", "TEXT")
+    f.open()
+    fout.eof = 0;
+    var data = i.repl.tb.format()
+    for (var index = 0; index < data.length; index++) {
+        f.writeline(data[index])
+    }
+    f.close()
+}
 
 // REPL BINDINGS
 // Functions below here are generated from class methods decorated with @maxMspBinding

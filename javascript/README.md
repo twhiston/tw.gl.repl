@@ -18,7 +18,8 @@ also generate messages for output.
 
 ## Install
 
-You should install this inside your Max packages directory
+You should install this inside your Max packages directory, then you can use it.
+See help files for some ideas on what you might do.
 
 ## Execute functionality
 
@@ -27,7 +28,7 @@ the resulting text from outlet 1. This allows you to write livecoding style comm
 in the repl, ensure they are formatted as needed, and then output them for further
 routing and processing in max.
 
-## TextFormatters
+### TextFormatters
 
 By default there are two formatters which run on execute, firstly `WhitespaceFormatter`
 will trim stings and ensure consistency in the whitespace character used. Secondly
@@ -176,10 +177,22 @@ you should bind a function to keycode `127` instead of the default one (shown be
 }
 ```
 
+## Reading and Writing files
+
+Writing files will save the contents of the buffer into a text file.
+
+*IMPORTANT NOTE:* reading files does not just fill the buffer with the text,
+because the possibility of attaching functions to each key means that
+progressive keypresses can build up application state, when a file is loaded
+it is played back as individual keypresses. Because of this you need to ensure
+that your config handles both the max and filesystem keycodes for things like
+spaces or new lines. You can see this in the default configuration provided
+
 ### Differences from th.gl.texteditor
 
 * No internal functions, everything is user defined
 * Different shortkey.json format
+* All js file handling
 * More flexible to extend
 * Slightly different max patch around javascript
 * Written in modern modular typescript code and then transpiled to es3 for max's

@@ -22,8 +22,29 @@
             ]
         },
         {
+            "id": "addSpace",
+            "asciiCode": 32,
+            "functions": [
+                "ctx.addChar(32)"
+            ]
+        },
+        {
             "id": "newLine",
             "asciiCode": -4,
+            "functions": [
+                "ctx.newLine()"
+            ]
+        },
+        {
+            "id": "newLine",
+            "asciiCode": 10,
+            "functions": [
+                "ctx.newLine()"
+            ]
+        },
+        {
+            "id": "newLine",
+            "asciiCode": 13,
             "functions": [
                 "ctx.newLine()"
             ]

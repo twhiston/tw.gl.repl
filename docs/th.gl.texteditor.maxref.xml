@@ -65,6 +65,18 @@
 				Input a continuous stream of bangs so parameters stay up to date per frame.
 			</description>
 		</method>
+
+		<method name="init">
+			<arglist>
+				<arg name="init" optional="0" type="int" />
+			</arglist>
+			<digest>
+				Initialize the repl
+			</digest>
+			<description>
+				Resets everything
+			</description>
+		</method>
 		
 		<method name="run">
 			<arglist>
