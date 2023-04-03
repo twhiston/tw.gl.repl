@@ -14,6 +14,7 @@ interface FunctionBinding {
 
 export type KeyProcessor = (k: number, ctx: any) => any
 
+@maxMspBinding({ instanceName: 'i.repl.kp' })
 export class KeypressProcessor {
 
     private attachedFunctions: { [key: string]: Array<FunctionIdentifier> } = {};
@@ -77,7 +78,7 @@ export class KeypressProcessor {
     }
 
     // Function to load configuration from a JSON object
-    @maxMspBinding({ instanceName: 'i.repl.kp' })
+    @maxMspBinding({})
     loadConfigFromJSON(config: string) {
         const json = JSON.parse(config);
         if (json.bindings === undefined)

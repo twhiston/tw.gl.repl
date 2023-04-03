@@ -56,12 +56,44 @@ export function writeGeneratedCode(bindings: Map<string, { filePath: string, opt
     fs.writeFileSync(outputPath, generatedCode);
 }
 
+function extractBindings(optionsArg: any): MaxMspBindingOptions {
+
+    const options: MaxMspBindingOptions = {};
+    //const optionsArg = (<any>maxMspBindingDecorator.expression).arguments[0];
+
+    if (!ts.isObjectLiteralExpression(optionsArg)) {
+        // Handle invalid argument types
+        console.warn('maxMspBinding decorator called with invalid arguments:', optionsArg);
+        return options;
+    }
+
+    // Extract the options from the object literal
+    for (const prop of optionsArg.properties) {
+        if (ts.isPropertyAssignment(prop) && ts.isIdentifier(prop.name)) {
+            const propName = prop.name.escapedText.toString();
+            const propValue = checker.typeToString(checker.getTypeAtLocation(prop.initializer));
+            //strip any quotes
+            options[propName] = propValue.replace(/['"]+/g, '');
+        }
+    }
+
+    return options;
+}
+
 export function findMaxMspBindings(sourceFile: ts.SourceFile, checker: ts.TypeChecker): Map<string, { filePath: string, options: MaxMspBindingOptions }> {
     const bindings = new Map<string, { filePath: string, options: MaxMspBindingOptions }>();
+    let classOptions: MaxMspBindingOptions = {};
+
     function visit(node: ts.Node) {
         const kindName = ts.SyntaxKind[node.kind];
         if (ts.isClassDeclaration(node)) {
-            //TODO - add class decorator stuff
+            const decorators = ts.canHaveDecorators(node) ? ts.getDecorators(node) : undefined;
+            if (decorators === undefined)
+                return;
+            let maxMspBindingDecorator = decorators.find(dec => ts.isIdentifier((<any>dec.expression).expression) && ((<any>dec.expression).expression.escapedText === 'maxMspBinding'));
+            if (maxMspBindingDecorator) {
+                classOptions = extractBindings((<any>maxMspBindingDecorator?.expression).arguments[0])
+            }
         } else if (ts.isMethodDeclaration(node)) {
             //const decorators = ts.canHaveModifiers(node) ? ts.getModifiers(node) : undefined;
             const decorators = ts.canHaveDecorators(node) ? ts.getDecorators(node) : undefined;
@@ -70,27 +102,13 @@ export function findMaxMspBindings(sourceFile: ts.SourceFile, checker: ts.TypeCh
             let maxMspBindingDecorator = decorators.find(dec => ts.isIdentifier((<any>dec.expression).expression) && ((<any>dec.expression).expression.escapedText === 'maxMspBinding'));
             if (maxMspBindingDecorator) {
 
-                const options: MaxMspBindingOptions = {};
-                const optionsArg = (<any>maxMspBindingDecorator.expression).arguments[0];
-
-                if (!ts.isObjectLiteralExpression(optionsArg)) {
-                    // Handle invalid argument types
-                    console.warn('maxMspBinding decorator called with invalid arguments:', optionsArg);
-                    return;
-                }
-
-                // Extract the options from the object literal
-                for (const prop of optionsArg.properties) {
-                    if (ts.isPropertyAssignment(prop) && ts.isIdentifier(prop.name)) {
-                        const propName = prop.name.escapedText.toString();
-                        const propValue = checker.typeToString(checker.getTypeAtLocation(prop.initializer));
-                        //strip any quotes
-                        options[propName] = propValue.replace(/['"]+/g, '');
-                    }
-                }
+                const options = extractBindings((<any>maxMspBindingDecorator?.expression).arguments[0])
 
                 const name = node.name?.getText() || 'anonymousFunction';
                 const filePath = sourceFile.fileName;
+                options.instanceName = classOptions.instanceName || options.instanceName;
+                options.draws = classOptions.draws || options.draws;
+                options.throws = classOptions.throws || options.throws;
                 options.functionName = options.functionName || name;
                 options.callName = name;
                 options.paramCount = node.parameters.length

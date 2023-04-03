@@ -31,6 +31,7 @@ export class Color {
 
 //There's a lot of casting to any in this class to make typescript happy, it's a bit tedious
 //but hopefully it never has to be touched ;) 
+@maxMspBinding({ instanceName: 'i.glRender' })
 export class GLRender {
 
     // the main node that all text is drawn to
@@ -151,7 +152,7 @@ export class GLRender {
         this.setCursorChars(this.CRSR)
     }
 
-    @maxMspBinding({ instanceName: 'i.glRender' })
+    @maxMspBinding({})
     drawto(v: string) {
         this.MAIN_CTX = v;
         (<any>this.textNode).drawto = this.MAIN_CTX;
@@ -159,13 +160,13 @@ export class GLRender {
     }
 
     // the text position
-    @maxMspBinding({ instanceName: 'i.glRender' })
+    @maxMspBinding({})
     position(x: number, y: number) {
         (<any>this.animNode).position = [x, y, 0];
     }
 
     // the text scaling
-    @maxMspBinding({ instanceName: 'i.glRender' })
+    @maxMspBinding({})
     scale(s: number) {
         this.SCALING = s * 100 / this.FONT_SIZE;
         (<any>this.animNode).scale = [this.SCALING, this.SCALING, 0];
@@ -247,7 +248,7 @@ export class GLRender {
     }
 
     // set the cursor characters
-    @maxMspBinding({ instanceName: 'i.glRender', draw: true, functionName: 'cursor' })
+    @maxMspBinding({ draw: true, functionName: 'cursor' })
     setCursorChars(c) {
         // post("@cursor: ", c, "\n");
         this.CRSR = c.toString();
@@ -258,7 +259,7 @@ export class GLRender {
     }
 
 
-    @maxMspBinding({ instanceName: 'i.glRender' })
+    @maxMspBinding({})
     runBlink(t: number) {
 
         var c = [];
@@ -276,7 +277,7 @@ export class GLRender {
         // }
     }
 
-    @maxMspBinding({ instanceName: 'i.glRender' })
+    @maxMspBinding({})
     blink() {
         if (this.useBlink) {
             this.blinkToggle = 1 - this.blinkToggle;
@@ -290,7 +291,7 @@ export class GLRender {
         }
     }
 
-    @maxMspBinding({ instanceName: 'i.glRender' })
+    @maxMspBinding({})
     blink_enable(v: boolean) {
         this.useBlink = v;
     }

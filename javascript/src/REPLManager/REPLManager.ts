@@ -52,6 +52,7 @@ export enum JumpDirection {
     END
 }
 
+@maxMspBinding({ instanceName: 'i.repl' })
 export class REPLManager {
 
     tb: TextBuffer
@@ -104,7 +105,7 @@ export class REPLManager {
     }
 
     // set the comment characters
-    @maxMspBinding({ instanceName: 'i.repl', draw: true, functionName: "comment" })
+    @maxMspBinding({ draw: true, functionName: "comment" })
     setCommentChars(c) {
         //post("@comment: ", c, "\n");
         this.config.CMNT = c.toString();
@@ -117,7 +118,7 @@ export class REPLManager {
 
 
     // add multiple spaces to the text (tab)
-    @maxMspBinding({ instanceName: 'i.repl', draw: true })
+    @maxMspBinding({ draw: true })
     addTab() {
         const pos = this.c.position()
         //TODO: why does the original do this?
@@ -129,7 +130,7 @@ export class REPLManager {
     }
 
     // add a character (alpha-numeric, numeric, special characters)
-    @maxMspBinding({ instanceName: 'i.repl', draw: true, throws: true })
+    @maxMspBinding({ draw: true, throws: true })
     addChar(k: number) {
         var pos = this.c.position();
         if (pos.char >= this.config.MAX_CHARS) {
@@ -148,7 +149,7 @@ export class REPLManager {
     }
 
     // add one or multiple characters as a string
-    @maxMspBinding({ instanceName: 'i.repl', draw: true })
+    @maxMspBinding({ draw: true })
     add(c: string) {
         for (var i = 0; i < c.length; i++) {
             var char = c.charCodeAt(i);
@@ -161,7 +162,7 @@ export class REPLManager {
     }
 
     // append a line of text or multiple symbols per line
-    @maxMspBinding({ instanceName: 'i.repl', draw: true })
+    @maxMspBinding({ draw: true })
     append(text: Array<string>) {
         this.tb.append(text)
         this.jumpTo(JumpDirection.TOP);
@@ -169,7 +170,7 @@ export class REPLManager {
     }
 
     // prepend a line of text or multiple symbols per line
-    @maxMspBinding({ instanceName: 'i.repl', draw: true })
+    @maxMspBinding({ draw: true })
     prepend(text: Array<string>) {
         this.tb.prepend(text);
         this.jumpTo(JumpDirection.TOP);
@@ -177,7 +178,7 @@ export class REPLManager {
     }
 
     // remove a line of text at a specified index
-    @maxMspBinding({ instanceName: 'i.repl', draw: true })
+    @maxMspBinding({ draw: true })
     remove(idx: number = -1) {
         if (idx === -1) { idx = this.tb.length() - 1; }
         this.c.setLine(idx);
@@ -186,7 +187,7 @@ export class REPLManager {
 
     // insert a line of text or multiple symbols at a specified index
     // a list of symbols will inserte one line per symbol
-    @maxMspBinding({ instanceName: 'i.repl', draw: true, throws: true })
+    @maxMspBinding({ draw: true, throws: true })
     insert(idx: number, text: Array<string>) {
         var idx = Math.min(this.config.BUFFER_SIZE, idx);
 
@@ -213,7 +214,7 @@ export class REPLManager {
 
     // replace all the text with the incoming arguments
     // this can be a list of symbols for every line
-    @maxMspBinding({ instanceName: 'i.repl', draw: true })
+    @maxMspBinding({ draw: true })
     set(text: Array<string>) {
         text = (text.length < 1) ? [''] : text;
 
@@ -229,7 +230,7 @@ export class REPLManager {
 
 
     // backspace a character
-    @maxMspBinding({ functionName: 'back', instanceName: 'i.repl', draw: true })
+    @maxMspBinding({ functionName: 'back', draw: true })
     backSpace() {
         // decrement character index
         this.c.decrementChar()
@@ -248,14 +249,14 @@ export class REPLManager {
     }
 
     //used to be called clear
-    @maxMspBinding({ instanceName: 'i.repl', draw: true })
+    @maxMspBinding({ draw: true })
     clear() {
         this.c.reset()
         this.tb.clear();
     }
 
     // delete the character in front of the cursor
-    @maxMspBinding({ functionName: 'del', instanceName: 'i.repl', draw: true })
+    @maxMspBinding({ functionName: 'del', draw: true })
     deleteChar() {
         var pos = this.c.position()
         if (pos.char < this.tb.lineLength(pos.line)) {
@@ -366,7 +367,7 @@ export class REPLManager {
     }
 
     // move the cursor to the index of the letter in the full text
-    @maxMspBinding({ instanceName: 'i.repl', draw: true })
+    @maxMspBinding({ draw: true })
     gotoIndex(i: number): void {
         // go to beginning if index less then 0
         if (i < 0) {
