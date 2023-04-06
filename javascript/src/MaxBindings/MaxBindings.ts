@@ -1,10 +1,28 @@
 import 'reflect-metadata'
 
 export interface MaxMspBindingOptions extends Record<string, any> {
+    //usually best to add this on a class level, the instance name that
+    //method calls will be attached to
     instanceName?: string;
+    //if set the generated function name will be different to the
+    //method it is attached to, so you can refactor without changing
+    //the max bindings for compatibility
     functionName?: string;
+    //if true call the glrender draw function after calling this
+    //in generated max code
     draw?: boolean;
+    //if true then exception handling will be generated around the
+    //function call
     throws?: boolean;
+    //if true do not include in the routepass generation at init
+    //ie make this a private function to tw.gl.repl.maxpatch
+    noroute?: boolean;
+    //if in the routepass geneneration and not a simple list output
+    //for javascript input then give the scriptingName of an object
+    //to connect to
+    customHandler?: string;
+    //If connected to a custom handler then what inlet number should it be?
+    handlerInlet?: number;
 }
 
 //This is used effectively as a compile time decorator as we are using it for code generation
@@ -14,9 +32,8 @@ export function maxMspBinding(options: MaxMspBindingOptions): any {
         //Need this checking for compatibility, otherwise tests and things can fail
         if (descriptor === undefined)
             descriptor = {}
-        if (descriptor.value === undefined) {
+        if (descriptor.value === undefined)
             descriptor.value = {}
-        }
         // Add options to the method descriptor
         descriptor.value.maxMspBindingOptions = options;
         // Add a new property to the method descriptor

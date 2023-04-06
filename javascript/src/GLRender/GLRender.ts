@@ -161,13 +161,13 @@ export class GLRender {
     }
 
     // the text position
-    @maxMspBinding({})
+    @maxMspBinding({ customHandler: 'textScalingHandler' })
     position(x: number, y: number) {
         (<any>this.animNode).position = [x, y, 0];
     }
 
     // the text scaling
-    @maxMspBinding({})
+    @maxMspBinding({ customHandler: 'textScalingHandler' })
     scale(s: number) {
         this.SCALING = s * 100 / this.FONT_SIZE;
         (<any>this.animNode).scale = [this.SCALING, this.SCALING, 0];
@@ -259,8 +259,7 @@ export class GLRender {
         }
     }
 
-
-    @maxMspBinding({})
+    @maxMspBinding({ draw: true, noroute: true })
     runBlink(t: number) {
 
         var c = [];
@@ -270,15 +269,9 @@ export class GLRender {
             c[i] = carr[i] * (1 - t) + runc[i] * t;
         }
         (<any>this.glTextObj.text).gl_color = c;
-
-        // if (t){
-        // 	glText.gl_color = runColor;
-        // } else {
-        // 	glText.gl_color = textColor;
-        // }
     }
 
-    @maxMspBinding({})
+    @maxMspBinding({ noroute: true })
     blink() {
         if (this.useBlink) {
             this.blinkToggle = 1 - this.blinkToggle;

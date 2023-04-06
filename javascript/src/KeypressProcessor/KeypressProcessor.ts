@@ -78,7 +78,6 @@ export class KeypressProcessor {
     }
 
     // Function to load configuration from a JSON object
-    @maxMspBinding({})
     loadConfigFromJSON(config: string) {
         const json = JSON.parse(config);
         if (json.bindings === undefined)

@@ -13,10 +13,18 @@ outlets = 3;
 autowatch = 1;
 
 var sKeys = new Dict(jsarguments[2]);
+function keybindings(n) {
+    sKeys = new Dict(n);
+}
 
 //TODO: move these out of here
 var OUT_MAT = false;
 var EPHEMERAL_MODE = false;
+
+// Contains the generated function to generate the routing objects for the
+// tw.js.repl patch, so no config routing updates if you change what methods
+// are exposed, just compile again and it will update on init.
+include("patcher-init")
 
 // Optionally include a user-repl file where you can define some additional things
 // You will have access to i.glRender and i.repl in ths code at runtime so
@@ -28,6 +36,7 @@ function loadbang() {
 }
 
 function init() {
+    patcher_init();
 
     if (jsarguments.length > 1) {
         i.glRender.drawto(jsarguments[1]);
@@ -35,7 +44,7 @@ function init() {
     }
     i.repl.clear();
 	//load config from json via a dict string (ie json)
-	loadConfigFromJSON(sKeys.stringify())
+    i.repl.kp.loadConfigFromJSON(sKeys.stringify())
     //isDisabled = false;
 
     i.glRender.font("Courier New Bold");

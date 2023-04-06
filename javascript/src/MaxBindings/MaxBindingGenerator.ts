@@ -24,6 +24,25 @@ Handlebars.registerHelper('firstSentanceOrLine', function (comment: string) {
     return cleanComment.split(/[.\n]/, 1)[0];
 });
 
+
+// Using a self-invoking function just to illustrate the closure
+(function () {
+    // Start at 1, name this unique to anything in this closure
+    var positionCounter = 0;
+
+    Handlebars.registerHelper('outletCounter', function () {
+        return positionCounter++;
+    });
+
+    // Compile/render your template here
+    // It will use the helper whenever it seems position
+})();
+
+
+Handlebars.registerHelper('maxSelfReference', function (name: string) {
+    return (name === "this")
+});
+
 export class MaxGenerator {
 
     readonly projectDir: string;
@@ -103,6 +122,9 @@ export class MaxGenerator {
                     options.instanceName = classOptions.instanceName || options.instanceName;
                     options.draws = classOptions.draws || options.draws;
                     options.throws = classOptions.throws || options.throws;
+                    options.noroute = classOptions.noroute || options.noroute;
+                    if (options.handlerInlet === undefined)
+                        options.handlerInlet = 0;
                     options.functionName = options.functionName || name;
                     options.callName = name;
                     options.paramCount = node.parameters.length
@@ -210,14 +232,62 @@ export class MaxBindingGenerator extends MaxGenerator {
         const bindingArr = Array.from(bindings.entries())
         let genFuncs: any = []
         let importPaths: Array<string> = []
+        //initialize with the fixed functions we have in our template
+        let funcNames: Array<string> = ['init', 'keyPress', 'run', 'read', 'write']
         for (const b of bindingArr) {
             const relativePath = path.relative("src", path.dirname(b[1].filePath));
             importPaths.push(relativePath)
             const o = this.generateFunctionCode(b[0], b[1].options)
             genFuncs.push(o)
+            funcNames.push(b[0])
         }
         importPaths = this.uniq(importPaths)
-        const generatedCode = this.templates.mainTemplate({ imports: importPaths, functions: genFuncs })
+        const generatedCode = this.templates.mainTemplate({ imports: importPaths, functions: genFuncs, functionNames: funcNames })
+
+        fs.writeFileSync(this.outputPath, generatedCode);
+    }
+
+}
+
+export class PatcherInitGenerator extends MaxGenerator {
+
+
+    writeGeneratedCode(bindings: Map<string, { filePath: string, options: MaxMspBindingOptions }>) {
+        const bindingArr = Array.from(bindings.entries())
+        let genFuncs: any = []
+        genFuncs.push({
+            functionName: "init",
+            noroute: true
+        });
+        genFuncs.push({
+            functionName: "keyPress",
+            noroute: true
+        });
+        genFuncs.push({
+            functionName: "run",
+            customHandler: "runHandler",
+            handlerInlet: 0
+        });
+        genFuncs.push({
+            functionName: "read",
+            customHandler: "readHandler",
+            handlerInlet: 0
+        });
+        genFuncs.push({
+            functionName: "write",
+            customHandler: "writeHandler",
+            handlerInlet: 0
+        });
+        genFuncs.push({
+            functionName: "keybindings",
+            customHandler: "this",
+            handlerInlet: 0
+        });
+        //initialize with the fixed functions we have in our template
+        for (const b of bindingArr) {
+            genFuncs.push(b[1].options)
+        }
+        const generatedCode = this.templates.mainTemplate({ functions: genFuncs })
 
         fs.writeFileSync(this.outputPath, generatedCode);
     }

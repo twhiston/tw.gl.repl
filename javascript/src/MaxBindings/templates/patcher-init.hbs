@@ -1,0 +1,23 @@
+function patcher_init(){
+
+    // These objects are manually created in max and are what the generated parts connect with
+    var initpass = this.patcher.getnamed("initpass")
+    var cmdList = this.patcher.getnamed("cmdList")
+    var ourself = this.box
+    // Our generated routepass object
+    var routepass = this.patcher.getnamed("routepass")
+    this.patcher.remove(routepass)
+	routepass = this.patcher.newdefault(385, 243, "routepass", {{#each functions}}{{#unless this.noroute}}"{{this.functionName}}"{{#unless @last}},{{/unless}}{{/unless}}{{/each}} )
+    routepass.varname = "routepass"
+    routepass.rect = [380., 244., 780, 444]
+    this.patcher.connect(initpass, 5, routepass, 0)
+    {{#each functions}}{{#unless this.noroute}}{{#if this.customHandler}}
+    {{#if (maxSelfReference this.customHandler)}}
+    this.patcher.connect(routepass, {{outletCounter}}, ourself, {{this.handlerInlet}})
+    {{else}} 
+    var {{this.customHandler}} = this.patcher.getnamed("{{this.customHandler}}") 
+    this.patcher.connect(routepass, {{outletCounter}}, {{this.customHandler}}, {{this.handlerInlet}})
+    {{/if}}{{else}}
+    this.patcher.connect(routepass, {{outletCounter}}, cmdList,{{this.handlerInlet}})
+    {{/if}}{{/unless}}{{/each}}
+}

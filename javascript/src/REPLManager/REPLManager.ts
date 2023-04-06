@@ -136,7 +136,7 @@ export class REPLManager {
 
 
     // add multiple spaces to the text (tab)
-    @maxMspBinding({ draw: true })
+    @maxMspBinding({ draw: true, throws: true })
     addTab() {
         const pos = this.c.position()
         //TODO: why does the original do this?
@@ -148,7 +148,6 @@ export class REPLManager {
     }
 
     // add a character (alpha-numeric, numeric, special characters)
-    @maxMspBinding({ draw: true, throws: true })
     addChar(k: number) {
         var pos = this.c.position();
         if (pos.char >= this.config.MAX_CHARS) {
@@ -167,7 +166,7 @@ export class REPLManager {
     }
 
     // add one or multiple characters as a string
-    @maxMspBinding({ draw: true })
+    @maxMspBinding({ draw: true, throws: true })
     add(c: string) {
         for (var i = 0; i < c.length; i++) {
             var char = c.charCodeAt(i);

@@ -13,52 +13,53 @@ This is a repl based on the excellent th.gl.texteditor. It was partly built as a
 way to learn how to take a more modern approach to building javascript code for Max,
 but it significantly extends the original functionality, to provide a more fully
 featured and configurable repl environment.
-Not only is it possible to output the contents of the repl buffer for processing in
+At it's core this is the same idea as th.gl.texteditor but the way in which functions
+can be attached to keys now significantly extends what it is possible to do. So not
+only is it possible to output the contents of the repl buffer for processing in
 max, but it's possible to attach any function to a keypress in the repl, which can
-also generate messages for output.
+in turn generate messages for output. Simple use cases can be handled entirely
+in configuration, and more complex use cases can be easily managed by including a
+ `user-repl.js` file inside your project in which you can further customize behaviour
+ by attaching your own custom functions to keypresses or your own custom formatters
+ for output message handling.
 
 ## Install
 
 You should install this inside your Max packages directory, in a folder called `tw.gl.repl`,
-it should then be available in max.
+it should then be available in max after a restart.
 See help files for some ideas on what you might do with it!
+
+Download zip
+
+```
+1. download zip
+2. unzip and place in Max Searchpath (eg. MacOS ~/Documents/Max 8/Library)
+3. restart Max8
+```
+
+Git clone
+
+```
+1. $ cd ~/Documents/Max\ 8/Library
+2. $ git clone https://github.com/twhiston/tw.gl.repl.git
+3. restart Max8
+```
+
+```
+4. Go to the extras menu and open the getting started patch
+```
 
 All source files loaded by max are in the `dist` folder and the typescript which
 it is compiled from is found in `src`. Unless you have a more complex project in
 mind you probably don't need to care about this and can use the config file and `user-repl.js`
 to extend the functionality of the repl.
 
-## Execute functionality
+## Execute/Run functionality
 
 By default executing the code in the repl will run a series of formatters and output
-the resulting text from outlet 1. This allows you to write livecoding style commands
+the resulting text from outlet 0. This allows you to write livecoding style commands
 in the repl, ensure they are formatted as needed, and then output them for further
 routing and processing in max.
-
-### TextFormatters
-
-By default there are two formatters which run on execute, firstly `WhitespaceFormatter`
-will trim stings and ensure consistency in the whitespace character used. Secondly
-`BraceBalancedFormatter` will check that our output has fully balanced braces, or
-it will throw an exception. This is extremely useful if you are outputting some kind
-of code, or pseudo-language, and need to ensure it is formatted correctly.
-If you need to add additional formatters you can add them in your `user-repl.js` by
-implementing TextFormatter.
-
-```Typescript
-// This example is in typescript for clarity, and user-repl.js is not
-// but hopefully you get the idea.
-class UppercaseFormatter implements TextFormatter {
-    format(strArr: Array<string>, ctx: {}): Array<string> {
-        // Example implementation that returns all strings in uppercase
-        return strArr.map(str => str.toUpperCase());
-    }
-}
-i.repl.tb.addFormatter(new UppercaseFormatter);
-```
-
-If you don't want the deafult formatters to run before the formatters you add you
-should replace all the formatters `i.repl.tb.setFormatters([new UppercaseFormatter]);`
 
 ## Config
 
@@ -184,6 +185,34 @@ you should bind a function to keycode `127` instead of the default one (shown be
 }
 ```
 
+### TextFormatters
+
+By default there are two formatters which run on execute, firstly `WhitespaceFormatter`
+will trim stings and ensure consistency in the whitespace character used. Secondly
+`BraceBalancedFormatter` will check that our output has fully balanced braces, or
+it will throw an exception. This exception is handled in the repl and will be printed
+to the max console. This formatter is extremely useful if you are outputting some
+kind of dsl, and need to ensure it is formatted correctly. If you need to add additional
+formatters you can add them in your `user-repl.js` by implementing TextFormatter.
+
+```Typescript
+// This example is in typescript for clarity, and user-repl.js needs
+// to be in the type of archaic javascript that max understands but
+// hopefully you get the idea. To create a lot of extensions for the
+// repl it's recommended to look into using typescript, transpiling and 
+// generating your user-repl.js file.
+class UppercaseFormatter implements TextFormatter {
+    format(strArr: Array<string>, ctx: {}): Array<string> {
+        // Example implementation that returns all strings in uppercase
+        return strArr.map(str => str.toUpperCase());
+    }
+}
+i.repl.tb.addFormatter(new UppercaseFormatter);
+```
+
+If you don't want the default formatters to run before the formatters you add you
+should set instead of adding `i.repl.tb.setFormatters([new UppercaseFormatter]);`
+
 ## Reading and Writing files
 
 Writing files will save the contents of the buffer into a text file.
@@ -214,7 +243,7 @@ ancient engine
 * Full set of tests
 * Autogenerated max bindings
 
-## Developing
+## Developing the REPL further
 
 We transpile so we can use modern js. See:
 <https://cycling74.com/forums/any-plans-to-update-support-for-recent-versions-of-js#reply-58ed21d5c2991221d9ccad8c>
@@ -226,7 +255,9 @@ and needs to be transpiled.
 ### Build cycle
 
 `npm run compile` will render the max compatible javascript from our typescript and
-generate the `tw.gl.repl.js` file which we will load into max.
+generate the `tw.gl.repl.js` file which is the core of our repl. It will also generate
+the max help xml file because this should match the functions we have exposed in
+the main repl file, and this might change if we add annotations to functions or methods.
 
 ### Testing
 
@@ -234,8 +265,8 @@ Testing is done with the `ava` framework. If you are going to add a new feature
 and contribute it back (please do!) then you'll need to write tests for it as well.
 The code here has pretty good test coverage so look at the `moduleName.test.ts` files
 for lots of examples.
-`npm run test` will run all the tests and output coverage. `npm run report` will generate
-an html report you can use to see where you are missing test coverage.
+`npm run test` will run all the tests and output coverage. `npm run report` will
+generate an html report you can use to see where you are missing test coverage.
 
 Github pipelines will run on push, these run all tests and output coverage and also
 compile the code.
@@ -261,3 +292,15 @@ more complex repl object you will need to recompile and generate the js code.
 
 There is a helper patch included `editor-development.maxpat` which has a helpful
 simple setup which you can use to help with developing.
+
+## License
+
+The GNU Lesser General Public License v.3
+
+The artistic and aesthetic output of the software in the examples is licensed under:
+Creative Commons Attribution-ShareAlike 4.0 International License
+
+The origin of this project is a refactoring of th.gl.texteditor (c) Timo Hoogland
+2020
+
+(c) Tom Whiston 2023

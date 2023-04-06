@@ -1,7 +1,7 @@
 import ts from 'typescript';
 import glob from 'glob';
 import path from 'path';
-import { MaxBindingGenerator, MaxXmlGenerator } from './MaxBindingGenerator';
+import { MaxBindingGenerator, MaxXmlGenerator, PatcherInitGenerator } from './MaxBindingGenerator';
 
 const templates = {
     mainTemplate: './src/MaxBindings/templates/main.hbs',
@@ -13,10 +13,14 @@ const xmlTemplates = {
     attributeTemplate: './src/MaxBindings/templates/xml/attribute.hbs',
     methodTemplate: './src/MaxBindings/templates/xml/method.hbs'
 };
+
+const patcherTemplates = {
+    mainTemplate: './src/MaxBindings/templates/patcher-init.hbs'
+}
 //new rendered with the route path
 const mbg = new MaxBindingGenerator("./", templates)
 const mbgXml = new MaxXmlGenerator("./", xmlTemplates, './../docs', 'tw.gl.repl.maxref.xml')
-
+const pmbg = new PatcherInitGenerator("./", patcherTemplates, 'dist', 'patcher-init.js')
 // Options to configure the TypeScript Compiler API
 const options: ts.CompilerOptions = {
     target: ts.ScriptTarget.ES5,
@@ -39,4 +43,6 @@ const filteredFiles = program.getSourceFiles().filter(sourceFile => files.includ
 mbg.generate(filteredFiles, checker);
 // Generate xml helper file
 mbgXml.generate(filteredFiles, checker);
+// Generate patcher-init
+pmbg.generate(filteredFiles, checker);
 
