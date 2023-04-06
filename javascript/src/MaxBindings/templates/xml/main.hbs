@@ -32,22 +32,29 @@
 	</metadatalist>
 
 	<!--INLETS-->
-	<!-- <inletlist>
-		<inlet id="0" type="float">
-			<digest></digest>
+	<inletlist>
+		<inlet id="0" type="symbol">
+			<digest>bang from jit.world or command for repl</digest>
 		</inlet>
-		<inlet id="1" type="float">
-			<digest></digest>
-		</inlet>
-	</inletlist> -->
+	</inletlist>
 
 	<!--OUTLETS-->
-	<!-- <outletlist>
-		<outlet id="0" type="int/float">
-			<digest></digest>
-			<description></description>
+	<outletlist>
+		<outlet id="0" type="symbol">
+			<digest>message output from repl</digest>
+			<description>
+				any message output from the repl will be filtered through the repls own routepass and if 
+				not handled then it is output from this outlet for you to handle.
+			</description>
 		</outlet>
-	</outletlist> -->
+		<outlet id="1" type="symbol">
+			<digest>clipboard data</digest>
+			<description>
+				anything copied to the clipboard is output here so you can implement any additional logic
+				that you need to copy to the system clipboard, write to a file etc...
+			</description>
+		</outlet>
+	</outletlist>
 
 	<!--ARGUMENTS-->
 	<objarglist>
