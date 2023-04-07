@@ -2,7 +2,6 @@
 
 ## TODO
 
-* Pastebin functionality
 * add some settings to the shortkeys.json for repl config (eg alphanumerical override)
 * support and help patches
 * Do attributes properly in xml ref file and patch

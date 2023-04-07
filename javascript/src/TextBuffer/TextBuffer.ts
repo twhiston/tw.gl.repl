@@ -76,7 +76,11 @@ export class TextBuffer {
     }
 
     format(ctx = {}): Array<string> {
-        let formatted = this.textBuf;
+        return this.formatTextArray(ctx, this.textBuf);
+    }
+
+    private formatTextArray(ctx = {}, textArr: Array<string>): Array<string> {
+        let formatted = textArr;
         for (let i = 0; i < this.formatters.length; i++) {
             formatted = this.formatters[i].format(formatted, ctx);
         }
@@ -134,6 +138,10 @@ export class TextBuffer {
             this.pasteBin[i] = this.textBuf[i].trim()
         }
         return this.pasteBin;
+    }
+
+    pasteBinFormat(ctx = {}): Array<string> {
+        return this.formatTextArray(ctx, this.pasteBin);
     }
 
     pasteBinGet(): Array<string> {

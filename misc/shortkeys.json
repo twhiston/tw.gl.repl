@@ -8,10 +8,24 @@
             ]
         },
         {
+            "id": "disable-editor-alt-D",
+            "asciiCode": 8706,
+            "functions": [
+                "return ['ignore_keys']"
+            ]
+        },
+        {
             "id": "alphahandler",
             "asciiCode": 127,
             "functions": [
                 "ctx.addChar(k)"
+            ]
+        },
+        {
+            "id": "ephemeral_mode-alt-g",
+            "asciiCode": 169,
+            "functions": [
+                "return ['ephemeral_mode']"
             ]
         },
         {
@@ -85,10 +99,38 @@
             ]
         },
         {
-            "id": "deleteLine-alt-x",
+            "id": "cutLine-alt-x",
             "asciiCode": 8776,
             "functions": [
-                "ctx.deleteLine()"
+                "ctx.tb.pasteBinCopyLine(ctx.c.line());ctx.deleteLine();return ['output_paste_bin']"
+            ]
+        },
+        {
+            "id": "copyLine-alt-c",
+            "asciiCode": 231,
+            "functions": [
+                "ctx.tb.pasteBinCopyLine(ctx.c.line());return ['output_paste_bin']"
+            ]
+        },
+        {
+            "id": "copyAll-alt-k",
+            "asciiCode": 730,
+            "functions": [
+                "ctx.tb.pasteBinCopyAll();return ['output_paste_bin']"
+            ]
+        },
+        {
+            "id": "paste-alt-v",
+            "asciiCode": 8730,
+            "functions": [
+                "var pb = ctx.tb.pasteBinGet(); for(var i = 0; i < pb.length; i++){for (var a = 0; a < pb[i].length; a++) {var char = pb[i].charCodeAt(a); ctx.keyPress(char)}};"
+            ]
+        },
+        {
+            "id": "replaceLine-alt-p",
+            "asciiCode": 960,
+            "functions": [
+                " ctx.tb.pasteBinReplaceLine(ctx.c.line())"
             ]
         },
         {

@@ -173,7 +173,13 @@ export class REPLManager {
     // append a line of text or multiple symbols per line
     @maxMspBinding({ draw: true })
     append(text: Array<string>) {
-        this.tb.append(text)
+        if (text.length > 0)
+            this.newLine();
+        for (var i = 0; i < text.length; i++) {
+            this.add(text[i]);
+            if (i < text.length - 1)
+                this.newLine();
+        }
         this.jumpTo(JumpDirection.TOP);
         this.jumpTo(JumpDirection.EOL);
     }
@@ -181,7 +187,11 @@ export class REPLManager {
     // prepend a line of text or multiple symbols per line
     @maxMspBinding({ draw: true })
     prepend(text: Array<string>) {
-        this.tb.prepend(text);
+        this.c.reset();
+        for (var i = 0; i < text.length; i++) {
+            this.add(text[i]);
+            this.newLine();
+        }
         this.jumpTo(JumpDirection.TOP);
         this.jumpTo(JumpDirection.EOL);
     }
@@ -198,6 +208,9 @@ export class REPLManager {
 
     /* insert a line of text or multiple symbols at a specified index
     * a list of symbols will insert one line per symbol
+    * NOTE THAT INSERT WILL NOT PROCESS THE INPUT!
+    * So you can use this to insert text which you do not 
+    * want to be processed for some reason
     */
     @maxMspBinding({ draw: true, throws: true })
     insert(idx: number, text: Array<string>) {
@@ -227,6 +240,7 @@ export class REPLManager {
     /*
     * replace all the text with the incoming arguments
     * this can be a list of symbols for every line
+    * NOTE THAT INSERT WILL NOT PROCESS THE INPUT!
     */
     @maxMspBinding({ draw: true })
     set(text: Array<string>) {
@@ -283,6 +297,10 @@ export class REPLManager {
                 this.spliceLine();
             }
         }
+    }
+
+    formatPasteBin(): string[] {
+        return this.tb.pasteBinFormat();
     }
 
     // move one character to the right or left

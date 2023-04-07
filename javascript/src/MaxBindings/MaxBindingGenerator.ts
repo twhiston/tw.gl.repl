@@ -294,6 +294,11 @@ export class PatcherInitGenerator extends MaxGenerator {
             functionName: "ephemeral_mode",
             handlerInlet: 0
         });
+        genFuncs.push({
+            functionName: "output_paste_bin",
+            customHandler: "this",
+            handlerInlet: 0
+        });
         //initialize with the fixed functions we have in our template
         for (const b of bindingArr) {
             genFuncs.push(b[1].options)

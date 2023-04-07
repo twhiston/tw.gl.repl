@@ -33,6 +33,10 @@ include("patcher-init")
 // you can preload or attach your custom functions etc.
 include("user-repl")
 
+/*
+ * Functions below here are handcrafted in a template, and referenced in the generator script.
+ * They should not be edited by hand in the output js file
+ */
 function loadbang() {
 	init();
 }
@@ -83,17 +87,32 @@ function run() {
     }
 }
 
+//output whatever is in the pastebin using formatters
+function output_paste_bin(){
+    outlet(2, i.repl.tb.pasteBinFormat(i.repl));
+}
+
 //Set to output the text matrix name as well as the messages
 function output_matrix(v) {
-    OUT_MAT = v != 0;
+    if(v === undefined){
+        OUT_MAT = !OUT_MAT
+    } else {
+        OUT_MAT = v != 0;
+    }
 }
 
 //If true then always clear the buffer after running
 function ephemeral_mode(v) {
-    EPHEMERAL_MODE = v != 0;
+    if(v === undefined){
+        EPHEMERAL_MODE = !EPHEMERAL_MODE
+    } else {
+        EPHEMERAL_MODE = v != 0;
+    }
 }
 
 // draw the text and output all info
+// this will be called by any generated function which 
+// has the draw attribute set true.
 function draw() {
 
 	i.glRender.draw(i.repl.tb.get(), i.repl.c.position())
@@ -120,7 +139,7 @@ function read(filename) {
     draw()
 }
 
-//write the buffer to a file, to be played back later
+//write the buffer to a file (provided by savedialog), to be played back later
 function write(filename) {
     f = new File(filename, "write", "TEXT")
     f.open()
@@ -132,9 +151,12 @@ function write(filename) {
     f.close()
 }
 
-// REPL BINDINGS
-// Functions below here are generated from class methods decorated with @maxMspBinding
-// This exposes functions to the max api so they can be called in max
+/*
+ * REPL BINDINGS
+ * Functions below here are generated from class methods decorated with @maxMspBinding
+ * This exposes functions to the max api so they can be called from max
+ */
+  
 {{#each functions}}
 {{rendered }}
 
