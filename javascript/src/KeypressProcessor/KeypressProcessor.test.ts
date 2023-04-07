@@ -179,3 +179,75 @@ test('loadConfigFromJSON with json.bindings === undefined', (t) => {
 
   t.is(error?.message, 'bindings undefined');
 });
+
+test('processKeypress method overrides alphaNum processing if overrideAlphaNum is true', (t) => {
+  const keypressProcessor = new KeypressProcessor();
+  // Attach test functions to ASCII code 127 (used for general alphanumeric keys if overrideAlphaNum is false)
+  keypressProcessor.attachFunctions('alphanum', 127, [
+    (k: number, ctx: any) => {
+      return 'Alphanumeric handler executed';
+    },
+  ]);
+
+  // Set overrideAlphaNum to true to disable default alphanumeric processing
+  keypressProcessor.customAlphaNum(true);
+
+  // Generate an alphanumeric keypress event (ASCII code between 33 and 126)
+  const alphaNumKeyCode = 65; // 'A'
+  const result = keypressProcessor.processKeypress(alphaNumKeyCode);
+
+  // Verify that default alphanumeric processing was not called
+  t.is(result.length, 0);
+});
+
+test('processKeypress method does not override alphaNum processing if overrideAlphaNum is false', (t) => {
+  const keypressProcessor = new KeypressProcessor();
+  // Attach test functions to ASCII code 127 (used for general alphanumeric keys if overrideAlphaNum is false)
+  keypressProcessor.attachFunctions('alphanum', 127, [
+    (k: number, ctx: any) => {
+      return 'Alphanumeric handler executed';
+    },
+  ]);
+
+  // Set overrideAlphaNum to false to enable default alphanumeric processing
+  keypressProcessor.customAlphaNum(false);
+
+  // Generate an alphanumeric keypress event (ASCII code between 33 and 126)
+  const alphaNumKeyCode = 65; // 'A'
+  const result = keypressProcessor.processKeypress(alphaNumKeyCode);
+
+  // Verify that default alphanumeric processing was called
+  t.is(result.length, 1);
+  t.is(result[0](alphaNumKeyCode, null), 'Alphanumeric handler executed');
+});
+
+test('processKeypress method calls both default key handler and custom function if overrideAlphaNum is false', (t) => {
+  const keypressProcessor = new KeypressProcessor();
+  // Attach test functions to ASCII code 127 (used for general alphanumeric keys if overrideAlphaNum is false)
+  keypressProcessor.attachFunctions('alphanum', 127, [
+    (k: number, ctx: any) => {
+      return 'Alphanumeric handler executed';
+    },
+  ]);
+
+
+  // Attach test function to an alphanumeric key
+  const alphaNumKeyCode = 65; // 'A'
+  keypressProcessor.attachFunctions('custom', alphaNumKeyCode, [
+    (k: number, ctx: any) => {
+      return 'Custom handler executed';
+    },
+  ]);
+
+  // Set overrideAlphaNum to false to enable default alphanumeric processing
+  keypressProcessor.customAlphaNum(false);
+
+  // Generate an alphanumeric keypress event
+  const result = keypressProcessor.processKeypress(alphaNumKeyCode);
+
+  // Verify that both default alphanumeric processing and custom function were called
+  t.is(result.length, 2);
+  t.is(result[0](alphaNumKeyCode, null), 'Alphanumeric handler executed');
+  t.is(result[1](alphaNumKeyCode, null), 'Custom handler executed');
+
+});

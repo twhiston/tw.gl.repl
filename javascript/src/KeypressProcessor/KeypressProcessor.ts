@@ -63,8 +63,14 @@ export class KeypressProcessor {
     // Function to process a keypress and return any attached functions
     processKeypress(k: number): Array<KeyProcessor> {
         //to handle general alphanumeric keys we do a little trickery here
-        const fId = (k > 32 && k <= 126 && this.overrideAlphaNum === false) ? 127 : k;
-        const funcs = this.attachedFunctions[fId]; // Get the attached functions, if any
+        let funcs: FunctionIdentifier[] = [];
+        if (k > 32 && k <= 126) {
+            if (this.overrideAlphaNum === false) {
+                funcs = funcs.concat(this.attachedFunctions[127] ?? [])
+            }
+        }
+        funcs = funcs.concat(this.attachedFunctions[k] ?? []) // Get the attached functions, if any
+        // const fId = (k > 32 && k <= 126 && this.overrideAlphaNum === false) ? 127 : k;
         const results = [];
         if (funcs && funcs.length > 0) {
             // If there are attached functions, call each one with the event object as the argument
