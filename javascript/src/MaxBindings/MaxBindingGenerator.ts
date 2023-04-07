@@ -255,6 +255,9 @@ export class PatcherInitGenerator extends MaxGenerator {
     writeGeneratedCode(bindings: Map<string, { filePath: string, options: MaxMspBindingOptions }>) {
         const bindingArr = Array.from(bindings.entries())
         let genFuncs: any = []
+        //Add all of our custom functionsa which live in our template and which are not generated on the fly
+        // adding them here makes sure they also get added to the router and output appropriately to a mix
+        // of custom handlers, the default out, back to the js object etc.
         genFuncs.push({
             functionName: "init",
             noroute: true
@@ -285,6 +288,10 @@ export class PatcherInitGenerator extends MaxGenerator {
         });
         genFuncs.push({
             functionName: "output_matrix",
+            handlerInlet: 0
+        });
+        genFuncs.push({
+            functionName: "ephemeral_mode",
             handlerInlet: 0
         });
         //initialize with the fixed functions we have in our template

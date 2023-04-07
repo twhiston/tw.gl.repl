@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 751.0, 195.0, 385.0, 718.0 ],
+		"rect" : [ 804.0, 196.0, 626.0, 718.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -589,8 +589,8 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 245.5, 184.0, 206.0, 22.0 ],
-					"text" : "tw.gl.repl.autogen editor-dev 640 480"
+					"patching_rect" : [ 245.5, 184.0, 159.0, 22.0 ],
+					"text" : "tw.gl.repl editor-dev 640 480"
 				}
 
 			}
@@ -788,17 +788,17 @@
 				"implicit" : 1
 			}
 , 			{
-				"name" : "tw.gl.repl.autogen.maxpat",
-				"bootpath" : "~/Documents/Max 8/Packages/tw.gl.repl/patchers",
-				"patcherrelativepath" : ".",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
 				"name" : "tw.gl.repl.js",
 				"bootpath" : "~/Documents/Max 8/Packages/tw.gl.repl/javascript/dist",
 				"patcherrelativepath" : "../javascript/dist",
 				"type" : "TEXT",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "tw.gl.repl.maxpat",
+				"bootpath" : "~/Documents/Max 8/Packages/tw.gl.repl/patchers",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
 				"implicit" : 1
 			}
  ],

@@ -17,8 +17,10 @@ function keybindings(n) {
     sKeys = new Dict(n);
 }
 
-//TODO: move these out of here
+// If true then additionally output the name of the jitter matrix which contains the text
+// when you run/execute the code in the repl.
 var OUT_MAT = false;
+//If Ephemeral mode is true then the buffer will clear every time you run
 var EPHEMERAL_MODE = false;
 
 // Contains the generated function to generate the routing objects for the
@@ -68,7 +70,6 @@ function keyPress(k) {
 }
 
 // output the parsed code if output_matrix is disabled
-//TODO: fix this function to new code
 function run() {
 
     var out = i.repl.tb.format(false);
@@ -77,14 +78,19 @@ function run() {
     if (OUT_MAT) {
         outlet(0, "jit_matrix", i.glRender.textMtx.name);
     }
-	if (EPHEMERAL_MODE) {
-		i.glRender.clear();
-	}
+    if (EPHEMERAL_MODE) {
+        clear();
+    }
 }
 
-// TODO: maybe move this into a class?
+//Set to output the text matrix name as well as the messages
 function output_matrix(v) {
     OUT_MAT = v != 0;
+}
+
+//If true then always clear the buffer after running
+function ephemeral_mode(v) {
+    EPHEMERAL_MODE = v != 0;
 }
 
 // draw the text and output all info

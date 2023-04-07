@@ -23,14 +23,6 @@ export class REPLSettings {
         this.BUFFER_SIZE = editorLines
         this.CMNT = "//"
     }
-    // set CMNT(cmnt: string) {
-    //     this._CMNT = cmnt.toString();
-    //     this.CMNT_CHARS = [];
-    //     for (var i = 0; i < this.CMNT.length; i++) {
-    //         this.CMNT_CHARS.push(this.CMNT[i].charCodeAt(0));
-    //     }
-    //     this.CMNT_CHARS = this.CMNT_CHARS.concat(32);
-    // }
 }
 
 //We use this externally so we have a type we can use to ensure we get both an id and a function when preloading
