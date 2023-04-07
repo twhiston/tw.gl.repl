@@ -79,6 +79,10 @@ export class TextBuffer {
         return this.formatTextArray(ctx, this.textBuf);
     }
 
+    formatLine(ctx = {}, lineNum: number): Array<string> {
+        return this.formatTextArray(ctx, [this.getLine(lineNum)]);
+    }
+
     private formatTextArray(ctx = {}, textArr: Array<string>): Array<string> {
         let formatted = textArr;
         for (let i = 0; i < this.formatters.length; i++) {

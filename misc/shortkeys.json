@@ -8,6 +8,13 @@
             ]
         },
         {
+            "id": "execute-line",
+            "asciiCode": 6140,
+            "functions": [
+                "return ['run_line']"
+            ]
+        },
+        {
             "id": "disable-editor-alt-D",
             "asciiCode": 8706,
             "functions": [

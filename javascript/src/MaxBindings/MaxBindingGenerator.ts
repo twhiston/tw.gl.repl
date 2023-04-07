@@ -272,6 +272,11 @@ export class PatcherInitGenerator extends MaxGenerator {
             handlerInlet: 0
         });
         genFuncs.push({
+            functionName: "run_line",
+            customHandler: "runHandler",
+            handlerInlet: 0
+        });
+        genFuncs.push({
             functionName: "read",
             customHandler: "readHandler",
             handlerInlet: 0

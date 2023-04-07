@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 610.0, 100.0, 596.0, 790.0 ],
+		"rect" : [ 610.0, 100.0, 596.0, 848.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -84,7 +84,7 @@
 						"tags" : "",
 						"style" : "",
 						"subpatcher_template" : "",
-						"showontab" : 1,
+						"showontab" : 0,
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
@@ -407,7 +407,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 110.0, 345.0, 38.0, 22.0 ],
+					"patching_rect" : [ 45.0, 337.0, 38.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -436,7 +436,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 596.0, 764.0 ],
+						"rect" : [ 457.0, 184.0, 895.0, 764.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -463,8 +463,9 @@
 						"tags" : "",
 						"style" : "",
 						"subpatcher_template" : "",
-						"showontab" : 1,
+						"showontab" : 0,
 						"assistshowspatchername" : 0,
+						"visible" : 1,
 						"boxes" : [ 							{
 								"box" : 								{
 									"id" : "obj-9",
@@ -1750,7 +1751,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 75.0, 300.0, 73.0, 22.0 ],
+					"patching_rect" : [ 45.0, 295.0, 73.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -1779,7 +1780,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 596.0, 764.0 ],
+						"rect" : [ 602.0, 284.0, 870.0, 787.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1806,9 +1807,49 @@
 						"tags" : "",
 						"style" : "",
 						"subpatcher_template" : "",
-						"showontab" : 1,
+						"showontab" : 0,
 						"assistshowspatchername" : 0,
+						"visible" : 1,
 						"boxes" : [ 							{
+								"box" : 								{
+									"fontsize" : 12.0,
+									"id" : "obj-7",
+									"linecount" : 6,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 422.0, 316.5, 371.0, 87.0 ],
+									"presentation_linecount" : 6,
+									"text" : "Any command in the repl routepass is callable from inside the repl itself, so even if there is not a shortkey assigned you could use the full route and run the buffer or the line to output it. Eg\n\nfont \"Courier New Bold\"\nblink_time 70"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"fontface" : 1,
+									"fontsize" : 12.0,
+									"id" : "obj-6",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 422.0, 294.5, 367.0, 20.0 ],
+									"text" : "REPL Commands:"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-5",
+									"linecount" : 5,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 45.0, 98.0, 367.0, 74.0 ],
+									"text" : "All functionality is totally customisable by the user, so the descriptions here relate to the default shortkeys.json file which comes with the repl.\nIf you are making your own configuration it's probably useful to look closely at the default file to see how function calls are handled"
+								}
+
+							}
+, 							{
 								"box" : 								{
 									"fontface" : 1,
 									"fontsize" : 12.0,
@@ -1816,7 +1857,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 431.0, 120.0, 367.0, 20.0 ],
+									"patching_rect" : [ 422.0, 45.0, 367.0, 20.0 ],
 									"text" : "Short Keys:"
 								}
 
@@ -1825,12 +1866,12 @@
 								"box" : 								{
 									"fontsize" : 12.0,
 									"id" : "obj-2",
-									"linecount" : 21,
+									"linecount" : 16,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 431.0, 142.0, 367.0, 288.0 ],
-									"text" : "var ALT_A //back one character\nvar ALT_S //down one line\nvar ALT_D //forward one character\nvar ALT_W //up one line\n\nvar ALT_Q //move to top of page\nvar ALT_SHFT_Q //move to bottom of page\n\nvar ALT_Z //undo edit\nvar ALT_SHFT_Z //redo edit\n\nvar ALT_X //delete a line of code\nvar ALT_C //copy a line of code\nvar ALT_V //paste-insert a line of code\nvar ALT_P //copy+paste line\n\nvar ALT_B //backspace a character\nvar ALT_FS //(un)comment a line of code\n\nvar ALT_J //jump 1 word left\nvar ALT_L //jump 1 word right"
+									"patching_rect" : [ 422.0, 67.0, 367.0, 221.0 ],
+									"text" : "var ALT_Q //move to top of page\nvar ALT_SHFT_Q //move to bottom of page\n\nvar ALT_Z //undo edit\nvar ALT_SHFT_Z //redo edit\n\nvar ALT_X //delete a line of code\nvar ALT_C //copy a line of code\nvar ALT_V //paste-insert a line of code\nvar ALT_P //copy+paste line\n\nvar ALT_B //backspace a character\nvar ALT_FS //(un)comment a line of code\n\nvar OPT+, //jump 1 word left\nvar OPT+. //jump 1 word right"
 								}
 
 							}
@@ -1842,8 +1883,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 45.0, 120.0, 367.0, 20.0 ],
-									"text" : "Texteditor Functionalities:"
+									"patching_rect" : [ 43.0, 192.0, 367.0, 20.0 ],
+									"text" : "REPL Functionalities:"
 								}
 
 							}
@@ -1857,7 +1898,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 45.0, 45.0, 367.0, 51.0 ],
-									"text" : "th.gl.texteditor",
+									"text" : "tw.gl.repl",
 									"textcolor" : [ 0.32548999786377, 0.345097988843918, 0.372548997402191, 1.0 ]
 								}
 
@@ -1866,12 +1907,12 @@
 								"box" : 								{
 									"fontsize" : 12.0,
 									"id" : "obj-41",
-									"linecount" : 14,
+									"linecount" : 13,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 45.0, 142.0, 371.0, 194.0 ],
-									"text" : "- You can type all characters and some special characters that work with SHFT + char (all characters most be part of ASCII table 0-128)\n\n- Not included are ALT + char.\n\n- Backspace works to delete a character in front of the cursor\n\n- Enter/Return outputs message typed on the commandline\n\n- Use the arrow's left/right to navigate with the cursor\n\n- Use the arrow's up/down to scroll through the history\n\n- Hold the backspace for quick erase"
+									"patching_rect" : [ 43.0, 214.0, 367.0, 181.0 ],
+									"text" : "- You can type all characters and some special characters that work with SHFT + char (all characters most be part of ASCII table 0-128)\n\n- Not included are ALT + char.\n\n- Backspace works to delete a character behind the cursor\n- Delete deletes the character in front of the cursor\n\n- Option+Return outputs the contents of the text buffer\n- Option+Control+Return outputs the currently selected line of the text buffer\n\n- Use the arrow's up/down/left/right to navigate with the cursor"
 								}
 
 							}
@@ -1915,7 +1956,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 135.0, 390.0, 70.0, 22.0 ],
+					"patching_rect" : [ 45.0, 380.0, 70.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -1944,7 +1985,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 596.0, 764.0 ],
+						"rect" : [ 34.0, 100.0, 596.0, 764.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1971,7 +2012,7 @@
 						"tags" : "",
 						"style" : "",
 						"subpatcher_template" : "",
-						"showontab" : 1,
+						"showontab" : 0,
 						"assistshowspatchername" : 0,
 						"boxes" : [  ],
 						"lines" : [  ],
@@ -2013,7 +2054,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 153.0, 436.0, 27.0, 22.0 ],
+					"patching_rect" : [ 45.0, 420.0, 27.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -2034,7 +2075,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 45.0, 98.0, 367.0, 20.0 ],
-					"text" : "written by Timo Hoogland © 2019, www.timohoogland.com"
+					"text" : "written by Tom Whiston © 2023, www.tomwhiston.com"
 				}
 
 			}
@@ -2061,7 +2102,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 45.0, 45.0, 367.0, 51.0 ],
-					"text" : "th.gl.commandline",
+					"text" : "tw.gl.repl",
 					"textcolor" : [ 0.32548999786377, 0.345097988843918, 0.372548997402191, 1.0 ]
 				}
 
@@ -2110,7 +2151,7 @@
 						"tags" : "",
 						"style" : "",
 						"subpatcher_template" : "",
-						"showontab" : 1,
+						"showontab" : 0,
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{

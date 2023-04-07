@@ -75,12 +75,18 @@ function keyPress(k) {
 
 // output the parsed code if output_matrix is disabled
 function run() {
+    run_output(i.repl.tb.format(false));
+}
 
-    var out = i.repl.tb.format(false);
+function run_line() {
+    run_output(i.repl.tb.formatLine(false, i.repl.c.line()));
+}
+
+function run_output(out){
+
     for (var a = 0; a < out.length; a++) {
         outlet(0, out[a]);
     }
-    
     if (OUT_MAT) {
         outlet(0, "jit_matrix", i.glRender.textMtx.name);
     }
@@ -88,6 +94,7 @@ function run() {
         clear();
     }
 }
+run_output.local = 1;
 
 //output whatever is in the pastebin using formatters
 function output_paste_bin(){
