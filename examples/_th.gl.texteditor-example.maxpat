@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 100.0, 997.0, 783.0 ],
+		"rect" : [ 103.0, 100.0, 808.0, 783.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -39,6 +39,18 @@
 		"subpatcher_template" : "",
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
+				"box" : 				{
+					"id" : "obj-5",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 150.0, 420.0, 35.0, 22.0 ],
+					"text" : "clear"
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"id" : "obj-10",
 					"maxclass" : "newobj",
@@ -254,30 +266,6 @@
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 62.0, 270.0, 53.0, 22.0 ],
 					"text" : "t getsize"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-5",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 285.0, 450.0, 71.0, 22.0 ],
-					"text" : "fromsymbol"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-4",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 284.5, 420.0, 25.0, 22.0 ],
-					"text" : "iter"
 				}
 
 			}
@@ -2345,7 +2333,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 45.0, 138.0, 367.0, 20.0 ],
+					"patching_rect" : [ 45.0, 159.0, 367.0, 20.0 ],
 					"text" : "written by Timo Hoogland © 2020, www.timohoogland.com"
 				}
 
@@ -2359,8 +2347,8 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 45.0, 45.0, 510.0, 42.0 ],
-					"text" : "th.gl.texteditor - example patch",
+					"patching_rect" : [ 45.0, 6.0, 510.0, 42.0 ],
+					"text" : "tw.gl.repl - example patch",
 					"textcolor" : [ 0.32548999786377, 0.345097988843918, 0.372548997402191, 1.0 ]
 				}
 
@@ -2566,10 +2554,10 @@
 					"id" : "obj-112",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 284.5, 387.0, 190.0, 22.0 ],
-					"text" : "th.gl.texteditor cmd-xmp 1280 720"
+					"numoutlets" : 2,
+					"outlettype" : [ "", "" ],
+					"patching_rect" : [ 284.5, 387.0, 162.0, 22.0 ],
+					"text" : "tw.gl.repl cmd-xmp 1280 720"
 				}
 
 			}
@@ -2650,12 +2638,12 @@
 					"fontface" : 2,
 					"fontsize" : 18.0,
 					"id" : "obj-21",
-					"linecount" : 2,
+					"linecount" : 5,
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 45.0, 89.0, 510.0, 47.0 ],
-					"text" : "control parameters of jit.gl.plato, jit.gl.gridshape, camera and lights to live code with your own patch"
+					"patching_rect" : [ 45.0, 50.0, 510.0, 107.0 ],
+					"text" : "control parameters of jit.gl.plato, jit.gl.gridshape, camera and lights to live code with your own patch.\nThe only difference between this and the original  th.gl.texteditor is that we do not need to iter or fromsymbol the output"
 				}
 
 			}
@@ -2839,7 +2827,16 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-4", 0 ],
+					"destination" : [ "obj-10", 0 ],
+					"order" : 0,
+					"source" : [ "obj-112", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-206", 0 ],
+					"order" : 1,
 					"source" : [ "obj-112", 0 ]
 				}
 
@@ -2923,13 +2920,6 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-5", 0 ],
-					"source" : [ "obj-4", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
 					"destination" : [ "obj-112", 0 ],
 					"source" : [ "obj-42", 0 ]
 				}
@@ -2995,16 +2985,7 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-10", 0 ],
-					"order" : 0,
-					"source" : [ "obj-5", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-206", 0 ],
-					"order" : 1,
+					"destination" : [ "obj-112", 0 ],
 					"source" : [ "obj-5", 0 ]
 				}
 
@@ -3133,15 +3114,22 @@
 			}
  ],
 		"dependency_cache" : [ 			{
-				"name" : "th.gl.editor.js",
-				"bootpath" : "~/Documents/Max 8/Packages/th.gl.texteditor/javascript",
-				"patcherrelativepath" : "../javascript",
+				"name" : "patcher-init.js",
+				"bootpath" : "~/Documents/Max 8/Packages/tw.gl.repl/javascript/dist",
+				"patcherrelativepath" : "../javascript/dist",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
 , 			{
-				"name" : "th.gl.texteditor.maxpat",
-				"bootpath" : "~/Documents/Max 8/Packages/th.gl.texteditor/patchers",
+				"name" : "tw.gl.repl.js",
+				"bootpath" : "~/Documents/Max 8/Packages/tw.gl.repl/javascript/dist",
+				"patcherrelativepath" : "../javascript/dist",
+				"type" : "TEXT",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "tw.gl.repl.maxpat",
+				"bootpath" : "~/Documents/Max 8/Packages/tw.gl.repl/patchers",
 				"patcherrelativepath" : "../patchers",
 				"type" : "JSON",
 				"implicit" : 1

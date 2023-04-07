@@ -2,7 +2,9 @@
 
 ## TODO
 
+* add some paste functionality to make it easier to paste from system clipboard
 * add some settings to the shortkeys.json for repl config (eg alphanumerical override)
+* if read has filename do not open dialog
 * support and help patches
 * Do attributes properly in xml ref file and patch
 * fix minor bug with run outputting position a LOT
