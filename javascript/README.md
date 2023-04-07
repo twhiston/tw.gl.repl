@@ -2,6 +2,9 @@
 
 ## TODO
 
+* finish router generation
+* fix bug with run outputting position a LOT
+* why does run come out the clipboard outlet when we run it?
 * Do attributes properly in xml ref file and patch
 * Pastebin functionality
 * add some settings to the shortkeys.json for repl config (eg alphanumerical override)
@@ -19,9 +22,15 @@ only is it possible to output the contents of the repl buffer for processing in
 max, but it's possible to attach any function to a keypress in the repl, which can
 in turn generate messages for output. Simple use cases can be handled entirely
 in configuration, and more complex use cases can be easily managed by including a
- `user-repl.js` file inside your project in which you can further customize behaviour
- by attaching your own custom functions to keypresses or your own custom formatters
- for output message handling.
+`user-repl.js` file inside your project in which you can further customize behaviour
+by attaching your own custom functions to keypresses or your own custom formatters
+for output message handling.
+
+There is a fundamental philosophical difference between the idea of having a text buffer
+repl and performing actions on run, to having a program where every key press can trigger
+a specific function, it means there are subtle differences between this and th.gl.texteditor.
+For example when you load a text file into th.gl.texteditor it just fills the buffer,
+in tw.gl.repl it replays the keystrokes back through the input processing.
 
 ## Install
 
@@ -235,6 +244,8 @@ a little work to migrate from one to the other.
 * Different shortkey.json format
 * Different concept of file handling, file contents is "played back" into the repl
 * No internal functions, everything is user defined in code or config
+* output_matrix 1 will not stop commands being output from the first outlet,
+it will just output the `jit_matrix name` command additionally!
 * More flexible to extend
 * All js file handling
 * Slightly different max patch around javascript

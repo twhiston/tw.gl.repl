@@ -235,15 +235,22 @@ export class GLRender {
         (<any>this.glTextObj.lnmr).jit_matrix(this.nmbrMtx.name);
     }
 
+    @maxMspBinding({ functionName: "color" })
+    setTextColor(r: number, g: number, b: number, a: number = 1.0) {
+        this.color(new Color(r, g, b, a))
+    }
+
     color(color: Color) {
         this.textColor = color;
         (<any>this.glTextObj.text).gl_color = color.toArray();
     }
 
+    @maxMspBinding({})
     run_color(color: Color) {
         this.runColor = color;
     }
 
+    @maxMspBinding({})
     number_color(color: Color) {
         (<any>this.glTextObj.lnmr).gl_color = color.toArray();
     }
@@ -290,11 +297,13 @@ export class GLRender {
         this.useBlink = v;
     }
 
+    @maxMspBinding({})
     cursor_color(color: Color) {
         this.cursorColor = color;
         this.blink();
     }
 
+    @maxMspBinding({})
     blink_color(color: Color) {
         this.blinkColor = color;
     }
@@ -317,7 +326,7 @@ export class GLRender {
         }
     }
 
-
+    @maxMspBinding({})
     font(f: string) {
         for (const [k, v] of Object.entries(this.glTextObj)) {
             (<any>v).font(f);
@@ -334,6 +343,7 @@ export class GLRender {
         // crsrAnim.position = [0.9, 0, 0];
     }
 
+    @maxMspBinding({})
     leadscale(l: number) {
         for (const [k, v] of Object.entries(this.glTextObj)) {
             (<any>v).leadscale = l;
@@ -345,7 +355,7 @@ export class GLRender {
         this.alpha(1.0 - Number(this.isDisabled) * 0.5);
     }
 
-    //TODO: tighten type
+    @maxMspBinding({})
     tracking(t: any) {
         for (const [k, v] of Object.entries(this.glTextObj)) {
             (<any>v).tracking = t;

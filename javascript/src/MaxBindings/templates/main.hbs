@@ -62,7 +62,7 @@ function keyPress(k) {
 	//these will usually be messages for max such as the run command
 	var msgs = i.repl.keyPress(k)
 	for(var a = 0; a < msgs.length; a++){
-		outlet(2, msgs[a]);
+		outlet(0, msgs[a]);
 	}
 	draw();
 }
@@ -70,11 +70,13 @@ function keyPress(k) {
 // output the parsed code if output_matrix is disabled
 //TODO: fix this function to new code
 function run() {
-	outlet(0, "jit_matrix", i.glRender.textMtx.name);
-	if (!OUT_MAT) {
-		var out = i.repl.tb.format(false);
-		outlet(0, out);
-	}
+
+    var out = i.repl.tb.format(false);
+    outlet(0, out);
+    
+    if (OUT_MAT) {
+        outlet(0, "jit_matrix", i.glRender.textMtx.name);
+    }
 	if (EPHEMERAL_MODE) {
 		i.glRender.clear();
 	}

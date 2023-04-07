@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 863.0, 195.0, 727.0, 718.0 ],
+		"rect" : [ 751.0, 195.0, 385.0, 718.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -39,6 +39,18 @@
 		"subpatcher_template" : "",
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
+				"box" : 				{
+					"id" : "obj-33",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 204.0, 470.0, 86.0, 22.0 ],
+					"text" : "blink_enable 0"
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"id" : "obj-32",
 					"maxclass" : "newobj",
@@ -89,7 +101,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 93.0, 471.0, 197.0, 22.0 ],
+					"patching_rect" : [ 93.0, 497.0, 197.0, 22.0 ],
 					"text" : "set \"this is a buffer. It has text\""
 				}
 
@@ -273,8 +285,8 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 366.5, 220.0, 106.0, 22.0 ],
-					"text" : "print clipboardText"
+					"patching_rect" : [ 432.5, 245.0, 95.0, 22.0 ],
+					"text" : "print fromRouter"
 				}
 
 			}
@@ -599,8 +611,22 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-31", 0 ],
+					"source" : [ "obj-10", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-20", 0 ],
 					"source" : [ "obj-11", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-31", 0 ],
+					"source" : [ "obj-12", 0 ]
 				}
 
 			}
@@ -713,6 +739,13 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-31", 0 ],
+					"source" : [ "obj-33", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-2", 0 ],
 					"source" : [ "obj-39", 0 ]
 				}
@@ -734,6 +767,13 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-31", 0 ],
+					"source" : [ "obj-8", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-20", 0 ],
 					"source" : [ "obj-9", 0 ]
 				}
@@ -741,7 +781,7 @@
 			}
  ],
 		"dependency_cache" : [ 			{
-				"name" : "includes.js",
+				"name" : "patcher-init.js",
 				"bootpath" : "~/Documents/Max 8/Packages/tw.gl.repl/javascript/dist",
 				"patcherrelativepath" : "../javascript/dist",
 				"type" : "TEXT",

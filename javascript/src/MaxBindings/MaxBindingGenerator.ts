@@ -283,6 +283,10 @@ export class PatcherInitGenerator extends MaxGenerator {
             customHandler: "this",
             handlerInlet: 0
         });
+        genFuncs.push({
+            functionName: "output_matrix",
+            handlerInlet: 0
+        });
         //initialize with the fixed functions we have in our template
         for (const b of bindingArr) {
             genFuncs.push(b[1].options)
