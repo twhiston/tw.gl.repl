@@ -23,6 +23,10 @@ export interface MaxMspBindingOptions extends Record<string, any> {
     customHandler?: string;
     //If connected to a custom handler then what inlet number should it be?
     handlerInlet?: number;
+    //should be added as an attribute to the max xml
+    isAttribute?: boolean;
+    //should be added as a method to the max xml
+    isMethod?: boolean;
 }
 
 //This is used effectively as a compile time decorator as we are using it for code generation

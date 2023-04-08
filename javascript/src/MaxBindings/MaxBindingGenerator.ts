@@ -1,7 +1,7 @@
 import path from 'path';
 import fs from 'fs';
 import ts from 'typescript';
-import Handlebars from 'handlebars';
+import Handlebars, { HelperOptions } from 'handlebars';
 import { MaxMspBindingOptions } from './MaxBindings';
 
 function cleanComment(comment: string) {
@@ -43,6 +43,15 @@ Handlebars.registerHelper('maxSelfReference', function (name: string) {
     return (name === "this")
 });
 
+Handlebars.registerHelper("truthy", function (conditional, options): any {
+    if (conditional === 'true') {
+        // @ts-ignore
+        return options.fn(this);
+    } else {
+        // @ts-ignore
+        return options.inverse(this);
+    }
+});
 export class MaxGenerator {
 
     readonly projectDir: string;
@@ -125,6 +134,18 @@ export class MaxGenerator {
                     options.noroute = classOptions.noroute || options.noroute;
                     if (options.handlerInlet === undefined)
                         options.handlerInlet = 0;
+                    if (options.isAttribute === undefined) {
+                        options.isAttribute = classOptions.isAttribute;
+                    }
+                    if (options.isAttribute === undefined) {
+                        options.isAttribute = false
+                    }
+                    if (options.isMethod === undefined) {
+                        options.isMethod = classOptions.isMethod;
+                    }
+                    if (options.isMethod === undefined) {
+                        options.isMethod = false
+                    }
                     options.functionName = options.functionName || name;
                     options.callName = name;
                     options.paramCount = node.parameters.length
@@ -297,7 +318,9 @@ export class PatcherInitGenerator extends MaxGenerator {
         });
         genFuncs.push({
             functionName: "ephemeral_mode",
-            handlerInlet: 0
+            handlerInlet: 0,
+            isAttribute: true,
+            isMethod: true
         });
         genFuncs.push({
             functionName: "output_paste_bin",

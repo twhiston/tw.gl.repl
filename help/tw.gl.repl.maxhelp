@@ -436,7 +436,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 457.0, 184.0, 895.0, 764.0 ],
+						"rect" : [ 457.0, 184.0, 546.0, 764.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -467,18 +467,6 @@
 						"assistshowspatchername" : 0,
 						"visible" : 1,
 						"boxes" : [ 							{
-								"box" : 								{
-									"id" : "obj-9",
-									"linecount" : 2,
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 428.0, 555.0, 108.0, 33.0 ],
-									"text" : "TODO FIX THE ARGS HERE!!!!"
-								}
-
-							}
-, 							{
 								"box" : 								{
 									"id" : "obj-1",
 									"maxclass" : "newobj",
@@ -1819,7 +1807,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 422.0, 316.5, 371.0, 87.0 ],
-									"presentation_linecount" : 6,
 									"text" : "Any command in the repl routepass is callable from inside the repl itself, so even if there is not a shortkey assigned you could use the full route and run the buffer or the line to output it. Eg\n\nfont \"Courier New Bold\"\nblink_time 70"
 								}
 
@@ -1844,7 +1831,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 45.0, 98.0, 367.0, 74.0 ],
+									"patching_rect" : [ 45.0, 98.0, 369.0, 74.0 ],
 									"text" : "All functionality is totally customisable by the user, so the descriptions here relate to the default shortkeys.json file which comes with the repl.\nIf you are making your own configuration it's probably useful to look closely at the default file to see how function calls are handled"
 								}
 
@@ -1911,7 +1898,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 43.0, 214.0, 367.0, 181.0 ],
+									"patching_rect" : [ 43.0, 214.0, 371.0, 181.0 ],
 									"text" : "- You can type all characters and some special characters that work with SHFT + char (all characters most be part of ASCII table 0-128)\n\n- Not included are ALT + char.\n\n- Backspace works to delete a character behind the cursor\n- Delete deletes the character in front of the cursor\n\n- Option+Return outputs the contents of the text buffer\n- Option+Control+Return outputs the currently selected line of the text buffer\n\n- Use the arrow's up/down/left/right to navigate with the cursor"
 								}
 

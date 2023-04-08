@@ -116,7 +116,7 @@ export class REPLManager {
     }
 
     // set the comment characters. bind the comment function to a key combo to use
-    @maxMspBinding({ draw: true, functionName: "comment" })
+    @maxMspBinding({ draw: true, functionName: "comment", isMethod: true, isAttribute: true })
     setCommentChars(c) {
         this.config.CMNT = c.toString();
         this.config.CMNT_CHARS = [];
@@ -128,7 +128,6 @@ export class REPLManager {
 
 
     // add multiple spaces to the text (tab)
-    @maxMspBinding({ draw: true, throws: true })
     addTab() {
         const pos = this.c.position()
         //TODO: why does the original do this?
@@ -158,7 +157,7 @@ export class REPLManager {
     }
 
     // add one or multiple characters as a string
-    @maxMspBinding({ draw: true, throws: true })
+    @maxMspBinding({ draw: true, throws: true, isMethod: true })
     add(c: string) {
         for (var i = 0; i < c.length; i++) {
             var char = c.charCodeAt(i);
@@ -171,7 +170,7 @@ export class REPLManager {
     }
 
     // append a line of text or multiple symbols per line
-    @maxMspBinding({ draw: true })
+    @maxMspBinding({ draw: true, isMethod: true })
     append(text: Array<string>) {
         if (text.length > 0)
             this.newLine();
@@ -185,7 +184,7 @@ export class REPLManager {
     }
 
     // prepend a line of text or multiple symbols per line
-    @maxMspBinding({ draw: true })
+    @maxMspBinding({ draw: true, isMethod: true })
     prepend(text: Array<string>) {
         this.c.reset();
         for (var i = 0; i < text.length; i++) {
@@ -199,7 +198,7 @@ export class REPLManager {
     /* remove a line of text at a specified index
     * if no idx is provided it will remove the last line of the buffer.
     */
-    @maxMspBinding({ draw: true })
+    @maxMspBinding({ draw: true, isMethod: true })
     remove(idx: number = -1) {
         if (idx === -1) { idx = this.tb.length() - 1; }
         this.c.setLine(idx);
@@ -212,7 +211,7 @@ export class REPLManager {
     * So you can use this to insert text which you do not 
     * want to be processed for some reason
     */
-    @maxMspBinding({ draw: true, throws: true })
+    @maxMspBinding({ draw: true, throws: true, isMethod: true })
     insert(idx: number, text: Array<string>) {
         var idx = Math.min(this.config.BUFFER_SIZE, idx);
 
@@ -242,7 +241,7 @@ export class REPLManager {
     * this can be a list of symbols for every line
     * NOTE THAT INSERT WILL NOT PROCESS THE INPUT!
     */
-    @maxMspBinding({ draw: true })
+    @maxMspBinding({ draw: true, isMethod: true })
     set(text: Array<string>) {
 
         text = (text.length < 1) ? [''] : text;
@@ -260,7 +259,7 @@ export class REPLManager {
 
 
     // backspace a character
-    @maxMspBinding({ functionName: 'back', draw: true })
+    @maxMspBinding({ functionName: 'back', draw: true, isMethod: true })
     backSpace() {
         // decrement character index
         this.c.decrementChar()
@@ -279,14 +278,14 @@ export class REPLManager {
     }
 
     //reset the cursor and empty the buffer
-    @maxMspBinding({ draw: true })
+    @maxMspBinding({ draw: true, isMethod: true })
     clear() {
         this.c.reset()
         this.tb.clear();
     }
 
     // delete the character in front of the cursor
-    @maxMspBinding({ functionName: 'del', draw: true })
+    @maxMspBinding({ functionName: 'del', draw: true, isMethod: true })
     deleteChar() {
         var pos = this.c.position()
         if (pos.char < this.tb.lineLength(pos.line)) {
@@ -401,7 +400,7 @@ export class REPLManager {
     }
 
     // move the cursor to the index of the letter in the full text
-    @maxMspBinding({ draw: true })
+    @maxMspBinding({ draw: true, isMethod: true })
     gotoIndex(i: number): void {
         // go to beginning if index less then 0
         if (i < 0) {

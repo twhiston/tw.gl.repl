@@ -1,4 +1,4 @@
-{{#if options.paramCount}}
+{{#truthy options.isMethod}}
 <method name="{{options.functionName}}">
     <arglist>
         {{#each options.params}}
@@ -10,4 +10,4 @@
         {{#if options.comment}}{{cutComment options.comment}}{{else}}This function was auto bound to the max interface, but it does not have a comment describing what it does.{{/if}}
 	</description>
 </method>
-{{/if}}
+{{/truthy}}

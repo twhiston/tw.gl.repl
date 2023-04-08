@@ -2,7 +2,6 @@
 
 ## TODO
 
-* fix attributes not being set in help patch
 * add some paste functionality to make it easier to paste from system clipboard
 * add some settings to the shortkeys.json for repl config (eg alphanumerical override)
 * support and help patches

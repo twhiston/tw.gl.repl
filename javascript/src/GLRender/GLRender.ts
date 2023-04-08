@@ -31,7 +31,7 @@ export class Color {
 
 //There's a lot of casting to any in this class to make typescript happy, it's a bit tedious
 //but hopefully it never has to be touched ;) 
-@maxMspBinding({ instanceName: 'i.glRender' })
+@maxMspBinding({ instanceName: 'i.glRender', isMethod: true, isAttribute: true })
 export class GLRender {
 
     // the main node that all text is drawn to
@@ -153,7 +153,7 @@ export class GLRender {
     }
 
     //Set the render context for displaying the repl.
-    @maxMspBinding({})
+    @maxMspBinding({ isAttribute: false })
     drawto(v: string) {
         this.MAIN_CTX = v;
         (<any>this.textNode).drawto = this.MAIN_CTX;
@@ -246,13 +246,32 @@ export class GLRender {
     }
 
     @maxMspBinding({})
-    run_color(color: Color) {
-        this.runColor = color;
+    run_color(r: number, g: number, b: number, a: number = 1.0) {
+        this.runColor = new Color(r, g, b, a);
     }
 
     @maxMspBinding({})
-    number_color(color: Color) {
+    number_color(r: number, g: number, b: number, a: number = 1.0) {
+        const color = new Color(r, g, b, a);
         (<any>this.glTextObj.lnmr).gl_color = color.toArray();
+    }
+
+    @maxMspBinding({})
+    cursor_color(r: number, g: number, b: number, a: number = 1.0) {
+        const color = new Color(r, g, b, a);
+        this.cursorColor = color;
+        this.blink();
+    }
+
+    @maxMspBinding({})
+    blink_color(r: number, g: number, b: number, a: number = 1.0) {
+        const color = new Color(r, g, b, a);
+        this.blinkColor = color;
+    }
+
+    @maxMspBinding({})
+    blink_enable(v: boolean) {
+        this.useBlink = v;
     }
 
     // set the cursor characters
@@ -266,7 +285,7 @@ export class GLRender {
         }
     }
 
-    @maxMspBinding({ draw: true, noroute: true })
+    @maxMspBinding({ draw: true, noroute: true, isMethod: false, isAttribute: false })
     runBlink(t: number) {
 
         var c = [];
@@ -278,7 +297,7 @@ export class GLRender {
         (<any>this.glTextObj.text).gl_color = c;
     }
 
-    @maxMspBinding({ noroute: true })
+    @maxMspBinding({ noroute: true, isMethod: false, isAttribute: false })
     blink() {
         if (this.useBlink) {
             this.blinkToggle = 1 - this.blinkToggle;
@@ -290,22 +309,6 @@ export class GLRender {
         } else {
             (<any>this.glTextObj.crsr).gl_color = this.cursorColor.toArray();
         }
-    }
-
-    @maxMspBinding({})
-    blink_enable(v: boolean) {
-        this.useBlink = v;
-    }
-
-    @maxMspBinding({})
-    cursor_color(color: Color) {
-        this.cursorColor = color;
-        this.blink();
-    }
-
-    @maxMspBinding({})
-    blink_color(color: Color) {
-        this.blinkColor = color;
     }
 
     //CHANGE ALL FUNCTIONS
