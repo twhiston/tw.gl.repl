@@ -919,3 +919,87 @@ test('commentLine', t => {
     repl.commentLine(); // Uncomment third line
     t.is(repl.tb.getLine(2), 'Test line 3');
 });
+
+test('loadConfigFromJSON loads settings from JSON correctly', (t) => {
+    const jsonData = {
+        "settings": {
+            "repl": {
+                "MAX_CHARS": "90",
+                "BUFFER_SIZE": "80",
+                "setting3": true,
+            }
+        },
+        "bindings": []
+    };
+    const jsonStr = JSON.stringify(jsonData);
+
+    const testClass = new REPLManager();
+
+    t.notThrows(() => testClass.loadConfigFromJSON(jsonStr), 'should not throw error when loading a JSON with settings and bindings');
+
+});
+
+test("loadConfigFromJSON updates settings and doesn't throw", (t) => {
+    const config = {
+        settings: { "repl": { INDENTATION: 2, MAX_CHARS: 90, BUFFER_SIZE: 40, CMNT: "#" } },
+        bindings: []
+    };
+    const jsonConfig = JSON.stringify(config);
+
+    const replSettings = new REPLSettings();
+    const replManager = new REPLManager(replSettings);
+
+    t.notThrows(() => replManager.loadConfigFromJSON(jsonConfig));
+    t.is(replManager.config.INDENTATION, 2);
+    t.is(replManager.config.MAX_CHARS, 90);
+    t.is(replManager.config.BUFFER_SIZE, 40);
+    t.is(replManager.config.CMNT, "#");
+});
+
+test("loadConfigFromJSON updates incomplete settings and doesn't throw", (t) => {
+    const config = {
+        settings: { "repl": { INDENTATION: 2, } },
+        bindings: []
+    };
+    const jsonConfig = JSON.stringify(config);
+
+    const replSettings = new REPLSettings();
+    const replManager = new REPLManager(replSettings);
+
+    t.notThrows(() => replManager.loadConfigFromJSON(jsonConfig));
+    t.is(replManager.config.INDENTATION, 2);
+    t.is(replManager.config.MAX_CHARS, 80);
+    t.is(replManager.config.BUFFER_SIZE, 30);
+    t.is(replManager.config.CMNT, "//");
+});
+
+test("updateWith updates REPLSettings properties correctly", (t) => {
+    const initialSettings = new REPLSettings(30, 80, 4);
+    const updatedSettings = new REPLSettings(50, 100, 2);
+    updatedSettings.CMNT = "/*";
+
+    initialSettings.updateWith(updatedSettings);
+
+    t.is(initialSettings.INDENTATION, 2);
+    t.is(initialSettings.MAX_CHARS, 100);
+    t.is(initialSettings.BUFFER_SIZE, 50);
+    t.is(initialSettings.CMNT, "/*");
+});
+
+test("cmntToChars works when called directly", (t) => {
+    const settings = new REPLSettings();
+    settings.CMNT = "/*";
+    settings.cmntToChars();
+
+    t.deepEqual(settings.CMNT_CHARS, [47, 42, 32]);
+});
+
+test("cmntToChars works when called via updateWith", (t) => {
+    const initialSettings = new REPLSettings();
+    const updatedSettings = new REPLSettings();
+    updatedSettings.CMNT = "/*";
+
+    initialSettings.updateWith(updatedSettings);
+
+    t.deepEqual(initialSettings.CMNT_CHARS, [47, 42, 32]);
+});

@@ -49,9 +49,12 @@ function init() {
 		post("drawing to context: ", jsarguments[1], "\n");
     }
     i.repl.clear();
-	//load config from json via a dict string (ie json)
-    i.repl.kp.loadConfigFromJSON(sKeys.stringify())
-    //isDisabled = false;
+	//load config from a dict string (ie json)
+    try {
+        i.repl.loadConfigFromJSON(sKeys.stringify()) 
+    } catch (error) {
+        outlet(0, "error "+error)  
+    }
 
     i.glRender.font("Courier New Bold");
     i.glRender.fontsize(100);

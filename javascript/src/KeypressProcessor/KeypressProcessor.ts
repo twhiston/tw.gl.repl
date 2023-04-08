@@ -86,8 +86,13 @@ export class KeypressProcessor {
     // Function to load configuration from a JSON object
     loadConfigFromJSON(config: string) {
         const json = JSON.parse(config);
+
+        if (json.settings?.keypressProcessor?.overrideAlphaNum ?? false) {
+            this.overrideAlphaNum = json.settings.keypressProcessor.overrideAlphaNum
+        }
+
         if (json.bindings === undefined)
-            throw new Error('bindings undefined');
+            return;
 
 
         json.bindings.forEach((item: FunctionBinding) => {

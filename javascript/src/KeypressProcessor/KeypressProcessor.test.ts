@@ -171,15 +171,6 @@ test('loadConfigFromJSON should attach functions specified in JSON config', (t) 
   t.is(res2, "Function Two called with key: 65 and context: [object Object]")
 });
 
-test('loadConfigFromJSON with json.bindings === undefined', (t) => {
-  const kp = new KeypressProcessor();
-
-  const configString = JSON.stringify({ someKey: "someValue" });
-  const error = t.throws(() => kp.loadConfigFromJSON(configString));
-
-  t.is(error?.message, 'bindings undefined');
-});
-
 test('processKeypress method overrides alphaNum processing if overrideAlphaNum is true', (t) => {
   const keypressProcessor = new KeypressProcessor();
   // Attach test functions to ASCII code 127 (used for general alphanumeric keys if overrideAlphaNum is false)
@@ -250,4 +241,17 @@ test('processKeypress method calls both default key handler and custom function 
   t.is(result[0](alphaNumKeyCode, null), 'Alphanumeric handler executed');
   t.is(result[1](alphaNumKeyCode, null), 'Custom handler executed');
 
+});
+
+test("loadConfigFromJSON changes overrideAlphaNum", (t) => {
+  const kp = new KeypressProcessor();
+
+  const config = JSON.stringify({
+    settings: {
+      keypressProcessor: { overrideAlphaNum: true },
+    },
+  });
+
+  kp.loadConfigFromJSON(config);
+  t.true(kp.overrideAlphaNum);
 });

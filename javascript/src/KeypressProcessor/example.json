@@ -1,4 +1,15 @@
 {
+    "settings": {
+        "repl": {
+            "MAX_CHARS": 40,
+            "INDENTATION": 4,
+            "BUFFER_SIZE": 30,
+            "CMNT": "//"
+        },
+        "keypressProcessor": {
+            "overrideAlphaNum": true
+        }
+    },
     "bindings": [
         {
             "id": "testFunc4",

@@ -9,19 +9,32 @@ import { TextFormatter } from "TextFormatter";
 // INDENTATION = 4;
 // EDITOR_LINES = 30;
 // CMNT = "//";
-
 export class REPLSettings {
     MAX_CHARS: number
     INDENTATION: number
     BUFFER_SIZE: number
-    CMNT: string;
-    //TODO: Do we need this?
-    CMNT_CHARS = [];
-    constructor(editorLines: number = 30, maxChars: number = 80, indentation: number = 4) {
+    CMNT: string
+    CMNT_CHARS = []
+    constructor(bufferSize: number = 30, maxChars: number = 80, indentation: number = 4) {
         this.INDENTATION = indentation
         this.MAX_CHARS = maxChars
-        this.BUFFER_SIZE = editorLines
+        this.BUFFER_SIZE = bufferSize
         this.CMNT = "//"
+        this.cmntToChars()
+    }
+    updateWith(instance: REPLSettings): void {
+        this.MAX_CHARS = instance.MAX_CHARS !== this.MAX_CHARS ? instance.MAX_CHARS : this.MAX_CHARS;
+        this.INDENTATION = instance.INDENTATION !== this.INDENTATION ? instance.INDENTATION : this.INDENTATION;
+        this.BUFFER_SIZE = instance.BUFFER_SIZE !== this.BUFFER_SIZE ? instance.BUFFER_SIZE : this.BUFFER_SIZE;
+        this.CMNT = instance.CMNT !== this.CMNT ? instance.CMNT : this.CMNT;
+        this.cmntToChars();
+    }
+    cmntToChars() {
+        this.CMNT_CHARS = [];
+        for (var i = 0; i < this.CMNT.length; i++) {
+            this.CMNT_CHARS.push(this.CMNT[i].charCodeAt(0));
+        }
+        this.CMNT_CHARS = this.CMNT_CHARS.concat(32);
     }
 }
 
@@ -118,12 +131,10 @@ export class REPLManager {
     // set the comment characters. bind the comment function to a key combo to use
     @maxMspBinding({ draw: true, functionName: "comment", isMethod: true, isAttribute: true })
     setCommentChars(c) {
-        this.config.CMNT = c.toString();
-        this.config.CMNT_CHARS = [];
-        for (var i = 0; i < this.config.CMNT.length; i++) {
-            this.config.CMNT_CHARS.push(this.config.CMNT[i].charCodeAt(0));
-        }
-        this.config.CMNT_CHARS = this.config.CMNT_CHARS.concat(32);
+        this.config.CMNT = c.toString()
+        //because we are targeting below EMCA5 we cannot use setters
+        //so we need to call this every time we change the comment chars
+        this.config.cmntToChars()
     }
 
 
@@ -194,7 +205,6 @@ export class REPLManager {
      * prepend a line of text or multiple symbols per line.
      * DOES NOT PROCESS KEYPRESSES, WRITES DIRECTLY TO BUFFER
      */
-
     @maxMspBinding({ draw: true, isMethod: true })
     prepend(text: Array<string>) {
         this.c.reset();
@@ -206,9 +216,10 @@ export class REPLManager {
         this.jumpTo(JumpDirection.EOL);
     }
 
-    /* remove a line of text at a specified index
-    * if no idx is provided it will remove the last line of the buffer.
-    */
+    /* 
+     * remove a line of text at a specified index
+     * if no idx is provided it will remove the last line of the buffer.
+     */
     @maxMspBinding({ draw: true, isMethod: true })
     remove(idx: number = -1) {
         if (idx === -1) { idx = this.tb.length() - 1; }
@@ -507,4 +518,50 @@ export class REPLManager {
         this.c.setChar(this.tb.lineLength(this.c.line()));
     }
 
+    //kp load also throws!
+    loadConfigFromJSON(dictstring: string) {
+        const json = JSON.parse(dictstring);
+
+        if (json.settings?.repl ?? false) {
+            let newSettings = new REPLSettings()
+            Object.assign(newSettings, json.settings.repl);
+            this.config.updateWith(newSettings);
+        }
+        this.tb = new TextBuffer(this.config.BUFFER_SIZE);
+
+        this.kp.loadConfigFromJSON(dictstring)
+    }
+
 }
+
+/**
+ * Object.assign() - Polyfill
+ * https://github.com/ryanhefner/Object.assign
+ * 
+ * @ref https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign
+ */
+(function () {
+    if (typeof Object.assign != 'function') {
+        (function () {
+            Object.assign = function (target) {
+                'use strict';
+                if (target === undefined || target === null) {
+                    throw new TypeError('Cannot convert undefined or null to object');
+                }
+
+                var output = Object(target);
+                for (var index = 1; index < arguments.length; index++) {
+                    var source = arguments[index];
+                    if (source !== undefined && source !== null) {
+                        for (var nextKey in source) {
+                            if (source.hasOwnProperty(nextKey)) {
+                                output[nextKey] = source[nextKey];
+                            }
+                        }
+                    }
+                }
+                return output;
+            };
+        })();
+    }
+})();

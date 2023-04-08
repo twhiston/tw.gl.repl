@@ -1,4 +1,9 @@
 {
+    "settings": {
+        "repl": {
+            "BUFFER_SIZE": 40
+        }
+    },
     "bindings": [
         {
             "id": "execute",
