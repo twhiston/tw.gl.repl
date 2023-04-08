@@ -1,4 +1,3 @@
-
 {{#if options.comment}}{{options.comment}}{{else}}//auto-bound to max via annotation{{/if}}
 function {{options.functionName}}({{#each options.params}}{{this.name}}{{#unless @last}},{{/unless}}{{/each}}) {
     {{#if options.throws}}

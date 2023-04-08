@@ -44,7 +44,7 @@ Handlebars.registerHelper('maxSelfReference', function (name: string) {
 });
 
 Handlebars.registerHelper("truthy", function (conditional, options): any {
-    if (conditional === 'true') {
+    if (conditional === 'true' || conditional === true) {
         // @ts-ignore
         return options.fn(this);
     } else {
@@ -52,6 +52,119 @@ Handlebars.registerHelper("truthy", function (conditional, options): any {
         return options.inverse(this);
     }
 });
+
+function getCustomFunctionDefinitions(): Array<Object> {
+    let genFuncs: any = []
+    //Add all of our custom functionsa which live in our template and which are not generated on the fly
+    // adding them here makes sure they also get added to the router and output appropriately to a mix
+    // of custom handlers, the default out, back to the js object etc.
+    genFuncs.push({
+        functionName: "bang",
+        noroute: true,
+        isAttribute: false,
+        isMethod: true,
+        comment: "draws the repl. Connect the bang from a jit world to inlet 1",
+        paramCount: 1
+    });
+    genFuncs.push({
+        functionName: "init",
+        noroute: true,
+        isMethod: true,
+        isAttribute: false,
+        paramCount: 0
+    });
+    genFuncs.push({
+        functionName: "ignore_keys",
+        noroute: true,
+        isMethod: true,
+        isAttribute: true,
+        paramCount: 0,
+        comment: "Will stop the repl listening for any keypress, it will also stop blink from running as a visual indicator. Note that if you call this from within the repl you obviously can't start it again so you need to send a message from max to enable again"
+    });
+    genFuncs.push({
+        functionName: "keyPress",
+        noroute: false,
+        isMethod: true,
+        isAttribute: false,
+        paramCount: 0,
+        handlerInlet: 1,
+        customHandler: "ignoreKeyGate",
+        comment: "Process a keypress with the repl. This method is usually only called internally, but it is useful to expose in the router for functionality related to clipboard pasting. If in doubt you probably shouldn't be calling this from your code or configuration!"
+    });
+    genFuncs.push({
+        functionName: "run",
+        customHandler: "runHandler",
+        handlerInlet: 0,
+        isMethod: true,
+        isAttribute: false,
+        paramCount: 0,
+        comment: "output all the code in the repl, after passing it through attached formatters"
+    });
+    genFuncs.push({
+        functionName: "run_line",
+        customHandler: "runHandler",
+        handlerInlet: 0,
+        noRoute: false,
+        isMethod: true,
+        isAttribute: false,
+        paramCount: 0,
+        comment: "output the currently selected line of code in the repl, after passing it through attached formatters"
+    });
+    genFuncs.push({
+        functionName: "read",
+        customHandler: "readHandler",
+        handlerInlet: 0,
+        isMethod: true,
+        isAttribute: false,
+        paramCount: 1,
+        comment: "read (playback) a file into the repl through the keypress handler. Optional first argument for filename otherwise opendialog"
+    });
+    genFuncs.push({
+        functionName: "write",
+        customHandler: "writeHandler",
+        handlerInlet: 0,
+        isMethod: true,
+        isAttribute: false,
+        paramCount: 1,
+        comment: "write all the data in the repl to a file. Optional first argument for file otherwise savedialog"
+    });
+    genFuncs.push({
+        functionName: "keybindings",
+        customHandler: "this",
+        handlerInlet: 0,
+        isMethod: true,
+        isAttribute: false,
+        paramCount: 1,
+        comment: "pass the name of a dict containing the config for the repl. By default loads shortkeys.json provided with the project"
+    });
+    genFuncs.push({
+        functionName: "output_matrix",
+        handlerInlet: 0,
+        isMethod: true,
+        isAttribute: false,
+        paramCount: 1,
+        comment: "If true then also output the text matrix name behind the command routing jit_matrix when code is run. Note that this does not stop other messages being output from the repl"
+    });
+    genFuncs.push({
+        functionName: "ephemeral_mode",
+        handlerInlet: 0,
+        isAttribute: true,
+        isMethod: true,
+        paramCount: 1,
+        comment: "if true then after a run the text or line which was executed will be deleted from the repl"
+    });
+    genFuncs.push({
+        functionName: "output_paste_bin",
+        customHandler: "this",
+        handlerInlet: 0,
+        isMethod: true,
+        isAttribute: false,
+        paramCount: 0,
+        comment: "output the current contents of the pastebin from the second outlet"
+    });
+
+    return genFuncs;
+}
 export class MaxGenerator {
 
     readonly projectDir: string;
@@ -209,13 +322,13 @@ export class MaxGenerator {
 
 export class MaxXmlGenerator extends MaxGenerator {
 
-    protected generateMethodCode(name: string, options: MaxMspBindingOptions) {
+    protected generateMethodCode(options: MaxMspBindingOptions) {
         return {
             rendered: this.templates.methodTemplate({ options })
         }
     }
 
-    protected generateAttributeCode(name: string, options: MaxMspBindingOptions) {
+    protected generateAttributeCode(options: MaxMspBindingOptions) {
         return {
             rendered: this.templates.attributeTemplate({ options })
         }
@@ -225,12 +338,18 @@ export class MaxXmlGenerator extends MaxGenerator {
         const bindingArr = Array.from(bindings.entries())
         let genMethods: any = []
         let genAttributes: any = []
+        //Add our custom function definitions to our ones scraped from annotations
+        const genFuncs = getCustomFunctionDefinitions()
         for (const b of bindingArr) {
-            const o = this.generateMethodCode(b[0], b[1].options)
+            genFuncs.push(b[1].options)
+        }
+        //process inner templates
+        for (const f of genFuncs) {
+            const o = this.generateMethodCode(f)
             if (o.rendered !== '')
                 genMethods.push(o)
 
-            const a = this.generateAttributeCode(b[0], b[1].options)
+            const a = this.generateAttributeCode(f)
             if (a.rendered !== '')
                 genAttributes.push(a)
         }
@@ -275,58 +394,8 @@ export class PatcherInitGenerator extends MaxGenerator {
 
     writeGeneratedCode(bindings: Map<string, { filePath: string, options: MaxMspBindingOptions }>) {
         const bindingArr = Array.from(bindings.entries())
-        let genFuncs: any = []
-        //Add all of our custom functionsa which live in our template and which are not generated on the fly
-        // adding them here makes sure they also get added to the router and output appropriately to a mix
-        // of custom handlers, the default out, back to the js object etc.
-        genFuncs.push({
-            functionName: "init",
-            noroute: true
-        });
-        genFuncs.push({
-            functionName: "keyPress",
-            noroute: true
-        });
-        genFuncs.push({
-            functionName: "run",
-            customHandler: "runHandler",
-            handlerInlet: 0
-        });
-        genFuncs.push({
-            functionName: "run_line",
-            customHandler: "runHandler",
-            handlerInlet: 0
-        });
-        genFuncs.push({
-            functionName: "read",
-            customHandler: "readHandler",
-            handlerInlet: 0
-        });
-        genFuncs.push({
-            functionName: "write",
-            customHandler: "writeHandler",
-            handlerInlet: 0
-        });
-        genFuncs.push({
-            functionName: "keybindings",
-            customHandler: "this",
-            handlerInlet: 0
-        });
-        genFuncs.push({
-            functionName: "output_matrix",
-            handlerInlet: 0
-        });
-        genFuncs.push({
-            functionName: "ephemeral_mode",
-            handlerInlet: 0,
-            isAttribute: true,
-            isMethod: true
-        });
-        genFuncs.push({
-            functionName: "output_paste_bin",
-            customHandler: "this",
-            handlerInlet: 0
-        });
+
+        const genFuncs = getCustomFunctionDefinitions();
         //initialize with the fixed functions we have in our template
         for (const b of bindingArr) {
             genFuncs.push(b[1].options)

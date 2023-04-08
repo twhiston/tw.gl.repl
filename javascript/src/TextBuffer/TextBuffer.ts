@@ -173,10 +173,8 @@ export class TextBuffer {
 
     //Mutate the text buffer by inserting and optionally removing an element from the pasteBin
     pasteBinMutateLine(insertID: number, removeID: number) {
-        let catId = [insertID, removeID];
         if (!this.endOfLines() && insertID < this.maxLines && removeID < this.maxLines)
             Array.prototype.splice.apply(this.textBuf, <Parameters<Array<string>['splice']>>[insertID, removeID, ...this.pasteBin]);
-        //Array.prototype.splice.apply(this.textBuf, [insertID, removeID].concat(this.pasteBin));
         else
             throw new Error('insert or remove ID out of range: ' + insertID + " " + removeID);
     }

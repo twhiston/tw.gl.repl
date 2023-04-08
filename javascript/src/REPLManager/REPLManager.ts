@@ -138,7 +138,14 @@ export class REPLManager {
         }
     }
 
-    // add a character (alpha-numeric, numeric, special characters)
+    /*
+     * add a character (alpha-numeric, numeric, special characters)
+     * DOES NOT PROCESS KEYPRESSES, WRITES DIRECTLY TO BUFFER
+     * All methods marked with this note are usually used by binding 
+     * to a key rather than calling it directly in code. Binding to a key
+     * ensures that the keyPress function array is invoked, which may then
+     * write the data to the buffer depending on configuration
+     */
     addChar(k: number) {
         var pos = this.c.position();
         if (pos.char >= this.config.MAX_CHARS) {
@@ -156,7 +163,7 @@ export class REPLManager {
         this.c.incrementChar();
     }
 
-    // add one or multiple characters as a string
+    // add one or multiple characters as a string. DOES NOT PROCESS KEYPRESSES, WRITES DIRECTLY TO BUFFER
     @maxMspBinding({ draw: true, throws: true, isMethod: true })
     add(c: string) {
         for (var i = 0; i < c.length; i++) {
@@ -169,7 +176,7 @@ export class REPLManager {
         }
     }
 
-    // append a line of text or multiple symbols per line
+    // append a line of text or multiple symbols per line. DOES NOT PROCESS KEYPRESSES, WRITES DIRECTLY TO BUFFER
     @maxMspBinding({ draw: true, isMethod: true })
     append(text: Array<string>) {
         if (text.length > 0)
@@ -183,7 +190,11 @@ export class REPLManager {
         this.jumpTo(JumpDirection.EOL);
     }
 
-    // prepend a line of text or multiple symbols per line
+    /*
+     * prepend a line of text or multiple symbols per line.
+     * DOES NOT PROCESS KEYPRESSES, WRITES DIRECTLY TO BUFFER
+     */
+
     @maxMspBinding({ draw: true, isMethod: true })
     prepend(text: Array<string>) {
         this.c.reset();
@@ -205,11 +216,10 @@ export class REPLManager {
         this.deleteLine();
     }
 
-    /* insert a line of text or multiple symbols at a specified index
+    /* 
+    * insert a line of text or multiple symbols at a specified index
     * a list of symbols will insert one line per symbol
-    * NOTE THAT INSERT WILL NOT PROCESS THE INPUT!
-    * So you can use this to insert text which you do not 
-    * want to be processed for some reason
+    * DOES NOT PROCESS KEYPRESSES, WRITES DIRECTLY TO BUFFER
     */
     @maxMspBinding({ draw: true, throws: true, isMethod: true })
     insert(idx: number, text: Array<string>) {
@@ -239,7 +249,7 @@ export class REPLManager {
     /*
     * replace all the text with the incoming arguments
     * this can be a list of symbols for every line
-    * NOTE THAT INSERT WILL NOT PROCESS THE INPUT!
+    * DOES NOT PROCESS KEYPRESSES, WRITES DIRECTLY TO BUFFER
     */
     @maxMspBinding({ draw: true, isMethod: true })
     set(text: Array<string>) {

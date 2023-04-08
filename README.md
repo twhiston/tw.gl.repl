@@ -2,10 +2,10 @@
 
 ## TODO
 
-* add some paste functionality to make it easier to paste from system clipboard
+* add param types to fixed functions
+* map types to max types in template somehow!
 * add some settings to the shortkeys.json for repl config (eg alphanumerical override)
 * support and help patches
-* Do attributes properly in xml ref file and patch
 * fix minor bug with run outputting position a LOT
 * figure out automating releases without source in pipelines for tags
 

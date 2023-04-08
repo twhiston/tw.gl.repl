@@ -19,18 +19,21 @@ function patcher_init(){
 
     //connect the router outlets to either a custom handler or the simple `t l` object cmdList
     //handlerInlet is 0 if not set otherwise
-    {{#each functions}}{{#unless this.noroute}}{{#if this.customHandler}}
-    {{#if (maxSelfReference this.customHandler)}}
+    {{#each functions}}{{~#unless this.noroute}}{{~#if this.customHandler}}
+    {{~#if (maxSelfReference this.customHandler)}}
+    //{{this.functionName}}
     this.patcher.connect(routepass, {{outletCounter}}, ourself, {{this.handlerInlet}})
-    {{else}} 
+    {{~else}} 
+    //{{this.functionName}}
     var {{this.customHandler}} = this.patcher.getnamed("{{this.customHandler}}") 
     this.patcher.connect(routepass, {{outletCounter}}, {{this.customHandler}}, {{this.handlerInlet}})
-    {{/if}}{{else}}
+    {{/if}}{{~else}}
+    //{{this.functionName}}
     this.patcher.connect(routepass, {{outletCounter}}, cmdList,{{this.handlerInlet}})
     {{/if}}{{/unless}}
-    {{#if @last}}
+    {{~#if @last}}
+    //Unrouted messages are sent to the object output to be routed by the user
     this.patcher.connect(routepass, {{outletCounter}}, routedMsgOutput, 0)
-    {{/if}}
-    {{/each}}
+    {{/if}}{{/each}}
 }
 patcher_init.local = 1

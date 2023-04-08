@@ -137,7 +137,7 @@
             "id": "replaceLine-alt-p",
             "asciiCode": 960,
             "functions": [
-                " ctx.tb.pasteBinReplaceLine(ctx.c.line())"
+                "var pb = ctx.tb.pasteBinGet(); var startLine = ctx.c.line(); ctx.deleteLine(); if(ctx.c.line() < ctx.tb.length()-1){ctx.jumpLine(-1);ctx.jumpTo(1);} if(startLine === 0){ctx.jumpTo(0); ctx.newLine(); ctx.jumpTo(2); }else { ctx.newLine(); } for(var i = 0; i < pb.length; i++){for (var a = 0; a < pb[i].length; a++) {var char = pb[i].charCodeAt(a); ctx.keyPress(char)}}"
             ]
         },
         {
