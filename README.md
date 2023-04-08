@@ -150,21 +150,62 @@ function body in text (which will be wrapped
 is passed in (in the case of this application it is an instance of `REPLManager`),
 or it can be a reference to a custom function.
 
-## Including custom functions
+#### Binding a simple function
 
-One of the ways to extend the repl is to attach or preload your own functions so
-you can tie them to a key.
+You can create a simple key binding to output a message when a key is pressed with
+the following configuration
+
+```json
+{
+    "id": "execute",
+    "asciiCode": 2044,
+    "functions": [
+        "return 'run'"
+    ]
+}
+```
+
+Each of the entries in `functions` will be wrapped in a
+`new Function('k', 'ctx', funcString)` and will be executed on keypress. This
+allows us to perform simple actions such as returning custom messages which we
+can process further in max easily.
+
+#### Context based functions
+
+Because the functions called have the signature `('k', 'ctx')` functions we create in
+config will always contain the value of the key that was pressed in `k`. The `ctx`
+parameter however will contain an instance of REPLManager, which means that its functions
+and all the functions of the subclasses are available here. This allows you to create very
+complex functionality in just the config file. The shortkey to replace a line of
+text in the buffer with the pastebin is an exaxple of this
+
+```json
+{
+    "id": "replaceLine-alt-p",
+    "asciiCode": 960,
+    "functions": [
+        "var pb = ctx.tb.pasteBinGet(); var startLine = ctx.c.line(); ctx.deleteLine(); if(ctx.c.line() < ctx.tb.length()-1){ctx.jumpLine(-1);ctx.jumpTo(1);} if(startLine === 0){ctx.jumpTo(0); ctx.newLine(); ctx.jumpTo(2); }else { ctx.newLine(); } for(var i = 0; i < pb.length; i++){for (var a = 0; a < pb[i].length; a++) {var char = pb[i].charCodeAt(a); ctx.keyPress(char)}}"
+            ]
+        }
+```
+
+#### Including custom functions
+
+One of the ways to extend the repl further is to attach or preload your own functions
+so you can tie them to a key in the config.
 To make this easier the package tries to load a file called `user-repl.js`, max should
 load this up fine if it's in your path. Inside it you have access to `i.glRender`
 and `i.repl`, you also have access to a Dict of `shortkeys.json` in `sKeys`. Which
 will be stringified and passed into the repl on `init()`
 
- Most basic usage will be something like:
+Most basic usage will be something like:
 
 ```javascript
-const functionOne = (k: number, ctx: {}) => {
+//Typescript signature is actually
+//const functionOne = (k: number, ctx: {}) => {
+const functionOne = (k, ctx) => {    
     return `some message`;
-  };
+};
 i.repl.kp.preloadFunction('doSomething', functionOne);
 ```
 
@@ -212,6 +253,16 @@ being called:
 ```javascript
 //user-repl.js in your path
 i.repl.kp.customAlphaNum(true);
+```
+
+or
+
+```json
+"settings": {
+    "keypressProcessor": {
+         "overrideAlphaNum": true
+    }
+}
 ```
 
 If you instead want to just override the default handler for alpha-numerical keys
