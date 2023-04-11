@@ -11,17 +11,39 @@ test('REPLManager: Initialization', t => {
 });
 
 class TestFormatter implements TextFormatter {
+    id = "testformatter"
     //replaces all forms of whitespace with a space and trims the end
     format(strArr: Array<string>, ctx?: {}) { return strArr; }
 
 }
-test('REPLManager constructor with bufferFormatters not undefined', t => {
+test('REPLManager buffers preload not directly added', t => {
     const config = new REPLSettings();
     const bufferFormatterMock = new TestFormatter();
     const replManager = new REPLManager(config, [], [bufferFormatterMock]);
     const formatters = replManager.tb.formatters;
 
-    t.deepEqual(formatters, [bufferFormatterMock]);
+    t.deepEqual(formatters, []);
+});
+
+test('preloadFormatter works as intended', (t) => {
+    class CustomFormatter implements TextFormatter {
+        id: string
+        constructor(id) {
+            this.id = id;
+        }
+        format(strArr: string[], ctx?: {} | undefined): string[] {
+            return strArr
+        }
+    }
+
+    const formatter1 = new CustomFormatter('formatter1');
+
+    const repl = new REPLManager();
+
+    repl.preloadFormatter(formatter1);
+
+    t.is(repl.formatterPreloads.length, 1, 'REPLManager should have 1 formatter preloaded');
+    t.is(repl.formatterPreloads[0].id, 'formatter1', 'REPLManager should have formatter with id "formatter1" preloaded');
 });
 
 test('addTab method adds spaces to text', t => {
@@ -1004,31 +1026,6 @@ test("cmntToChars works when called via updateWith", (t) => {
     t.deepEqual(initialSettings.CMNT_CHARS, [47, 42, 32]);
 });
 
-test('loadConfigFromJson retains original TextBuffer formatters', (t) => {
-    class CustomFormatter implements TextFormatter {
-        format(line) {
-            return line;
-        }
-    }
-
-    const originalFormatter = new CustomFormatter();
-    const repl = new REPLManager(undefined, undefined, [originalFormatter]);
-
-    const newSettings = {
-        settings: {
-            repl: {
-                MAX_CHARS: 100,
-                INDENTATION: 2
-            }
-        }
-    };
-
-    repl.loadConfigFromJSON(JSON.stringify(newSettings));
-
-    t.is(repl.tb.formatters.length, 1, 'TextBuffer should have exactly one formatter');
-    t.is(repl.tb.formatters[0], originalFormatter, 'Original formatter should still be present');
-});
-
 test('loadConfigFromJson removes attachedFunctions from KeyProcessor', (t) => {
 
     const repl = new REPLManager();
@@ -1055,4 +1052,68 @@ test('loadConfigFromJson removes attachedFunctions from KeyProcessor', (t) => {
     repl.keyPress(42)
 
     t.false(executed1)
+});
+
+test('loadConfigFromJson can load formatter by id', (t) => {
+    class CustomFormatter implements TextFormatter {
+        id: string
+        constructor(id) {
+            this.id = id;
+        }
+        format(strArr: string[], ctx?: {} | undefined): string[] {
+            return strArr
+        }
+    }
+
+    const formatter1 = new CustomFormatter('formatter1');
+    const formatter2 = new CustomFormatter('formatter2');
+
+    const repl = new REPLManager(undefined, undefined, [formatter1, formatter2]);
+
+    const newSettings = {
+        settings: {
+            textbuffer: {
+                formatters: ['formatter2']
+            }
+        }
+    };
+
+    repl.loadConfigFromJSON(JSON.stringify(newSettings));
+
+    t.is(repl.tb.formatters.length, 1, 'TextBuffer should have 1 formatter');
+    t.is(repl.tb.formatters[0].id, 'formatter2', 'TextBuffer should load formatter with id "formatter2"');
+});
+
+
+test('preloadFormatter can preload formatter and load it from json', t => {
+
+    const repl = new REPLManager();
+
+    class CustomFormatter implements TextFormatter {
+        id: string = "customformatter"
+        constructor() { }
+        format(strArr: string[], ctx?: {} | undefined): string[] {
+            return strArr.map(line => line.toUpperCase());
+        }
+    }
+    const testFormatter = new CustomFormatter()
+    repl.preloadFormatter(testFormatter)
+
+    const input = 'this is a test';
+    const expectedResult = ['THIS IS A TEST'];
+
+    const jsonConfiguration = JSON.stringify({
+        settings: {
+            repl: {},
+            textbuffer: {
+                formatters: [testFormatter.id]
+            }
+        }
+    });
+
+    repl.loadConfigFromJSON(jsonConfiguration);
+    repl.add(input);
+
+    const actualResult = repl.tb.format();
+    t.deepEqual(actualResult, expectedResult);
 });

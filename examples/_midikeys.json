@@ -2,6 +2,11 @@
     "settings": {
         "repl": {
             "BUFFER_SIZE": 30
+        },
+        "textbuffer": {
+            "formatters": [
+                "whitespace"
+            ]
         }
     },
     "bindings": [

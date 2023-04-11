@@ -2,7 +2,6 @@
 
 ## TODO
 
-* add formatters in config
 * add param types to fixed functions
 * map types to max types in template somehow!
 * support and help patches
@@ -137,6 +136,12 @@ All available settings are as follows:
         },
         "keypressProcessor": {
             "overrideAlphaNum": true
+        },
+        "textbuffer": {
+            "formatters": [
+                "whitespace",
+                "bracebalanced"
+            ]
         }
 }
 ```
@@ -292,8 +297,20 @@ will trim stings and ensure consistency in the whitespace character used. Second
 `BraceBalancedFormatter` will check that our output has fully balanced braces, or
 it will throw an exception. This exception is handled in the repl and will be printed
 to the max console. This formatter is extremely useful if you are outputting some
-kind of dsl, and need to ensure it is formatted correctly. If you need to add additional
-formatters you can add them in your `user-repl.js` by implementing TextFormatter.
+kind of dsl, and need to ensure it is formatted correctly. However it's easy to turn
+it off by simply removing it from the config of the repl like so
+
+```json
+"textbuffer": {
+    "formatters": [
+        "whitespace",
+    ]
+}
+```
+
+If you need to add additional formatters you can add them in your `user-repl.js`
+by implementing a TextFormatter and preloading it. It can then be referenced in
+your repl config.
 
 ```Typescript
 // This example is in typescript for clarity, and user-repl.js needs
@@ -302,16 +319,19 @@ formatters you can add them in your `user-repl.js` by implementing TextFormatter
 // repl it's recommended to look into using typescript, transpiling and 
 // generating your user-repl.js file.
 class UppercaseFormatter implements TextFormatter {
+    id: string = "uppercase"
     format(strArr: Array<string>, ctx: {}): Array<string> {
         // Example implementation that returns all strings in uppercase
         return strArr.map(str => str.toUpperCase());
     }
 }
-i.repl.tb.addFormatter(new UppercaseFormatter);
+i.repl.preloadFormatter(new UppercaseFormatter);
+//include via repl json config: {"settings"{"textbuffer": {"formatters": ["uppercase"]}}}
 ```
 
-If you don't want the default formatters to run before the formatters you add you
-should set instead of adding `i.repl.tb.setFormatters([new UppercaseFormatter]);`
+Always prefer preloading over setting formatters directly as failure to do
+so will result in issues when the config is loaded, as this is the point at
+which formatters are resolved and added to the TextBuffer.
 
 ## Reading and Writing files
 

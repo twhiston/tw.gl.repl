@@ -2,6 +2,7 @@ import '../string.extensions';
 import { TextFormatter } from 'TextFormatter';
 
 export class BraceBalancedFormatter implements TextFormatter {
+  readonly id: string = "bracebalanced"
   strict: boolean
   constructor(strict: boolean = false) { this.strict = strict }
   format(strArr: Array<string>) {

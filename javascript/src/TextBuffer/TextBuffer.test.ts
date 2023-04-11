@@ -3,6 +3,7 @@ import { TextBuffer } from './TextBuffer';
 import { TextFormatter } from './TextFormatter';
 
 class TestWhiteSpaceTrimFormatter implements TextFormatter {
+    id = "TestWhiteSpaceTrimFormatter"
     format(strArr: Array<string>, ctx: {}): Array<string> {
         // Your implementation goes here
         return strArr.map(str => str.trim()); // Example implementation that returns all strings in uppercase
@@ -10,6 +11,7 @@ class TestWhiteSpaceTrimFormatter implements TextFormatter {
 }
 
 class TestWhiteSpaceReplacerFormatter implements TextFormatter {
+    id = "TestWhiteSpaceReplacerFormatter"
     format(strArr: Array<string>, ctx: {}): Array<string> {
         // Your implementation goes here
         return strArr.map(str => str.replace(/\{/g, '').replace(/\}/g, '').trim()); // Example implementation that returns all strings in uppercase
@@ -17,6 +19,7 @@ class TestWhiteSpaceReplacerFormatter implements TextFormatter {
 }
 
 class TestUppercaseFormatter implements TextFormatter {
+    id = "TestUppercaseFormatter"
     format(strArr: Array<string>, ctx: {}): Array<string> {
         // Your implementation goes here
         return strArr.map(str => str.toUpperCase()); // Example implementation that returns all strings in uppercase
@@ -24,6 +27,7 @@ class TestUppercaseFormatter implements TextFormatter {
 }
 
 class TestBoldFormatter implements TextFormatter {
+    id = "TestBoldFormatter"
     format(strArr: Array<string>, ctx: { author: string }): Array<string> {
         return strArr.map(str => {
             const boldPattern = /{bold}/g;
@@ -88,6 +92,31 @@ test('format applies all registered formatters to the buffer', t => {
     tb.addFormatter(new TestWhiteSpaceReplacerFormatter);
     const formatted = tb.format();
     t.deepEqual(formatted, ['Line 1', 'Line 2']);
+});
+
+test('TextBuffer.formatLine applies formatter to a specific line', t => {
+
+    class TestFormatter implements TextFormatter {
+        id: string
+        constructor(id: string) {
+            this.id = id
+        }
+
+        format(source: string[]): string[] {
+            return source.map(line => line.toUpperCase());
+        }
+    }
+
+    const textBuffer = new TextBuffer(10);
+    const testFormatter = new TestFormatter('test-formatter');
+
+    textBuffer.set(['first line', 'second line']);
+    textBuffer.addFormatter(testFormatter);
+
+    const expectedResult = ['SECOND LINE'];
+    const actualResult = textBuffer.formatLine(1);
+
+    t.deepEqual(actualResult, expectedResult);
 });
 
 test('insertCharAt inserts a character into a specific position in a line', t => {
@@ -385,4 +414,18 @@ test('getMaxChar should return the number of characters in the longest line in t
     buffer.prepend(['supercalirfagilisticexpialidocious']);
     //newly longest line
     t.is(buffer.getMaxChar(), 34);
+});
+
+test('TextBuffer.pasteBinFormat applies formatters to the pasteBin', t => {
+    const textBuffer = new TextBuffer(10);
+    const testFormatter = new TestUppercaseFormatter();
+
+    textBuffer.append(["the owls are not what they seem"])
+    textBuffer.pasteBinCopyAll();
+    textBuffer.addFormatter(testFormatter);
+
+    const expectedResult = textBuffer.pasteBin.map(line => line.toUpperCase());
+    const actualResult = textBuffer.pasteBinFormat();
+
+    t.deepEqual(actualResult, expectedResult);
 });

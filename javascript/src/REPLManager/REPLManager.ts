@@ -63,10 +63,11 @@ export class REPLManager {
     tb: TextBuffer
     c: Cursor
     kp: KeypressProcessor
+    formatterPreloads: Array<TextFormatter> = []
     config: REPLSettings
 
     //TODO: remove buffSize as unused now
-    constructor(config?: REPLSettings, functionPreloads?: Array<PreloadIdentifier>, bufferFormatters?: Array<TextFormatter>) {
+    constructor(config?: REPLSettings, functionPreloads?: Array<PreloadIdentifier>, formatterPreloads?: Array<TextFormatter>) {
         this.c = new Cursor()
         this.kp = new KeypressProcessor()
         //apply default settings if none are passed in
@@ -76,8 +77,9 @@ export class REPLManager {
         this.tb = new TextBuffer(this.config.BUFFER_SIZE);
 
         //set an array of formatters. Note that the text buffer will call them in the order they are listed in the array
-        if (bufferFormatters !== undefined)
-            this.tb.setFormatters(Array.isArray(bufferFormatters) ? bufferFormatters : [bufferFormatters])
+        if (formatterPreloads !== undefined) {
+            this.formatterPreloads = formatterPreloads;
+        }
         //preload any functions that we want users to be able to refer to in json config files
         if (functionPreloads !== undefined) {
             //functionPreloads = Array.isArray(functionPreloads) ? functionPreloads : [functionPreloads]
@@ -147,6 +149,11 @@ export class REPLManager {
         for (var i = 0; i < numSpaces; i++) {
             this.addChar(32);
         }
+    }
+
+    // preload a TextFormatter, which can then be referenced from a config file by id
+    preloadFormatter(formatter: TextFormatter) {
+        this.formatterPreloads.push(formatter);
     }
 
     /*
@@ -529,6 +536,19 @@ export class REPLManager {
         }
 
         let newTB = new TextBuffer(this.config.BUFFER_SIZE);
+        if (json.settings?.textbuffer?.formatters ?? false) {
+            for (const formatter of json.settings.textbuffer.formatters) {
+                var result = this.formatterPreloads.filter(obj => {
+                    return obj.id === formatter
+                })
+                if (result !== undefined) {
+                    for (const f of result) {
+                        this.tb.addFormatter(f)
+                    }
+                }
+            }
+        }
+
         newTB.setFormatters(this.tb.formatters)
         this.tb = newTB;
 
