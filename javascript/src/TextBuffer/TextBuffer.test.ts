@@ -386,12 +386,3 @@ test('getMaxChar should return the number of characters in the longest line in t
     //newly longest line
     t.is(buffer.getMaxChar(), 34);
 });
-
-test('format function returns formatted text with contextual information', t => {
-    const buffer = new TextBuffer(10);
-    buffer.addFormatter(new TestBoldFormatter);
-    const ctx = { author: 'John' };
-    buffer.set(['Hello {bold}world{/bold}! This is {author} speaking.']);
-    const formatted = buffer.format(ctx);
-    t.deepEqual(formatted, ['Hello <b>world</b>! This is John speaking.']);
-});

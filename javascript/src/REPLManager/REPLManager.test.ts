@@ -1003,3 +1003,28 @@ test("cmntToChars works when called via updateWith", (t) => {
 
     t.deepEqual(initialSettings.CMNT_CHARS, [47, 42, 32]);
 });
+
+test('loadConfigFromJson retains original TextBuffer formatters', (t) => {
+    class CustomFormatter implements TextFormatter {
+        format(line) {
+            return line;
+        }
+    }
+
+    const originalFormatter = new CustomFormatter();
+    const repl = new REPLManager(undefined, undefined, [originalFormatter]);
+
+    const newSettings = {
+        settings: {
+            repl: {
+                MAX_CHARS: 100,
+                INDENTATION: 2
+            }
+        }
+    };
+
+    repl.loadConfigFromJSON(JSON.stringify(newSettings));
+
+    t.is(repl.tb.formatters.length, 1, 'TextBuffer should have exactly one formatter');
+    t.is(repl.tb.formatters[0], originalFormatter, 'Original formatter should still be present');
+});

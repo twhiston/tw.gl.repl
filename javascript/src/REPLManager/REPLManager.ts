@@ -527,7 +527,10 @@ export class REPLManager {
             Object.assign(newSettings, json.settings.repl);
             this.config.updateWith(newSettings);
         }
-        this.tb = new TextBuffer(this.config.BUFFER_SIZE);
+
+        let newTB = new TextBuffer(this.config.BUFFER_SIZE);
+        newTB.setFormatters(this.tb.formatters)
+        this.tb = newTB;
 
         this.kp.loadConfigFromJSON(dictstring)
     }

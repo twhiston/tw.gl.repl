@@ -53,14 +53,14 @@ test('multiline unbalanced brace formatting', t => {
 });
 
 test('strict balanced pass', t => {
-    const bb = new BraceBalancedFormatter
-    t.notThrows(() => { bb.format(["cmd(200)"], { strict: true }) });
+    const bb = new BraceBalancedFormatter(true)
+    t.notThrows(() => { bb.format(["cmd(200)"]) });
 });
 
 test('strict unbalanced exception', t => {
-    const bb = new BraceBalancedFormatter
+    const bb = new BraceBalancedFormatter(true)
     const error = t.throws(() => {
-        bb.format(["cmd(200"], { strict: true })
+        bb.format(["cmd(200"])
     }, { instanceOf: Error });
     if (error !== undefined)
         t.is(error.message, 'not balanced: cmd(200');

@@ -1,11 +1,10 @@
 import '../string.extensions';
-import { TextFormatter } from '../TextFormatter';
+import { TextFormatter } from 'TextFormatter';
 
 export class BraceBalancedFormatter implements TextFormatter {
-  format(strArr: Array<string>, ctx?: { strict: boolean }) {
-
-    if (ctx === undefined)
-      ctx = { strict: false }
+  strict: boolean
+  constructor(strict: boolean = false) { this.strict = strict }
+  format(strArr: Array<string>) {
 
     const reg = /([([])\s+|\s+([)\]])/g
     var balanced = true;
@@ -22,14 +21,13 @@ export class BraceBalancedFormatter implements TextFormatter {
       if (!balanced) {
         history = data;
       } else {
-
         const bracketSpaceFixed = data.replacerec(reg, "$1$2");
         output.push(bracketSpaceFixed.trim())
         history = "";
       }
     }
 
-    if (ctx.strict && !balanced) {
+    if (this.strict && !balanced) {
       throw new Error("not balanced: " + history.trim())
     }
     return output;

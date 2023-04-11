@@ -5,7 +5,11 @@
 * add param types to fixed functions
 * map types to max types in template somehow!
 * support and help patches
+  * show brace balanced formatter
+  * patch that makes max objects?
+  * something that outputs notes?
 * fix minor bug with run outputting position a LOT
+* add formatters in config?
 * figure out automating releases without source in pipelines for tags
 
 ## About

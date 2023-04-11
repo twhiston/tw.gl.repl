@@ -78,15 +78,24 @@ function keyPress(k) {
 
 // output the parsed code if output_matrix is disabled
 function run() {
-    run_output(i.repl.tb.format(false));
+    try {
+        var formatted = i.repl.tb.format();
+        run_output(formatted);
+    } catch (error){
+        outlet(0, "error "+error.message) 
+    } 
 }
 
 function run_line() {
-    run_output(i.repl.tb.formatLine(false, i.repl.c.line()));
+    try {
+        var formatted = i.repl.tb.formatLine(i.repl.c.line());
+        run_output(formatted);
+    } catch (error){
+        outlet(0, "error "+error.message) 
+    } 
 }
 
 function run_output(out){
-
     for (var a = 0; a < out.length; a++) {
         outlet(0, out[a]);
     }
@@ -101,7 +110,7 @@ run_output.local = 1;
 
 //output whatever is in the pastebin using formatters
 function output_paste_bin(){
-    outlet(2, i.repl.tb.pasteBinFormat(i.repl));
+    outlet(2, i.repl.tb.pasteBinFormat());
 }
 
 //Set to output the text matrix name as well as the messages
