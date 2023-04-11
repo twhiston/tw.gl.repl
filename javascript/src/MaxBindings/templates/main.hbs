@@ -165,7 +165,7 @@ function read(filename) {
 function write(filename) {
     f = new File(filename, "write", "TEXT")
     f.open()
-    fout.eof = 0;
+    f.eof = 0;
     var data = i.repl.tb.format()
     for (var index = 0; index < data.length; index++) {
         f.writeline(data[index])

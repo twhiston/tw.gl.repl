@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 604.0, 100.0, 596.0, 848.0 ],
+		"rect" : [ 424.0, 246.0, 596.0, 848.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -3858,7 +3858,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 684.0, 126.0, 596.0, 764.0 ],
+						"rect" : [ 386.0, 111.0, 853.0, 764.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -3890,11 +3890,78 @@
 						"visible" : 1,
 						"boxes" : [ 							{
 								"box" : 								{
+									"bgcolor" : [ 1.0, 0.788235, 0.470588, 1.0 ],
+									"fontname" : "Arial Bold",
+									"hint" : "",
+									"id" : "obj-42",
+									"ignoreclick" : 1,
+									"legacytextcolor" : 1,
+									"maxclass" : "textbutton",
+									"numinlets" : 1,
+									"numoutlets" : 3,
+									"outlettype" : [ "", "", "int" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 421.0, 404.0, 20.0, 20.0 ],
+									"rounded" : 60.0,
+									"text" : "7",
+									"textcolor" : [ 0.34902, 0.34902, 0.34902, 1.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"hidden" : 1,
+									"id" : "obj-18",
+									"maxclass" : "message",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 735.0, 113.0, 295.0, 22.0 ],
+									"presentation_linecount" : 2,
+									"text" : "loadunique _tw.gl.repl-simple-midi-example.maxpat"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"hidden" : 1,
+									"id" : "obj-19",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 735.0, 142.0, 51.0, 22.0 ],
+									"text" : "pcontrol"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"bgcolor" : [ 0.949019607843137, 0.56078431372549, 0.094117647058824, 0.25 ],
+									"bgoncolor" : [ 1.0, 1.0, 1.0, 1.0 ],
+									"fontface" : 1,
+									"id" : "obj-29",
+									"maxclass" : "textbutton",
+									"numinlets" : 1,
+									"numoutlets" : 3,
+									"outlettype" : [ "", "", "int" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 555.0, 113.0, 150.0, 60.0 ],
+									"text" : "MIDI (SIMPLE) EXAMPLE",
+									"textoncolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+									"textovercolor" : [ 1.0, 1.0, 1.0, 1.0 ],
+									"truncate" : 0,
+									"usetextovercolor" : 1
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"id" : "obj-2",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 414.0, 410.0, 117.0, 22.0 ],
+									"patching_rect" : [ 443.0, 404.0, 117.0, 22.0 ],
 									"text" : "s replFromClipboard"
 								}
 
@@ -4018,7 +4085,7 @@
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
 									"patching_rect" : [ 555.0, 45.0, 150.0, 60.0 ],
-									"text" : "GL EXAMPLE!",
+									"text" : "GL EXAMPLE",
 									"textoncolor" : [ 0.0, 0.0, 0.0, 1.0 ],
 									"textovercolor" : [ 1.0, 1.0, 1.0, 1.0 ],
 									"truncate" : 0,
@@ -4215,7 +4282,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 555.0, 249.0, 178.0, 33.0 ],
+									"patching_rect" : [ 636.0, 279.5, 178.0, 33.0 ],
 									"text" : "use receives and route objects to define your own \"functions\""
 								}
 
@@ -4233,7 +4300,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 540.0, 239.0, 20.0, 20.0 ],
+									"patching_rect" : [ 621.0, 269.5, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "4",
 									"textcolor" : [ 0.34902, 0.34902, 0.34902, 1.0 ]
@@ -4247,7 +4314,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 400.0, 466.5, 152.0, 60.0 ],
+									"patching_rect" : [ 313.0, 481.0, 152.0, 60.0 ],
 									"text" : "typ some text and press enter to output the \"code\".\nNote that we don't need to go from a symbol here"
 								}
 
@@ -4265,7 +4332,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 378.0, 486.5, 20.0, 20.0 ],
+									"patching_rect" : [ 291.0, 486.5, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "3",
 									"textcolor" : [ 0.34902, 0.34902, 0.34902, 1.0 ]
@@ -4344,7 +4411,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 735.0, 159.0, 261.0, 35.0 ],
+									"patching_rect" : [ 735.0, 223.0, 261.0, 35.0 ],
 									"text" : ";\rmax launchbrowser http://www.tomwhiston.com"
 								}
 
@@ -4361,7 +4428,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 555.0, 120.0, 150.0, 23.0 ],
+									"patching_rect" : [ 555.0, 184.0, 150.0, 23.0 ],
 									"text" : "go to my website",
 									"textjustification" : 0,
 									"textoncolor" : [ 0.239216, 0.254902, 0.278431, 1.0 ],
@@ -4392,7 +4459,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 45.0, 120.0, 447.0, 74.0 ],
-									"text" : "A repl for max in gl, with lots of customizable functionality which you can use to do some\nexciting things.\nThis is a basic example which you can use to understand both some basic functionality but also some differences with th.gl.texteditor",
+									"text" : "A repl for max in gl, with lots of customizable functionality which you can use to do some\nexciting things.\nThis is a basic example which you can use to understand some basic functionality and also some differences with th.gl.texteditor",
 									"textcolor" : [ 0.32548999786377, 0.345097988843918, 0.372548997402191, 1.0 ]
 								}
 
@@ -4419,7 +4486,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
-									"patching_rect" : [ 601.0, 404.0, 69.0, 22.0 ],
+									"patching_rect" : [ 616.0, 410.0, 69.0, 22.0 ],
 									"text" : "route mesh"
 								}
 
@@ -4431,7 +4498,7 @@
 									"numinlets" : 9,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
-									"patching_rect" : [ 555.0, 524.0, 211.0, 22.0 ],
+									"patching_rect" : [ 570.0, 492.5, 211.0, 22.0 ],
 									"text" : "jit.gl.mesh help-ctx @scale 0.4 0.4 0.4"
 								}
 
@@ -4443,7 +4510,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
-									"patching_rect" : [ 555.0, 344.0, 65.0, 22.0 ],
+									"patching_rect" : [ 570.0, 350.0, 65.0, 22.0 ],
 									"text" : "route anim"
 								}
 
@@ -4455,7 +4522,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
-									"patching_rect" : [ 555.0, 374.0, 76.0, 22.0 ],
+									"patching_rect" : [ 570.0, 380.0, 76.0, 22.0 ],
 									"text" : "jit.anim.drive"
 								}
 
@@ -4467,7 +4534,7 @@
 									"numinlets" : 0,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 555.0, 284.0, 64.0, 22.0 ],
+									"patching_rect" : [ 570.0, 290.0, 64.0, 22.0 ],
 									"text" : "r codeText"
 								}
 
@@ -4479,7 +4546,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
-									"patching_rect" : [ 555.0, 314.0, 52.0, 22.0 ],
+									"patching_rect" : [ 570.0, 320.0, 52.0, 22.0 ],
 									"text" : "route gs"
 								}
 
@@ -4514,7 +4581,7 @@
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 317.5, 496.5, 66.0, 22.0 ],
+									"patching_rect" : [ 222.0, 486.5, 66.0, 22.0 ],
 									"text" : "s codeText"
 								}
 
@@ -4527,7 +4594,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "jit_matrix", "" ],
-									"patching_rect" : [ 651.0, 434.0, 165.0, 35.0 ],
+									"patching_rect" : [ 666.0, 440.0, 165.0, 35.0 ],
 									"text" : "jit.gl.gridshape help-ctx @matrixoutput 1 @dim 50 50"
 								}
 
@@ -4568,6 +4635,18 @@
 									"outlettype" : [ "" ],
 									"parameter_enable" : 0,
 									"patching_rect" : [ 45.0, 225.0, 150.0, 22.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-44",
+									"linecount" : 4,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 291.0, 404.0, 150.0, 60.0 ],
+									"text" : "If you use the copy bindings alt+x or alt+c it will also output the copied text from this output"
 								}
 
 							}
@@ -4631,6 +4710,14 @@
 							}
 , 							{
 								"patchline" : 								{
+									"destination" : [ "obj-19", 0 ],
+									"hidden" : 1,
+									"source" : [ "obj-18", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
 									"destination" : [ "obj-20", 0 ],
 									"hidden" : 1,
 									"source" : [ "obj-24", 0 ]
@@ -4641,6 +4728,14 @@
 								"patchline" : 								{
 									"destination" : [ "obj-1", 0 ],
 									"source" : [ "obj-26", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-18", 0 ],
+									"hidden" : 1,
+									"source" : [ "obj-29", 0 ]
 								}
 
 							}
@@ -4668,7 +4763,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-32", 0 ],
-									"order" : 1,
+									"order" : 0,
 									"source" : [ "obj-4", 0 ]
 								}
 
@@ -4676,7 +4771,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-6", 0 ],
-									"order" : 0,
+									"order" : 1,
 									"source" : [ "obj-4", 0 ]
 								}
 
