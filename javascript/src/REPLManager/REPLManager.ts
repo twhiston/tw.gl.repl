@@ -532,6 +532,7 @@ export class REPLManager {
         newTB.setFormatters(this.tb.formatters)
         this.tb = newTB;
 
+        this.kp = new KeypressProcessor()
         this.kp.loadConfigFromJSON(dictstring)
     }
 

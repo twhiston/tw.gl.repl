@@ -1028,3 +1028,31 @@ test('loadConfigFromJson retains original TextBuffer formatters', (t) => {
     t.is(repl.tb.formatters.length, 1, 'TextBuffer should have exactly one formatter');
     t.is(repl.tb.formatters[0], originalFormatter, 'Original formatter should still be present');
 });
+
+test('loadConfigFromJson removes attachedFunctions from KeyProcessor', (t) => {
+
+    const repl = new REPLManager();
+
+    let executed1 = false;
+    repl.kp.attachFunctions("test", 42, [
+        () => { executed1 = true; },
+    ]);
+
+    const newSettings = {
+        settings: {
+            repl: {
+                MAX_CHARS: 100,
+                INDENTATION: 2
+            }
+        }
+    };
+
+    repl.keyPress(42)
+    t.true(executed1)
+    executed1 = false;
+    //unbind the original settings when loading new ones
+    repl.loadConfigFromJSON(JSON.stringify(newSettings));
+    repl.keyPress(42)
+
+    t.false(executed1)
+});

@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 103.0, 100.0, 808.0, 783.0 ],
+		"rect" : [ 612.0, 100.0, 808.0, 783.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -2360,7 +2360,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 45.0, 6.0, 510.0, 42.0 ],
-					"text" : "tw.gl.repl - example patch",
+					"text" : "tw.gl.repl - opengl example",
 					"textcolor" : [ 0.32548999786377, 0.345097988843918, 0.372548997402191, 1.0 ]
 				}
 
@@ -2655,7 +2655,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 45.0, 50.0, 510.0, 107.0 ],
-					"text" : "control parameters of jit.gl.plato, jit.gl.gridshape, camera and lights to live code with your own patch.\nThe only difference between this and the original  th.gl.texteditor is that we do not need to iter or fromsymbol the output"
+					"text" : "control parameters of jit.gl.plato, jit.gl.gridshape, camera and lights to live code with your own patch.\nThe only difference between this and the original example from th.gl.texteditor is that we do not need to iter or fromsymbol the output"
 				}
 
 			}

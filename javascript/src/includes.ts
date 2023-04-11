@@ -9,5 +9,5 @@ let wsf = new WhitespaceFormatter();
 
 exports.glRender = new GLRender(Date.now());
 //Default repl manager has editorLines: number = 30, maxChars: number = 80, indentation: number = 4
-//we up the lines to 80 in our max instantiation
-exports.repl = new REPLManager(new REPLSettings(80), [], [wsf, bbf]);
+//you can change this via the config rather than here!
+exports.repl = new REPLManager(new REPLSettings(), [], [wsf, bbf]);

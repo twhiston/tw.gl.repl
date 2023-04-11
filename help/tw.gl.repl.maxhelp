@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 1372.0, 222.0, 596.0, 848.0 ],
+		"rect" : [ 604.0, 100.0, 596.0, 848.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -42,6 +42,290 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-4",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 0,
+					"patcher" : 					{
+						"fileversion" : 1,
+						"appversion" : 						{
+							"major" : 8,
+							"minor" : 5,
+							"revision" : 3,
+							"architecture" : "x64",
+							"modernui" : 1
+						}
+,
+						"classnamespace" : "box",
+						"rect" : [ 767.0, 201.0, 160.0, 480.0 ],
+						"bglocked" : 0,
+						"openinpresentation" : 0,
+						"default_fontsize" : 12.0,
+						"default_fontface" : 0,
+						"default_fontname" : "Arial",
+						"gridonopen" : 1,
+						"gridsize" : [ 15.0, 15.0 ],
+						"gridsnaponopen" : 1,
+						"objectsnaponopen" : 1,
+						"statusbarvisible" : 2,
+						"toolbarvisible" : 1,
+						"lefttoolbarpinned" : 0,
+						"toptoolbarpinned" : 0,
+						"righttoolbarpinned" : 0,
+						"bottomtoolbarpinned" : 0,
+						"toolbars_unpinned_last_save" : 0,
+						"tallnewobj" : 0,
+						"boxanimatetime" : 200,
+						"enablehscroll" : 1,
+						"enablevscroll" : 1,
+						"devicewidth" : 0.0,
+						"description" : "",
+						"digest" : "",
+						"tags" : "",
+						"style" : "",
+						"subpatcher_template" : "",
+						"assistshowspatchername" : 0,
+						"boxes" : [ 							{
+								"box" : 								{
+									"bgcolor" : [ 1.0, 0.788235, 0.470588, 1.0 ],
+									"fontname" : "Arial Bold",
+									"hint" : "",
+									"id" : "obj-73",
+									"ignoreclick" : 1,
+									"legacytextcolor" : 1,
+									"maxclass" : "textbutton",
+									"numinlets" : 1,
+									"numoutlets" : 3,
+									"outlettype" : [ "", "", "int" ],
+									"parameter_enable" : 0,
+									"parameter_mappable" : 0,
+									"patching_rect" : [ 271.0, 369.0, 20.0, 20.0 ],
+									"rounded" : 60.0,
+									"text" : "6",
+									"textcolor" : [ 0.34902, 0.34902, 0.34902, 1.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"bgcolor" : [ 1.0, 0.788235, 0.470588, 1.0 ],
+									"fontname" : "Arial Bold",
+									"hint" : "",
+									"id" : "obj-16",
+									"ignoreclick" : 1,
+									"legacytextcolor" : 1,
+									"maxclass" : "textbutton",
+									"numinlets" : 1,
+									"numoutlets" : 3,
+									"outlettype" : [ "", "", "int" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 271.0, 308.0, 20.0, 20.0 ],
+									"rounded" : 60.0,
+									"text" : "5",
+									"textcolor" : [ 0.34902, 0.34902, 0.34902, 1.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"bgcolor" : [ 1.0, 0.788235, 0.470588, 1.0 ],
+									"fontname" : "Arial Bold",
+									"hint" : "",
+									"id" : "obj-36",
+									"ignoreclick" : 1,
+									"legacytextcolor" : 1,
+									"maxclass" : "textbutton",
+									"numinlets" : 1,
+									"numoutlets" : 3,
+									"outlettype" : [ "", "", "int" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 271.0, 248.5, 20.0, 20.0 ],
+									"rounded" : 60.0,
+									"text" : "4",
+									"textcolor" : [ 0.34902, 0.34902, 0.34902, 1.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"bgcolor" : [ 1.0, 0.788235, 0.470588, 1.0 ],
+									"fontname" : "Arial Bold",
+									"hint" : "",
+									"id" : "obj-31",
+									"ignoreclick" : 1,
+									"legacytextcolor" : 1,
+									"maxclass" : "textbutton",
+									"numinlets" : 1,
+									"numoutlets" : 3,
+									"outlettype" : [ "", "", "int" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 38.0, 369.0, 20.0, 20.0 ],
+									"rounded" : 60.0,
+									"text" : "3",
+									"textcolor" : [ 0.34902, 0.34902, 0.34902, 1.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"bgcolor" : [ 1.0, 0.788235, 0.470588, 1.0 ],
+									"fontname" : "Arial Bold",
+									"hint" : "",
+									"id" : "obj-28",
+									"ignoreclick" : 1,
+									"legacytextcolor" : 1,
+									"maxclass" : "textbutton",
+									"numinlets" : 1,
+									"numoutlets" : 3,
+									"outlettype" : [ "", "", "int" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 38.0, 308.0, 20.0, 20.0 ],
+									"rounded" : 60.0,
+									"text" : "2",
+									"textcolor" : [ 0.34902, 0.34902, 0.34902, 1.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-6",
+									"linecount" : 6,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 297.5, 369.0, 151.0, 87.0 ],
+									"text" : "note the error in the max console\ntw.gl.repl: not balanced: test(100\nand that no message is sent from the  object outlet"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-5",
+									"linecount" : 3,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 297.5, 308.0, 151.0, 47.0 ],
+									"text" : "execute the run command (Option+Return or Option+Control+Return)"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-4",
+									"linecount" : 3,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 297.5, 248.5, 153.0, 47.0 ],
+									"text" : "delete the last character of the line so it reads\ntest(100"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-3",
+									"linecount" : 2,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 62.5, 369.0, 151.0, 33.0 ],
+									"text" : "note the output is printed to the max console"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-2",
+									"linecount" : 3,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 62.5, 308.0, 151.0, 47.0 ],
+									"text" : "execute the run command (Option+Return or Option+Control+Return)"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-67",
+									"linecount" : 3,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 62.5, 248.5, 150.0, 47.0 ],
+									"text" : "go to the repl window and write\ntest(100) "
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"bgcolor" : [ 1.0, 0.788235, 0.470588, 1.0 ],
+									"fontname" : "Arial Bold",
+									"hint" : "",
+									"id" : "obj-27",
+									"ignoreclick" : 1,
+									"legacytextcolor" : 1,
+									"maxclass" : "textbutton",
+									"numinlets" : 1,
+									"numoutlets" : 3,
+									"outlettype" : [ "", "", "int" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 38.0, 248.5, 20.0, 20.0 ],
+									"rounded" : 60.0,
+									"text" : "1",
+									"textcolor" : [ 0.34902, 0.34902, 0.34902, 1.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-88",
+									"linecount" : 9,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 45.0, 98.0, 496.0, 127.0 ],
+									"text" : "The Repl can have text formatters attached in code which do something to transform your output before it is sent to max. By default there are two formatters added, the first is a whitespace formatter which just ensures consistency of output, the second it the BraceBalancedFormatter. This has a more specific application, it will throw an error (printed to the max console) if the nuber of braces in your input is not balanced.\nThis is particularly important in repl appliations where you might be outputting a DSL for another system and need to ensure it is valid.\nTo add your own text formatters please refer to README.md in the project as this needs to be done in code",
+									"textcolor" : [ 0.32548999786377, 0.345097988843918, 0.372548997402191, 1.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"fontface" : 0,
+									"fontname" : "Arial",
+									"fontsize" : 40.0,
+									"id" : "obj-22",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 45.0, 45.0, 367.0, 51.0 ],
+									"text" : "tw.gl.repl",
+									"textcolor" : [ 0.32548999786377, 0.345097988843918, 0.372548997402191, 1.0 ]
+								}
+
+							}
+ ],
+						"lines" : [  ]
+					}
+,
+					"patching_rect" : [ 45.0, 458.0, 96.0, 22.0 ],
+					"presentation" : 1,
+					"presentation_rect" : [ 0.0, 0.0, 100.0, 22.0 ],
+					"saved_object_attributes" : 					{
+						"description" : "",
+						"digest" : "",
+						"globalpatchername" : "",
+						"tags" : ""
+					}
+,
+					"text" : "p textFormatters"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-5",
 					"maxclass" : "newobj",
 					"numinlets" : 0,
@@ -57,7 +341,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 647.0, 260.0, 754.0, 719.0 ],
+						"rect" : [ 650.0, 107.0, 754.0, 719.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -105,7 +389,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 67.0, 627.0, 320.0, 60.0 ],
-									"presentation_linecount" : 8,
 									"text" : "pbcopy is a bit of a special option and it does not automatically have things in its buffer that you copy from other apps, so ymmv with exactly how useful writing back things are, but none the less it's possible!"
 								}
 
@@ -138,8 +421,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 51.0, 493.5, 151.0, 127.0 ],
-									"presentation_linecount" : 9,
+									"patching_rect" : [ 51.0, 493.5, 152.0, 127.0 ],
 									"text" : "try going to a new line and adding the letter \"p\".\nThen trigger the run line command (Opt+Ctrl+Rtn)\nThe P will be deleted by the back command and the clipboard contents will be processed a letter at a time"
 								}
 
@@ -195,7 +477,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 288.0, 340.5, 150.0, 74.0 ],
+									"patching_rect" : [ 288.0, 340.5, 151.0, 74.0 ],
 									"text" : "If we were really smart we could add a command to our repl which does the paste for us when we execute it"
 								}
 
@@ -273,8 +555,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 18.0, 391.5, 184.0, 87.0 ],
-									"presentation_linecount" : 7,
+									"patching_rect" : [ 18.0, 391.5, 187.0, 87.0 ],
 									"text" : "So how can we get the text from our clipboard back into our repl? We need to call pbpaste on a [shell] and iterate the ascii output as keypresses. Click the pbpaste message and see!"
 								}
 
@@ -344,7 +625,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 31.5, 127.5, 150.0, 33.0 ],
-									"presentation_linecount" : 2,
 									"text" : "make sure you have the shell object installed"
 								}
 
@@ -819,7 +1099,6 @@
 					}
 ,
 					"patching_rect" : [ 45.0, 374.0, 113.0, 22.0 ],
-					"presentation_linecount" : 2,
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -848,7 +1127,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 772.0, 303.0, 709.0, 609.0 ],
+						"rect" : [ 769.0, 303.0, 709.0, 609.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1425,14 +1704,12 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-55",
-									"linecount" : 25,
 									"maxclass" : "textedit",
 									"numinlets" : 1,
 									"numoutlets" : 4,
 									"outlettype" : [ "", "int", "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 193.0, 272.0, 250.0, 211.0 ],
-									"text" : "testing\rtesting\rtoasting\rtoasting\rtoasting\rtesting\rtesting\rtesting\rthis is a test\rthis is a test\rthis is a test\rthis is a test\rthis is a test\rtesting\rtesting\rtesting\rtesting\rtesting\rtesting\rtesting\rtesting123\rtesting\rtesting\rtoast\rtoasty\r"
+									"patching_rect" : [ 193.0, 272.0, 250.0, 211.0 ]
 								}
 
 							}
@@ -1529,7 +1806,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 596.0, 764.0 ],
+						"rect" : [ 860.0, 114.0, 596.0, 764.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -3239,7 +3516,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 735.0, 284.0, 870.0, 787.0 ],
+						"rect" : [ 608.0, 284.0, 870.0, 787.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -3413,7 +3690,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 45.0, 462.0, 70.0, 22.0 ],
+					"patching_rect" : [ 45.0, 500.0, 70.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -3511,7 +3788,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 45.0, 506.0, 27.0, 22.0 ],
+					"patching_rect" : [ 45.0, 542.0, 27.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -3581,7 +3858,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 1029.0, 240.0, 596.0, 764.0 ],
+						"rect" : [ 684.0, 126.0, 596.0, 764.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -3711,8 +3988,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 735.0, 45.0, 245.0, 22.0 ],
-									"text" : "loadunique _th.gl.texteditor-example.maxpat"
+									"patching_rect" : [ 735.0, 45.0, 257.0, 22.0 ],
+									"text" : "loadunique _tw.gl.repl-opengl-example.maxpat"
 								}
 
 							}
