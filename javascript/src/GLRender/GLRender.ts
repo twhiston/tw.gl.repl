@@ -313,7 +313,7 @@ export class GLRender {
         }
     }
 
-    @maxMspBinding({ draw: true, noroute: true, isMethod: false, isAttribute: false })
+    @maxMspBinding({ noroute: true, isMethod: false, isAttribute: false })
     runBlink(t: number) {
 
         var c = [];
