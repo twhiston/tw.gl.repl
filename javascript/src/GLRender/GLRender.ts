@@ -64,9 +64,9 @@ export class GLRender {
     glVid = new JitterObject("jit.gl.videoplane");
 
     // matrices for text display
-    textMtx = new JitterMatrix
-    crsrMtx = new JitterMatrix
-    nmbrMtx = new JitterMatrix
+    textMtx: JitterMatrix
+    crsrMtx: JitterMatrix
+    nmbrMtx: JitterMatrix
 
     private readonly UNIQ: number;
     private readonly NODE_CTX: string;
@@ -91,6 +91,8 @@ export class GLRender {
     private cursorColor = new Color(1, 0.501961, 0, 1);
     private blinkColor = new Color(0.4, 0.8, 1, 1);
 
+    private prevFrameLength = 0;
+
 
     // THE HORROR!!
     constructor(uuid: number) {
@@ -99,6 +101,10 @@ export class GLRender {
         this.NODE_CTX = "node" + this.UNIQ;
         this.ANIM_NODE = "anim" + this.UNIQ;
         this.CAM_CAP = "cam" + this.UNIQ;
+
+        this.textMtx = new JitterMatrix("text" + this.UNIQ);
+        this.crsrMtx = new JitterMatrix("crsr" + this.UNIQ);
+        this.nmbrMtx = new JitterMatrix("nmbr" + this.UNIQ);
 
         (<any>this.textNode).fsaa = 1;
         (<any>this.textNode).type = "float32";
@@ -152,6 +158,26 @@ export class GLRender {
         this.setCursorChars(this.CRSR)
     }
 
+    /*
+     * free all the jitter objects, called via [freebang] in abstraction 
+     * it is not routed so can only be called from inside the abstraction
+     * and as such is not available for use
+     */
+    @maxMspBinding({ isAttribute: false, isMethod: false, noroute: true, functionName: "_close" })
+    destroy() {
+        this.textNode.freepeer()
+        this.animNode.freepeer()
+        this.textAnim.freepeer()
+        this.glText.freepeer()
+        this.crsrAnim.freepeer()
+        this.nmbrAnim.freepeer()
+        this.glTextObj.text.freepeer()
+        this.glTextObj.crsr.freepeer()
+        this.glTextObj.lnmr.freepeer()
+        this.glCam.freepeer()
+        this.glVid.freepeer()
+    }
+
     //Set the render context for displaying the repl.
     @maxMspBinding({ isAttribute: false })
     drawto(v: string) {
@@ -175,14 +201,16 @@ export class GLRender {
 
     draw(textBuf: Array<string>, pos: CursorPosition) {
         this.drawText(textBuf); //place the strings as text in a matrix
-        this.drawCursor(textBuf, pos); //set the cursorposition
-        this.drawNumbers(textBuf, pos); //store the numbers in the matrix
+        this.drawCursor(textBuf, pos); //draw the cursor position in a matrix
+        this.drawNumbers(textBuf, pos); //draw the line numbers in a matrix
         this.matrixToText(); //set the matrices to the gl text objects
+        this.prevFrameLength = textBuf.length
     }
 
     // draw the text to a jitter matrix as ascii
     drawText(textBuf: Array<string>) {
-        this.textMtx = new JitterMatrix("text" + this.UNIQ, 1, "char", this.LINE_CHARS, textBuf.length);
+        if (this.prevFrameLength !== textBuf.length)
+            this.textMtx = new JitterMatrix("text" + this.UNIQ, 1, "char", this.LINE_CHARS, textBuf.length);
         this.textMtx.setall([0]);
         // draw all the characters as ascii code in a matrix
         for (var l = 0; l < textBuf.length; l++) {
@@ -197,8 +225,8 @@ export class GLRender {
 
     // draw the cursor to a jitter matrix as ascii
     drawCursor(textBuf: Array<string>, cur: CursorPosition) {
-        this.crsrMtx = new JitterMatrix("crsr" + this.UNIQ, 1, "char", this.LINE_CHARS, textBuf.length);
-
+        if (this.prevFrameLength !== textBuf.length)
+            this.crsrMtx = new JitterMatrix("crsr" + this.UNIQ, 1, "char", this.LINE_CHARS, textBuf.length);
         this.crsrMtx.setall([32]);
         // draw at least something at the end of the matrix.
         for (var i = 0; i < textBuf.length; i++) {
@@ -211,8 +239,8 @@ export class GLRender {
 
     // draw the numbers to a jitter matrix as ascii
     drawNumbers(textBuf: Array<string>, pos: CursorPosition) {
-        this.nmbrMtx = new JitterMatrix("nmbr" + this.UNIQ, 1, "char", 3, textBuf.length);
-
+        if (this.prevFrameLength !== textBuf.length)
+            this.nmbrMtx = new JitterMatrix("nmbr" + this.UNIQ, 1, "char", 3, textBuf.length);
         for (var i = 0; i < textBuf.length; i++) {
             var digits = new Array(2);
             digits[0] = String(Math.floor((i) / 10));

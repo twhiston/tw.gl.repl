@@ -252,6 +252,14 @@ as messages to be output to max, so you can write routing and handling in max to
 implement whatever you need. If you get an error message about prototype apply taking
 an array you probably are outputting a string and not an array of strings!
 
+### JitterObjects
+
+Be very careful about creating JitterObjects in your custom functions or in your code
+at all. Max seems to have serious issues when they are used outside of the top level js
+file. This often results in a crash if you open the patch more than once (even sequentially).
+See the bound `_close` function for how this is handled for the GLRender class's
+`destroy` method.
+
 ## Alphanumeric Characters
 
 By default alphanumeric characters are treated with a special function which

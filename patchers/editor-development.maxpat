@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 910.0, 194.0, 920.0, 841.0 ],
+		"rect" : [ 751.0, 66.0, 694.0, 841.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -39,6 +39,30 @@
 		"subpatcher_template" : "",
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
+				"box" : 				{
+					"id" : "obj-42",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 382.0, 359.0, 35.0, 22.0 ],
+					"text" : "clear"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-38",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "bang" ],
+					"patching_rect" : [ 382.0, 328.0, 63.0, 22.0 ],
+					"text" : "closebang"
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"id" : "obj-35",
 					"maxclass" : "message",
@@ -905,8 +929,8 @@
 					"id" : "obj-1",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
-					"numoutlets" : 2,
-					"outlettype" : [ "", "" ],
+					"numoutlets" : 3,
+					"outlettype" : [ "", "", "" ],
 					"patching_rect" : [ 245.5, 198.0, 159.0, 22.0 ],
 					"text" : "tw.gl.repl editor-dev 640 480"
 				}
@@ -1094,6 +1118,13 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-42", 0 ],
+					"source" : [ "obj-38", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-2", 0 ],
 					"source" : [ "obj-39", 0 ]
 				}
@@ -1182,13 +1213,6 @@
 			}
  ],
 		"dependency_cache" : [ 			{
-				"name" : "patcher-init.js",
-				"bootpath" : "~/Documents/Max 8/Packages/tw.gl.repl/javascript/dist",
-				"patcherrelativepath" : "../javascript/dist",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
 				"name" : "tw.gl.repl.js",
 				"bootpath" : "~/Documents/Max 8/Packages/tw.gl.repl/javascript/dist",
 				"patcherrelativepath" : "../javascript/dist",
@@ -1200,6 +1224,13 @@
 				"bootpath" : "~/Documents/Max 8/Packages/tw.gl.repl/patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "user-repl.js",
+				"bootpath" : "~/Documents/Max 8/Packages/tw.gl.repl/examples/custom-formatter",
+				"patcherrelativepath" : "../examples/custom-formatter",
+				"type" : "TEXT",
 				"implicit" : 1
 			}
  ],
