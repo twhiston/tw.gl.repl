@@ -154,6 +154,14 @@ function getCustomFunctionDefinitions(): Array<Object> {
         comment: "if true then after a run the text or line which was executed will be deleted from the repl"
     });
     genFuncs.push({
+        functionName: "format_writes",
+        handlerInlet: 0,
+        isAttribute: true,
+        isMethod: true,
+        paramCount: 1,
+        comment: "if true then run the repl content through formatters before saving to disk. if not dump directly. Defaults to true"
+    });
+    genFuncs.push({
         functionName: "output_paste_bin",
         customHandler: "this",
         handlerInlet: 0,

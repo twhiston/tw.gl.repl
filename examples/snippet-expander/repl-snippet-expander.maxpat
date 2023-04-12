@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 775.0, 233.0, 997.0, 731.0 ],
+		"rect" : [ 835.0, 303.0, 997.0, 731.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -40,12 +40,48 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-19",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 28.0, 203.0, 34.0, 22.0 ],
+					"text" : "write"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-13",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 139.0, 198.0, 97.0, 22.0 ],
+					"text" : "read melody2.txt"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-11",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 28.0, 167.0, 91.0, 22.0 ],
+					"text" : "format_writes 0"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-15",
 					"maxclass" : "message",
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 153.0, 167.0, 97.0, 22.0 ],
+					"patching_rect" : [ 139.0, 167.0, 97.0, 22.0 ],
 					"text" : "read melody1.txt"
 				}
 
@@ -59,18 +95,6 @@
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 354.0, 167.0, 35.0, 22.0 ],
 					"text" : "clear"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-9",
-					"maxclass" : "message",
-					"numinlets" : 2,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 153.0, 203.0, 34.0, 22.0 ],
-					"text" : "write"
 				}
 
 			}
@@ -92,7 +116,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 582.0, 274.5, 361.0, 409.0 ],
+					"patching_rect" : [ 582.0, 274.5, 365.0, 409.0 ],
 					"text" : "This toy example shows how you could implement custom text formatter to both validate your input and create a short language for a message in max. In this case we are using the simple case of creating midi sequences from token strings. They are defined as follows:\n\nn noteNumber vel? dur?\nn 100 127 1000\n\nFirstly the messages will be run through out \"snippetExpander\" formatter, this looks for messages starting with the token n and expands that into \"note\". For such a simple example we don't need the expansion, we could easily just route on the message \"n\" instead of \"note\", but it serves as an example of how you could build up a more complex output language from a simple short input.\n\nSecondly after the token n has been expanded to note the messages are run through our constrainToMidiNumbers formatter which will ensure the first 2 numbers in the message are between 0 and 127, and creates full messages of 3 elements to put into our queue. If a velocity or duration is not supplied it will use the data from the previous message. It requires that the first message to be parsed contains all three elements.\n\nIt is worth noting that this implementation is not very robust and putting other commands into messages which are not parsed will very likely break the output! You could improve this in a number of ways, but the easiest might be to tell the snippet expander to throw away any messages it cannot expand!"
 				}
 
@@ -349,30 +373,6 @@
 			}
 , 			{
 				"box" : 				{
-					"id" : "obj-21",
-					"maxclass" : "newobj",
-					"numinlets" : 0,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 231.0, 72.0, 64.0, 22.0 ],
-					"text" : "r codeText"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-22",
-					"maxclass" : "newobj",
-					"numinlets" : 2,
-					"numoutlets" : 2,
-					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 231.0, 102.0, 48.0, 22.0 ],
-					"text" : "route w"
-				}
-
-			}
-, 			{
-				"box" : 				{
 					"attr" : "visible",
 					"id" : "obj-26",
 					"lock" : 1,
@@ -381,7 +381,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 63.0, 67.0, 150.0, 22.0 ]
+					"patching_rect" : [ 46.0, 67.0, 150.0, 22.0 ]
 				}
 
 			}
@@ -523,7 +523,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 93.0, 97.0, 70.0, 22.0 ],
+					"patching_rect" : [ 61.0, 102.0, 70.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -542,7 +542,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 312.0, 102.0, 135.0, 33.0 ],
+					"patching_rect" : [ 295.0, 102.0, 135.0, 33.0 ],
 					"text" : "focus on window / press esc for fullscreen"
 				}
 
@@ -560,7 +560,7 @@
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "int" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 48.0, 5.0, 20.0, 20.0 ],
+					"patching_rect" : [ 31.0, 5.0, 20.0, 20.0 ],
 					"rounded" : 60.0,
 					"text" : "1",
 					"textcolor" : [ 0.34902, 0.34902, 0.34902, 1.0 ]
@@ -573,7 +573,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 63.0, 15.0, 90.0, 20.0 ],
+					"patching_rect" : [ 46.0, 15.0, 90.0, 20.0 ],
 					"text" : "turn world on"
 				}
 
@@ -585,7 +585,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 3,
 					"outlettype" : [ "jit_matrix", "bang", "" ],
-					"patching_rect" : [ 63.0, 140.0, 419.0, 22.0 ],
+					"patching_rect" : [ 46.0, 140.0, 419.0, 22.0 ],
 					"text" : "jit.world snippet-example @fsaa 1 @fsmenubar 0 @size 640 480 @floating 1"
 				}
 
@@ -600,7 +600,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 63.0, 37.0, 150.0, 22.0 ]
+					"patching_rect" : [ 46.0, 37.0, 150.0, 22.0 ]
 				}
 
 			}
@@ -635,6 +635,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-6", 0 ],
+					"midpoints" : [ 255.0, 240.0, 169.0, 240.0 ],
 					"order" : 1,
 					"source" : [ "obj-1", 0 ]
 				}
@@ -658,7 +659,23 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-1", 0 ],
+					"midpoints" : [ 37.5, 192.0, 255.0, 192.0 ],
+					"source" : [ "obj-11", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-1", 0 ],
 					"source" : [ "obj-12", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-1", 0 ],
+					"midpoints" : [ 148.5, 231.0, 240.0, 231.0, 240.0, 192.0, 255.0, 192.0 ],
+					"source" : [ "obj-13", 0 ]
 				}
 
 			}
@@ -672,6 +689,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-1", 0 ],
+					"midpoints" : [ 148.5, 192.0, 255.0, 192.0 ],
 					"source" : [ "obj-15", 0 ]
 				}
 
@@ -679,21 +697,15 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-1", 0 ],
+					"midpoints" : [ 37.5, 232.0, 240.0, 232.0, 240.0, 192.0, 255.0, 192.0 ],
+					"source" : [ "obj-19", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-1", 0 ],
 					"source" : [ "obj-2", 1 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-22", 0 ],
-					"source" : [ "obj-21", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-2", 0 ],
-					"source" : [ "obj-22", 0 ]
 				}
 
 			}
@@ -850,14 +862,8 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-35", 0 ],
+					"midpoints" : [ 216.5, 516.0, 192.0, 516.0, 192.0, 327.0, 240.0, 327.0, 240.0, 324.0, 255.0, 324.0 ],
 					"source" : [ "obj-72", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-1", 0 ],
-					"source" : [ "obj-9", 0 ]
 				}
 
 			}

@@ -18,11 +18,43 @@ function keybindings(n) {
     init();
 }
 
-// If true then additionally output the name of the jitter matrix which contains the text
-// when you run/execute the code in the repl.
+/**
+ * If OUT_MAT === true then additionally output the name of the jitter matrix which contains the text
+ * when you run/execute the code in the repl. it will be prefixed by jit_matrix
+ */
 var OUT_MAT = false;
-//If Ephemeral mode is true then the buffer will clear every time you run
+function output_matrix(v) {
+    if(v === undefined){
+        OUT_MAT = !OUT_MAT
+    } else {
+        OUT_MAT = v != 0;
+    }
+}
+
+/**
+ * If EPHEMERAL_MODE === true then the buffer will clear every time you run/execute
+ * If you run all it will empty all, if you run line it will empty the current line
+ */
 var EPHEMERAL_MODE = false;
+function ephemeral_mode(v) {
+    if(v === undefined){
+        EPHEMERAL_MODE = !EPHEMERAL_MODE
+    } else {
+        EPHEMERAL_MODE = v != 0;
+    }
+}
+
+/**
+ * If FORMAT_WRITES === true then format the output with any textFormatters before writing it to a File
+ */
+ var FORMAT_WRITES = true;
+ function format_writes(v){
+        if(v === undefined){
+        FORMAT_WRITES = !FORMAT_WRITES
+    } else {
+        FORMAT_WRITES = v != 0;
+    }
+ }
 
 // Contains the generated function to generate the routing objects for the
 // tw.js.repl patch, so no config routing updates if you change what methods
@@ -115,24 +147,6 @@ function output_paste_bin(){
     outlet(2, i.repl.tb.pasteBinFormat());
 }
 
-//Set to output the text matrix name as well as the messages
-function output_matrix(v) {
-    if(v === undefined){
-        OUT_MAT = !OUT_MAT
-    } else {
-        OUT_MAT = v != 0;
-    }
-}
-
-//If true then always clear the buffer after running
-function ephemeral_mode(v) {
-    if(v === undefined){
-        EPHEMERAL_MODE = !EPHEMERAL_MODE
-    } else {
-        EPHEMERAL_MODE = v != 0;
-    }
-}
-
 // draw the text and output all info
 // this will be called by any generated function which 
 // has the draw attribute set true.
@@ -167,7 +181,14 @@ function write(filename) {
     f = new File(filename, "write", "TEXT")
     f.open()
     f.eof = 0;
-    var data = i.repl.tb.format()
+
+    var data = []
+    if(FORMAT_WRITES){
+        data = i.repl.tb.format()
+    } else {
+        data = i.repl.tb.get()
+    }
+    
     for (var index = 0; index < data.length; index++) {
         f.writeline(data[index])
     }
