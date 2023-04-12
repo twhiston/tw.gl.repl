@@ -6,7 +6,9 @@
 * map types to max types in template somehow!
 * support and help patches
   * patch that makes max objects?
-  * something that outputs notes?
+  * more complex midi example
+  * example with custom js (snippet expansions in the repl,
+  extend app config file to define them, attach to tab)
 * fix minor bug with run outputting position a LOT
 * figure out automating releases without source in pipelines for tags
 

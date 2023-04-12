@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 424.0, 246.0, 596.0, 848.0 ],
+		"rect" : [ 678.0, 464.0, 596.0, 848.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 767.0, 201.0, 160.0, 480.0 ],
+						"rect" : [ 705.0, 346.0, 729.0, 598.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -85,7 +85,346 @@
 						"style" : "",
 						"subpatcher_template" : "",
 						"assistshowspatchername" : 0,
+						"visible" : 1,
 						"boxes" : [ 							{
+								"box" : 								{
+									"id" : "obj-19",
+									"maxclass" : "message",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 451.0, 565.5, 50.0, 22.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-17",
+									"maxclass" : "newobj",
+									"numinlets" : 2,
+									"numoutlets" : 2,
+									"outlettype" : [ "", "" ],
+									"patching_rect" : [ 482.0, 538.5, 59.0, 22.0 ],
+									"text" : "route test"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-15",
+									"maxclass" : "newobj",
+									"numinlets" : 0,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 482.0, 509.0, 64.0, 22.0 ],
+									"text" : "r codeText"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"bgcolor" : [ 1.0, 0.788235, 0.470588, 1.0 ],
+									"fontname" : "Arial Bold",
+									"hint" : "",
+									"id" : "obj-13",
+									"ignoreclick" : 1,
+									"legacytextcolor" : 1,
+									"maxclass" : "textbutton",
+									"numinlets" : 1,
+									"numoutlets" : 3,
+									"outlettype" : [ "", "", "int" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 273.0, 512.5, 20.0, 20.0 ],
+									"rounded" : 60.0,
+									"text" : "9",
+									"textcolor" : [ 0.34902, 0.34902, 0.34902, 1.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-14",
+									"linecount" : 5,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 297.5, 512.5, 151.0, 74.0 ],
+									"text" : "execute the run command (Option+Return or Option+Control+Return) and see the incompletely braced output here  -->"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-11",
+									"linecount" : 3,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 62.5, 512.5, 150.0, 47.0 ],
+									"text" : "go to the repl window and write\ntest (100"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"bgcolor" : [ 1.0, 0.788235, 0.470588, 1.0 ],
+									"fontname" : "Arial Bold",
+									"hint" : "",
+									"id" : "obj-12",
+									"ignoreclick" : 1,
+									"legacytextcolor" : 1,
+									"maxclass" : "textbutton",
+									"numinlets" : 1,
+									"numoutlets" : 3,
+									"outlettype" : [ "", "", "int" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 38.0, 512.5, 20.0, 20.0 ],
+									"rounded" : 60.0,
+									"text" : "8",
+									"textcolor" : [ 0.34902, 0.34902, 0.34902, 1.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"bgcolor" : [ 1.0, 0.788235, 0.470588, 1.0 ],
+									"fontname" : "Arial Bold",
+									"hint" : "",
+									"id" : "obj-1",
+									"ignoreclick" : 1,
+									"legacytextcolor" : 1,
+									"maxclass" : "textbutton",
+									"numinlets" : 1,
+									"numoutlets" : 3,
+									"outlettype" : [ "", "", "int" ],
+									"parameter_enable" : 0,
+									"parameter_mappable" : 0,
+									"patching_rect" : [ 38.0, 416.0, 20.0, 20.0 ],
+									"rounded" : 60.0,
+									"text" : "7",
+									"textcolor" : [ 0.34902, 0.34902, 0.34902, 1.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-10",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 219.0, 481.0, 72.0, 22.0 ],
+									"text" : "s customize"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-9",
+									"maxclass" : "message",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 219.0, 449.5, 105.0, 22.0 ],
+									"text" : "keybindings nobbf"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"data" : 									{
+										"settings" : 										{
+											"repl" : 											{
+												"BUFFER_SIZE" : 40
+											}
+,
+											"textbuffer" : 											{
+												"formatters" : [ "whitespace" ]
+											}
+
+										}
+,
+										"bindings" : [ 											{
+												"id" : "execute",
+												"asciiCode" : 2044,
+												"functions" : [ "return ['run']" ]
+											}
+, 											{
+												"id" : "execute-line",
+												"asciiCode" : 6140,
+												"functions" : [ "return ['run_line']" ]
+											}
+, 											{
+												"id" : "disable-editor-alt-D",
+												"asciiCode" : 8706,
+												"functions" : [ "return ['ignore_keys']" ]
+											}
+, 											{
+												"id" : "alphahandler",
+												"asciiCode" : 127,
+												"functions" : [ "ctx.addChar(k)" ]
+											}
+, 											{
+												"id" : "ephemeral_mode-alt-g",
+												"asciiCode" : 169,
+												"functions" : [ "return ['ephemeral_mode']" ]
+											}
+, 											{
+												"id" : "addSpace",
+												"asciiCode" : -2,
+												"functions" : [ "ctx.addChar(32)" ]
+											}
+, 											{
+												"id" : "addSpace",
+												"asciiCode" : 32,
+												"functions" : [ "ctx.addChar(32)" ]
+											}
+, 											{
+												"id" : "newLine",
+												"asciiCode" : -4,
+												"functions" : [ "ctx.newLine()" ]
+											}
+, 											{
+												"id" : "newLine",
+												"asciiCode" : 10,
+												"functions" : [ "ctx.newLine()" ]
+											}
+, 											{
+												"id" : "newLine",
+												"asciiCode" : 13,
+												"functions" : [ "ctx.newLine()" ]
+											}
+, 											{
+												"id" : "addTab",
+												"asciiCode" : -5,
+												"functions" : [ "ctx.addTab()" ]
+											}
+, 											{
+												"id" : "delete",
+												"asciiCode" : -6,
+												"functions" : [ "ctx.deleteChar()" ]
+											}
+, 											{
+												"id" : "backspace",
+												"asciiCode" : -7,
+												"functions" : [ "ctx.backSpace()" ]
+											}
+, 											{
+												"id" : "comment-alt-/",
+												"asciiCode" : 247,
+												"functions" : [ "ctx.commentLine()" ]
+											}
+, 											{
+												"id" : "clear-alt-z",
+												"asciiCode" : 937,
+												"functions" : [ "ctx.clear()" ]
+											}
+, 											{
+												"id" : "cutLine-alt-x",
+												"asciiCode" : 8776,
+												"functions" : [ "ctx.tb.pasteBinCopyLine(ctx.c.line());ctx.deleteLine();return ['output_paste_bin']" ]
+											}
+, 											{
+												"id" : "copyLine-alt-c",
+												"asciiCode" : 231,
+												"functions" : [ "ctx.tb.pasteBinCopyLine(ctx.c.line());return ['output_paste_bin']" ]
+											}
+, 											{
+												"id" : "copyAll-alt-k",
+												"asciiCode" : 730,
+												"functions" : [ "ctx.tb.pasteBinCopyAll();return ['output_paste_bin']" ]
+											}
+, 											{
+												"id" : "paste-alt-v",
+												"asciiCode" : 8730,
+												"functions" : [ "var pb = ctx.tb.pasteBinGet(); for(var i = 0; i < pb.length; i++){for (var a = 0; a < pb[i].length; a++) {var char = pb[i].charCodeAt(a); ctx.keyPress(char)}};" ]
+											}
+, 											{
+												"id" : "replaceLine-alt-p",
+												"asciiCode" : 960,
+												"functions" : [ "var pb = ctx.tb.pasteBinGet(); var startLine = ctx.c.line(); ctx.deleteLine(); if(ctx.c.line() < ctx.tb.length()-1){ctx.jumpLine(-1);ctx.jumpTo(1);} if(startLine === 0){ctx.jumpTo(0); ctx.newLine(); ctx.jumpTo(2); }else { ctx.newLine(); } for(var i = 0; i < pb.length; i++){for (var a = 0; a < pb[i].length; a++) {var char = pb[i].charCodeAt(a); ctx.keyPress(char)}}" ]
+											}
+, 											{
+												"id" : "up",
+												"asciiCode" : -9,
+												"functions" : [ "ctx.jumpLine(-1)" ]
+											}
+, 											{
+												"id" : "down",
+												"asciiCode" : -10,
+												"functions" : [ "ctx.jumpLine(1)" ]
+											}
+, 											{
+												"id" : "left",
+												"asciiCode" : -11,
+												"functions" : [ "ctx.jumpChar(-1)" ]
+											}
+, 											{
+												"id" : "right",
+												"asciiCode" : -12,
+												"functions" : [ "ctx.jumpChar(1)" ]
+											}
+, 											{
+												"id" : "jump-top-alt-up",
+												"asciiCode" : 2039,
+												"functions" : [ "ctx.jumpTo(2)" ]
+											}
+, 											{
+												"id" : "jump-bottom-alt-down",
+												"asciiCode" : 2038,
+												"functions" : [ "ctx.jumpTo(3)" ]
+											}
+, 											{
+												"id" : "jump-begin-alt-left",
+												"asciiCode" : 2037,
+												"functions" : [ "ctx.jumpTo(0)" ]
+											}
+, 											{
+												"id" : "jump-end-alt-right",
+												"asciiCode" : 2036,
+												"functions" : [ "ctx.jumpTo(1)" ]
+											}
+, 											{
+												"id" : "jumpWord-left-cmd-left",
+												"asciiCode" : 8804,
+												"functions" : [ "ctx.jumpWord(-1)" ]
+											}
+, 											{
+												"id" : "jumpWord-right-cmd-right",
+												"asciiCode" : 8805,
+												"functions" : [ "ctx.jumpWord(1)" ]
+											}
+ ]
+									}
+,
+									"id" : "obj-8",
+									"maxclass" : "newobj",
+									"numinlets" : 2,
+									"numoutlets" : 4,
+									"outlettype" : [ "dictionary", "", "", "" ],
+									"patching_rect" : [ 296.5, 481.0, 123.0, 22.0 ],
+									"saved_object_attributes" : 									{
+										"embed" : 1,
+										"parameter_enable" : 0,
+										"parameter_mappable" : 0
+									}
+,
+									"text" : "dict nobbf @embed 1"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-7",
+									"linecount" : 7,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 62.5, 411.5, 151.0, 100.0 ],
+									"text" : "But what if we don't want this formatter to run? Let's configure the repl with this alternative configuration ->\nnote that changing the keybindings clears the REPL content!"
+								}
+
+							}
+, 							{
 								"box" : 								{
 									"bgcolor" : [ 1.0, 0.788235, 0.470588, 1.0 ],
 									"fontname" : "Arial Bold",
@@ -99,7 +438,7 @@
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
 									"parameter_mappable" : 0,
-									"patching_rect" : [ 271.0, 369.0, 20.0, 20.0 ],
+									"patching_rect" : [ 271.0, 349.0, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "6",
 									"textcolor" : [ 0.34902, 0.34902, 0.34902, 1.0 ]
@@ -119,7 +458,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 271.0, 308.0, 20.0, 20.0 ],
+									"patching_rect" : [ 36.0, 349.0, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "5",
 									"textcolor" : [ 0.34902, 0.34902, 0.34902, 1.0 ]
@@ -139,7 +478,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 271.0, 248.5, 20.0, 20.0 ],
+									"patching_rect" : [ 271.0, 293.0, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "4",
 									"textcolor" : [ 0.34902, 0.34902, 0.34902, 1.0 ]
@@ -159,7 +498,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 38.0, 369.0, 20.0, 20.0 ],
+									"patching_rect" : [ 38.0, 293.0, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "3",
 									"textcolor" : [ 0.34902, 0.34902, 0.34902, 1.0 ]
@@ -179,7 +518,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 38.0, 308.0, 20.0, 20.0 ],
+									"patching_rect" : [ 273.0, 233.5, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "2",
 									"textcolor" : [ 0.34902, 0.34902, 0.34902, 1.0 ]
@@ -193,8 +532,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 297.5, 369.0, 151.0, 87.0 ],
-									"text" : "note the error in the max console\ntw.gl.repl: not balanced: test(100\nand that no message is sent from the  object outlet"
+									"patching_rect" : [ 297.5, 349.0, 151.0, 87.0 ],
+									"text" : "note the error in the max console\ntw.gl.repl: not balanced: test (100\nand that no message is sent from the  object outlet"
 								}
 
 							}
@@ -205,7 +544,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 297.5, 308.0, 151.0, 47.0 ],
+									"patching_rect" : [ 62.5, 349.0, 151.0, 47.0 ],
 									"text" : "execute the run command (Option+Return or Option+Control+Return)"
 								}
 
@@ -217,8 +556,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 297.5, 248.5, 153.0, 47.0 ],
-									"text" : "delete the last character of the line so it reads\ntest(100"
+									"patching_rect" : [ 297.5, 293.0, 153.0, 47.0 ],
+									"text" : "delete the last character of the line so it reads\ntest (100"
 								}
 
 							}
@@ -229,7 +568,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 62.5, 369.0, 151.0, 33.0 ],
+									"patching_rect" : [ 62.5, 293.0, 151.0, 33.0 ],
 									"text" : "note the output is printed to the max console"
 								}
 
@@ -241,7 +580,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 62.5, 308.0, 151.0, 47.0 ],
+									"patching_rect" : [ 297.5, 233.5, 151.0, 47.0 ],
 									"text" : "execute the run command (Option+Return or Option+Control+Return)"
 								}
 
@@ -253,8 +592,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 62.5, 248.5, 150.0, 47.0 ],
-									"text" : "go to the repl window and write\ntest(100) "
+									"patching_rect" : [ 62.5, 233.5, 150.0, 47.0 ],
+									"text" : "go to the repl window and write\ntest (100) "
 								}
 
 							}
@@ -271,7 +610,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 38.0, 248.5, 20.0, 20.0 ],
+									"patching_rect" : [ 38.0, 233.5, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "1",
 									"textcolor" : [ 0.34902, 0.34902, 0.34902, 1.0 ]
@@ -286,7 +625,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 45.0, 98.0, 496.0, 127.0 ],
-									"text" : "The Repl can have text formatters attached in code which do something to transform your output before it is sent to max. By default there are two formatters added, the first is a whitespace formatter which just ensures consistency of output, the second it the BraceBalancedFormatter. This has a more specific application, it will throw an error (printed to the max console) if the nuber of braces in your input is not balanced.\nThis is particularly important in repl appliations where you might be outputting a DSL for another system and need to ensure it is valid.\nTo add your own text formatters please refer to README.md in the project as this needs to be done in code",
+									"text" : "The Repl can have text formatters attached via code and config which do something to transform your output before it is sent to max. By default there are two formatters added, the first is a whitespace formatter which just ensures consistency of output, the second it the BraceBalancedFormatter. This has a more specific application, it will throw an error (printed to the max console) if the nuber of braces in your input is not balanced.\nThis is particularly important in repl appliations where you might be outputting a DSL for another system and need to ensure it is valid.\nTo add your own text formatters please refer to README.md in the project as this needs to be done in code so users can select them in configuration",
 									"textcolor" : [ 0.32548999786377, 0.345097988843918, 0.372548997402191, 1.0 ]
 								}
 
@@ -307,7 +646,28 @@
 
 							}
  ],
-						"lines" : [  ]
+						"lines" : [ 							{
+								"patchline" : 								{
+									"destination" : [ "obj-17", 0 ],
+									"source" : [ "obj-15", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-19", 1 ],
+									"source" : [ "obj-17", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-10", 0 ],
+									"source" : [ "obj-9", 0 ]
+								}
+
+							}
+ ]
 					}
 ,
 					"patching_rect" : [ 45.0, 458.0, 96.0, 22.0 ],
@@ -2185,7 +2545,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 693.0, 197.0, 546.0, 764.0 ],
+						"rect" : [ 693.0, 197.0, 909.0, 764.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -2216,12 +2576,24 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
+									"id" : "obj-9",
+									"maxclass" : "message",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 816.0, 474.0, 83.0, 22.0 ],
+									"text" : "ignore_keys 0"
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"id" : "obj-1",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 540.0, 474.0, 79.0, 22.0 ],
+									"patching_rect" : [ 523.0, 481.0, 79.0, 22.0 ],
 									"text" : "loadmess init"
 								}
 
@@ -2233,7 +2605,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
-									"patching_rect" : [ 743.0, 467.0, 86.0, 22.0 ],
+									"patching_rect" : [ 726.0, 474.0, 86.0, 22.0 ],
 									"text" : "routepass size"
 								}
 
@@ -2245,7 +2617,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 715.0, 398.0, 47.0, 22.0 ],
+									"patching_rect" : [ 698.0, 405.0, 47.0, 22.0 ],
 									"text" : "getsize"
 								}
 
@@ -2259,20 +2631,20 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 540.0, 345.0, 150.0, 22.0 ]
+									"patching_rect" : [ 523.0, 352.0, 150.0, 22.0 ]
 								}
 
 							}
 , 							{
 								"box" : 								{
 									"id" : "obj-75",
-									"linecount" : 4,
+									"linecount" : 3,
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
-									"patching_rect" : [ 540.0, 510.0, 267.0, 62.0 ],
-									"text" : "tw.gl.repl help-ctx2 1280 720 @cursor <-- @font \"Andale Mono\" @comment ## @blink_enable 1 @blink_time 100 @cursor_color 1 0 0 1 @blink_color 1 1 0 1"
+									"patching_rect" : [ 523.0, 517.0, 367.0, 49.0 ],
+									"text" : "tw.gl.repl help-ctx2 1280 720 @cursor <-- @font \"Andale Mono\" @comment ## @blink_enable 1 @blink_time 100 @cursor_color 1 0 0 1 @blink_color 1 1 0 1 @ignore_keys 1"
 								}
 
 							}
@@ -2283,7 +2655,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 3,
 									"outlettype" : [ "jit_matrix", "bang", "" ],
-									"patching_rect" : [ 540.0, 437.0, 222.0, 22.0 ],
+									"patching_rect" : [ 523.0, 444.0, 222.0, 22.0 ],
 									"text" : "jit.world help-ctx2 @enable 0 @visible 0"
 								}
 
@@ -2295,7 +2667,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 660.0, 240.0, 128.0, 47.0 ],
+									"patching_rect" : [ 643.0, 247.0, 128.0, 47.0 ],
 									"text" : "ALT + / \nto (un)comment the line the cursor is on"
 								}
 
@@ -2306,7 +2678,7 @@
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 540.0, 300.0, 72.0, 22.0 ],
+									"patching_rect" : [ 523.0, 307.0, 72.0, 22.0 ],
 									"text" : "s customize"
 								}
 
@@ -2317,7 +2689,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 540.0, 173.0, 195.0, 20.0 ],
+									"patching_rect" : [ 523.0, 180.0, 195.0, 20.0 ],
 									"text" : "change the comment characters"
 								}
 
@@ -2335,7 +2707,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 525.0, 180.0, 20.0, 20.0 ],
+									"patching_rect" : [ 508.0, 187.0, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "6",
 									"textcolor" : [ 0.34902, 0.34902, 0.34902, 1.0 ]
@@ -2349,7 +2721,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 630.0, 195.0, 29.5, 22.0 ],
+									"patching_rect" : [ 613.0, 202.0, 29.5, 22.0 ],
 									"text" : "#"
 								}
 
@@ -2361,7 +2733,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 582.0, 195.0, 29.5, 22.0 ],
+									"patching_rect" : [ 565.0, 202.0, 29.5, 22.0 ],
 									"text" : "|"
 								}
 
@@ -2373,7 +2745,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 540.0, 240.0, 105.0, 22.0 ],
+									"patching_rect" : [ 523.0, 247.0, 105.0, 22.0 ],
 									"text" : "prepend comment"
 								}
 
@@ -2385,7 +2757,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 540.0, 195.0, 29.5, 22.0 ],
+									"patching_rect" : [ 523.0, 202.0, 29.5, 22.0 ],
 									"text" : "//"
 								}
 
@@ -3188,7 +3560,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 540.0, 376.0, 150.0, 22.0 ]
+									"patching_rect" : [ 523.0, 383.0, 150.0, 22.0 ]
 								}
 
 							}
@@ -3400,7 +3772,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-79", 0 ],
-									"midpoints" : [ 651.0, 463.0, 773.75, 463.0, 773.75, 387.0, 724.5, 387.0 ],
+									"midpoints" : [ 634.0, 470.0, 756.75, 470.0, 756.75, 394.0, 707.5, 394.0 ],
 									"order" : 0,
 									"source" : [ "obj-74", 1 ]
 								}
@@ -3445,6 +3817,13 @@
 								"patchline" : 								{
 									"destination" : [ "obj-75", 0 ],
 									"source" : [ "obj-80", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-75", 0 ],
+									"source" : [ "obj-9", 0 ]
 								}
 
 							}
@@ -3858,7 +4237,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 386.0, 111.0, 853.0, 764.0 ],
+						"rect" : [ 830.0, 233.0, 853.0, 764.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -3890,6 +4269,30 @@
 						"visible" : 1,
 						"boxes" : [ 							{
 								"box" : 								{
+									"id" : "obj-45",
+									"maxclass" : "message",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 479.0, 381.0, 105.0, 22.0 ],
+									"text" : "keybindings nobbf"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-43",
+									"maxclass" : "message",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 233.0, 390.0, 35.0, 22.0 ],
+									"text" : "clear"
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"bgcolor" : [ 1.0, 0.788235, 0.470588, 1.0 ],
 									"fontname" : "Arial Bold",
 									"hint" : "",
@@ -3917,7 +4320,6 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 735.0, 113.0, 295.0, 22.0 ],
-									"presentation_linecount" : 2,
 									"text" : "loadunique _tw.gl.repl-simple-midi-example.maxpat"
 								}
 
@@ -4779,7 +5181,30 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-4", 0 ],
+									"order" : 1,
 									"source" : [ "obj-40", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-45", 1 ],
+									"order" : 0,
+									"source" : [ "obj-40", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-4", 0 ],
+									"source" : [ "obj-43", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-4", 0 ],
+									"source" : [ "obj-45", 0 ]
 								}
 
 							}

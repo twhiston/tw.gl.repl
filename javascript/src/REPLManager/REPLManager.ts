@@ -543,13 +543,12 @@ export class REPLManager {
                 })
                 if (result !== undefined) {
                     for (const f of result) {
-                        this.tb.addFormatter(f)
+                        newTB.addFormatter(f)
                     }
                 }
             }
         }
 
-        newTB.setFormatters(this.tb.formatters)
         this.tb = newTB;
 
         this.kp = new KeypressProcessor()
