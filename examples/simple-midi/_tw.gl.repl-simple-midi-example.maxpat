@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 753.0, 69.0, 701.0, 835.0 ],
+		"rect" : [ 753.0, 68.0, 1023.0, 754.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -40,6 +40,33 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-33",
+					"linecount" : 11,
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 816.5, 311.0, 179.0, 154.0 ],
+					"text" : "\"settings\": {\n        \"repl\": {\n            \"BUFFER_SIZE\": 30,\n            \"MAX_CHARS\": 10\n        }\n\nwould be much easier to use than all the newline logic. You will still need to add a character to the buffer though if you want to see anything!"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"fontface" : 0,
+					"fontname" : "Arial",
+					"fontsize" : 40.0,
+					"id" : "obj-21",
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 60.0, 60.0, 585.0, 51.0 ],
+					"text" : "tw.gl.repl - simple midi example",
+					"textcolor" : [ 0.32548999786377, 0.345097988843918, 0.372548997402191, 1.0 ]
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"bgcolor" : [ 1.0, 0.788235, 0.470588, 1.0 ],
 					"fontname" : "Arial Bold",
 					"hint" : "",
@@ -51,7 +78,7 @@
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "int" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 10.0, 225.0, 20.0, 20.0 ],
+					"patching_rect" : [ 25.0, 511.0, 20.0, 20.0 ],
 					"rounded" : 60.0,
 					"text" : "4",
 					"textcolor" : [ 0.34902, 0.34902, 0.34902, 1.0 ]
@@ -65,7 +92,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 3.0, 241.0, 244.0, 60.0 ],
+					"patching_rect" : [ 18.0, 527.0, 244.0, 60.0 ],
 					"text" : "UP ARROW        -  increase pitch and play\nDOWN ARROW  - decrease pitch and play\nRIGHT ARROW  - play current pitch\nLEFT ARROW    - play current pitch -1"
 				}
 
@@ -95,7 +122,7 @@
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "int" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 494.5, 386.0, 20.0, 20.0 ],
+					"patching_rect" : [ 509.5, 672.0, 20.0, 20.0 ],
 					"rounded" : 60.0,
 					"text" : "1",
 					"textcolor" : [ 0.34902, 0.34902, 0.34902, 1.0 ]
@@ -109,8 +136,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 509.5, 396.0, 90.0, 33.0 ],
-					"presentation_linecount" : 2,
+					"patching_rect" : [ 524.5, 682.0, 90.0, 33.0 ],
 					"text" : "select a midi output"
 				}
 
@@ -122,7 +148,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 159.25, 184.0, 29.5, 22.0 ],
+					"patching_rect" : [ 174.25, 470.0, 29.5, 22.0 ],
 					"text" : "init"
 				}
 
@@ -134,7 +160,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 159.25, 217.0, 33.0, 22.0 ],
+					"patching_rect" : [ 174.25, 503.0, 33.0, 22.0 ],
 					"text" : "read"
 				}
 
@@ -146,7 +172,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 197.25, 217.0, 34.0, 22.0 ],
+					"patching_rect" : [ 212.25, 503.0, 34.0, 22.0 ],
 					"text" : "write"
 				}
 
@@ -158,7 +184,7 @@
 					"numinlets" : 4,
 					"numoutlets" : 3,
 					"outlettype" : [ "float", "float", "float" ],
-					"patching_rect" : [ 245.5, 354.0, 118.0, 22.0 ],
+					"patching_rect" : [ 260.5, 640.0, 118.0, 22.0 ],
 					"text" : "makenote 100 500 1"
 				}
 
@@ -170,8 +196,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 197.0, 331.0, 50.0, 22.0 ],
-					"text" : "52"
+					"patching_rect" : [ 212.0, 617.0, 50.0, 22.0 ],
+					"text" : "88"
 				}
 
 			}
@@ -181,14 +207,14 @@
 					"fontname" : "Arial",
 					"fontsize" : 13.0,
 					"id" : "obj-19",
-					"items" : [ "AU DLS Synth 1", ",", "from Max 1", ",", "from Max 2" ],
+					"items" : [ "AU DLS Synth 1", ",", "M4", ",", "from Max 1", ",", "from Max 2" ],
 					"labelclick" : 1,
 					"maxclass" : "umenu",
 					"numinlets" : 1,
 					"numoutlets" : 3,
 					"outlettype" : [ "int", "", "" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 418.5, 361.0, 100.0, 23.0 ]
+					"patching_rect" : [ 433.5, 647.0, 100.0, 23.0 ]
 				}
 
 			}
@@ -201,7 +227,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 418.5, 326.0, 55.0, 23.0 ],
+					"patching_rect" : [ 433.5, 612.0, 55.0, 23.0 ],
 					"text" : "midiinfo"
 				}
 
@@ -213,7 +239,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 418.5, 295.0, 70.0, 22.0 ],
+					"patching_rect" : [ 433.5, 581.0, 70.0, 22.0 ],
 					"text" : "loadmess 0"
 				}
 
@@ -224,7 +250,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 3,
 					"numoutlets" : 0,
-					"patching_rect" : [ 245.5, 397.0, 118.0, 22.0 ],
+					"patching_rect" : [ 260.5, 683.0, 118.0, 22.0 ],
 					"text" : "noteout"
 				}
 
@@ -242,7 +268,7 @@
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "int" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 504.0, 195.0, 20.0, 20.0 ],
+					"patching_rect" : [ 519.0, 481.0, 20.0, 20.0 ],
 					"rounded" : 60.0,
 					"text" : "2",
 					"textcolor" : [ 0.34902, 0.34902, 0.34902, 1.0 ]
@@ -256,7 +282,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 519.0, 205.0, 90.0, 33.0 ],
+					"patching_rect" : [ 534.0, 491.0, 90.0, 33.0 ],
 					"text" : "Select a key and mode"
 				}
 
@@ -268,7 +294,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "int", "bang" ],
-					"patching_rect" : [ 394.0, 210.5, 29.5, 22.0 ],
+					"patching_rect" : [ 409.0, 496.5, 29.5, 22.0 ],
 					"text" : "t i b"
 				}
 
@@ -280,7 +306,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 322.0, 210.5, 70.0, 22.0 ],
+					"patching_rect" : [ 334.0, 496.5, 70.0, 22.0 ],
 					"text" : "loadmess 3"
 				}
 
@@ -294,7 +320,7 @@
 					"numoutlets" : 3,
 					"outlettype" : [ "int", "", "" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 509.0, 241.0, 100.0, 22.0 ]
+					"patching_rect" : [ 524.0, 527.0, 100.0, 22.0 ]
 				}
 
 			}
@@ -307,7 +333,7 @@
 					"numoutlets" : 3,
 					"outlettype" : [ "int", "", "" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 394.0, 241.0, 100.0, 22.0 ]
+					"patching_rect" : [ 409.0, 527.0, 100.0, 22.0 ]
 				}
 
 			}
@@ -318,7 +344,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 159.25, 157.0, 73.0, 22.0 ],
+					"patching_rect" : [ 174.25, 443.0, 73.0, 22.0 ],
 					"text" : "ignore_keys"
 				}
 
@@ -341,7 +367,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 355.0, 113.0, 640.0, 701.0 ],
+						"rect" : [ 56.0, 290.0, 847.0, 701.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -370,6 +396,30 @@
 						"subpatcher_template" : "",
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
+								"box" : 								{
+									"id" : "obj-7",
+									"maxclass" : "message",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 494.5, 110.0, 50.0, 22.0 ],
+									"text" : "C"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-5",
+									"linecount" : 4,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 68.0, 294.0, 150.0, 60.0 ],
+									"text" : "All our heavy lifting here is done in javascript, we are just passing some simple messages in to it."
+								}
+
+							}
+, 							{
 								"box" : 								{
 									"id" : "obj-130",
 									"maxclass" : "newobj",
@@ -473,7 +523,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 488.0, 278.0, 50.0, 22.0 ],
-									"text" : "52"
+									"text" : "88"
 								}
 
 							}
@@ -544,7 +594,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "bang", "" ],
-									"patching_rect" : [ 604.0, 84.0, 31.0, 22.0 ],
+									"patching_rect" : [ 598.0, 84.0, 31.0, 22.0 ],
 									"text" : "t b s"
 								}
 
@@ -619,32 +669,6 @@
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 469.0, 167.0, 160.0, 35.0 ],
 									"text" : "sprintf generate_scale %s 0 %s"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-22",
-									"items" : [ "major", ",", "minor", ",", "dorian", ",", "phrygian", ",", "lydian", ",", "mixolydian", ",", "locrian" ],
-									"maxclass" : "umenu",
-									"numinlets" : 1,
-									"numoutlets" : 3,
-									"outlettype" : [ "int", "", "" ],
-									"parameter_enable" : 0,
-									"patching_rect" : [ 569.5, 121.0, 100.0, 22.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-19",
-									"items" : [ "A", ",", "A#", ",", "B", ",", "C", ",", "C#", ",", "D", ",", "D#", ",", "E", ",", "F", ",", "F#", ",", "G", ",", "G#" ],
-									"maxclass" : "umenu",
-									"numinlets" : 1,
-									"numoutlets" : 3,
-									"outlettype" : [ "int", "", "" ],
-									"parameter_enable" : 0,
-									"patching_rect" : [ 428.5, 121.0, 100.0, 22.0 ]
 								}
 
 							}
@@ -841,21 +865,16 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-23", 0 ],
-									"source" : [ "obj-19", 1 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-23", 0 ],
+									"order" : 1,
 									"source" : [ "obj-2", 0 ]
 								}
 
 							}
 , 							{
 								"patchline" : 								{
-									"destination" : [ "obj-23", 1 ],
-									"source" : [ "obj-22", 1 ]
+									"destination" : [ "obj-7", 1 ],
+									"order" : 0,
+									"source" : [ "obj-2", 0 ]
 								}
 
 							}
@@ -924,22 +943,29 @@
 							}
 , 							{
 								"patchline" : 								{
-									"destination" : [ "obj-19", 0 ],
+									"destination" : [ "obj-23", 1 ],
+									"source" : [ "obj-41", 1 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-7", 0 ],
 									"source" : [ "obj-41", 0 ]
 								}
 
 							}
 , 							{
 								"patchline" : 								{
-									"destination" : [ "obj-23", 1 ],
-									"source" : [ "obj-41", 1 ]
+									"destination" : [ "obj-23", 0 ],
+									"source" : [ "obj-7", 0 ]
 								}
 
 							}
  ]
 					}
 ,
-					"patching_rect" : [ 245.5, 299.0, 83.0, 22.0 ],
+					"patching_rect" : [ 260.5, 585.0, 83.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -958,7 +984,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 197.25, 184.0, 35.0, 22.0 ],
+					"patching_rect" : [ 212.25, 470.0, 35.0, 22.0 ],
 					"text" : "clear"
 				}
 
@@ -966,12 +992,12 @@
 , 			{
 				"box" : 				{
 					"id" : "obj-24",
-					"linecount" : 8,
+					"linecount" : 12,
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 225.5, 10.0, 338.0, 114.0 ],
-					"text" : "Here we are making a toy midi output script with the repl. The only keys that work are the arrow keys and the run keys for capturing output.\nThe arrow keys output simple messages which we handle inside max to produce midi notes. Writing the characters into the buffer and outputting the message we want to route is handled entirely in the config file for the repl, as you can see at the bottom of the patch."
+					"patching_rect" : [ 56.5, 113.0, 906.0, 167.0 ],
+					"text" : "Here we are making a toy midi output script with the repl\n        Arrow Keys: These output simple messages which we handle inside max to produce midi notes.\n        Option+Enter: clear the repl\n\nIt is important to note that all of the repls output message generation and input display is handled in the config file. We have completely overridden the default behaviour of the repl by loading a new configuration file, we have even rebound our usual \"run\" key combination to instead clear the repl\n\nTo each arrow key we attach two functions, one which adds the character to the repl, and creates a newline after a certain length, and one which outputs a message which we then parse in max. Note that in the first section the logic for adding the line break is not actually necessary, it is much simpler to add the repl MAX_CHARS setting to the configuration file.\nTo Option+Enter we simply bind a function which outputs the \"clear\" message, which will then be consumed by the repl, as all repl output is first passed through its own message routing before being passed to the outside world."
 				}
 
 			}
@@ -982,7 +1008,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 245.5, 217.0, 63.0, 22.0 ],
+					"patching_rect" : [ 260.5, 503.0, 63.0, 22.0 ],
 					"text" : "route note"
 				}
 
@@ -994,7 +1020,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 265.5, 157.0, 177.0, 22.0 ],
+					"patching_rect" : [ 280.5, 443.0, 177.0, 22.0 ],
 					"text" : "loadmess keybindings midikeys"
 				}
 
@@ -1006,7 +1032,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "bang" ],
-					"patching_rect" : [ 53.0, 458.0, 58.0, 22.0 ],
+					"patching_rect" : [ 695.5, 412.0, 58.0, 22.0 ],
 					"text" : "loadbang"
 				}
 
@@ -1018,7 +1044,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 447.5, 157.0, 114.0, 22.0 ],
+					"patching_rect" : [ 462.5, 443.0, 114.0, 22.0 ],
 					"text" : "keybindings midiout"
 				}
 
@@ -1030,7 +1056,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 13.0, 458.0, 33.0, 22.0 ],
+					"patching_rect" : [ 655.5, 412.0, 33.0, 22.0 ],
 					"text" : "read"
 				}
 
@@ -1041,7 +1067,7 @@
 					"maxclass" : "dict.view",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 13.0, 516.0, 566.0, 245.0 ]
+					"patching_rect" : [ 655.5, 470.0, 344.0, 245.0 ]
 				}
 
 			}
@@ -1052,7 +1078,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 4,
 					"outlettype" : [ "dictionary", "", "", "" ],
-					"patching_rect" : [ 13.0, 485.0, 159.0, 22.0 ],
+					"patching_rect" : [ 655.5, 439.0, 159.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"embed" : 0,
 						"parameter_enable" : 0,
@@ -1073,7 +1099,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 63.0, 67.0, 150.0, 22.0 ]
+					"patching_rect" : [ 78.0, 353.0, 150.0, 22.0 ]
 				}
 
 			}
@@ -1215,7 +1241,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 93.0, 97.0, 70.0, 22.0 ],
+					"patching_rect" : [ 108.0, 383.0, 70.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -1240,7 +1266,7 @@
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "int" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 48.0, 5.0, 20.0, 20.0 ],
+					"patching_rect" : [ 63.0, 291.0, 20.0, 20.0 ],
 					"rounded" : 60.0,
 					"text" : "3",
 					"textcolor" : [ 0.34902, 0.34902, 0.34902, 1.0 ]
@@ -1253,7 +1279,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 63.0, 15.0, 90.0, 20.0 ],
+					"patching_rect" : [ 78.0, 301.0, 90.0, 20.0 ],
 					"text" : "turn world on"
 				}
 
@@ -1265,7 +1291,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 3,
 					"outlettype" : [ "jit_matrix", "bang", "" ],
-					"patching_rect" : [ 63.0, 128.0, 402.0, 22.0 ],
+					"patching_rect" : [ 78.0, 414.0, 402.0, 22.0 ],
 					"text" : "jit.world midi-example @fsaa 1 @fsmenubar 0 @size 640 480 @floating 1"
 				}
 
@@ -1280,7 +1306,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 63.0, 37.0, 150.0, 22.0 ]
+					"patching_rect" : [ 78.0, 323.0, 150.0, 22.0 ]
 				}
 
 			}
@@ -1289,9 +1315,9 @@
 					"id" : "obj-1",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
-					"numoutlets" : 2,
-					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 245.5, 184.0, 177.0, 22.0 ],
+					"numoutlets" : 3,
+					"outlettype" : [ "", "", "" ],
+					"patching_rect" : [ 260.5, 470.0, 177.0, 22.0 ],
 					"text" : "tw.gl.repl midi-example 640 480"
 				}
 
@@ -1442,7 +1468,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-22", 0 ],
-					"midpoints" : [ 414.0, 234.0, 518.5, 234.0 ],
+					"midpoints" : [ 429.0, 520.0, 533.5, 520.0 ],
 					"source" : [ "obj-4", 1 ]
 				}
 
@@ -1485,7 +1511,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-4", 0 ],
-					"midpoints" : [ 331.5, 234.0, 318.0, 234.0, 318.0, 207.0, 403.5, 207.0 ],
+					"midpoints" : [ 343.5, 520.0, 333.0, 520.0, 333.0, 493.0, 418.5, 493.0 ],
 					"source" : [ "obj-7", 0 ]
 				}
 
@@ -1507,30 +1533,30 @@
  ],
 		"dependency_cache" : [ 			{
 				"name" : "_generate_scale.js",
-				"bootpath" : "~/Documents/Max 8/Packages/tw.gl.repl/examples",
+				"bootpath" : "~/Documents/Max 8/Packages/tw.gl.repl/examples/simple-midi",
 				"patcherrelativepath" : ".",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "patcher-init.js",
-				"bootpath" : "~/Documents/Max 8/Packages/tw.gl.repl/javascript/dist",
-				"patcherrelativepath" : "../javascript/dist",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "tw.gl.repl.js",
 				"bootpath" : "~/Documents/Max 8/Packages/tw.gl.repl/javascript/dist",
-				"patcherrelativepath" : "../javascript/dist",
+				"patcherrelativepath" : "../../javascript/dist",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "tw.gl.repl.maxpat",
 				"bootpath" : "~/Documents/Max 8/Packages/tw.gl.repl/patchers",
-				"patcherrelativepath" : "../patchers",
+				"patcherrelativepath" : "../../patchers",
 				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "user-repl.js",
+				"bootpath" : "~/Documents/Max 8/Packages/tw.gl.repl/examples/custom-formatter",
+				"patcherrelativepath" : "../custom-formatter",
+				"type" : "TEXT",
 				"implicit" : 1
 			}
  ],

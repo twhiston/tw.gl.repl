@@ -2,13 +2,13 @@
 
 ## TODO
 
-* option to disable formatting on file writes
 * add param types to fixed functions
 * map types to max types in template somehow!
 * support and help patches
   * patch that makes max objects?
-  * more complex midi example
+  * patch which uses processor functions
   * example with something running in the background continually outputting data
+  * rewrite opengl example as a shortcode processor style version for demo?
 * fix minor bug with run outputting position a LOT
 * figure out automating releases without source in pipelines for tags
 

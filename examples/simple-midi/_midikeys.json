@@ -14,14 +14,7 @@
             "id": "execute",
             "asciiCode": 2044,
             "functions": [
-                "return ['run']"
-            ]
-        },
-        {
-            "id": "execute-line",
-            "asciiCode": 6140,
-            "functions": [
-                "return ['run_line']"
+                "return ['clear']"
             ]
         },
         {

@@ -2641,8 +2641,8 @@
 									"linecount" : 3,
 									"maxclass" : "newobj",
 									"numinlets" : 1,
-									"numoutlets" : 2,
-									"outlettype" : [ "", "" ],
+									"numoutlets" : 3,
+									"outlettype" : [ "", "", "" ],
 									"patching_rect" : [ 523.0, 517.0, 367.0, 49.0 ],
 									"text" : "tw.gl.repl help-ctx2 1280 720 @cursor <-- @font \"Andale Mono\" @comment ## @blink_enable 1 @blink_time 100 @cursor_color 1 0 0 1 @blink_color 1 1 0 1 @ignore_keys 1"
 								}
@@ -4269,13 +4269,59 @@
 						"visible" : 1,
 						"boxes" : [ 							{
 								"box" : 								{
+									"hidden" : 1,
+									"id" : "obj-34",
+									"maxclass" : "message",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 735.0, 187.0, 338.0, 22.0 ],
+									"presentation_linecount" : 2,
+									"text" : "loadunique _tw.gl.repl-custom-formatter-example.maxpat"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"hidden" : 1,
+									"id" : "obj-41",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 735.0, 216.0, 51.0, 22.0 ],
+									"text" : "pcontrol"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"bgcolor" : [ 0.949019607843137, 0.56078431372549, 0.094117647058824, 0.25 ],
+									"bgoncolor" : [ 1.0, 1.0, 1.0, 1.0 ],
+									"fontface" : 1,
+									"id" : "obj-46",
+									"maxclass" : "textbutton",
+									"numinlets" : 1,
+									"numoutlets" : 3,
+									"outlettype" : [ "", "", "int" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 555.0, 187.0, 150.0, 60.0 ],
+									"text" : "Custom Formatter Example",
+									"textoncolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+									"textovercolor" : [ 1.0, 1.0, 1.0, 1.0 ],
+									"truncate" : 0,
+									"usetextovercolor" : 1
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"id" : "obj-45",
 									"maxclass" : "message",
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 479.0, 381.0, 105.0, 22.0 ],
-									"text" : "keybindings nobbf"
+									"patching_rect" : [ 443.0, 364.0, 105.0, 22.0 ]
 								}
 
 							}
@@ -4813,7 +4859,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 735.0, 223.0, 261.0, 35.0 ],
+									"patching_rect" : [ 750.0, 636.0, 261.0, 35.0 ],
 									"text" : ";\rmax launchbrowser http://www.tomwhiston.com"
 								}
 
@@ -4830,7 +4876,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 555.0, 184.0, 150.0, 23.0 ],
+									"patching_rect" : [ 570.0, 597.0, 150.0, 23.0 ],
 									"text" : "go to my website",
 									"textjustification" : 0,
 									"textoncolor" : [ 0.239216, 0.254902, 0.278431, 1.0 ],
@@ -5007,8 +5053,8 @@
 									"id" : "obj-4",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
-									"numoutlets" : 2,
-									"outlettype" : [ "", "" ],
+									"numoutlets" : 3,
+									"outlettype" : [ "", "", "" ],
 									"patching_rect" : [ 285.0, 374.0, 148.0, 22.0 ],
 									"text" : "tw.gl.repl help-ctx 480 270"
 								}
@@ -5150,6 +5196,14 @@
 							}
 , 							{
 								"patchline" : 								{
+									"destination" : [ "obj-41", 0 ],
+									"hidden" : 1,
+									"source" : [ "obj-34", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
 									"destination" : [ "obj-1", 0 ],
 									"source" : [ "obj-39", 0 ]
 								}
@@ -5203,8 +5257,9 @@
 							}
 , 							{
 								"patchline" : 								{
-									"destination" : [ "obj-4", 0 ],
-									"source" : [ "obj-45", 0 ]
+									"destination" : [ "obj-34", 0 ],
+									"hidden" : 1,
+									"source" : [ "obj-46", 0 ]
 								}
 
 							}
@@ -5262,13 +5317,6 @@
  ],
 		"lines" : [  ],
 		"dependency_cache" : [ 			{
-				"name" : "patcher-init.js",
-				"bootpath" : "~/Documents/Max 8/Packages/tw.gl.repl/javascript/dist",
-				"patcherrelativepath" : "../javascript/dist",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
 				"name" : "shell.mxo",
 				"type" : "iLaX"
 			}
