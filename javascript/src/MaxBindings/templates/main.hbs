@@ -10,8 +10,9 @@ var i = require("includes")
 
 inlets = 1;
 outlets = 4;
-autowatch = 1;
 
+//Call keybindings with the name of a dict with a repl settings file in and it will
+//reconfigure the repl to use it. This will clear all current content of the repl!
 var sKeys = new Dict(jsarguments[2]);
 function keybindings(n) {
     sKeys = new Dict(n);
@@ -70,10 +71,6 @@ include("user-repl")
  * Functions below here are handcrafted in a template, and referenced in the generator script.
  * They should not be edited by hand in the output js file
  */
-function loadbang() {
-	init();
-}
-
 function init() {
     patcher_init();
 
