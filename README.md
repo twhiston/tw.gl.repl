@@ -2,13 +2,13 @@
 
 ## TODO
 
+* option to disable formatting on file writes
 * add param types to fixed functions
 * map types to max types in template somehow!
 * support and help patches
   * patch that makes max objects?
   * more complex midi example
-  * example with custom js (snippet expansions in the repl,
-  extend app config file to define them, attach to tab)
+  * example with something running in the background continually outputting data
 * fix minor bug with run outputting position a LOT
 * figure out automating releases without source in pipelines for tags
 
@@ -334,6 +334,9 @@ i.repl.preloadFormatter(new UppercaseFormatter);
 Always prefer preloading over setting formatters directly as failure to do
 so will result in issues when the config is loaded, as this is the point at
 which formatters are resolved and added to the TextBuffer.
+
+To see a full example of a pure javascript text formatter implementation check out the
+`repl-snippet-expander.maxpat` example!
 
 ## Reading and Writing files
 

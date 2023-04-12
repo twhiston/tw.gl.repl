@@ -1,0 +1,226 @@
+{
+    "settings": {
+        "repl": {
+            "BUFFER_SIZE": 40
+        },
+        "textbuffer": {
+            "formatters": [
+                "snippetExpander",
+                "constrainToMidiNumbers",
+                "whitespace"
+            ]
+        }
+    },
+    "bindings": [
+        {
+            "id": "execute",
+            "asciiCode": 2044,
+            "functions": [
+                "return ['run']"
+            ]
+        },
+        {
+            "id": "execute-line",
+            "asciiCode": 6140,
+            "functions": [
+                "return ['run_line']"
+            ]
+        },
+        {
+            "id": "disable-editor-alt-D",
+            "asciiCode": 8706,
+            "functions": [
+                "return ['ignore_keys']"
+            ]
+        },
+        {
+            "id": "alphahandler",
+            "asciiCode": 127,
+            "functions": [
+                "ctx.addChar(k)"
+            ]
+        },
+        {
+            "id": "ephemeral_mode-alt-g",
+            "asciiCode": 169,
+            "functions": [
+                "return ['ephemeral_mode']"
+            ]
+        },
+        {
+            "id": "addSpace",
+            "asciiCode": -2,
+            "functions": [
+                "ctx.addChar(32)"
+            ]
+        },
+        {
+            "id": "addSpace",
+            "asciiCode": 32,
+            "functions": [
+                "ctx.addChar(32)"
+            ]
+        },
+        {
+            "id": "newLine",
+            "asciiCode": -4,
+            "functions": [
+                "ctx.newLine()"
+            ]
+        },
+        {
+            "id": "newLine",
+            "asciiCode": 10,
+            "functions": [
+                "ctx.newLine()"
+            ]
+        },
+        {
+            "id": "newLine",
+            "asciiCode": 13,
+            "functions": [
+                "ctx.newLine()"
+            ]
+        },
+        {
+            "id": "addTab",
+            "asciiCode": -5,
+            "functions": [
+                "ctx.addTab()"
+            ]
+        },
+        {
+            "id": "delete",
+            "asciiCode": -6,
+            "functions": [
+                "ctx.deleteChar()"
+            ]
+        },
+        {
+            "id": "backspace",
+            "asciiCode": -7,
+            "functions": [
+                "ctx.backSpace()"
+            ]
+        },
+        {
+            "id": "comment-alt-/",
+            "asciiCode": 247,
+            "functions": [
+                "ctx.commentLine()"
+            ]
+        },
+        {
+            "id": "clear-alt-z",
+            "asciiCode": 937,
+            "functions": [
+                "ctx.clear()"
+            ]
+        },
+        {
+            "id": "cutLine-alt-x",
+            "asciiCode": 8776,
+            "functions": [
+                "ctx.tb.pasteBinCopyLine(ctx.c.line());ctx.deleteLine();return ['output_paste_bin']"
+            ]
+        },
+        {
+            "id": "copyLine-alt-c",
+            "asciiCode": 231,
+            "functions": [
+                "ctx.tb.pasteBinCopyLine(ctx.c.line());return ['output_paste_bin']"
+            ]
+        },
+        {
+            "id": "copyAll-alt-k",
+            "asciiCode": 730,
+            "functions": [
+                "ctx.tb.pasteBinCopyAll();return ['output_paste_bin']"
+            ]
+        },
+        {
+            "id": "paste-alt-v",
+            "asciiCode": 8730,
+            "functions": [
+                "var pb = ctx.tb.pasteBinGet(); for(var i = 0; i < pb.length; i++){for (var a = 0; a < pb[i].length; a++) {var char = pb[i].charCodeAt(a); ctx.keyPress(char)}};"
+            ]
+        },
+        {
+            "id": "replaceLine-alt-p",
+            "asciiCode": 960,
+            "functions": [
+                "var pb = ctx.tb.pasteBinGet(); var startLine = ctx.c.line(); ctx.deleteLine(); if(ctx.c.line() < ctx.tb.length()-1){ctx.jumpLine(-1);ctx.jumpTo(1);} if(startLine === 0){ctx.jumpTo(0); ctx.newLine(); ctx.jumpTo(2); }else { ctx.newLine(); } for(var i = 0; i < pb.length; i++){for (var a = 0; a < pb[i].length; a++) {var char = pb[i].charCodeAt(a); ctx.keyPress(char)}}"
+            ]
+        },
+        {
+            "id": "up",
+            "asciiCode": -9,
+            "functions": [
+                "ctx.jumpLine(-1)"
+            ]
+        },
+        {
+            "id": "down",
+            "asciiCode": -10,
+            "functions": [
+                "ctx.jumpLine(1)"
+            ]
+        },
+        {
+            "id": "left",
+            "asciiCode": -11,
+            "functions": [
+                "ctx.jumpChar(-1)"
+            ]
+        },
+        {
+            "id": "right",
+            "asciiCode": -12,
+            "functions": [
+                "ctx.jumpChar(1)"
+            ]
+        },
+        {
+            "id": "jump-top-alt-up",
+            "asciiCode": 2039,
+            "functions": [
+                "ctx.jumpTo(2)"
+            ]
+        },
+        {
+            "id": "jump-bottom-alt-down",
+            "asciiCode": 2038,
+            "functions": [
+                "ctx.jumpTo(3)"
+            ]
+        },
+        {
+            "id": "jump-begin-alt-left",
+            "asciiCode": 2037,
+            "functions": [
+                "ctx.jumpTo(0)"
+            ]
+        },
+        {
+            "id": "jump-end-alt-right",
+            "asciiCode": 2036,
+            "functions": [
+                "ctx.jumpTo(1)"
+            ]
+        },
+        {
+            "id": "jumpWord-left-cmd-left",
+            "asciiCode": 8804,
+            "functions": [
+                "ctx.jumpWord(-1)"
+            ]
+        },
+        {
+            "id": "jumpWord-right-cmd-right",
+            "asciiCode": 8805,
+            "functions": [
+                "ctx.jumpWord(1)"
+            ]
+        }
+    ]
+}

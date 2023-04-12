@@ -9,7 +9,7 @@
 var i = require("includes")
 
 inlets = 1;
-outlets = 3;
+outlets = 4;
 autowatch = 1;
 
 var sKeys = new Dict(jsarguments[2]);
@@ -106,6 +106,7 @@ function run_output(out){
     if (EPHEMERAL_MODE) {
         clear();
     }
+    outlet(3, "bang")
 }
 run_output.local = 1;
 

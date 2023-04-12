@@ -40,12 +40,25 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
+					"comment" : "",
+					"id" : "obj-13",
+					"index" : 3,
+					"maxclass" : "outlet",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 423.648611111111052, 771.0, 30.0, 30.0 ],
+					"varname" : "clipboardOutput[1]"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-18",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 147.648611111111109, 712.0, 111.0, 22.0 ],
+					"patching_rect" : [ 147.648611111111109, 712.0, 151.0, 22.0 ],
 					"text" : "prepend #1 :"
 				}
 
@@ -927,7 +940,7 @@
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 331.648611111111109, 750.0, 30.0, 30.0 ],
+					"patching_rect" : [ 331.648611111111109, 771.0, 30.0, 30.0 ],
 					"varname" : "clipboardOutput"
 				}
 
@@ -4014,9 +4027,9 @@
 					"id" : "obj-153",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
-					"numoutlets" : 3,
-					"outlettype" : [ "", "", "" ],
-					"patching_rect" : [ 147.648611111111109, 572.0, 203.0, 22.0 ],
+					"numoutlets" : 4,
+					"outlettype" : [ "", "", "", "" ],
+					"patching_rect" : [ 147.648611111111109, 572.0, 294.999999999999943, 22.0 ],
 					"saved_object_attributes" : 					{
 						"filename" : "tw.gl.repl",
 						"parameter_enable" : 0
@@ -4083,6 +4096,13 @@
 					"destination" : [ "obj-47", 0 ],
 					"midpoints" : [ 408.25, 198.0, 121.0, 198.0 ],
 					"source" : [ "obj-14", 1 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-13", 0 ],
+					"source" : [ "obj-153", 3 ]
 				}
 
 			}
