@@ -178,7 +178,10 @@ export class GLRender {
         this.glVid.freepeer()
     }
 
-    //Set the render context for displaying the repl.
+    /*
+     * Set the render context for displaying the repl.
+     * This is the same as the rendering-context argument
+     */
     @maxMspBinding({ isAttribute: false })
     drawto(v: string) {
         this.MAIN_CTX = v;
@@ -186,13 +189,21 @@ export class GLRender {
         (<any>this.glVid).drawto = this.MAIN_CTX;
     }
 
-    // the text position
+    /*
+     * set the text position.
+     * This is mostly called internally to dynamically resize text and should not need to be called by the user
+     * in regular use of the repl
+     */
     @maxMspBinding({ customHandler: 'textScalingHandler' })
     position(x: number, y: number) {
         (<any>this.animNode).position = [x, y, 0];
     }
 
-    // the text scaling
+    /*
+     * set the text scaling.
+     * This is mostly called internally to dynamically resize text and should not need to be called by the user
+     * in regular use of the repl
+     */
     @maxMspBinding({ customHandler: 'textScalingHandler' })
     scale(s: number) {
         this.SCALING = s * 100 / this.FONT_SIZE;
@@ -263,6 +274,10 @@ export class GLRender {
         (<any>this.glTextObj.lnmr).jit_matrix(this.nmbrMtx.name);
     }
 
+    /*
+     * set the text colour.
+     * R G B A format where A is optional and default set to 1.0
+     */
     @maxMspBinding({ functionName: "color" })
     setTextColor(r: number, g: number, b: number, a: number = 1.0) {
         this.color(new Color(r, g, b, a))
@@ -273,17 +288,30 @@ export class GLRender {
         (<any>this.glTextObj.text).gl_color = color.toArray();
     }
 
+    /*
+     * set the run colour.
+     * This is the colour things change to briefly when the run/execute function is called
+     * R G B A format where A is optional and default set to 1.0
+     */
     @maxMspBinding({})
     run_color(r: number, g: number, b: number, a: number = 1.0) {
         this.runColor = new Color(r, g, b, a);
     }
 
+    /*
+     * set the line number colour.
+     * R G B A format where A is optional and default set to 1.0
+     */
     @maxMspBinding({})
     number_color(r: number, g: number, b: number, a: number = 1.0) {
         const color = new Color(r, g, b, a);
         (<any>this.glTextObj.lnmr).gl_color = color.toArray();
     }
 
+    /*
+     * set the cursor character colour.
+     * R G B A format where A is optional and default set to 1.0
+     */
     @maxMspBinding({})
     cursor_color(r: number, g: number, b: number, a: number = 1.0) {
         const color = new Color(r, g, b, a);
@@ -291,21 +319,32 @@ export class GLRender {
         this.blink();
     }
 
+    /*
+     * set the blink colour.
+     * R G B A format where A is optional and default set to 1.0
+     */
     @maxMspBinding({})
     blink_color(r: number, g: number, b: number, a: number = 1.0) {
         const color = new Color(r, g, b, a);
         this.blinkColor = color;
     }
 
+    /*
+     * Turn the blinking cursor on and off.
+     * In normal operation this is called internally when ignore_keys is true to give
+     * a visual indication of the locked state of the repl.
+     */
     @maxMspBinding({})
     blink_enable(v: boolean) {
         this.useBlink = v;
     }
 
-    // set the cursor characters
+    /*
+     * set the cursor characters. 
+     * default is <<
+     */
     @maxMspBinding({ draw: true, functionName: 'cursor' })
-    setCursorChars(c) {
-        // post("@cursor: ", c, "\n");
+    setCursorChars(c: string) {
         this.CRSR = c.toString();
         this.CRSR_CHARS = [];
         for (var i = 0; i < this.CRSR.length; i++) {
@@ -313,6 +352,9 @@ export class GLRender {
         }
     }
 
+    /*
+     * runs the blink command, called internally in abstraction and not exposed via routing
+     */
     @maxMspBinding({ noroute: true, isMethod: false, isAttribute: false })
     runBlink(t: number) {
 
@@ -325,6 +367,10 @@ export class GLRender {
         (<any>this.glTextObj.text).gl_color = c;
     }
 
+    /*
+     * blinks the cursor
+     * called internally and not exposed to the router
+     */
     @maxMspBinding({ noroute: true, isMethod: false, isAttribute: false })
     blink() {
         if (this.useBlink) {
@@ -357,6 +403,10 @@ export class GLRender {
         }
     }
 
+    /*
+     * set the font.
+     * set the font by name in all objects, should be the name of a valid font installed on the system
+     */
     @maxMspBinding({})
     font(f: string) {
         for (const [k, v] of Object.entries(this.glTextObj)) {
@@ -374,6 +424,10 @@ export class GLRender {
         // crsrAnim.position = [0.9, 0, 0];
     }
 
+    /*
+     * set the lead scale
+     * float value
+     */
     @maxMspBinding({})
     leadscale(l: number) {
         for (const [k, v] of Object.entries(this.glTextObj)) {
@@ -386,6 +440,9 @@ export class GLRender {
         this.alpha(1.0 - Number(this.isDisabled) * 0.5);
     }
 
+    /*
+     * set the tracking on the gl text objects
+     */
     @maxMspBinding({})
     tracking(t: any) {
         for (const [k, v] of Object.entries(this.glTextObj)) {

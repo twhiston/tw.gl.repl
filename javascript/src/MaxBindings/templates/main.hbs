@@ -14,8 +14,8 @@ outlets = 4;
 //Call keybindings with the name of a dict with a repl settings file in and it will
 //reconfigure the repl to use it. This will clear all current content of the repl!
 var sKeys = new Dict(jsarguments[2]);
-function keybindings(n) {
-    sKeys = new Dict(n);
+function keybindings(dictid) {
+    sKeys = new Dict(dictid);
     init();
 }
 

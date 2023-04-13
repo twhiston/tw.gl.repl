@@ -2,8 +2,6 @@
 
 ## TODO
 
-* add param types to fixed functions
-* map types to max types in template somehow!
 * support and help patches
   * patch that makes max objects?
   * patch which uses processor functions

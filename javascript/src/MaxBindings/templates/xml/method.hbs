@@ -1,13 +1,15 @@
 {{#truthy options.isMethod}}
-<method name="{{options.functionName}}">
-    <arglist>
-        {{#each options.params}}
-        <arg name="{{this.name}}" optional={{#if this.default}}"1"{{else}}"0"{{/if}} type="{{this.type}}" />
-        {{/each}}
-	</arglist>
-	<digest>{{#if options.comment}}{{firstSentanceOrLine options.comment}}{{else}}auto-bound to max via annotation{{/if}}</digest>
-	<description>
-        {{#if options.comment}}{{cutComment options.comment}}{{else}}This function was auto bound to the max interface, but it does not have a comment describing what it does.{{/if}}
-	</description>
-</method>
+        <method name="{{options.functionName}}">
+{{#if options.params}}
+                <arglist>
+                {{#each options.params}}
+                    <arg name="{{this.name}}" optional={{#if this.default}}"1"{{else}}"0"{{/if}} type="{{maxTypeMapper this.type}}" />
+                {{/each}}
+	        </arglist>
+{{/if}}
+	        <digest>{{#if options.comment}}{{firstSentanceOrLine options.comment}}{{else}}auto-bound to max via annotation{{/if}}</digest>
+	        <description>
+                    {{#if options.comment}}{{cutComment options.comment}}{{else}}This function was auto bound to the max interface, but it does not have a comment describing what it does.{{/if}}
+	        </description>
+        </method>
 {{/truthy}}

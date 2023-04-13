@@ -34,7 +34,7 @@
 
 	<!--INLETS-->
 	<inletlist>
-		<inlet id="0" type="symbol">
+		<inlet id="0" type="any">
 			<digest>bang from jit.world or command for repl</digest>
 		</inlet>
 	</inletlist>
@@ -66,27 +66,21 @@
 
 	<!--ARGUMENTS-->
 	<objarglist>
-		<objarg name="rendering-context" optional="0" type="string">
-			<digest>
-				The named drawing context in which to draw (default = none).
-			</digest>
+		<objarg name="rendering-context" optional="0" type="symbol">
+			<digest>The named drawing context in which to draw (default = none).</digest>
 			<description>
 				Set the name of the rendering context. This is the name given to the jit.world, jit.gl.render or
 				jit.gl.node object.
 			</description>
 		</objarg>
-		<objarg name="width" optional="0" type="number">
-			<digest>
-				Width of the render context
-			</digest>
+		<objarg name="width" optional="0" type="int">
+			<digest>Width of the render context</digest>
 			<description>
 				Set the width of the render context for scaling etc.
 			</description>
 		</objarg>
-		<objarg name="height" optional="0" type="number">
-			<digest>
-				Height of the render context
-			</digest>
+		<objarg name="height" optional="0" type="int">
+			<digest>Height of the render context</digest>
 			<description>
 				Set the height of the render context for scaling etc.
 			</description>
@@ -95,16 +89,16 @@
 
 	<!--MESSAGES-->
 	<methodlist>
-		{{#each methods}}
-		{{{rendered }}}
-		{{/each}}
+{{#each methods}}
+{{{ rendered }}}
+{{/each}}
 	</methodlist>
 
 	<!--ATTRIBUTES-->
 	<attributelist>
-		{{#each attributes}}
-		{{{rendered }}}
-		{{/each}}
+{{#each attributes}}
+{{{ rendered }}}
+{{/each}}
 	</attributelist>
 
 	<!--SEEALSO-->

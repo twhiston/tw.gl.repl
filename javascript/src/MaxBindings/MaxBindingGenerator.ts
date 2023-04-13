@@ -53,25 +53,40 @@ Handlebars.registerHelper("truthy", function (conditional, options): any {
     }
 });
 
+//code types
+//string number boolean unknown any string[]
+//max types
+//bang signal signal/float float int symbol list
+const inputTypes = [
+    { name: 'string', outputType: 'symbol' },
+    { name: 'number', outputType: 'float' },
+    { name: 'boolean', outputType: 'bang/int' },
+    { name: 'any', outputType: 'symbol' },
+    { name: 'string[]', outputType: 'list' },
+];
+Handlebars.registerHelper('maxTypeMapper', function (jsType) {
+    const typeMapping = inputTypes.find(type => type.name === jsType);
+
+    if (typeMapping) {
+        return typeMapping.outputType;
+    } else {
+        return jsType;
+        //throw new Error(`Invalid input type: ${jsType}`);
+    }
+});
+
 function getCustomFunctionDefinitions(): Array<Object> {
     let genFuncs: any = []
     //Add all of our custom functionsa which live in our template and which are not generated on the fly
     // adding them here makes sure they also get added to the router and output appropriately to a mix
     // of custom handlers, the default out, back to the js object etc.
     genFuncs.push({
-        functionName: "bang",
-        noroute: true,
-        isAttribute: false,
-        isMethod: true,
-        comment: "draws the repl. Connect the bang from a jit world to inlet 1",
-        paramCount: 1
-    });
-    genFuncs.push({
         functionName: "init",
         noroute: true,
         isMethod: true,
         isAttribute: false,
-        paramCount: 0
+        paramCount: 0,
+        comment: "Initialize the repl. This sets everything up and will clear the display etc. You should not need to call this in normal operation, prefer clear to empty the buffer. Loading a new settings dict will implictly call init()"
     });
     genFuncs.push({
         functionName: "ignore_keys",
@@ -117,7 +132,14 @@ function getCustomFunctionDefinitions(): Array<Object> {
         isMethod: true,
         isAttribute: false,
         paramCount: 1,
-        comment: "read (playback) a file into the repl through the keypress handler. Optional first argument for filename otherwise opendialog"
+        comment: "read (playback) a file into the repl through the keypress handler. Optional first argument for filename otherwise opendialog",
+        params: [
+            {
+                name: "filename",
+                default: false,
+                type: "string",
+            }
+        ]
     });
     genFuncs.push({
         functionName: "write",
@@ -126,7 +148,14 @@ function getCustomFunctionDefinitions(): Array<Object> {
         isMethod: true,
         isAttribute: false,
         paramCount: 1,
-        comment: "write all the data in the repl to a file. Optional first argument for file otherwise savedialog"
+        params: [
+            {
+                name: "filename",
+                default: false,
+                type: "string",
+            }
+        ],
+        comment: "write all the data in the repl to a file. Optional first argument for file otherwise savedialog. format_writes true/false (0/1) will affect if the output is passed throguh the formatters before being written to disk"
     });
     genFuncs.push({
         functionName: "keybindings",
@@ -135,6 +164,13 @@ function getCustomFunctionDefinitions(): Array<Object> {
         isMethod: true,
         isAttribute: false,
         paramCount: 1,
+        params: [
+            {
+                name: "dictid",
+                default: false,
+                type: "string",
+            }
+        ],
         comment: "pass the name of a dict containing the config for the repl. By default loads shortkeys.json provided with the project"
     });
     genFuncs.push({
@@ -143,6 +179,13 @@ function getCustomFunctionDefinitions(): Array<Object> {
         isMethod: true,
         isAttribute: false,
         paramCount: 1,
+        params: [
+            {
+                name: "v",
+                default: false,
+                type: "bang/int",
+            }
+        ],
         comment: "If true then also output the text matrix name behind the command routing jit_matrix when code is run. Note that this does not stop other messages being output from the repl"
     });
     genFuncs.push({
@@ -151,6 +194,13 @@ function getCustomFunctionDefinitions(): Array<Object> {
         isAttribute: true,
         isMethod: true,
         paramCount: 1,
+        params: [
+            {
+                name: "v",
+                default: false,
+                type: "bang/int",
+            }
+        ],
         comment: "if true then after a run the text or line which was executed will be deleted from the repl"
     });
     genFuncs.push({
@@ -159,6 +209,13 @@ function getCustomFunctionDefinitions(): Array<Object> {
         isAttribute: true,
         isMethod: true,
         paramCount: 1,
+        params: [
+            {
+                name: "v",
+                default: false,
+                type: "bang/int",
+            }
+        ],
         comment: "if true then run the repl content through formatters before saving to disk. if not dump directly. Defaults to true"
     });
     genFuncs.push({
@@ -168,7 +225,7 @@ function getCustomFunctionDefinitions(): Array<Object> {
         isMethod: true,
         isAttribute: false,
         paramCount: 0,
-        comment: "output the current contents of the pastebin from the second outlet"
+        comment: "output the current contents of the pastebin from the second outlet. You should bind this to a key. See default bindings for example"
     });
 
     return genFuncs;

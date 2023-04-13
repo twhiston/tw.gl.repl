@@ -132,7 +132,7 @@ export class REPLManager {
 
     // set the comment characters. bind the comment function to a key combo to use
     @maxMspBinding({ draw: true, functionName: "comment", isMethod: true, isAttribute: true })
-    setCommentChars(c) {
+    setCommentChars(c: string) {
         this.config.CMNT = c.toString()
         //because we are targeting below EMCA5 we cannot use setters
         //so we need to call this every time we change the comment chars
