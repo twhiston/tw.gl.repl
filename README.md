@@ -139,7 +139,8 @@ All available settings are as follows:
         "textbuffer": {
             "formatters": [
                 "whitespace",
-                "bracebalanced"
+                "bracebalanced",
+                "singleline"
             ]
         }
 }
