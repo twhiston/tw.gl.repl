@@ -162,7 +162,7 @@ function getCustomFunctionDefinitions(): Array<Object> {
         customHandler: "this",
         handlerInlet: 0,
         isMethod: true,
-        isAttribute: false,
+        isAttribute: true,
         paramCount: 1,
         params: [
             {
