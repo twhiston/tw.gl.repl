@@ -55,6 +55,9 @@
       "BraceBalancedFormatter": [
         "TextBuffer/formatters/BraceBalancedFormatter"
       ],
+      "SingleLineOutputFormatter": [
+        "TextBuffer/formatters/SingleLineOutputFormatter"
+      ],
       "string.extensions": [
         "TextBuffer/string.extensions"
       ]

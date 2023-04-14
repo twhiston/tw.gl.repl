@@ -2,7 +2,8 @@
 
 ## TODO
 
-* new core formatters should be automatically added to the init of the repl
+* new core formatters should be automatically added to the init of the repl?
+* why cant you use keybindings as an attribute?
 * support and help patches
   * patch that makes max objects?
   * patch which uses processor functions
