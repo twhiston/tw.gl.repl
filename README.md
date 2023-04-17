@@ -4,6 +4,7 @@
 
 * new core formatters should be automatically added to the init of the repl?
 * why cant you use keybindings as an attribute?
+* find solution for ignorekeys shortcut, dynamic routing from keypress?
 * support and help patches
   * patch that makes max objects?
   * patch which uses processor functions
@@ -159,6 +160,12 @@ function body in text (which will be wrapped
 `new Function('k', 'ctx', funcString)`), it can be a function from whatever context
 is passed in (in the case of this application it is an instance of `REPLManager`),
 or it can be a reference to a custom function.
+
+There is one "special" keycode which is not defined in config, this is the binding
+for 'ignore_keys'. This is hardcoded to `option+d` which is keycode 8706. This needs
+to be handled outside of the javascript because you want to be able to re-enable
+the keys. You can change this binding by sending the message `ignore_keys_id` and
+the keycode id that you want.
 
 #### Binding a simple function
 
