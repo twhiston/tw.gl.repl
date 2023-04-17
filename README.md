@@ -3,8 +3,6 @@
 ## TODO
 
 * new core formatters should be automatically added to the init of the repl?
-* why cant you use keybindings as an attribute?
-* find solution for ignorekeys shortcut, dynamic routing from keypress?
 * support and help patches
   * patch that makes max objects?
   * patch which uses processor functions

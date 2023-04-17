@@ -162,7 +162,7 @@ function getCustomFunctionDefinitions(): Array<Object> {
         customHandler: "this",
         handlerInlet: 0,
         isMethod: true,
-        isAttribute: true,
+        isAttribute: false,
         paramCount: 1,
         params: [
             {
@@ -171,7 +171,7 @@ function getCustomFunctionDefinitions(): Array<Object> {
                 type: "string",
             }
         ],
-        comment: "pass the name of a dict containing the config for the repl. By default loads shortkeys.json provided with the project"
+        comment: "pass the name of a dict containing the config for the repl. By default loads shortkeys.json provided with the project. Cannot be used as an attribute so send you app configuration with a loadbang referencing a dict name instead"
     });
     genFuncs.push({
         functionName: "output_matrix",
