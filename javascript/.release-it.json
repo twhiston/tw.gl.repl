@@ -1,0 +1,28 @@
+{
+  "git": {
+    "push": false,
+    "requireCleanWorkingDir": false,
+    "commitMessage": "chore: release v${version}"
+  },
+  "hooks": {
+    "before:init": [
+      "rm -rf ./../.dist",
+      "mkdir -p ./../.dist/tw.gl.repl",
+      "rsync -av --progress ./../ ./../.dist/tw.gl.repl --exclude ./../.dist",
+      "rm -rf ./../.dist/tw.gl.repl/.git ./../.dist/tw.gl.repl/.dist ./../.dist/tw.gl.repl/.github ./../.dist/tw.gl.repl/.vscode ./../.dist/tw.gl.repl/javascript ./../.dist/tw.gl.repl/.gitignore",
+      "mkdir ./../.dist/tw.gl.repl/javascript",
+      "rsync -av --progress ./dist/* ./../.dist/tw.gl.repl/javascript",
+      "cd ./../.dist/; zip -r tw.gl.repl.zip ./tw.gl.repl"
+    ],
+    "after:bump": "npx auto-changelog -p -o./../CHANGELOG.md"
+  },
+  "github": {
+    "release": true,
+    "assets": [
+      "./../.dist/*.zip"
+    ]
+  },
+  "npm": {
+    "publish": false
+  }
+}
