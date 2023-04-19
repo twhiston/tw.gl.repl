@@ -306,6 +306,8 @@ export class MaxGenerator {
                     const name = node.name?.getText() || 'anonymousFunction';
                     const filePath = sourceFile.fileName;
                     options.instanceName = classOptions.instanceName || options.instanceName;
+                    if (options.useArgs === undefined)
+                        options.useArgs = false;
                     options.draws = classOptions.draws || options.draws;
                     options.throws = classOptions.throws || options.throws;
                     options.noroute = classOptions.noroute || options.noroute;

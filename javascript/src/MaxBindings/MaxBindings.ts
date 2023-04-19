@@ -8,6 +8,11 @@ export interface MaxMspBindingOptions extends Record<string, any> {
     //method it is attached to, so you can refactor without changing
     //the max bindings for compatibility
     functionName?: string;
+    //if true then the generated function will use `arguments` instead of the
+    //function argument when passing data to internal function calls, needed when
+    //input might be an array of variable length because we can't use any modern
+    // js like (...arg) to get it!
+    useArgs?: boolean;
     //if true call the glrender draw function after calling this
     //in generated max code
     draw?: boolean;

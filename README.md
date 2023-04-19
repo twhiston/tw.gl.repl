@@ -3,45 +3,48 @@
 ## TODO
 
 * sort out horizontal scaling
+* make getting started patch for extras menu
 * new core formatters should be automatically added to the init of the repl?
 * support and help patches
   * patch that makes max objects?
   * patch which uses processor functions
   * example with something running in the background continually outputting data
   * rewrite opengl example as a shortcode processor style version for demo?
-* figure out automating releases without source in pipelines for tags
+* setup automating releases without source in pipelines for tags
 
 ## About
 
 This is a repl based on the excellent th.gl.texteditor. It was partly built as a
 way to learn how to take a more modern approach to building javascript code for
 Max, but it significantly extends the original functionality, to provide a more
-fully featured and configurable repl environment. At it's core this is the same
-idea as th.gl.texteditor but the way in which functions can be attached to keys
-now significantly extends what it is possible to do. There is a fundamental
-philosophical difference between the idea of having a text buffer repl which
-performs actions on run/execute and a program where additionally every key press
-triggers a specific function. It means there are subtle differences between this
-and th.gl.texteditor which are important to be aware of. For example when you
-load a text file into th.gl.texteditor it just fills the buffer, in tw.gl.repl
-it replays the keystrokes back through the input processing. This means that any
-function which is attached to the individual keypress will be executed again. In
-it's usual configuration this means that the text is added to the text buffer,
-but it does not necessarily hold that this is true in every possible
-configuration. It would be possible to attach functions to keypresses which
-maintain state for other parts of an application, or which trigger messages to
-be output immediately etc. This means you should think about where you put your
-functionality, does it need to be in the repl itself, ie should it be triggered
-every time the keypresses are played back? or does it need to be some routing
-and handling in max? Further to this the repl introduces the concept of output
-formatters, these can be attached to the repl and then used in the configuration
-file to alter the output in some way. This allows you to format text easily for
-whatever you are hooking the repl up for, for example concatenating the output
-into a single line, or checking that it has balanced brances, or ensuring
-whitespace is in a regular format. However it also means that it's possible to,
-for example, have a short dsl for the repl, which is expanded to a full DSL of
-the thing you wish to interface with. This is useful if you need to interact with
-a verbose javascript but don't want to do a lot of typing.
+fully featured and configurable repl environment.
+
+At it's core this is the same idea as th.gl.texteditor but the way in which
+functions can be attached to keys now significantly extends what it is possible
+to do. There is a fundamental philosophical difference between the idea of
+having a text buffer repl which performs actions on run/execute and a program
+where additionally every key press triggers a specific function. It means there
+are subtle differences between this and th.gl.texteditor which are important to
+be aware of. For example when you load a text file into th.gl.texteditor it just
+fills the buffer, in tw.gl.repl it replays the keystrokes back through the input
+processing. This means that any function which is attached to the individual
+keypress will be executed again. In it's usual configuration this means that the
+text is added to the text buffer, but it does not necessarily hold that this is
+true in every possible configuration. It would be possible to attach functions
+to keypresses which maintain state for other parts of an application, or which
+trigger messages to be output immediately etc. This means you should think about
+where you put your functionality, does it need to be in the repl itself, ie
+should it be triggered every time the keypresses are played back? or does it
+need to be some routing and handling in max? Further to this the repl introduces
+the concept of output formatters, these can be attached to the repl and then
+used in the configuration file to alter the output in some way. This allows you
+to format text easily for whatever you are hooking the repl up for, for example
+concatenating the output into a single line, or checking that it has balanced
+brances, or ensuring whitespace is in a regular format. However it also means
+that it's possible to, for example, have a short dsl for the repl, which is
+expanded to a full DSL of the thing you wish to interface with. This is useful
+if you need to interact with a verbose javascript but don't want to do a lot of
+typing.
 
 TLDR not only is it possible to output the contents of the repl buffer for
 processing in max, but it's possible to attach any function to a keypress in the
@@ -61,20 +64,25 @@ You should install this inside your Max packages directory, in a folder called `
 it should then be available in max after a restart.
 See help files for some ideas on what you might do with it!
 
-Download zip
+### Download zip
 
 ```
-1. download zip
-2. unzip and place in Max Searchpath (eg. MacOS ~/Documents/Max 8/Library)
+1. download a release from the github release page for this project
+2. unzip and place in Max Searchpath (eg. MacOS ~/Documents/Max 8/Packages)
 3. restart Max8
 ```
 
-Git clone
+### Git clone
 
-```
-1. $ cd ~/Documents/Max\ 8/Library
-2. $ git clone https://github.com/twhiston/tw.gl.repl.git
-3. restart Max8
+If you want to git clone the repo you will need to have npm installed as the compiled
+sources are not included in the repo.
+
+```bash
+cd ~/Documents/Max\ 8/Packages
+git clone https://github.com/twhiston/tw.gl.repl.git
+cd tw.gl.repl/javascript
+npm install && npm compile
+//restart Max8
 ```
 
 ```
@@ -398,6 +406,11 @@ it will just output the `jit_matrix name` command additionally!
 ancient engine
 * Extremely flexible to extend
 * Full set of tests
+
+Practically most patches using `th.gl.texteditor` can use `tw.gl.repl` as a drop
+in replacement, though if you use a custom config you will need to adapt it to
+the different format used here. In your max patch if `th.gl.texteditor`'s output
+was connected to a `fromsymbol` or `iter` you can also delete these
 
 ## Developing the REPL further
 

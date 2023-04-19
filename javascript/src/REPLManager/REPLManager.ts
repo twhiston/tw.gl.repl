@@ -113,6 +113,21 @@ export class REPLManager {
         return msgs;
     }
 
+    /*
+     * Replay some text into the repl, passing it through the keyPress function
+     * This may or may not insert it into the buffer depending on configuration
+     */
+    @maxMspBinding({ draw: true, isMethod: true, useArgs: true })
+    replay(ks: Array<string>) {
+        for (const k of ks) {
+            for (var i = 0; i < k.length; i++) {
+                var char = k.charCodeAt(i);
+                this.keyPress(char);
+            }
+            this.newLine()
+        }
+    }
+
     status(): Array<string> {
         var len = this.tb.getMaxChar();
         var tbLen = this.tb.length();
@@ -195,7 +210,7 @@ export class REPLManager {
     }
 
     // append a line of text or multiple symbols per line. DOES NOT PROCESS KEYPRESSES, WRITES DIRECTLY TO BUFFER
-    @maxMspBinding({ draw: true, isMethod: true })
+    @maxMspBinding({ draw: true, isMethod: true, useArgs: true })
     append(text: Array<string>) {
         if (text.length > 0)
             this.newLine();
@@ -212,7 +227,7 @@ export class REPLManager {
      * prepend a line of text or multiple symbols per line.
      * DOES NOT PROCESS KEYPRESSES, WRITES DIRECTLY TO BUFFER
      */
-    @maxMspBinding({ draw: true, isMethod: true })
+    @maxMspBinding({ draw: true, isMethod: true, useArgs: true })
     prepend(text: Array<string>) {
         this.c.reset();
         for (var i = 0; i < text.length; i++) {

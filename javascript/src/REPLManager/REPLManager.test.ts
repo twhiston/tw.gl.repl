@@ -1117,3 +1117,40 @@ test('preloadFormatter can preload formatter and load it from json', t => {
     const actualResult = repl.tb.format();
     t.deepEqual(actualResult, expectedResult);
 });
+
+var testData: Array<number> = []
+function replayfunc(k, ctx) {
+    testData.push(k);
+}
+test('Replay method test', (t) => {
+    const replManager = new REPLManager(new REPLSettings());
+    replManager.kp.attachFunctions("test", 127, [replayfunc])
+    const input = ['hello', 'world'];
+    replManager.replay(input);
+    t.is(replManager.tb.length(), 3);
+    t.is(testData.length, 10);
+});
+
+
+test('Keypress function triggering test', (t) => {
+    let keyPressTriggered = false;
+    let keyPressTriggered2 = false;
+    const replManager = new REPLManager();
+    const testFunction = (key, ctx) => {
+        keyPressTriggered = true;
+    };
+    const testFunction2 = (key, ctx) => {
+        keyPressTriggered2 = true;
+    };
+
+    replManager.kp.customAlphaNum(true)
+    replManager.kp.attachFunctions("testFunction", 65, [testFunction])
+    replManager.kp.attachFunctions("testFunction2", 66, [testFunction2])
+
+    replManager.keyPress(65);
+    t.true(keyPressTriggered);
+    t.false(keyPressTriggered2);
+    replManager.keyPress(66);
+    t.true(keyPressTriggered);
+    t.true(keyPressTriggered2);
+});

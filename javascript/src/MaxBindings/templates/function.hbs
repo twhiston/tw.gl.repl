@@ -2,12 +2,21 @@
 function {{options.functionName}}({{#each options.params}}{{this.name}}{{#unless @last}},{{/unless}}{{/each}}) {
     {{#if options.throws}}
     try {
+        {{#if options.useArgs~}}
         {{options.instanceName}}.{{options.callName}}({{#each options.params}}{{this.name}}{{#unless @last}},{{/unless}}{{/each}})
+        {{options.instanceName}}.{{options.callName}}(arguments)
+        {{else}}
+        {{options.instanceName}}.{{options.callName}}({{#each options.params}}{{this.name}}{{#unless @last}},{{/unless}}{{/each}})
+        {{/if}}
     } catch (error){
-        post(error);
+        post(error.message);
     }
     {{else}}
+    {{#if options.useArgs~}}
+        {{options.instanceName}}.{{options.callName}}(arguments)
+    {{else}}
     {{options.instanceName}}.{{options.callName}}({{#each options.params}}{{this.name}}{{#unless @last}},{{/unless}}{{/each}})
+    {{/if}}
     {{/if}}
     {{#if options.draw}}
     draw()
