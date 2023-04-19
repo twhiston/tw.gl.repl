@@ -4,7 +4,7 @@ import { BraceBalancedFormatter } from "BraceBalancedFormatter";
 import { WhitespaceFormatter } from "WhitespaceFormatter";
 import { SingleLineOutputFormatter } from "SingleLineOutputFormatter";
 
-//strict brace balanced formatter as default
+//preload all our formatters
 const bbf = new BraceBalancedFormatter(true);
 const wsf = new WhitespaceFormatter();
 const slf = new SingleLineOutputFormatter("");

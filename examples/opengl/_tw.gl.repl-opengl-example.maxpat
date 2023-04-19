@@ -4,13 +4,13 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 5,
-			"revision" : 3,
+			"revision" : 4,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 612.0, 100.0, 808.0, 783.0 ],
+		"rect" : [ 611.0, 100.0, 442.0, 783.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -40,12 +40,103 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-74",
+					"maxclass" : "newobj",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 97.0, 461.0, 41.0, 22.0 ],
+					"text" : "pipe 5"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"bgcolor" : [ 0.541176, 0.815686, 0.913725, 1.0 ],
+					"fontname" : "Arial Bold",
+					"fontsize" : 11.0,
+					"hint" : "",
+					"id" : "obj-63",
+					"ignoreclick" : 1,
+					"legacytextcolor" : 1,
+					"maxclass" : "textbutton",
+					"numinlets" : 1,
+					"numoutlets" : 3,
+					"outlettype" : [ "", "", "int" ],
+					"parameter_enable" : 0,
+					"patching_rect" : [ 57.5, 420.0, 20.0, 20.0 ],
+					"rounded" : 60.0,
+					"text" : "11",
+					"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"bgcolor" : [ 1.0, 0.788235, 0.470588, 1.0 ],
+					"fontname" : "Arial Bold",
+					"fontsize" : 11.0,
+					"hint" : "",
+					"id" : "obj-62",
+					"ignoreclick" : 1,
+					"legacytextcolor" : 1,
+					"maxclass" : "textbutton",
+					"numinlets" : 1,
+					"numoutlets" : 3,
+					"outlettype" : [ "", "", "int" ],
+					"parameter_enable" : 0,
+					"patching_rect" : [ 623.0, 737.5, 20.0, 20.0 ],
+					"rounded" : 60.0,
+					"text" : "11",
+					"textcolor" : [ 0.34902, 0.34902, 0.34902, 1.0 ]
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-61",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 2,
+					"outlettype" : [ "int", "clear" ],
+					"patching_rect" : [ 98.0, 433.0, 47.0, 22.0 ],
+					"text" : "t i clear"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-56",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 98.0, 492.0, 157.0, 22.0 ],
+					"text" : "sprintf read _example%s.txt"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-55",
+					"items" : [ 1, ",", 2, ",", 3, ",", 4, ",", 5, ",", 6, ",", 7, ",", 8, ",", 9, ",", 10, ",", 11 ],
+					"maxclass" : "umenu",
+					"numinlets" : 1,
+					"numoutlets" : 3,
+					"outlettype" : [ "int", "", "" ],
+					"parameter_enable" : 0,
+					"patching_rect" : [ 57.5, 395.0, 100.0, 22.0 ]
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-54",
 					"maxclass" : "message",
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 150.0, 420.0, 33.0, 22.0 ],
+					"patching_rect" : [ 241.0, 415.0, 33.0, 22.0 ],
 					"text" : "read"
 				}
 
@@ -57,7 +148,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 150.0, 392.0, 35.0, 22.0 ],
+					"patching_rect" : [ 241.0, 387.0, 35.0, 22.0 ],
 					"text" : "clear"
 				}
 
@@ -87,30 +178,6 @@
 			}
 , 			{
 				"box" : 				{
-					"id" : "obj-52",
-					"maxclass" : "message",
-					"numinlets" : 2,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 150.0, 510.0, 111.0, 22.0 ],
-					"text" : "read _example3.txt"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-42",
-					"maxclass" : "message",
-					"numinlets" : 2,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 150.0, 480.0, 111.0, 22.0 ],
-					"text" : "read _example2.txt"
-				}
-
-			}
-, 			{
-				"box" : 				{
 					"id" : "obj-39",
 					"maxclass" : "comment",
 					"numinlets" : 1,
@@ -129,18 +196,6 @@
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 311.5, 345.0, 29.5, 22.0 ],
 					"text" : "run"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-53",
-					"maxclass" : "message",
-					"numinlets" : 2,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 150.0, 450.0, 104.0, 22.0 ],
-					"text" : "read _example.txt"
 				}
 
 			}
@@ -697,7 +752,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 5,
-							"revision" : 3,
+							"revision" : 4,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -783,7 +838,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 5,
-											"revision" : 3,
+											"revision" : 4,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -1043,7 +1098,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 5,
-											"revision" : 3,
+											"revision" : 4,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -1303,7 +1358,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 5,
-											"revision" : 3,
+											"revision" : 4,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -1661,7 +1716,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 5,
-											"revision" : 3,
+											"revision" : 4,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -2377,7 +2432,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 5,
-							"revision" : 3,
+							"revision" : 4,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -2566,8 +2621,8 @@
 					"id" : "obj-112",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
-					"numoutlets" : 2,
-					"outlettype" : [ "", "" ],
+					"numoutlets" : 3,
+					"outlettype" : [ "", "", "" ],
 					"patching_rect" : [ 284.5, 387.0, 162.0, 22.0 ],
 					"text" : "tw.gl.repl cmd-xmp 1280 720"
 				}
@@ -2612,12 +2667,12 @@
 , 			{
 				"box" : 				{
 					"id" : "obj-40",
-					"linecount" : 49,
+					"linecount" : 51,
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 645.0, 67.5, 318.0, 663.0 ],
-					"text" : "This patch has 2 named shape objects, namely the jit.gl.gridshape and the jit.gl.plato. It has a jit.gl.multiple to target one of those objects. You can change parameters of the objects and the multiple with the correct messaging system. The orange numbers correspond with the same number in blue.\n\n=> control jit.world: start with \"wo\"\nwo erase_color 0.3 0.2 0.5 1\nwo erase_color 0 0 0 0.2\n\n\n=> control jit.gl.gridshape: start with \"gs\". \ngs shape cube\ngs poly_mode 1 1\ngs lighting_enable 1\ngs fog 1\n\n\n=> control jit.gl.plato: start with \"pl\".\npl shape dodeca\npl poly_mode 1 1\npl line_width 5\npl fog_range 5 20\n\n\n=> control jit.gl.multiple: start with \"mp\".\nmp dim 10 10 10\nmp distance 10\nmp scale random lo hi\nmp rotatexyz random lo hi\nmp targetname grid\nmp targetname plato\n\n\n=> control jit.gl.multiples anim.node: start with \"mp anim\".\nmp anim turn 0.3 0.5 0.2\n\n\n=> control jit.gl.camera: start with \"cam\".\ncam position 0 0 4\ncam lens_angle 110\ncam ortho 2\n\n\n=> control light source 1: start with \"light_1\"\n=> control light source 2: start with \"light_2\"\n=> control light source 3: start with \"light_3\"\n=> control both lights: start with \"light\""
+					"patching_rect" : [ 645.0, 67.5, 318.0, 690.0 ],
+					"text" : "This patch has 2 named shape objects, namely the jit.gl.gridshape and the jit.gl.plato. It has a jit.gl.multiple to target one of those objects. You can change parameters of the objects and the multiple with the correct messaging system. The orange numbers correspond with the same number in blue.\n\n=> control jit.world: start with \"wo\"\nwo erase_color 0.3 0.2 0.5 1\nwo erase_color 0 0 0 0.2\n\n\n=> control jit.gl.gridshape: start with \"gs\". \ngs shape cube\ngs poly_mode 1 1\ngs lighting_enable 1\ngs fog 1\n\n\n=> control jit.gl.plato: start with \"pl\".\npl shape dodeca\npl poly_mode 1 1\npl line_width 5\npl fog_range 5 20\n\n\n=> control jit.gl.multiple: start with \"mp\".\nmp dim 10 10 10\nmp distance 10\nmp scale random lo hi\nmp rotatexyz random lo hi\nmp targetname grid\nmp targetname plato\n\n\n=> control jit.gl.multiples anim.node: start with \"mp anim\".\nmp anim turn 0.3 0.5 0.2\n\n\n=> control jit.gl.camera: start with \"cam\".\ncam position 0 0 4\ncam lens_angle 110\ncam ortho 2\n\n\n=> control light source 1: start with \"light_1\"\n=> control light source 2: start with \"light_2\"\n=> control light source 3: start with \"light_3\"\n=> control both lights: start with \"light\"\n\ntry loading some example files and running them"
 				}
 
 			}
@@ -2654,7 +2709,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 45.0, 50.0, 510.0, 107.0 ],
+					"patching_rect" : [ 45.0, 50.0, 515.0, 107.0 ],
 					"text" : "control parameters of jit.gl.plato, jit.gl.gridshape, camera and lights to live code with your own patch.\nThe only difference between this and the original example from th.gl.texteditor is that we do not need to iter or fromsymbol the output"
 				}
 
@@ -2932,13 +2987,6 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-112", 0 ],
-					"source" : [ "obj-42", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
 					"destination" : [ "obj-44", 0 ],
 					"source" : [ "obj-43", 0 ]
 				}
@@ -3005,21 +3053,21 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-112", 0 ],
-					"source" : [ "obj-52", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-112", 0 ],
-					"source" : [ "obj-53", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-112", 0 ],
 					"source" : [ "obj-54", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-61", 0 ],
+					"source" : [ "obj-55", 1 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-112", 0 ],
+					"source" : [ "obj-56", 0 ]
 				}
 
 			}
@@ -3027,6 +3075,20 @@
 				"patchline" : 				{
 					"destination" : [ "obj-1", 0 ],
 					"source" : [ "obj-6", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-112", 0 ],
+					"source" : [ "obj-61", 1 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-74", 0 ],
+					"source" : [ "obj-61", 0 ]
 				}
 
 			}
@@ -3105,6 +3167,13 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-56", 0 ],
+					"source" : [ "obj-74", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-71", 0 ],
 					"source" : [ "obj-76", 0 ]
 				}
@@ -3133,24 +3202,24 @@
 			}
  ],
 		"dependency_cache" : [ 			{
-				"name" : "patcher-init.js",
-				"bootpath" : "~/Documents/Max 8/Packages/tw.gl.repl/javascript/dist",
-				"patcherrelativepath" : "../javascript/dist",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
 				"name" : "tw.gl.repl.js",
 				"bootpath" : "~/Documents/Max 8/Packages/tw.gl.repl/javascript/dist",
-				"patcherrelativepath" : "../javascript/dist",
+				"patcherrelativepath" : "../../javascript/dist",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "tw.gl.repl.maxpat",
 				"bootpath" : "~/Documents/Max 8/Packages/tw.gl.repl/patchers",
-				"patcherrelativepath" : "../patchers",
+				"patcherrelativepath" : "../../patchers",
 				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "user-repl.js",
+				"bootpath" : "~/Documents/Max 8/Packages/tw.gl.repl/examples/custom-formatter",
+				"patcherrelativepath" : "../custom-formatter",
+				"type" : "TEXT",
 				"implicit" : 1
 			}
  ],

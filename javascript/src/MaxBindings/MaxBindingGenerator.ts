@@ -1,12 +1,11 @@
+//@ts-ignore
 import path from 'path';
+//@ts-ignore
 import fs from 'fs';
 import ts from 'typescript';
 import Handlebars, { HelperOptions } from 'handlebars';
 import { MaxMspBindingOptions } from './MaxBindings';
 
-function cleanComment(comment: string) {
-    return
-}
 
 Handlebars.registerHelper('cutComment', function (comment: string) {
     const cleanComment = comment.split('\\n')
