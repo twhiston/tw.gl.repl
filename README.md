@@ -3,7 +3,6 @@
 ## TODO
 
 * sort out horizontal scaling
-* make getting started patch for extras menu
 * new core formatters should be automatically added to the init of the repl?
 * support and help patches
   * patch that makes max objects?

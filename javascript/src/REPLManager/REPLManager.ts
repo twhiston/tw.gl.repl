@@ -117,9 +117,9 @@ export class REPLManager {
      * Replay some text into the repl, passing it through the keyPress function
      * This may or may not insert it into the buffer depending on configuration
      */
-    @maxMspBinding({ draw: true, isMethod: true, useArgs: true })
-    replay(ks: Array<string>) {
-        for (const k of ks) {
+    @maxMspBinding({ draw: true, isMethod: true, useArgsForText: true })
+    replay(text: Array<string>) {
+        for (const k of text) {
             for (var i = 0; i < k.length; i++) {
                 var char = k.charCodeAt(i);
                 this.keyPress(char);
@@ -210,7 +210,7 @@ export class REPLManager {
     }
 
     // append a line of text or multiple symbols per line. DOES NOT PROCESS KEYPRESSES, WRITES DIRECTLY TO BUFFER
-    @maxMspBinding({ draw: true, isMethod: true, useArgs: true })
+    @maxMspBinding({ draw: true, isMethod: true, useArgsForText: true })
     append(text: Array<string>) {
         if (text.length > 0)
             this.newLine();
@@ -227,7 +227,7 @@ export class REPLManager {
      * prepend a line of text or multiple symbols per line.
      * DOES NOT PROCESS KEYPRESSES, WRITES DIRECTLY TO BUFFER
      */
-    @maxMspBinding({ draw: true, isMethod: true, useArgs: true })
+    @maxMspBinding({ draw: true, isMethod: true, useArgsForText: true })
     prepend(text: Array<string>) {
         this.c.reset();
         for (var i = 0; i < text.length; i++) {
@@ -254,7 +254,7 @@ export class REPLManager {
     * a list of symbols will insert one line per symbol
     * DOES NOT PROCESS KEYPRESSES, WRITES DIRECTLY TO BUFFER
     */
-    @maxMspBinding({ draw: true, throws: true, isMethod: true })
+    @maxMspBinding({ draw: true, throws: true, isMethod: true, useArgsForText: true })
     insert(idx: number, text: Array<string>) {
         var idx = Math.min(this.config.BUFFER_SIZE, idx);
 
@@ -284,7 +284,7 @@ export class REPLManager {
     * this can be a list of symbols for every line
     * DOES NOT PROCESS KEYPRESSES, WRITES DIRECTLY TO BUFFER
     */
-    @maxMspBinding({ draw: true, isMethod: true })
+    @maxMspBinding({ draw: true, isMethod: true, useArgsForText: true })
     set(text: Array<string>) {
 
         text = (text.length < 1) ? [''] : text;

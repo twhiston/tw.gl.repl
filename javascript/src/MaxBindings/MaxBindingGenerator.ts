@@ -52,6 +52,25 @@ Handlebars.registerHelper("truthy", function (conditional, options): any {
     }
 });
 
+Handlebars.registerHelper('isTextArgument', function (name: string, options): any {
+    if (name === 'text') {
+        // @ts-ignore
+        return options.fn(this);
+    } else {
+        // @ts-ignore
+        return options.inverse(this);
+    }
+});
+
+Handlebars.registerHelper('moreThanOne', function (a: string, options): any {
+    if (a.length > 1) {
+        // @ts-ignore
+        return options.fn(this);
+    }
+    // @ts-ignore
+    return options.inverse(this);
+});
+
 //code types
 //string number boolean unknown any string[]
 //max types
@@ -306,8 +325,8 @@ export class MaxGenerator {
                     const name = node.name?.getText() || 'anonymousFunction';
                     const filePath = sourceFile.fileName;
                     options.instanceName = classOptions.instanceName || options.instanceName;
-                    if (options.useArgs === undefined)
-                        options.useArgs = false;
+                    if (options.useArgsForText === undefined)
+                        options.useArgsForText = false;
                     options.draws = classOptions.draws || options.draws;
                     options.throws = classOptions.throws || options.throws;
                     options.noroute = classOptions.noroute || options.noroute;

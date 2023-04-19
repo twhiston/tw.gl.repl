@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 375.0, 100.0, 763.0, 848.0 ],
+		"rect" : [ 637.0, 100.0, 683.0, 794.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -37,7 +37,8 @@
 		"tags" : "",
 		"style" : "",
 		"subpatcher_template" : "",
-		"showontab" : 1,
+		"showrootpatcherontab" : 0,
+		"showontab" : 0,
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
@@ -56,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 59.0, 119.0, 640.0, 480.0 ],
+						"rect" : [ 0.0, 26.0, 683.0, 768.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -83,9 +84,189 @@
 						"tags" : "",
 						"style" : "",
 						"subpatcher_template" : "",
+						"showontab" : 2,
 						"assistshowspatchername" : 0,
-						"visible" : 1,
 						"boxes" : [ 							{
+								"box" : 								{
+									"id" : "obj-2",
+									"maxclass" : "message",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 72.0, 40.0, 91.0, 22.0 ],
+									"text" : "output_matrix 1"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-33",
+									"linecount" : 2,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 221.0, 323.0, 286.0, 33.0 ],
+									"text" : "read, with optional filename, will write text from the repl to a .txt file"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-32",
+									"maxclass" : "message",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 183.0, 328.5, 34.0, 22.0 ],
+									"text" : "write"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-28",
+									"maxclass" : "message",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 105.0, 281.0, 111.0, 22.0 ],
+									"text" : "read _example1.txt"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-27",
+									"linecount" : 2,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 221.0, 260.0, 286.0, 33.0 ],
+									"text" : "read, with optional filename, will play some text back into the buffer from a .txt file"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-25",
+									"maxclass" : "message",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 183.0, 252.0, 33.0, 22.0 ],
+									"text" : "read"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-23",
+									"linecount" : 4,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 220.0, 176.0, 288.0, 60.0 ],
+									"text" : "whatever is in the pasteBin will be sent out from output 2. You will have needed to have called a function to copy some text into the buffer before you call this."
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-21",
+									"maxclass" : "message",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 110.0, 186.0, 101.0, 22.0 ],
+									"text" : "output_paste_bin"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-19",
+									"linecount" : 3,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 220.0, 375.0, 289.0, 47.0 ],
+									"text" : "If true then text in the repl will be formatted, as if it is being output, before it is written to disk. Defaults to true"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-17",
+									"maxclass" : "message",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 126.0, 375.0, 91.0, 22.0 ],
+									"text" : "format_writes 1"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-15",
+									"maxclass" : "message",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 89.0, 135.0, 112.0, 22.0 ],
+									"text" : "ephemeral_mode 0"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-14",
+									"linecount" : 4,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 206.0, 103.0, 304.0, 60.0 ],
+									"text" : "if ephemeral_mode is true then the text in the repl will be deleted when it is executed. \nThis is sentitive to running the line or all the code in the repl"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-12",
+									"maxclass" : "message",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 89.0, 103.0, 112.0, 22.0 ],
+									"text" : "ephemeral_mode 1"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-10",
+									"linecount" : 3,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 172.0, 45.0, 335.0, 47.0 ],
+									"text" : "if set to 1 then as well as the output matrix you will get a jit_matrix message with the name of the matrix which contains the text in"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-8",
+									"maxclass" : "message",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 72.0, 70.0, 91.0, 22.0 ],
+									"text" : "output_matrix 0"
+								}
+
+							}
+, 							{
 								"box" : 								{
 									"id" : "obj-5",
 									"maxclass" : "comment",
@@ -114,7 +295,7 @@
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 32.0, 224.0, 72.0, 22.0 ],
+									"patching_rect" : [ 32.0, 423.0, 72.0, 22.0 ],
 									"text" : "s customize"
 								}
 
@@ -123,14 +304,77 @@
 						"lines" : [ 							{
 								"patchline" : 								{
 									"destination" : [ "obj-1", 0 ],
+									"source" : [ "obj-12", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-1", 0 ],
+									"source" : [ "obj-15", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-1", 0 ],
+									"source" : [ "obj-17", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-1", 0 ],
+									"source" : [ "obj-2", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-1", 0 ],
+									"source" : [ "obj-21", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-1", 0 ],
+									"source" : [ "obj-25", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-1", 0 ],
+									"source" : [ "obj-28", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-1", 0 ],
 									"source" : [ "obj-3", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-1", 0 ],
+									"source" : [ "obj-32", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-1", 0 ],
+									"source" : [ "obj-8", 0 ]
 								}
 
 							}
  ]
 					}
 ,
-					"patching_rect" : [ 195.0, 660.0, 77.0, 22.0 ],
+					"patching_rect" : [ 514.0, 397.0, 77.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -159,7 +403,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 763.0, 822.0 ],
+						"rect" : [ 0.0, 26.0, 683.0, 768.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -195,7 +439,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 451.0, 565.5, 50.0, 22.0 ]
+									"patching_rect" : [ 451.0, 565.5, 50.0, 22.0 ],
+									"text" : "bang"
 								}
 
 							}
@@ -772,7 +1017,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 45.0, 600.0, 96.0, 22.0 ],
+					"patching_rect" : [ 227.0, 397.0, 96.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -801,7 +1046,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 763.0, 822.0 ],
+						"rect" : [ 0.0, 26.0, 683.0, 768.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1559,7 +1804,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 45.0, 516.0, 108.0, 22.0 ],
+					"patching_rect" : [ 402.0, 397.0, 108.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -1588,7 +1833,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 763.0, 822.0 ],
+						"rect" : [ 0.0, 26.0, 683.0, 768.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -2239,7 +2484,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 45.0, 477.0, 67.0, 22.0 ],
+					"patching_rect" : [ 330.0, 397.0, 67.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -2268,7 +2513,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 375.0, 126.0, 763.0, 822.0 ],
+						"rect" : [ 637.0, 126.0, 683.0, 768.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -2299,13 +2544,124 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
+									"id" : "obj-20",
+									"linecount" : 3,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 202.0, 251.0, 188.0, 47.0 ],
+									"text" : "note that this does not work and only inserts the first line. Add only works for a line at a time"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-5",
+									"linecount" : 2,
+									"maxclass" : "message",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 45.0, 257.0, 155.0, 35.0 ],
+									"presentation_linecount" : 2,
+									"text" : "add \"this is also some text\" \"so is this\""
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"fontface" : 1,
+									"id" : "obj-55",
+									"linecount" : 6,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 676.0, 370.0, 135.0, 87.0 ],
+									"text" : "Some useful helpers for dealing with text.\nRemember all these commands can be run from inside the repl as well!"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-53",
+									"linecount" : 2,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 464.0, 692.0, 339.0, 33.0 ],
+									"text" : "reading a file will play it back through the keyPress function a character at a time"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-51",
+									"maxclass" : "message",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 347.0, 692.0, 111.0, 22.0 ],
+									"text" : "read _example1.txt"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-48",
+									"linecount" : 4,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 653.0, 601.0, 154.0, 60.0 ],
+									"text" : "replay will insert text into the buffer by iterating each char of each symbol through keyPress"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-46",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 449.5, 565.0, 353.5, 20.0 ],
+									"text" : "keyPress takes the ASCII/max charID of the key as its argument"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"fontface" : 1,
+									"id" : "obj-44",
+									"linecount" : 3,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 340.0, 505.0, 455.0, 47.0 ],
+									"text" : "These methods all insert text into the repl by playing it back through functionality attached to keypresses. This may or may not add it to the text buffer depending on your configuration and what is attached to the keypress"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-42",
+									"maxclass" : "message",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 347.0, 606.0, 302.0, 22.0 ],
+									"text" : "replay \"the quick brown fox\" \"jumped over the lazy dog\""
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"id" : "obj-36",
 									"maxclass" : "message",
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 289.0, 570.0, 149.0, 22.0 ],
-									"text" : "keyPress 104 101 108 111"
+									"patching_rect" : [ 347.0, 565.0, 81.0, 22.0 ],
+									"text" : "keyPress 104"
 								}
 
 							}
@@ -2315,19 +2671,20 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 195.0, 468.0, 170.0, 20.0 ],
+									"patching_rect" : [ 400.0, 444.0, 170.0, 20.0 ],
 									"text" : "clears all text in the repl buffer"
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"fontface" : 1,
 									"id" : "obj-30",
 									"linecount" : 3,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 409.0, 259.0, 258.0, 47.0 ],
+									"patching_rect" : [ 39.0, 301.0, 261.0, 47.0 ],
 									"text" : "These methods all insert text into the buffer WITHOUT playing it back through functionality attached to keypresses."
 								}
 
@@ -2339,7 +2696,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 159.0, 466.0, 35.0, 22.0 ],
+									"patching_rect" : [ 358.0, 444.0, 35.0, 22.0 ],
 									"text" : "clear"
 								}
 
@@ -2347,11 +2704,12 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-24",
+									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 455.0, 150.0, 216.0, 20.0 ],
-									"text" : "adds text at the current cursor position"
+									"patching_rect" : [ 172.0, 211.0, 218.0, 33.0 ],
+									"text" : "adds a single line of  text at the current cursor position."
 								}
 
 							}
@@ -2362,7 +2720,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 318.0, 150.0, 126.0, 22.0 ],
+									"patching_rect" : [ 45.0, 216.5, 126.0, 22.0 ],
 									"text" : "add \"this is some text\""
 								}
 
@@ -2373,7 +2731,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 195.0, 435.0, 202.0, 20.0 ],
+									"patching_rect" : [ 425.0, 407.0, 202.0, 20.0 ],
 									"text" : "remove a specific line (count from 0)"
 								}
 
@@ -2384,7 +2742,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 195.0, 403.0, 202.0, 20.0 ],
+									"patching_rect" : [ 425.0, 370.0, 202.0, 20.0 ],
 									"text" : "remove the last line of the textbuffer"
 								}
 
@@ -2396,7 +2754,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 135.0, 403.0, 49.0, 22.0 ],
+									"patching_rect" : [ 358.0, 370.0, 49.0, 22.0 ],
 									"text" : "remove"
 								}
 
@@ -2408,7 +2766,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 135.0, 435.0, 59.0, 22.0 ],
+									"patching_rect" : [ 358.0, 407.0, 59.0, 22.0 ],
 									"text" : "remove 5"
 								}
 
@@ -2420,7 +2778,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 360.0, 360.0, 180.0, 33.0 ],
+									"patching_rect" : [ 615.0, 315.0, 180.0, 33.0 ],
 									"text" : "inserting outside the textbuffer results in many empty lines"
 								}
 
@@ -2432,7 +2790,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 135.0, 360.0, 209.0, 22.0 ],
+									"patching_rect" : [ 395.5, 315.0, 209.0, 22.0 ],
 									"text" : "insert 17 \"I'm so lonely on the bottom\""
 								}
 
@@ -2440,11 +2798,11 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-3",
-									"linecount" : 2,
+									"linecount" : 3,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 375.0, 315.0, 240.0, 33.0 ],
+									"patching_rect" : [ 661.0, 257.0, 134.0, 47.0 ],
 									"text" : "insert text at specified index (count from 0),\none symbol per line"
 								}
 
@@ -2456,7 +2814,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 135.0, 315.0, 232.0, 22.0 ],
+									"patching_rect" : [ 395.5, 263.0, 232.0, 22.0 ],
 									"text" : "insert 4 --> \"Somewhere in the middle\" <--"
 								}
 
@@ -2468,7 +2826,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 550.0, 673.0, 134.0, 33.0 ],
+									"patching_rect" : [ 661.0, 205.5, 134.0, 33.0 ],
 									"text" : "prepend text,\none symbol per line"
 								}
 
@@ -2480,7 +2838,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 284.0, 673.0, 261.0, 22.0 ],
+									"patching_rect" : [ 395.5, 211.0, 261.0, 22.0 ],
 									"text" : "prepend \"before all the text\" \"comes this line\" ..."
 								}
 
@@ -2503,7 +2861,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 494.0, 628.0, 134.0, 33.0 ],
+									"patching_rect" : [ 661.0, 150.0, 134.0, 33.0 ],
 									"text" : "append text,\none symbol per line"
 								}
 
@@ -2515,8 +2873,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 284.0, 628.0, 190.0, 22.0 ],
-									"text" : "append \"is it me your looking for?\""
+									"patching_rect" : [ 395.5, 155.5, 199.0, 22.0 ],
+									"text" : "append \"is it me\" \"your looking for?\""
 								}
 
 							}
@@ -2527,7 +2885,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 32.0, 594.0, 146.0, 22.0 ],
+									"patching_rect" : [ 45.0, 182.0, 146.0, 22.0 ],
 									"text" : "set \"hello world!\" \"foo bar\""
 								}
 
@@ -2602,7 +2960,35 @@
 									"mode" : 0,
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 32.0, 139.0, 635.0, 174.0 ],
+									"patching_rect" : [ 32.0, 139.0, 779.0, 214.0 ],
+									"proportion" : 0.5
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"angle" : 270.0,
+									"bgcolor" : [ 0.647058823529412, 0.647058823529412, 0.647058823529412, 1.0 ],
+									"id" : "obj-43",
+									"maxclass" : "panel",
+									"mode" : 0,
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 329.0, 499.0, 482.0, 255.0 ],
+									"proportion" : 0.5
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"angle" : 270.0,
+									"bgcolor" : [ 0.647058823529412, 0.647058823529412, 0.647058823529412, 1.0 ],
+									"id" : "obj-54",
+									"maxclass" : "panel",
+									"mode" : 0,
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 329.0, 365.0, 482.0, 114.0 ],
 									"proportion" : 0.5
 								}
 
@@ -2667,6 +3053,27 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-1", 0 ],
+									"source" : [ "obj-42", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-1", 0 ],
+									"source" : [ "obj-5", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-1", 0 ],
+									"source" : [ "obj-51", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-1", 0 ],
 									"source" : [ "obj-6", 0 ]
 								}
 
@@ -2724,7 +3131,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 45.0, 561.0, 38.0, 22.0 ],
+					"patching_rect" : [ 183.0, 397.0, 38.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -2753,7 +3160,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 763.0, 822.0 ],
+						"rect" : [ 0.0, 26.0, 683.0, 768.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -4074,7 +4481,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 45.0, 437.0, 73.0, 22.0 ],
+					"patching_rect" : [ 101.0, 397.0, 73.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -4103,7 +4510,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 763.0, 822.0 ],
+						"rect" : [ 0.0, 26.0, 683.0, 768.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -4277,7 +4684,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 45.0, 642.0, 70.0, 22.0 ],
+					"patching_rect" : [ 601.0, 397.0, 70.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -4306,7 +4713,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 763.0, 822.0 ],
+						"rect" : [ 0.0, 26.0, 683.0, 768.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -4375,7 +4782,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 45.0, 684.0, 27.0, 22.0 ],
+					"patching_rect" : [ 677.5, 397.0, 27.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -4407,7 +4814,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 45.0, 124.0, 494.0, 248.0 ],
+					"patching_rect" : [ 45.0, 124.0, 497.0, 248.0 ],
 					"text" : "A fully featured and configurable repl environment made in javascript and opengl for max. A command line text editor (similar to the workflow of the terminal) for the opengl world of Max. Add the object to your setup and initialize it with the name of the render context. Then make sure you send it the render bang in the top inlet. \n\nAttach functions to keypresses, mutate repl contents before output, reading files plays back all functions attached to keys. Configurable through json configuration file and code, easily extensible.\n\nSimple use cases for the repl can be handled entirely in configuration, add a shortkeys.json to your project or load any dict with the `keybindings dictname` message. \nMore complex use cases can be easily managed by including a `user-repl.js` file\ninside your project in which you can further customize behaviour by attaching\nyour own custom functions to keypresses or your own custom formatters for output\nmessage handling. This will be automatically read by the repl on start.\n\nSee README.md in the package folder for extensive information about how the repl works, or try the examples here.",
 					"textcolor" : [ 0.32548999786377, 0.345097988843918, 0.372548997402191, 1.0 ]
 				}
@@ -4445,7 +4852,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 763.0, 822.0 ],
+						"rect" : [ 0.0, 26.0, 683.0, 768.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -4529,12 +4936,13 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-45",
+									"linecount" : 2,
 									"maxclass" : "message",
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 439.0, 371.5, 105.0, 22.0 ],
-									"text" : "init"
+									"patching_rect" : [ 439.0, 363.5, 148.0, 35.0 ],
+									"text" : "add \"this is also some text\" \"so is this\""
 								}
 
 							}
@@ -4545,7 +4953,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 233.0, 390.0, 35.0, 22.0 ],
+									"patching_rect" : [ 235.0, 370.0, 35.0, 22.0 ],
 									"text" : "clear"
 								}
 
@@ -5299,6 +5707,13 @@
 								"patchline" : 								{
 									"destination" : [ "obj-4", 0 ],
 									"source" : [ "obj-43", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-4", 0 ],
+									"source" : [ "obj-45", 0 ]
 								}
 
 							}

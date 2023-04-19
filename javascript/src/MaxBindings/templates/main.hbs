@@ -111,15 +111,19 @@ function run() {
     try {
         var formatted = i.repl.tb.format();
         run_output(formatted);
+        if (EPHEMERAL_MODE)
+            clear();
     } catch (error){
         outlet(0, "error "+error.message) 
-    } 
+    }
 }
 
 function run_line() {
     try {
         var formatted = i.repl.tb.formatLine(i.repl.c.line());
         run_output(formatted);
+        if (EPHEMERAL_MODE) 
+            i.repl.tb.deleteLine(i.repl.c.line());
     } catch (error){
         outlet(0, "error "+error.message) 
     } 
@@ -130,10 +134,7 @@ function run_output(out){
         outlet(0, out[a]);
     }
     if (OUT_MAT) {
-        outlet(0, "jit_matrix", i.glRender.textMtx.name);
-    }
-    if (EPHEMERAL_MODE) {
-        clear();
+        outlet(0, "jit_matrix " + i.glRender.textMtx.name);
     }
     outlet(3, "bang")
 }
@@ -199,5 +200,5 @@ function write(filename) {
  */
   
 {{#each functions}}
-{{rendered }}
+{{{rendered }}}
 {{/each}} 
