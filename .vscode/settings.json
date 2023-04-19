@@ -8,5 +8,8 @@
         "coverage.xml",
         "jacoco.xml",
         "coverage.cobertura.xml"
-    ]
+    ],
+    "[handlebars]": {
+        "editor.formatOnSave": false
+    },
 }

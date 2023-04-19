@@ -1,0 +1,53 @@
+{
+    "settings": {
+        "repl": {
+            "BUFFER_SIZE": 30
+        },
+        "textbuffer": {
+            "formatters": [
+                "whitespace"
+            ]
+        }
+    },
+    "bindings": [
+        {
+            "id": "execute",
+            "asciiCode": 2044,
+            "functions": [
+                "return ['clear']"
+            ]
+        },
+        {
+            "id": "up",
+            "asciiCode": -9,
+            "functions": [
+                "ctx.addChar(94); if(ctx.tb.lineLength(ctx.c.line()) >= 20){ctx.newLine()}",
+                "return ['note up']"
+            ]
+        },
+        {
+            "id": "down",
+            "asciiCode": -10,
+            "functions": [
+                "ctx.addChar(184); if(ctx.tb.lineLength(ctx.c.line()) >= 20){ctx.newLine()}",
+                "return ['note down']"
+            ]
+        },
+        {
+            "id": "left",
+            "asciiCode": -11,
+            "functions": [
+                "ctx.addChar(60); if(ctx.tb.lineLength(ctx.c.line()) >= 20){ctx.newLine()}",
+                "return ['note last']"
+            ]
+        },
+        {
+            "id": "right",
+            "asciiCode": -12,
+            "functions": [
+                "ctx.addChar(62); if(ctx.tb.lineLength(ctx.c.line()) >= 20){ctx.newLine()}",
+                "return ['note next']"
+            ]
+        }
+    ]
+}

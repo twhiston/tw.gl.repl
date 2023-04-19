@@ -8,16 +8,35 @@
     "example": "examples"
   },
   "scripts": {
-    "test": "nyc --cwd ./../ --report-dir=javascript/coverage --temp-dir=javascript/.nyc_output --reporter=lcov ava",
-    "fuzz": "jsfuzz ./fuzzTarget.js corpus",
-    "report": "nyc report --reporter=html --exclude-node-modules=false"
+    "generate-max-binding": "npx ts-node --skip-project ./src/MaxBindings/generateMaxBindings.ts",
+    "compile": "npx tsc; npm run generate-max-binding",
+    "test": "nyc --cwd ./../ --report-dir=javascript/coverage --temp-dir=javascript/.nyc_output --reporter=lcov --reporter=text ava",
+    "fuzz": "jsfuzz ./TextBuffer/formatters/fuzzTarget.js corpus",
+    "report": "nyc report --reporter=html --exclude-node-modules=false",
+    "release": "release-it"
   },
   "author": "",
   "license": "GPL",
   "devDependencies": {
-    "ava": "^5.2.0"
+    "@types/glob": "^8.1.0",
+    "@vercel/ncc": "^0.36.1",
+    "auto-changelog": "^2.4.0",
+    "ava": "^5.2.0",
+    "handlebars": "^4.7.7",
+    "nyc": "^15.1.0",
+    "reflect-metadata": "^0.1.13",
+    "release-it": "^15.10.1",
+    "ts-node": "^10.9.1",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.0.2"
   },
-  "dependencies": {
-    "nyc": "^15.1.0"
+  "ava": {
+    "extensions": [
+      "ts"
+    ],
+    "require": [
+      "ts-node/register",
+      "tsconfig-paths/register"
+    ]
   }
 }

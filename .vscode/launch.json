@@ -10,9 +10,9 @@
             "name": "Debug AVA test file",
             "program": "${workspaceFolder}/javascript/node_modules/ava/entrypoints/cli.mjs",
             "args": [
-                "${workspaceFolder}/javascript/braceBalancedFormatter.test.js"
+                "${file}"
             ],
-            "cwd": "${workspaceFolder}/javascript",
+            "cwd": "${fileDirname}",
             "outputCapture": "std",
             "skipFiles": [
                 "<node_internals>/**/*.js"
