@@ -2513,7 +2513,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 637.0, 126.0, 683.0, 768.0 ],
+						"rect" : [ 0.0, 26.0, 683.0, 768.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -2549,7 +2549,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 202.0, 251.0, 188.0, 47.0 ],
+									"patching_rect" : [ 202.0, 251.0, 190.0, 47.0 ],
 									"text" : "note that this does not work and only inserts the first line. Add only works for a line at a time"
 								}
 
@@ -2563,7 +2563,6 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 45.0, 257.0, 155.0, 35.0 ],
-									"presentation_linecount" : 2,
 									"text" : "add \"this is also some text\" \"so is this\""
 								}
 
@@ -4852,7 +4851,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 683.0, 768.0 ],
+						"rect" : [ 637.0, 126.0, 683.0, 768.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -4922,27 +4921,26 @@
 									"numinlets" : 2,
 									"numoutlets" : 4,
 									"outlettype" : [ "dictionary", "", "", "" ],
-									"patching_rect" : [ 582.0, 503.0, 147.0, 22.0 ],
+									"patching_rect" : [ 582.0, 503.0, 140.0, 22.0 ],
 									"saved_object_attributes" : 									{
 										"embed" : 0,
 										"parameter_enable" : 0,
 										"parameter_mappable" : 0
 									}
 ,
-									"text" : "dict default shortkeys.json"
+									"text" : "dict default replkeys.json"
 								}
 
 							}
 , 							{
 								"box" : 								{
 									"id" : "obj-45",
-									"linecount" : 2,
 									"maxclass" : "message",
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 439.0, 363.5, 148.0, 35.0 ],
-									"text" : "add \"this is also some text\" \"so is this\""
+									"patching_rect" : [ 439.0, 363.5, 148.0, 22.0 ],
+									"text" : "blink_time 250"
 								}
 
 							}

@@ -2,7 +2,7 @@
 
 ## TODO
 
-* sort out horizontal scaling
+* improve scaling
 * new core formatters should be automatically added to the init of the repl?
 * support and help patches
   * patch that makes max objects?
@@ -102,7 +102,7 @@ routing and processing in max.
 
 ## Config
 
-Basic configuration of your repl can be achieved by loading a `shortkeys.json`
+Basic configuration of your repl can be achieved by loading a `replkeys.json`
 file to reconfigure it. This file is an object
 
 The config is in the following form:
@@ -230,7 +230,7 @@ One of the ways to extend the repl further is to attach or preload your own func
 so you can tie them to a key in the config.
 To make this easier the package tries to load a file called `user-repl.js`, max should
 load this up fine if it's in your path. Inside it you have access to `i.glRender`
-and `i.repl`, you also have access to a Dict of `shortkeys.json` in `sKeys`. Which
+and `i.repl`, you also have access to a Dict of `replkeys.json` in `sKeys`. Which
 will be stringified and passed into the repl on `init()`
 
 Most basic usage will be something like:
@@ -244,7 +244,7 @@ const functionOne = (k, ctx) => {
 i.repl.kp.preloadFunction('doSomething', functionOne);
 ```
 
-You can then use this in your `shortkeys.json` app config by binding it
+You can then use this in your `replkeys.json` app config by binding it
 to a key
 
 ```json
@@ -452,7 +452,7 @@ Although there are only a few options available to the binding the processor
 enriches the content with various other bits of metadata which can be used in
 template rendering. See the templates.
 
-Mostly you won't need to touch this stuff, as you can extend the repl using `shortkeys.json`
+Mostly you won't need to touch this stuff, as you can extend the repl using `replkeys.json`
 and/or `user-repl.js` for most simple use cases. But if you want to build your own
 more complex repl object you will need to recompile and generate the js code.
 
