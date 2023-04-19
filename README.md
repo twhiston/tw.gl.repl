@@ -1,15 +1,6 @@
 # tw.gl.repl
 
-## TODO
-
-* improve scaling
-* new core formatters should be automatically added to the init of the repl?
-* support and help patches
-  * patch that makes max objects?
-  * patch which uses processor functions
-  * example with something running in the background continually outputting data
-  * rewrite opengl example as a shortcode processor style version for demo?
-* setup automating releases without source in pipelines for tags
+[![CI Build](https://github.com/irongut/CodeCoverageSummary/actions/workflows/ci-build.yml/badge.svg)](https://github.com/irongut/CodeCoverageSummary/actions/workflows/ci-build.yml)
 
 ## About
 
@@ -460,6 +451,16 @@ more complex repl object you will need to recompile and generate the js code.
 
 There is a helper patch included `editor-development.maxpat` which has a helpful
 simple setup which you can use to help with developing.
+
+## TODO
+
+* improve scaling
+* new core formatters should be automatically added to the init of the repl?
+* support and help patches
+  * patch that makes max objects?
+  * patch which uses processor functions
+  * example with something running in the background continually outputting data
+  * rewrite opengl example as a shortcode processor style version for demo?
 
 ## License
 
