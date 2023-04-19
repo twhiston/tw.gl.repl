@@ -33,15 +33,27 @@ maintain state for other parts of an application, or which trigger messages to
 be output immediately etc. This means you should think about where you put your
 functionality, does it need to be in the repl itself, ie should it be triggered
 every time the keypresses are played back? or does it need to be some routing
-and handling in max?
+and handling in max? Further to this the repl introduces the concept of output
+formatters, these can be attached to the repl and then used in the configuration
+file to alter the output in some way. This allows you to format text easily for
+whatever you are hooking the repl up for, for example concatenating the output
+into a single line, or checking that it has balanced brances, or ensuring
+whitespace is in a regular format. However it also means that it's possible to,
+for example, have a short dsl for the repl, which is expanded to a full DSL of
+the thing you wish to interface with. This is useful if you need to interact with
+a verbose javascript but don't want to do a lot of typing.
 
 TLDR not only is it possible to output the contents of the repl buffer for
 processing in max, but it's possible to attach any function to a keypress in the
-repl, which can in turn do things including generate messages for output. Simple
-use cases can be handled entirely in configuration, and more complex use cases
-can be easily managed by including a `user-repl.js` file inside your project in
-which you can further customize behaviour by attaching your own custom functions
-to keypresses or your own custom formatters for output message handling.
+repl, which can in turn do things including generate messages for output. The
+text you input can also be mutated on run/execute so that something different is
+output from the repl.
+
+Simple use cases for the repl can be handled entirely in configuration, and more
+complex use cases can be easily managed by including a `user-repl.js` file
+inside your project in which you can further customize behaviour by attaching
+your own custom functions to keypresses or your own custom formatters for output
+message handling. Read on for more about this
 
 ## Install
 
