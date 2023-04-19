@@ -6,6 +6,9 @@
   },
   "hooks": {
     "before:init": [
+      "npm install",
+      "npm run test",
+      "npm run compile",
       "rm -rf ./../.dist",
       "mkdir -p ./../.dist/tw.gl.repl",
       "rsync -av --progress ./../ ./../.dist/tw.gl.repl --exclude ./../.dist",
