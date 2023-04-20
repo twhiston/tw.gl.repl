@@ -18,7 +18,7 @@ jobs:
       # Runs commands using the runners shell
       - name: 'Run tests'
         working-directory: ./javascript
-        run: npm install && npx nyc ava && npx nyc report --reporter cobertura
+        run: npm install && npx nyc ava && npx nyc report --reporter cobertura --reporter json
       
       - name: 'compile'
         working-directory: ./javascript
@@ -42,3 +42,10 @@ jobs:
         with:
           recreate: true
           path: code-coverage-results.md
+      - name: Create Coverage Badges
+        uses: jaywcjlove/coverage-badges-cli@main
+        with:
+          style: flat
+          source: coverage/coverage-final.json
+          output: coverage/badges.svg
+

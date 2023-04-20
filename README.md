@@ -2,6 +2,8 @@
 
 [![Test](https://github.com/twhiston/th.gl.texteditor/actions/workflows/test.yml/badge.svg)](https://github.com/twhiston/th.gl.texteditor/actions/workflows/test.yml)
 
+![Coverage](./coverage/badges.svg)
+
 ## About
 
 This is a repl based on the excellent th.gl.texteditor. It was partly built as a
