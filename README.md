@@ -2,8 +2,6 @@
 
 [![Test](https://github.com/twhiston/th.gl.texteditor/actions/workflows/test.yml/badge.svg)](https://github.com/twhiston/th.gl.texteditor/actions/workflows/test.yml)
 
-![Coverage](./coverage/badges.svg)
-
 ## About
 
 This is a repl based on the excellent th.gl.texteditor. It was partly built as a
@@ -377,7 +375,20 @@ spaces or new lines. You can see this in the default configuration provided.
 If you need to work out what keycode a system specific keypress is look inside
 the tw.gl.repl object and the messagebox connected to the output of `p quickKey`.
 
-### Differences from th.gl.texteditor
+## tw.gl.repl.dynamic-size-helper
+
+Usually `tw.gl.repl` is just calculating the scaling values from the dimensions
+that you give it in the arguments. However there are occasions where it may be
+beneficial to have dynamic scaling. To achieve this you can use the
+`tw.gl.repl.dynamic-size-helper` object together with `jit.world` and
+`tw.gl.repl`. Add the object, connect inlet 1 to outlet 2 of `jit.world` connect
+inlet 2 to outlet 3 of `jit.world`, connect outlet 1 to the inlet of `jit.world`
+and connect outlet 2 to the inlet of `tw.gl.repl`. With this in place the text
+should scale fairly nicely with window resizing. It might still be a bit weird
+at really strange aspect ratios.
+See the help file for the object for more info.
+
+## Differences from th.gl.texteditor
 
 Key differences from th.gl.texteditor are listed below. Other than the total
 refactoring there are some subtle, and not so subtle differences that mean it's
@@ -456,7 +467,6 @@ simple setup which you can use to help with developing.
 
 ## TODO
 
-* improve scaling
 * new core formatters should be automatically added to the init of the repl?
 * support and help patches
   * patch that makes max objects?
