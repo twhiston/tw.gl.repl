@@ -46,6 +46,6 @@ jobs:
         uses: jaywcjlove/coverage-badges-cli@main
         with:
           style: flat
-          source: coverage/coverage-final.json
-          output: coverage/badges.svg
+          source: ./javascript/coverage/coverage-final.json
+          output: ./javascript/coverage/badges.svg
 
