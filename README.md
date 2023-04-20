@@ -1,6 +1,6 @@
 # tw.gl.repl
 
-[![CI Build](https://github.com/irongut/CodeCoverageSummary/actions/workflows/ci-build.yml/badge.svg)](https://github.com/irongut/CodeCoverageSummary/actions/workflows/ci-build.yml)
+[![Test](https://github.com/twhiston/th.gl.texteditor/actions/workflows/test.yml/badge.svg)](https://github.com/twhiston/th.gl.texteditor/actions/workflows/test.yml)
 
 ## About
 
