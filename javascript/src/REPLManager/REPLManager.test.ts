@@ -1167,3 +1167,27 @@ test('ephemeral mode on and clear line does not break status output', (t) => {
     t.not(lineDeleteStatus[0], 'lines 0')
     t.is(lineDeleteStatus[0], 'lines 1')
 });
+
+test('filling to end of buffer does not eroneously increment the cursor to one', (t) => {
+    const repl = new REPLManager();
+    repl.config.MAX_CHARS = 10;
+
+    let startCursor = repl.c.position()
+    repl.add("0")
+    repl.add("1")
+    repl.add("2")
+    repl.add("3")
+    repl.add("4")
+    repl.add("5")
+    repl.add("6")
+    repl.add("7")
+    repl.add("8")
+    repl.add("9")
+    let cursor = repl.c.position();
+    t.is(cursor.line, 0)
+    t.is(cursor.char, 10)
+    repl.add("0")
+    cursor = repl.c.position();
+    t.is(cursor.line, 1)
+    t.is(cursor.char, 1)
+})

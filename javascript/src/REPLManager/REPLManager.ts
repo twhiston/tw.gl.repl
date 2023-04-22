@@ -133,7 +133,7 @@ export class REPLManager {
         var tbLen = this.tb.length();
         let msg: Array<string> = []
         msg.push(this.msgFormatter("lines", tbLen.toString()))
-        msg.push(this.msgFormatter("line", this.tb.getLine(this.c.line())))
+        // msg.push(this.msgFormatter("line", this.tb.getLine(this.c.line())))
         msg.push(this.msgFormatter("length", len.toString()))
         msg.push(this.msgFormatter("nLength", (len / this.config.MAX_CHARS).toString()))
         msg.push(this.msgFormatter("nLines", ((tbLen - 1) / (this.config.BUFFER_SIZE - 1)).toString()))
@@ -174,13 +174,13 @@ export class REPLManager {
     /*
      * add a character (alpha-numeric, numeric, special characters)
      * DOES NOT PROCESS KEYPRESSES, WRITES DIRECTLY TO BUFFER
-     * All methods marked with this note are usually used by binding 
+     * All methods marked with this note are usually used by binding
      * to a key rather than calling it directly in code. Binding to a key
      * ensures that the keyPress function array is invoked, which may then
      * write the data to the buffer depending on configuration
      */
     addChar(k: number) {
-        var pos = this.c.position();
+        let pos = this.c.position();
         if (pos.char >= this.config.MAX_CHARS) {
             if (this.tb.endOfLines()) {
                 throw new Error("reached end of lines");
@@ -188,8 +188,10 @@ export class REPLManager {
                 this.newLine();
             }
         }
+        //update incase of newline
+        pos = this.c.position();
         // ascii code to string
-        var c = String.fromCharCode(k);
+        let c = String.fromCharCode(k);
         // insert character at index
         this.tb.insertCharAt(pos.line, pos.char, c);
         // increment current character
@@ -238,7 +240,7 @@ export class REPLManager {
         this.jumpTo(JumpDirection.EOL);
     }
 
-    /* 
+    /*
      * remove a line of text at a specified index
      * if no idx is provided it will remove the last line of the buffer.
      */
@@ -249,7 +251,7 @@ export class REPLManager {
         this.deleteLine();
     }
 
-    /* 
+    /*
     * insert a line of text or multiple symbols at a specified index
     * a list of symbols will insert one line per symbol
     * DOES NOT PROCESS KEYPRESSES, WRITES DIRECTLY TO BUFFER
@@ -575,7 +577,7 @@ export class REPLManager {
 /**
  * Object.assign() - Polyfill
  * https://github.com/ryanhefner/Object.assign
- * 
+ *
  * @ref https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign
  */
 (function () {
