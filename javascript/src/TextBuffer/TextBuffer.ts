@@ -23,7 +23,7 @@ export class TextBuffer {
     }
 
     getLine(line: number): string {
-        return this.textBuf[line];
+        return this.textBuf[line] || '';
     }
 
     set(strArr: Array<string>): void {
@@ -109,7 +109,10 @@ export class TextBuffer {
     }
 
     deleteLine(line: number): void {
-        this.textBuf.splice(line, 1);
+        if (this.textBuf.length <= 1)
+            this.clear();
+        else
+            this.textBuf.splice(line, 1);
     }
 
     endOfLines(): boolean {
@@ -125,7 +128,7 @@ export class TextBuffer {
         var sortArr = lengths.slice(0);
         sortArr.sort(function (a, b) { return b - a });
 
-        return sortArr[0];
+        return sortArr[0] || 0;
     }
 
     pasteBinCopyLine(line: number): Array<string> {

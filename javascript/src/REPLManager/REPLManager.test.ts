@@ -540,7 +540,7 @@ test('jumpTo function tests all branches', t => {
     repl = new REPLManager(new REPLSettings(2));
     repl.addTab(); repl.addTab(); repl.addTab();
     repl.newLine(); repl.addTab(); repl.addTab(); repl.addTab();
-    //jump to beginning (top) 
+    //jump to beginning (top)
     repl.jumpTo(JumpDirection.TOP)
     pos = repl.c.position();
     t.is(pos.char, 12)
@@ -1153,4 +1153,17 @@ test('Keypress function triggering test', (t) => {
     replManager.keyPress(66);
     t.true(keyPressTriggered);
     t.true(keyPressTriggered2);
+});
+
+//This is a real edge case seen
+test('ephemeral mode on and clear line does not break status output', (t) => {
+    const repl = new REPLManager();
+    repl.clear();
+    let clearStatus = repl.status();
+    t.is(clearStatus[0], 'lines 1')
+    //we can't call the run line command specifically here as it's part of the max interface but we can simulate what it does
+    repl.tb.deleteLine(repl.c.line());
+    var lineDeleteStatus = repl.status();
+    t.not(lineDeleteStatus[0], 'lines 0')
+    t.is(lineDeleteStatus[0], 'lines 1')
 });

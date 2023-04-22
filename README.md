@@ -165,7 +165,7 @@ contrast to th.gl.editor there are no internal functions, so everything is
 defined in this file and the user can override anything. As you can see there
 are a number of ways to define the functions that are called, and it is possible
 to call multiple functions with a single key. Functions can be defined as a
-function body in text (which will be wrapped  
+function body in text (which will be wrapped
 `new Function('k', 'ctx', funcString)`), it can be a function from whatever context
 is passed in (in the case of this application it is an instance of `REPLManager`),
 or it can be a reference to a custom function.
@@ -229,7 +229,7 @@ Most basic usage will be something like:
 ```javascript
 //Typescript signature is actually
 //const functionOne = (k: number, ctx: {}) => {
-const functionOne = (k, ctx) => {    
+const functionOne = (k, ctx) => {
     return `some message`;
 };
 i.repl.kp.preloadFunction('doSomething', functionOne);
@@ -342,7 +342,7 @@ your repl config.
 // This example is in typescript for clarity, and user-repl.js needs
 // to be in the type of archaic javascript that max understands but
 // hopefully you get the idea. To create a lot of extensions for the
-// repl it's recommended to look into using typescript, transpiling and 
+// repl it's recommended to look into using typescript, transpiling and
 // generating your user-repl.js file.
 class UppercaseFormatter implements TextFormatter {
     id: string = "uppercase"

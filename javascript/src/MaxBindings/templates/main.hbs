@@ -76,14 +76,14 @@ function init() {
 
     if (jsarguments.length > 1) {
         i.glRender.drawto(jsarguments[1]);
-		post("drawing to context: ", jsarguments[1], "\n");
+		//post("drawing to context: ", jsarguments[1], "\n");
     }
     i.repl.clear();
 	//load config from a dict string (ie json)
     try {
-        i.repl.loadConfigFromJSON(sKeys.stringify()) 
+        i.repl.loadConfigFromJSON(sKeys.stringify())
     } catch (error) {
-        outlet(0, "error "+error)  
+        outlet(0, "error "+error.message)
     }
 
     i.glRender.font("Courier New Bold");
@@ -114,19 +114,20 @@ function run() {
         if (EPHEMERAL_MODE)
             clear();
     } catch (error){
-        outlet(0, "error "+error.message) 
+        outlet(0, "error "+error.message)
     }
 }
 
 function run_line() {
+    //If you change this function don't forget to update REPLManager test to reflect it
     try {
         var formatted = i.repl.tb.formatLine(i.repl.c.line());
         run_output(formatted);
-        if (EPHEMERAL_MODE) 
+        if (EPHEMERAL_MODE)
             i.repl.tb.deleteLine(i.repl.c.line());
     } catch (error){
-        outlet(0, "error "+error.message) 
-    } 
+        outlet(0, "error "+error.message)
+    }
 }
 
 function run_output(out){
@@ -146,7 +147,7 @@ function output_paste_bin(){
 }
 
 // draw the text and output all info
-// this will be called by any generated function which 
+// this will be called by any generated function which
 // has the draw attribute set true.
 function draw() {
 
@@ -163,7 +164,7 @@ draw.local = 1
 
 //Read from a filename (provided by opendialog) and replay it's keypresses
 function read(filename) {
-    f = new File(filename, "read", "TEXT")
+    f = new File(filename, "read")
     f.open()
     var data = f.readbytes(f.eof);
     f.close()
@@ -186,7 +187,7 @@ function write(filename) {
     } else {
         data = i.repl.tb.get()
     }
-    
+
     for (var index = 0; index < data.length; index++) {
         f.writeline(data[index])
     }
@@ -198,7 +199,7 @@ function write(filename) {
  * Functions below here are generated from class methods decorated with @maxMspBinding
  * This exposes functions to the max api so they can be called from max
  */
-  
+
 {{#each functions}}
 {{{rendered }}}
-{{/each}} 
+{{/each}}
