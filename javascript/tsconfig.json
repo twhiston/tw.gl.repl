@@ -59,10 +59,13 @@
         "TextBuffer/formatters/SingleLineOutputFormatter"
       ],
       "string.extensions": [
-        "TextBuffer/string.extensions"
+        "extensions/string.extensions"
       ],
       "array.extensions": [
-        "TextBuffer/array.extensions"
+        "extensions/array.extensions"
+      ],
+      "object.extensions": [
+        "extensions/object.extensions"
       ]
     },
     // "paths": {},                                      /* Specify a set of entries that re-map imports to additional lookup locations. */

@@ -1,7 +1,7 @@
 import test from 'ava';
 import { TextBuffer } from './TextBuffer';
 import { TextFormatter } from './TextFormatter';
-import './array.extensions';
+import './../extensions/array.extensions';
 
 class TestWhiteSpaceTrimFormatter implements TextFormatter {
     id = "TestWhiteSpaceTrimFormatter"

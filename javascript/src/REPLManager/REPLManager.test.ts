@@ -1139,3 +1139,19 @@ test('ephemeral mode on and clear line does not break status output', (t) => {
     t.not(lineDeleteStatus[0], 'lines 0')
     t.is(lineDeleteStatus[0], 'lines 1')
 });
+
+test('formatPasteBin', t => {
+    const repl = new REPLManager();
+    repl.set(["var x = 5;", "function foo() {", "    console.log(x);", "}"]);
+    repl.tb.pasteBinCopyAll()
+    const formattedPasteBin = repl.formatPasteBin();
+
+    //default formatters wil ltrim off the whitespace
+    t.deepEqual(formattedPasteBin, [
+        "var x = 5;",
+        "function foo() {",
+        "console.log(x);",
+        "}",
+    ]);
+
+});
