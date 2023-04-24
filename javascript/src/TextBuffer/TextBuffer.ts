@@ -1,4 +1,5 @@
 import 'string.extensions';
+import 'array.extensions';
 import { TextFormatter } from 'TextFormatter';
 
 export class TextBuffer {
@@ -119,18 +120,6 @@ export class TextBuffer {
         return this.textBuf.length >= this.maxLines;
     }
 
-    // return the number of characters in the longest line in the buffer
-    getMaxChar(): number {
-        var lengths = [];
-        for (var l = 0; l < this.textBuf.length; l++) {
-            lengths[l] = this.lineLength(l);
-        }
-        var sortArr = lengths.slice(0);
-        sortArr.sort(function (a, b) { return b - a });
-
-        return sortArr[0] || 0;
-    }
-
     pasteBinCopyLine(line: number): Array<string> {
         if (line < 0 || line > this.textBuf.length) {
             throw new Error('pastebin line index out of range')
@@ -156,17 +145,7 @@ export class TextBuffer {
     }
 
     pasteBinInsertLine(lineIndex: number): void {
-        // if (!endOfLines()) {
-        //     jumpTo(0);
-        //     newLine();
-        //     gotoLine(0);
-        //     return pasteReplaceLine();
-        // }
-        // inserts pastebin contents at line index
         this.pasteBinMutateLine(lineIndex, 0)
-
-        // jump to end of new line
-        //jumpTo(1);
     }
 
     pasteBinReplaceLine(lineIndex: number) {

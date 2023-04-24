@@ -1,5 +1,6 @@
 import { CursorPosition } from 'Cursor';
 import { maxMspBinding } from 'MaxBindings';
+import 'array.extensions';
 
 //polyfill Object.entries for archaic max runtimes
 if (!Object.entries)
@@ -30,7 +31,7 @@ export class Color {
 };
 
 //There's a lot of casting to any in this class to make typescript happy, it's a bit tedious
-//but hopefully it never has to be touched ;) 
+//but hopefully it never has to be touched ;)
 @maxMspBinding({ instanceName: 'i.glRender', isMethod: true, isAttribute: true })
 export class GLRender {
 
@@ -72,7 +73,7 @@ export class GLRender {
     private readonly NODE_CTX: string;
     private readonly ANIM_NODE: string;
     private readonly CAM_CAP: string;
-    private readonly LINE_CHARS = 140;
+    //private readonly LINE_CHARS = 140;
     private readonly DEFAULT_FONT = 'Arial';
     private FONT_SIZE = 100;
     private MAIN_CTX = "CTX";
@@ -90,9 +91,6 @@ export class GLRender {
     private runColor = new Color(0, 0, 0, 1);
     private cursorColor = new Color(1, 0.501961, 0, 1);
     private blinkColor = new Color(0.4, 0.8, 1, 1);
-
-    private prevFrameLength = 0;
-
 
     // THE HORROR!!
     constructor(uuid: number) {
@@ -159,7 +157,7 @@ export class GLRender {
     }
 
     /*
-     * free all the jitter objects, called via [freebang] in abstraction 
+     * free all the jitter objects, called via [freebang] in abstraction
      * it is not routed so can only be called from inside the abstraction
      * and as such is not available for use
      */
@@ -215,13 +213,13 @@ export class GLRender {
         this.drawCursor(textBuf, pos); //draw the cursor position in a matrix
         this.drawNumbers(textBuf, pos); //draw the line numbers in a matrix
         this.matrixToText(); //set the matrices to the gl text objects
-        this.prevFrameLength = textBuf.length
     }
 
     // draw the text to a jitter matrix as ascii
     drawText(textBuf: Array<string>) {
-        if (this.prevFrameLength !== textBuf.length)
-            this.textMtx = new JitterMatrix("text" + this.UNIQ, 1, "char", this.LINE_CHARS, textBuf.length);
+        //Uses the Array extension which you can see code for in TextBuffer.ts
+        const maxChars = textBuf.getMaxChar()
+        this.textMtx = new JitterMatrix("text" + this.UNIQ, 1, "char", maxChars, textBuf.length);
         this.textMtx.setall([0]);
         // draw all the characters as ascii code in a matrix
         for (var l = 0; l < textBuf.length; l++) {
@@ -236,13 +234,10 @@ export class GLRender {
 
     // draw the cursor to a jitter matrix as ascii
     drawCursor(textBuf: Array<string>, cur: CursorPosition) {
-        if (this.prevFrameLength !== textBuf.length)
-            this.crsrMtx = new JitterMatrix("crsr" + this.UNIQ, 1, "char", this.LINE_CHARS, textBuf.length);
+        const maxChars = textBuf.getMaxChar()
+        this.crsrMtx = new JitterMatrix("crsr" + this.UNIQ, 1, "char", maxChars + this.CRSR_CHARS.length, textBuf.length);
         this.crsrMtx.setall([32]);
         // draw at least something at the end of the matrix.
-        for (var i = 0; i < textBuf.length; i++) {
-            this.crsrMtx.setcell2d(this.LINE_CHARS - 1, i, 46);
-        }
         for (var c = 0; c < this.CRSR_CHARS.length; c++) {
             this.crsrMtx.setcell2d(cur.char + c, cur.line, this.CRSR_CHARS[c]);
         }
@@ -250,8 +245,7 @@ export class GLRender {
 
     // draw the numbers to a jitter matrix as ascii
     drawNumbers(textBuf: Array<string>, pos: CursorPosition) {
-        if (this.prevFrameLength !== textBuf.length)
-            this.nmbrMtx = new JitterMatrix("nmbr" + this.UNIQ, 1, "char", 3, textBuf.length);
+        this.nmbrMtx = new JitterMatrix("nmbr" + this.UNIQ, 1, "char", 3, textBuf.length);
         for (var i = 0; i < textBuf.length; i++) {
             var digits = new Array(2);
             digits[0] = String(Math.floor((i) / 10));
@@ -340,7 +334,7 @@ export class GLRender {
     }
 
     /*
-     * set the cursor characters. 
+     * set the cursor characters.
      * default is <<
      */
     @maxMspBinding({ draw: true, functionName: 'cursor' })

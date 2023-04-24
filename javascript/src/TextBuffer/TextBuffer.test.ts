@@ -1,6 +1,7 @@
 import test from 'ava';
 import { TextBuffer } from './TextBuffer';
 import { TextFormatter } from './TextFormatter';
+import './array.extensions';
 
 class TestWhiteSpaceTrimFormatter implements TextFormatter {
     id = "TestWhiteSpaceTrimFormatter"
@@ -402,18 +403,18 @@ test('endOfLines returns true when maximum number of lines is reached', t => {
 test('getMaxChar should return the number of characters in the longest line in the buffer', t => {
     const buffer = new TextBuffer(10);
     buffer.set(['one', 'two', 'three', 'four', 'five']);
-    t.is(buffer.getMaxChar(), 5);
+    t.is(buffer.textBuf.getMaxChar(), 5);
 
     buffer.append(['a really long line here']);
-    t.is(buffer.getMaxChar(), 23);
+    t.is(buffer.textBuf.getMaxChar(), 23);
 
     buffer.prepend(['another long line']);
     //the previously added line is still longer
-    t.is(buffer.getMaxChar(), 23);
+    t.is(buffer.textBuf.getMaxChar(), 23);
 
     buffer.prepend(['supercalirfagilisticexpialidocious']);
     //newly longest line
-    t.is(buffer.getMaxChar(), 34);
+    t.is(buffer.textBuf.getMaxChar(), 34);
 });
 
 test('TextBuffer.pasteBinFormat applies formatters to the pasteBin', t => {

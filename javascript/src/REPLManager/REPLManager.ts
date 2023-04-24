@@ -3,6 +3,7 @@ import { Cursor } from "Cursor";
 import { KeypressProcessor, KeyProcessor } from 'KeypressProcessor';
 import { maxMspBinding } from 'MaxBindings';
 import { TextFormatter } from "TextFormatter";
+import 'array.extensions';
 
 //DEFAULT SETTINGS
 // INDENTATION = 4;
@@ -125,7 +126,7 @@ export class REPLManager {
     }
 
     status(): Array<string> {
-        var len = this.tb.getMaxChar();
+        var len = this.tb.textBuf.getMaxChar();
         var tbLen = this.tb.length();
         let msg: Array<string> = []
         msg.push(this.msgFormatter("lines", tbLen.toString()))
