@@ -5,25 +5,21 @@ import { maxMspBinding } from 'MaxBindings';
 import { TextFormatter } from "TextFormatter";
 
 //DEFAULT SETTINGS
-// MAX_CHARS = 80;
 // INDENTATION = 4;
 // EDITOR_LINES = 30;
 // CMNT = "//";
 export class REPLSettings {
-    MAX_CHARS: number
     INDENTATION: number
     BUFFER_SIZE: number
     CMNT: string
     CMNT_CHARS = []
-    constructor(bufferSize: number = 30, maxChars: number = 80, indentation: number = 4) {
+    constructor(bufferSize: number = 30, indentation: number = 4) {
         this.INDENTATION = indentation
-        this.MAX_CHARS = maxChars
         this.BUFFER_SIZE = bufferSize
         this.CMNT = "//"
         this.cmntToChars()
     }
     updateWith(instance: REPLSettings): void {
-        this.MAX_CHARS = instance.MAX_CHARS !== this.MAX_CHARS ? instance.MAX_CHARS : this.MAX_CHARS;
         this.INDENTATION = instance.INDENTATION !== this.INDENTATION ? instance.INDENTATION : this.INDENTATION;
         this.BUFFER_SIZE = instance.BUFFER_SIZE !== this.BUFFER_SIZE ? instance.BUFFER_SIZE : this.BUFFER_SIZE;
         this.CMNT = instance.CMNT !== this.CMNT ? instance.CMNT : this.CMNT;
@@ -135,7 +131,7 @@ export class REPLManager {
         msg.push(this.msgFormatter("lines", tbLen.toString()))
         // msg.push(this.msgFormatter("line", this.tb.getLine(this.c.line())))
         msg.push(this.msgFormatter("length", len.toString()))
-        msg.push(this.msgFormatter("nLength", (len / this.config.MAX_CHARS).toString()))
+        //msg.push(this.msgFormatter("nLength", (len / this.config.MAX_CHARS).toString()))
         msg.push(this.msgFormatter("nLines", ((tbLen - 1) / (this.config.BUFFER_SIZE - 1)).toString()))
         return msg;
     }
@@ -179,23 +175,12 @@ export class REPLManager {
      * ensures that the keyPress function array is invoked, which may then
      * write the data to the buffer depending on configuration
      */
-    addChar(k: number) {
-        let pos = this.c.position();
-        if (pos.char >= this.config.MAX_CHARS) {
-            if (this.tb.endOfLines()) {
-                throw new Error("reached end of lines");
-            } else {
-                this.newLine();
-            }
+    addChar(char: number) {
+        if (char === 13 || char === 10) {
+            this.newLine();
+        } else if (char > 31 && char < 126) {
+            this.addCharToBuffer(char);
         }
-        //update incase of newline
-        pos = this.c.position();
-        // ascii code to string
-        let c = String.fromCharCode(k);
-        // insert character at index
-        this.tb.insertCharAt(pos.line, pos.char, c);
-        // increment current character
-        this.c.incrementChar();
     }
 
     // add one or multiple characters as a string. DOES NOT PROCESS KEYPRESSES, WRITES DIRECTLY TO BUFFER
@@ -203,12 +188,20 @@ export class REPLManager {
     add(c: string) {
         for (var i = 0; i < c.length; i++) {
             var char = c.charCodeAt(i);
-            if (char === 13 || char === 10) {
-                this.newLine();
-            } else if (char > 31 && char < 126) {
-                this.addChar(char);
-            }
+            this.addChar(char);
         }
+    }
+
+
+    private addCharToBuffer(k: number) {
+        let pos = this.c.position();
+        pos = this.c.position();
+        // ascii code to string
+        let c = String.fromCharCode(k);
+        // insert character at index
+        this.tb.insertCharAt(pos.line, pos.char, c);
+        // increment current character
+        this.c.incrementChar();
     }
 
     // append a line of text or multiple symbols per line. DOES NOT PROCESS KEYPRESSES, WRITES DIRECTLY TO BUFFER

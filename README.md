@@ -140,7 +140,6 @@ All available settings are as follows:
 ```json
 "settings": {
         "repl": {
-            "MAX_CHARS": 40,
             "INDENTATION": 4,
             "BUFFER_SIZE": 30,
             "CMNT": "//"
@@ -398,6 +397,7 @@ a little work to migrate from one to the other.
 * Different concept of file handling, file contents is "played back" into the repl
 * No internal functions, everything can be user defined in code or config and
 attached to a key
+* No MAX_CHARS buffer width restriction
 * output_matrix 1 will not stop commands being output from the first outlet,
 it will just output the `jit_matrix name` command additionally!
 * ephemeral_mode to clear the buffer after every run/execute

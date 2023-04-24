@@ -353,29 +353,6 @@ test('deleteLine should delete the correct line', (t) => {
     t.is(repl.tb.getLine(1), 'test');
 });
 
-// //mock a state which would test lines 89-92 of add char
-test('addChar function returns true if this.tb.endOfLines() returns true', t => {
-    const repl = new REPLManager();
-    const state = {
-        c: {
-            position: () => ({
-                char: 123
-            }),
-            incrementChar: () => { }
-        },
-        config: {
-            MAX_CHARS: 1000
-        },
-        tb: {
-            endOfLines: () => true,
-            insertCharAt: () => { }
-        },
-        newLine: () => { }
-    };
-    const result = repl.addChar.call(state, 65);
-    t.is(result, undefined);
-});
-
 test('backSpace should remove a character', t => {
     const repl = new REPLManager(new REPLSettings(10));
     repl.addChar(97);
@@ -838,17 +815,17 @@ test('add method - char code 13 or 10', t => {
 
 test('addChar method - endOfLines() is true', t => {
     const repl = new REPLManager();
-    const maxLength = repl.config.BUFFER_SIZE * (repl.config.MAX_CHARS + 1); // ensure we reach the end of lines
+    const maxLength = repl.config.BUFFER_SIZE; // ensure we reach the end of lines
 
     let errorThrown = false;
 
     try {
         for (let i = 0; i < maxLength; i++) {
-            repl.addChar(65); // Add 'A' character
+            repl.newLine(); // Add 'A' character
         }
     } catch (error) {
         errorThrown = true;
-        t.is(error.message, "reached end of lines");
+        t.is(error.message, "End of lines reached, cannot create new line");
     }
 
     t.true(errorThrown);
@@ -946,7 +923,6 @@ test('loadConfigFromJSON loads settings from JSON correctly', (t) => {
     const jsonData = {
         "settings": {
             "repl": {
-                "MAX_CHARS": "90",
                 "BUFFER_SIZE": "80",
                 "setting3": true,
             }
@@ -963,7 +939,7 @@ test('loadConfigFromJSON loads settings from JSON correctly', (t) => {
 
 test("loadConfigFromJSON updates settings and doesn't throw", (t) => {
     const config = {
-        settings: { "repl": { INDENTATION: 2, MAX_CHARS: 90, BUFFER_SIZE: 40, CMNT: "#" } },
+        settings: { "repl": { INDENTATION: 2, BUFFER_SIZE: 40, CMNT: "#" } },
         bindings: []
     };
     const jsonConfig = JSON.stringify(config);
@@ -973,7 +949,6 @@ test("loadConfigFromJSON updates settings and doesn't throw", (t) => {
 
     t.notThrows(() => replManager.loadConfigFromJSON(jsonConfig));
     t.is(replManager.config.INDENTATION, 2);
-    t.is(replManager.config.MAX_CHARS, 90);
     t.is(replManager.config.BUFFER_SIZE, 40);
     t.is(replManager.config.CMNT, "#");
 });
@@ -990,20 +965,18 @@ test("loadConfigFromJSON updates incomplete settings and doesn't throw", (t) => 
 
     t.notThrows(() => replManager.loadConfigFromJSON(jsonConfig));
     t.is(replManager.config.INDENTATION, 2);
-    t.is(replManager.config.MAX_CHARS, 80);
     t.is(replManager.config.BUFFER_SIZE, 30);
     t.is(replManager.config.CMNT, "//");
 });
 
 test("updateWith updates REPLSettings properties correctly", (t) => {
-    const initialSettings = new REPLSettings(30, 80, 4);
-    const updatedSettings = new REPLSettings(50, 100, 2);
+    const initialSettings = new REPLSettings(30, 4);
+    const updatedSettings = new REPLSettings(50, 2);
     updatedSettings.CMNT = "/*";
 
     initialSettings.updateWith(updatedSettings);
 
     t.is(initialSettings.INDENTATION, 2);
-    t.is(initialSettings.MAX_CHARS, 100);
     t.is(initialSettings.BUFFER_SIZE, 50);
     t.is(initialSettings.CMNT, "/*");
 });
@@ -1038,7 +1011,6 @@ test('loadConfigFromJson removes attachedFunctions from KeyProcessor', (t) => {
     const newSettings = {
         settings: {
             repl: {
-                MAX_CHARS: 100,
                 INDENTATION: 2
             }
         }
@@ -1167,27 +1139,3 @@ test('ephemeral mode on and clear line does not break status output', (t) => {
     t.not(lineDeleteStatus[0], 'lines 0')
     t.is(lineDeleteStatus[0], 'lines 1')
 });
-
-test('filling to end of buffer does not eroneously increment the cursor to one', (t) => {
-    const repl = new REPLManager();
-    repl.config.MAX_CHARS = 10;
-
-    let startCursor = repl.c.position()
-    repl.add("0")
-    repl.add("1")
-    repl.add("2")
-    repl.add("3")
-    repl.add("4")
-    repl.add("5")
-    repl.add("6")
-    repl.add("7")
-    repl.add("8")
-    repl.add("9")
-    let cursor = repl.c.position();
-    t.is(cursor.line, 0)
-    t.is(cursor.char, 10)
-    repl.add("0")
-    cursor = repl.c.position();
-    t.is(cursor.line, 1)
-    t.is(cursor.char, 1)
-})
