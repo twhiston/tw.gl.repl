@@ -572,15 +572,6 @@ test('newLine adds a new line after the current line', t => {
     t.is(replManager.tb.getLine(1), 'C');
 });
 
-test('When user tries to create new line and reaches the end of the buffer, an exception should be thrown', t => {
-    const replManager = new REPLManager(new REPLSettings(1));
-    const error = t.throws(() => {
-        replManager.newLine();
-    }, { instanceOf: Error });
-    if (error !== undefined)
-        t.is(error.message, 'End of lines reached, cannot create new line');
-});
-
 test('deleteLine function should work properly', t => {
     const replManager = new REPLManager(new REPLSettings(30));
 
@@ -743,18 +734,6 @@ test('insert method - append to code and insert empty strings', t => {
     t.is(repl.tb.length(), 4);
 });
 
-
-test('insert method - too many lines', t => {
-    const repl = new REPLManager(new REPLSettings(4));
-    repl.add("abc");
-    repl.newLine();
-    repl.add("def");
-    const error = t.throws(() => {
-        repl.insert(1, ["xyz", "123", "456"]);
-    }, { instanceOf: Error });
-    t.is(error?.message, 'too many lines');
-});
-
 test('remove method - remove at specified index', t => {
     const repl = new REPLManager();
     repl.add("abc");
@@ -811,24 +790,6 @@ test('add method - char code 13 or 10', t => {
     t.is(repl.tb.getLine(1), "");
     t.is(repl.tb.getLine(2), "def");
     t.is(repl.tb.length(), 3);
-});
-
-test('addChar method - endOfLines() is true', t => {
-    const repl = new REPLManager();
-    const maxLength = repl.config.BUFFER_SIZE; // ensure we reach the end of lines
-
-    let errorThrown = false;
-
-    try {
-        for (let i = 0; i < maxLength; i++) {
-            repl.newLine(); // Add 'A' character
-        }
-    } catch (error) {
-        errorThrown = true;
-        t.is(error.message, "End of lines reached, cannot create new line");
-    }
-
-    t.true(errorThrown);
 });
 
 
@@ -949,7 +910,6 @@ test("loadConfigFromJSON updates settings and doesn't throw", (t) => {
 
     t.notThrows(() => replManager.loadConfigFromJSON(jsonConfig));
     t.is(replManager.config.INDENTATION, 2);
-    t.is(replManager.config.BUFFER_SIZE, 40);
     t.is(replManager.config.CMNT, "#");
 });
 
@@ -965,7 +925,6 @@ test("loadConfigFromJSON updates incomplete settings and doesn't throw", (t) => 
 
     t.notThrows(() => replManager.loadConfigFromJSON(jsonConfig));
     t.is(replManager.config.INDENTATION, 2);
-    t.is(replManager.config.BUFFER_SIZE, 30);
     t.is(replManager.config.CMNT, "//");
 });
 
@@ -977,7 +936,6 @@ test("updateWith updates REPLSettings properties correctly", (t) => {
     initialSettings.updateWith(updatedSettings);
 
     t.is(initialSettings.INDENTATION, 2);
-    t.is(initialSettings.BUFFER_SIZE, 50);
     t.is(initialSettings.CMNT, "/*");
 });
 

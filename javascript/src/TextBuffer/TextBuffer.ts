@@ -3,13 +3,11 @@ import 'array.extensions';
 import { TextFormatter } from 'TextFormatter';
 
 export class TextBuffer {
-    maxLines: number
     textBuf: Array<string>
     formatters: Array<TextFormatter>
     pasteBin: Array<string>
 
-    constructor(maxLines: number) {
-        this.maxLines = maxLines;
+    constructor() {
         this.textBuf = [''];
         this.formatters = [];
         this.pasteBin = [];
@@ -36,18 +34,10 @@ export class TextBuffer {
     }
 
     append(strArr: Array<string>): void {
-        if (this.textBuf.length + strArr.length > this.maxLines) {
-            console.log('append: maximum number of lines reached \n');
-            return;
-        }
         this.textBuf = this.textBuf.concat(strArr);
     }
 
     prepend(strArr: Array<string>): void {
-        if (this.textBuf.length + strArr.length > this.maxLines) {
-            console.log('prepend: maximum number of lines reached \n');
-            return;
-        }
         this.textBuf = strArr.concat(this.textBuf);
     }
 
@@ -116,8 +106,9 @@ export class TextBuffer {
             this.textBuf.splice(line, 1);
     }
 
+    //TODO: Deprecated
     endOfLines(): boolean {
-        return this.textBuf.length >= this.maxLines;
+        return false;
     }
 
     pasteBinCopyLine(line: number): Array<string> {
@@ -155,9 +146,10 @@ export class TextBuffer {
 
     //Mutate the text buffer by inserting and optionally removing an element from the pasteBin
     pasteBinMutateLine(insertID: number, removeID: number) {
-        if (!this.endOfLines() && insertID < this.maxLines && removeID < this.maxLines)
+        if (insertID < this.textBuf.length + 1 && removeID < this.textBuf.length + 1)
             Array.prototype.splice.apply(this.textBuf, <Parameters<Array<string>['splice']>>[insertID, removeID, ...this.pasteBin]);
         else
             throw new Error('insert or remove ID out of range: ' + insertID + " " + removeID);
     }
+
 }

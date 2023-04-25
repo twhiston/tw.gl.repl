@@ -12,18 +12,15 @@ import 'object.extensions';
 // CMNT = "//";
 export class REPLSettings {
     INDENTATION: number
-    BUFFER_SIZE: number
     CMNT: string
     CMNT_CHARS = []
     constructor(bufferSize: number = 30, indentation: number = 4) {
         this.INDENTATION = indentation
-        this.BUFFER_SIZE = bufferSize
         this.CMNT = "//"
         this.cmntToChars()
     }
     updateWith(instance: REPLSettings): void {
         this.INDENTATION = instance.INDENTATION !== this.INDENTATION ? instance.INDENTATION : this.INDENTATION;
-        this.BUFFER_SIZE = instance.BUFFER_SIZE !== this.BUFFER_SIZE ? instance.BUFFER_SIZE : this.BUFFER_SIZE;
         this.CMNT = instance.CMNT !== this.CMNT ? instance.CMNT : this.CMNT;
         this.cmntToChars();
     }
@@ -64,7 +61,6 @@ export class REPLManager {
     formatterPreloads: Array<TextFormatter> = []
     config: REPLSettings
 
-    //TODO: remove buffSize as unused now
     constructor(config?: REPLSettings, functionPreloads?: Array<PreloadIdentifier>, formatterPreloads?: Array<TextFormatter>) {
         this.c = new Cursor()
         this.kp = new KeypressProcessor()
@@ -72,7 +68,7 @@ export class REPLManager {
         if (config === undefined)
             config = new REPLSettings
         this.config = config
-        this.tb = new TextBuffer(this.config.BUFFER_SIZE);
+        this.tb = new TextBuffer();
 
         //set an array of formatters. Note that the text buffer will call them in the order they are listed in the array
         if (formatterPreloads !== undefined) {
@@ -134,7 +130,7 @@ export class REPLManager {
         // msg.push(this.msgFormatter("line", this.tb.getLine(this.c.line())))
         msg.push(this.msgFormatter("length", len.toString()))
         //msg.push(this.msgFormatter("nLength", (len / this.config.MAX_CHARS).toString()))
-        msg.push(this.msgFormatter("nLines", ((tbLen - 1) / (this.config.BUFFER_SIZE - 1)).toString()))
+        //msg.push(this.msgFormatter("nLines", ((tbLen - 1) / (this.config.BUFFER_SIZE - 1)).toString()))
         return msg;
     }
 
@@ -253,13 +249,6 @@ export class REPLManager {
     */
     @maxMspBinding({ draw: true, throws: true, isMethod: true, useArgsForText: true })
     insert(idx: number, text: Array<string>) {
-        var idx = Math.min(this.config.BUFFER_SIZE, idx);
-
-        // exit if doesn't fit in editor
-        const iSize = this.tb.lines() + text.length;
-        if (this.tb.lines() + text.length > this.config.BUFFER_SIZE) {
-            throw new Error('too many lines')
-        }
         // if insert between totalLines
         if (idx < this.tb.lines()) {
             var u = this.tb.textBuf.slice(0, Math.max(0, idx));
@@ -287,8 +276,7 @@ export class REPLManager {
         text = (text.length < 1) ? [''] : text;
         text = (!Array.isArray(text)) ? [text] : text;
 
-        var inputLines = Math.min(this.config.BUFFER_SIZE, text.length);
-        text = text.slice(0, inputLines);
+        text = text.slice(0, text.length);
         // empty buffer
         this.tb.set(text);
 
@@ -547,7 +535,7 @@ export class REPLManager {
             this.config.updateWith(newSettings);
         }
 
-        let newTB = new TextBuffer(this.config.BUFFER_SIZE);
+        let newTB = new TextBuffer();
         if (json.settings?.textbuffer?.formatters ?? false) {
             for (const formatter of json.settings.textbuffer.formatters) {
                 var result = this.formatterPreloads.filter(obj => {

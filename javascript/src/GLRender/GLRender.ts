@@ -73,7 +73,6 @@ export class GLRender {
     private readonly NODE_CTX: string;
     private readonly ANIM_NODE: string;
     private readonly CAM_CAP: string;
-    //private readonly LINE_CHARS = 140;
     private readonly DEFAULT_FONT = 'Arial';
     private FONT_SIZE = 100;
     private MAIN_CTX = "CTX";
