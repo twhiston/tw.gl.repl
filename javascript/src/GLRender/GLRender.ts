@@ -235,9 +235,15 @@ export class GLRender {
     // draw the cursor to a jitter matrix as ascii
     drawCursor(textBuf: Array<string>, cur: CursorPosition) {
         const maxChars = textBuf.getMaxChar()
-        this.crsrMtx = new JitterMatrix("crsr" + this.UNIQ, 1, "char", maxChars + this.CRSR_CHARS.length, textBuf.length);
+        // TODO: If you don't draw something into every cell and put something proper other than
+        // space into each line it does not want to draw the cursor properly!
+        // why is this! it sucks!
+        // To work around this we make a massively wide matrix and fill it with spaces and a single dot!
+        this.crsrMtx = new JitterMatrix("crsr" + this.UNIQ, 1, "char", 1000, textBuf.length);
         this.crsrMtx.setall([32]);
-        // draw at least something at the end of the matrix.
+        for (var i = 0; i < textBuf.length; i++) {
+            this.crsrMtx.setcell2d(999, i, 46);
+        }
         for (var c = 0; c < this.CRSR_CHARS.length; c++) {
             this.crsrMtx.setcell2d(cur.char + c, cur.line, this.CRSR_CHARS[c]);
         }
