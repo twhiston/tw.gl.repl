@@ -18,6 +18,7 @@
   "license": "GPL",
   "devDependencies": {
     "@types/glob": "^8.1.0",
+    "@types/maxmsp": "^1.0.0",
     "@vercel/ncc": "^0.36.1",
     "auto-changelog": "^2.4.0",
     "ava": "^5.2.0",
