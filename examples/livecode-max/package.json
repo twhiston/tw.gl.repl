@@ -1,0 +1,19 @@
+{
+  "name": "livecode-max",
+  "version": "1.0.0",
+  "description": "basic interpreter for livecoding max via its js api",
+  "main": "interpreter.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "keywords": [
+    "livecoding",
+    "max"
+  ],
+  "author": "Tom Whiston",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/maxmsp": "^1.0.0",
+    "ava": "^5.2.0"
+  }
+}

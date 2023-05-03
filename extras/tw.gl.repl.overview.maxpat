@@ -40,12 +40,60 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
+					"hidden" : 1,
+					"id" : "obj-2",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 212.0, 324.0, 291.0, 22.0 ],
+					"text" : "loadunique _tw.gl.repl-livecode-max-example.maxpat"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"hidden" : 1,
+					"id" : "obj-3",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 212.0, 353.0, 51.0, 22.0 ],
+					"text" : "pcontrol"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"bgcolor" : [ 0.949019607843137, 0.56078431372549, 0.094117647058824, 0.25 ],
+					"bgoncolor" : [ 1.0, 1.0, 1.0, 1.0 ],
+					"fontface" : 1,
+					"id" : "obj-1",
+					"maxclass" : "textbutton",
+					"numinlets" : 1,
+					"numoutlets" : 3,
+					"outlettype" : [ "", "", "int" ],
+					"parameter_enable" : 0,
+					"patching_rect" : [ 39.0, 318.0, 150.0, 60.0 ],
+					"presentation" : 1,
+					"presentation_rect" : [ 24.0, 308.0, 150.0, 60.0 ],
+					"text" : "Livecode Max Objects Example",
+					"textoncolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+					"textovercolor" : [ 1.0, 1.0, 1.0, 1.0 ],
+					"truncate" : 0,
+					"usetextovercolor" : 1
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-88",
 					"linecount" : 18,
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 28.0, 356.0, 497.0, 248.0 ],
+					"patching_rect" : [ 21.0, 523.0, 497.0, 248.0 ],
 					"presentation" : 1,
 					"presentation_linecount" : 22,
 					"presentation_rect" : [ 180.0, 92.0, 420.0, 301.0 ],
@@ -95,7 +143,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 219.0, 356.0, 261.0, 35.0 ],
+					"patching_rect" : [ 212.0, 523.0, 261.0, 35.0 ],
 					"text" : ";\rmax launchbrowser http://www.tomwhiston.com"
 				}
 
@@ -112,7 +160,7 @@
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "int" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 39.0, 317.0, 150.0, 23.0 ],
+					"patching_rect" : [ 32.0, 484.0, 150.0, 23.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 24.0, 370.0, 150.0, 23.0 ],
 					"text" : "go to my website",
@@ -283,6 +331,13 @@
  ],
 		"lines" : [ 			{
 				"patchline" : 				{
+					"destination" : [ "obj-2", 0 ],
+					"source" : [ "obj-1", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-24", 0 ],
 					"hidden" : 1,
 					"source" : [ "obj-17", 0 ]
@@ -294,6 +349,14 @@
 					"destination" : [ "obj-19", 0 ],
 					"hidden" : 1,
 					"source" : [ "obj-18", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-3", 0 ],
+					"hidden" : 1,
+					"source" : [ "obj-2", 0 ]
 				}
 
 			}
