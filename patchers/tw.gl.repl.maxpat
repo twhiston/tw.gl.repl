@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 930.0, 143.0, 411.0, 794.0 ],
+		"rect" : [ 863.0, 100.0, 411.0, 794.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -91,7 +91,7 @@
 				"box" : 				{
 					"comment" : "",
 					"id" : "obj-13",
-					"index" : 3,
+					"index" : 0,
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
@@ -985,7 +985,7 @@
 				"box" : 				{
 					"comment" : "",
 					"id" : "obj-27",
-					"index" : 2,
+					"index" : 0,
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
@@ -1493,7 +1493,7 @@
 													"numoutlets" : 1,
 													"outlettype" : [ "" ],
 													"patching_rect" : [ 287.0, 199.0, 50.0, 22.0 ],
-													"text" : "127"
+													"text" : "13"
 												}
 
 											}
@@ -2741,7 +2741,6 @@
 						"style" : "",
 						"subpatcher_template" : "",
 						"assistshowspatchername" : 0,
-						"visible" : 1,
 						"boxes" : [ 							{
 								"box" : 								{
 									"id" : "obj-113",
@@ -2825,7 +2824,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 375.0, 655.0, 121.0, 22.0 ],
-									"text" : "-2.583022 0.482585"
+									"text" : "-1.706667 0."
 								}
 
 							}
@@ -2869,12 +2868,13 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-84",
+									"linecount" : 2,
 									"maxclass" : "message",
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 159.0, 778.0, 60.0, 22.0 ],
-									"text" : "scale 1.5"
+									"patching_rect" : [ 159.0, 778.0, 60.0, 35.0 ],
+									"text" : "scale 0.88189"
 								}
 
 							}
@@ -2921,7 +2921,7 @@
 										"size" : 128
 									}
 ,
-									"showeditor" : 1,
+									"showeditor" : 0,
 									"size" : 128,
 									"table_data" : [ 0, 127, 127, 114, 111, 80, 63, 51, 41, 36, 33, 29, 26, 24, 22, 21, 20, 18, 17, 16, 15, 15, 14, 13, 13, 12, 12, 11, 11, 10, 10, 10, 9, 9, 9, 9, 8, 8, 8, 8, 8, 7, 7, 7, 7, 7, 7, 6, 6, 6, 6, 6, 6, 6, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 ],
 									"text" : "table @embed 1"
@@ -4079,11 +4079,11 @@
 				"box" : 				{
 					"comment" : "(bang / arguments) render bang, drawto",
 					"id" : "obj-1",
-					"index" : 1,
+					"index" : 0,
 					"maxclass" : "inlet",
 					"numinlets" : 0,
 					"numoutlets" : 1,
-					"outlettype" : [ "bang" ],
+					"outlettype" : [ "" ],
 					"patching_rect" : [ 26.0, 108.5, 30.0, 30.0 ]
 				}
 
@@ -4110,7 +4110,7 @@
 				"box" : 				{
 					"comment" : "(list) messages typed",
 					"id" : "obj-176",
-					"index" : 1,
+					"index" : 0,
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
@@ -4817,7 +4817,23 @@
 				}
 
 			}
- ]
+ ],
+		"dependency_cache" : [ 			{
+				"name" : "tw.gl.repl.js",
+				"bootpath" : "~/Documents/Max 8/Packages/tw.gl.repl/javascript/dist",
+				"patcherrelativepath" : "../javascript/dist",
+				"type" : "TEXT",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "user-repl.js",
+				"bootpath" : "~/Documents/Max 8/Packages/tw.gl.repl/examples/custom-formatter",
+				"patcherrelativepath" : "../examples/custom-formatter",
+				"type" : "TEXT",
+				"implicit" : 1
+			}
+ ],
+		"autosave" : 0
 	}
 
 }
