@@ -46,7 +46,9 @@ Simple use cases for the repl can be handled entirely in configuration, and more
 complex use cases can be easily managed by including a `user-repl.js` file
 inside your project in which you can further customize behaviour by attaching
 your own custom functions to keypresses or your own custom formatters for output
-message handling. Read on for more about this
+message handling. Read on for more about this.
+
+See the patch in the extras menu for a few examples of how you might use the repl.
 
 ## Install
 

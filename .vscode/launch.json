@@ -8,6 +8,7 @@
             "type": "node",
             "request": "launch",
             "name": "Debug AVA test file",
+            "runtimeExecutable": "/Users/twhiston/.nvm/versions/node/v18.16.0/bin/node",
             "program": "${workspaceFolder}/javascript/node_modules/ava/entrypoints/cli.mjs",
             "args": [
                 "${file}"
