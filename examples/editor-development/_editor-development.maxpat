@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 989.0, 205.0, 545.0, 841.0 ],
+		"rect" : [ 888.0, 66.0, 545.0, 841.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -80,7 +80,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 245.5, 174.0, 201.5, 22.0 ],
+					"patching_rect" : [ 257.5, 173.0, 201.5, 22.0 ],
 					"text" : "tw.gl.repl.dynamic-size-helper"
 				}
 
