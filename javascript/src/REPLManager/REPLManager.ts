@@ -127,10 +127,7 @@ export class REPLManager {
         var tbLen = this.tb.length();
         let msg: Array<string> = []
         msg.push(this.msgFormatter("lines", tbLen.toString()))
-        // msg.push(this.msgFormatter("line", this.tb.getLine(this.c.line())))
         msg.push(this.msgFormatter("length", len.toString()))
-        //msg.push(this.msgFormatter("nLength", (len / this.config.MAX_CHARS).toString()))
-        //msg.push(this.msgFormatter("nLines", ((tbLen - 1) / (this.config.BUFFER_SIZE - 1)).toString()))
         return msg;
     }
 

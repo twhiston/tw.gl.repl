@@ -2,7 +2,80 @@ import { CursorPosition } from 'Cursor';
 import { maxMspBinding } from 'MaxBindings';
 import 'array.extensions';
 
-//polyfill Object.entries for archaic max runtimes
+
+/*
+ * The following wrappers allow us to make the GLRender class testable
+ * Basically they pass a proxy into the test environment where all of
+ * the max classes are unavailable. It's cumbersome but necessary if
+ * we want unit tests here. Luckily they are internal to the implementation.
+ */
+/* istanbul ignore next */
+type JitterMatrixConstructor = new (...args: any[]) => JitterMatrix;
+
+/* istanbul ignore next */
+class FallbackJitterMatrix {
+    constructor(...args: any[]) {
+        const handler = {
+            get: (target: any, propName: string) => {
+                //throw new Error("JitterMatrix is not available in this context");
+                if (propName === 'setall' || propName === 'setcell2d') {
+                    return (...funcArgs: any[]) => {
+                        // console.log('Custom method called with arguments:', funcArgs);
+                    };
+                }
+            },
+        };
+
+        const proxy = new Proxy({}, handler);
+        Object.setPrototypeOf(proxy, FallbackJitterMatrix.prototype);
+        return proxy;
+    }
+}
+/* istanbul ignore next */
+const WrappedJitterMatrix: JitterMatrixConstructor =
+    typeof JitterMatrix === "undefined"
+        ? (FallbackJitterMatrix as any)
+        : JitterMatrix;
+/* istanbul ignore next */
+type JitterObjectConstructor = new (...args: any[]) => JitterObject;
+
+/* istanbul ignore next */
+class FallbackJitterObject {
+    constructor(...args: any[]) {
+        const handler = {
+            get: (target: any, propName: string) => {
+                // Define a custom method implementation
+                if (propName === 'font' || propName === 'size' || propName === 'jit_matrix') {
+                    return (...funcArgs: any[]) => {
+                        // console.log('Custom method called with arguments:', funcArgs);
+                    };
+                }
+                if (typeof target[propName] === "function") {
+                    return (...funcArgs: any[]) => {
+                        // If JitterObject is not available, throw an error or provide fallback implementation
+                        target[propName].apply(target, funcArgs);
+                    };
+                }
+                // If JitterObject is not available, return undefined or provide fallback attribute values
+                //console.warn(`JitterObject property '${propName}' is not available in this context`);
+                return target[propName];
+            },
+        };
+
+        const proxy = new Proxy({}, handler);
+        Object.setPrototypeOf(proxy, FallbackJitterObject.prototype);
+        return proxy;
+    }
+}
+/* istanbul ignore next */
+const WrappedJitterObject: JitterObjectConstructor =
+    typeof JitterObject === "undefined"
+        ? (FallbackJitterObject as any)
+        : JitterObject;
+
+// polyfill Object.entries for archaic max runtimes
+// test environment has this function so hard to test, hence we ignore it
+/* istanbul ignore next */
 if (!Object.entries)
     Object.entries = function (obj) {
         var ownProps = Object.keys(obj),
@@ -37,43 +110,44 @@ export class GLRender {
 
     // the main node that all text is drawn to
     // for display on videoplane through camera capture
-    textNode = new JitterObject("jit.gl.node");
+    textNode = new WrappedJitterObject("jit.gl.node");
     // the main anim node to position all text according to screensize
-    animNode = new JitterObject("jit.anim.node");
+    animNode = new WrappedJitterObject("jit.anim.node");
     // the anim node and text for the command line
-    textAnim = new JitterObject("jit.anim.node");
+    textAnim = new WrappedJitterObject("jit.anim.node");
 
-    glText = new JitterObject("jit.gl.text");
+    glText = new WrappedJitterObject("jit.gl.text");
 
     // the anim node and text for the cursor
-    crsrAnim = new JitterObject("jit.anim.node");
+    crsrAnim = new WrappedJitterObject("jit.anim.node");
 
     // the anim node and text for the line numbers
-    nmbrAnim = new JitterObject("jit.anim.node");
+    nmbrAnim = new WrappedJitterObject("jit.anim.node");
 
     // add all objects to array for easy access when
     // changing multiple parameters
     glTextObj = {
-        text: new JitterObject("jit.gl.text"),
-        crsr: new JitterObject("jit.gl.text"),
-        lnmr: new JitterObject("jit.gl.text")
+        text: new WrappedJitterObject("jit.gl.text"),
+        crsr: new WrappedJitterObject("jit.gl.text"),
+        lnmr: new WrappedJitterObject("jit.gl.text")
     }
 
     // the camera for capture
-    glCam = new JitterObject("jit.gl.camera");
+    glCam = new WrappedJitterObject("jit.gl.camera");
     // the videoplane for display in world
-    glVid = new JitterObject("jit.gl.videoplane");
+    glVid = new WrappedJitterObject("jit.gl.videoplane");
 
     // matrices for text display
     textMtx: JitterMatrix
     crsrMtx: JitterMatrix
     nmbrMtx: JitterMatrix
 
-    private readonly UNIQ: number;
+    readonly UNIQ: number;
     private readonly NODE_CTX: string;
     private readonly ANIM_NODE: string;
     private readonly CAM_CAP: string;
     private readonly DEFAULT_FONT = 'Arial';
+    private ACTIVE_FONT = this.DEFAULT_FONT;
     private FONT_SIZE = 100;
     private MAIN_CTX = "CTX";
     private SCALING = 1;
@@ -99,9 +173,9 @@ export class GLRender {
         this.ANIM_NODE = "anim" + this.UNIQ;
         this.CAM_CAP = "cam" + this.UNIQ;
 
-        this.textMtx = new JitterMatrix("text" + this.UNIQ);
-        this.crsrMtx = new JitterMatrix("crsr" + this.UNIQ);
-        this.nmbrMtx = new JitterMatrix("nmbr" + this.UNIQ);
+        this.textMtx = new WrappedJitterMatrix("text" + this.UNIQ);
+        this.crsrMtx = new WrappedJitterMatrix("crsr" + this.UNIQ);
+        this.nmbrMtx = new WrappedJitterMatrix("nmbr" + this.UNIQ);
 
         (<any>this.textNode).fsaa = 1;
         (<any>this.textNode).type = "float32";
@@ -116,7 +190,7 @@ export class GLRender {
 
         (<any>this.glTextObj.text).drawto = this.NODE_CTX;
         (<any>this.glTextObj.text).anim = (<any>this.textAnim).name;
-        (<any>this.glTextObj.text).gl_color = [1, 1, 1, 1];
+        (<any>this.glTextObj.text).gl_color = this.textColor.toArray();
         (<any>this.glTextObj.text).screenmode = 0;
         (<any>this.glTextObj.text).cull_face = 1;
 
@@ -125,6 +199,7 @@ export class GLRender {
 
         (<any>this.glTextObj.crsr).drawto = this.NODE_CTX;
         (<any>this.glTextObj.crsr).anim = (<any>this.crsrAnim).name;
+        (<any>this.glTextObj.crsr).gl_color = this.cursorColor.toArray();
         (<any>this.glTextObj.crsr).screenmode = 0;
         (<any>this.glTextObj.crsr).cull_face = 1;
         (<any>this.glTextObj.crsr).layer = 10;
@@ -155,6 +230,7 @@ export class GLRender {
         this.setCursorChars(this.CRSR)
     }
 
+    /* istanbul ignore next */
     /*
      * free all the jitter objects, called via [freebang] in abstraction
      * it is not routed so can only be called from inside the abstraction
@@ -218,7 +294,7 @@ export class GLRender {
     drawText(textBuf: Array<string>) {
         //Uses the Array extension which you can see code for in TextBuffer.ts
         const maxChars = textBuf.getMaxChar()
-        this.textMtx = new JitterMatrix("text" + this.UNIQ, 1, "char", maxChars, textBuf.length);
+        this.textMtx = new WrappedJitterMatrix("text" + this.UNIQ, 1, "char", maxChars, textBuf.length);
         this.textMtx.setall([0]);
         // draw all the characters as ascii code in a matrix
         for (var l = 0; l < textBuf.length; l++) {
@@ -238,7 +314,7 @@ export class GLRender {
         // space into each line it does not want to draw the cursor properly!
         // why is this! it sucks!
         // To work around this we make a massively wide matrix and fill it with spaces and a single dot!
-        this.crsrMtx = new JitterMatrix("crsr" + this.UNIQ, 1, "char", 1000, textBuf.length);
+        this.crsrMtx = new WrappedJitterMatrix("crsr" + this.UNIQ, 1, "char", 1000, textBuf.length);
         this.crsrMtx.setall([32]);
         for (var i = 0; i < textBuf.length; i++) {
             this.crsrMtx.setcell2d(999, i, 46);
@@ -250,7 +326,7 @@ export class GLRender {
 
     // draw the numbers to a jitter matrix as ascii
     drawNumbers(textBuf: Array<string>, pos: CursorPosition) {
-        this.nmbrMtx = new JitterMatrix("nmbr" + this.UNIQ, 1, "char", 3, textBuf.length);
+        this.nmbrMtx = new WrappedJitterMatrix("nmbr" + this.UNIQ, 1, "char", 3, textBuf.length);
         for (var i = 0; i < textBuf.length; i++) {
             var digits = new Array(2);
             digits[0] = String(Math.floor((i) / 10));
@@ -258,7 +334,6 @@ export class GLRender {
             if (digits[0] == 0) {
                 digits[0] = " ";
             }
-            // post(digit1.charCodeAt(0), digit2.charCodeAt(0));
             for (var n = 0; n < 2; n++) {
                 this.nmbrMtx.setcell2d(n, i, digits[n].charCodeAt(0));
             }
@@ -285,6 +360,10 @@ export class GLRender {
     color(color: Color) {
         this.textColor = color;
         (<any>this.glTextObj.text).gl_color = color.toArray();
+    }
+
+    getTextColor() {
+        return this.textColor;
     }
 
     /*
@@ -319,26 +398,6 @@ export class GLRender {
     }
 
     /*
-     * set the blink colour.
-     * R G B A format where A is optional and default set to 1.0
-     */
-    @maxMspBinding({})
-    blink_color(r: number, g: number, b: number, a: number = 1.0) {
-        const color = new Color(r, g, b, a);
-        this.blinkColor = color;
-    }
-
-    /*
-     * Turn the blinking cursor on and off.
-     * In normal operation this is called internally when ignore_keys is true to give
-     * a visual indication of the locked state of the repl.
-     */
-    @maxMspBinding({})
-    blink_enable(v: boolean) {
-        this.useBlink = v;
-    }
-
-    /*
      * set the cursor characters.
      * default is <<
      */
@@ -351,12 +410,36 @@ export class GLRender {
         }
     }
 
+    getCursorChars() {
+        return this.CRSR_CHARS;
+    }
+
+    /*
+    * Turn the blinking cursor on and off.
+    * In normal operation this is called internally when ignore_keys is true to give
+    * a visual indication of the locked state of the repl.
+    */
+    @maxMspBinding({})
+    blink_enable(v: boolean) {
+        this.useBlink = v;
+    }
+
+    /*
+     * set the blink colour.
+     * R G B A format where A is optional and default set to 1.0
+     */
+    @maxMspBinding({})
+    blink_color(r: number, g: number, b: number, a: number = 1.0) {
+        const color = new Color(r, g, b, a);
+        this.blinkColor = color;
+    }
+
+
     /*
      * runs the blink command, called internally in abstraction and not exposed via routing
      */
     @maxMspBinding({ noroute: true, isMethod: false, isAttribute: false })
     runBlink(t: number) {
-
         var c = [];
         var carr = this.textColor.toArray()
         var runc = this.runColor.toArray()
@@ -408,9 +491,14 @@ export class GLRender {
      */
     @maxMspBinding({})
     font(f: string) {
+        this.ACTIVE_FONT = f;
         for (const [k, v] of Object.entries(this.glTextObj)) {
             (<any>v).font(f);
         }
+    }
+
+    activeFont(): string {
+        return this.ACTIVE_FONT
     }
 
     fontsize(s: number) {
@@ -419,8 +507,10 @@ export class GLRender {
             (<any>v).size(this.FONT_SIZE);
         }
         this.scale(this.SCALING);
-        // textAnim.position = [0.9, 0, 0];
-        // crsrAnim.position = [0.9, 0, 0];
+    }
+
+    getFontSize(): number {
+        return this.FONT_SIZE
     }
 
     /*
@@ -437,6 +527,10 @@ export class GLRender {
     disableText(state: boolean) {
         this.isDisabled = state;
         this.alpha(1.0 - Number(this.isDisabled) * 0.5);
+    }
+
+    textDisabled() {
+        return this.isDisabled;
     }
 
     /*

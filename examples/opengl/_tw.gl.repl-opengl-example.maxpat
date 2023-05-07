@@ -40,6 +40,18 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-81",
+					"maxclass" : "newobj",
+					"numinlets" : 2,
+					"numoutlets" : 2,
+					"outlettype" : [ "", "" ],
+					"patching_rect" : [ 430.33331298828125, 353.0, 201.5, 22.0 ],
+					"text" : "tw.gl.repl.dynamic-size-helper"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-74",
 					"maxclass" : "newobj",
 					"numinlets" : 2,
@@ -136,7 +148,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 241.0, 415.0, 33.0, 22.0 ],
+					"patching_rect" : [ 238.5, 418.0, 33.0, 22.0 ],
 					"text" : "read"
 				}
 
@@ -148,7 +160,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 241.0, 387.0, 35.0, 22.0 ],
+					"patching_rect" : [ 238.5, 387.0, 35.0, 22.0 ],
 					"text" : "clear"
 				}
 
@@ -179,10 +191,11 @@
 , 			{
 				"box" : 				{
 					"id" : "obj-39",
+					"linecount" : 2,
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 345.0, 345.0, 165.0, 20.0 ],
+					"patching_rect" : [ 343.166656494140625, 345.0, 86.0, 33.0 ],
 					"text" : "execute code (ALT+ENTER)"
 				}
 
@@ -285,54 +298,6 @@
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 435.0, 420.0, 34.0, 22.0 ],
 					"text" : "write"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-9",
-					"maxclass" : "newobj",
-					"numinlets" : 2,
-					"numoutlets" : 2,
-					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 524.0, 345.0, 86.0, 22.0 ],
-					"text" : "routepass size"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-8",
-					"maxclass" : "newobj",
-					"numinlets" : 2,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 62.0, 240.0, 54.0, 22.0 ],
-					"text" : "qlim 100"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-7",
-					"maxclass" : "newobj",
-					"numinlets" : 0,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 62.0, 210.0, 51.0, 22.0 ],
-					"text" : "r render"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-6",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 62.0, 270.0, 53.0, 22.0 ],
-					"text" : "t getsize"
 				}
 
 			}
@@ -2400,8 +2365,8 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 45.0, 159.0, 367.0, 20.0 ],
-					"text" : "written by Timo Hoogland © 2020, www.timohoogland.com"
+					"patching_rect" : [ 45.0, 159.0, 515.0, 20.0 ],
+					"text" : "This example originally written by Timo Hoogland © 2020, www.timohoogland.com"
 				}
 
 			}
@@ -2623,7 +2588,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "" ],
-					"patching_rect" : [ 284.5, 387.0, 162.0, 22.0 ],
+					"patching_rect" : [ 284.5, 391.0, 162.0, 22.0 ],
 					"text" : "tw.gl.repl cmd-xmp 1280 720"
 				}
 
@@ -2864,22 +2829,6 @@
 		"lines" : [ 			{
 				"patchline" : 				{
 					"destination" : [ "obj-112", 0 ],
-					"order" : 0,
-					"source" : [ "obj-1", 1 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-14", 0 ],
-					"order" : 2,
-					"source" : [ "obj-1", 1 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-15", 0 ],
 					"order" : 1,
 					"source" : [ "obj-1", 1 ]
 				}
@@ -2887,14 +2836,39 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-9", 0 ],
+					"destination" : [ "obj-14", 0 ],
+					"order" : 3,
+					"source" : [ "obj-1", 1 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-15", 0 ],
+					"order" : 2,
+					"source" : [ "obj-1", 1 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-81", 1 ],
 					"source" : [ "obj-1", 2 ]
 				}
 
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-81", 0 ],
+					"order" : 0,
+					"source" : [ "obj-1", 1 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-10", 0 ],
+					"midpoints" : [ 294.0, 465.0, 394.83331298828125, 465.0 ],
 					"order" : 0,
 					"source" : [ "obj-112", 0 ]
 				}
@@ -2974,6 +2948,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-112", 0 ],
+					"midpoints" : [ 444.5, 444.0, 282.0, 444.0, 282.0, 414.0, 279.0, 414.0, 279.0, 387.0, 294.0, 387.0 ],
 					"source" : [ "obj-31", 0 ]
 				}
 
@@ -3011,6 +2986,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-112", 0 ],
+					"midpoints" : [ 444.5, 474.0, 420.0, 474.0, 420.0, 423.0, 279.0, 423.0, 279.0, 387.0, 294.0, 387.0 ],
 					"source" : [ "obj-45", 0 ]
 				}
 
@@ -3067,20 +3043,15 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-112", 0 ],
+					"midpoints" : [ 107.5, 525.0, 270.0, 525.0, 270.0, 450.0, 282.0, 450.0, 282.0, 411.0, 279.0, 411.0, 279.0, 381.0, 294.0, 381.0 ],
 					"source" : [ "obj-56", 0 ]
 				}
 
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-1", 0 ],
-					"source" : [ "obj-6", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
 					"destination" : [ "obj-112", 0 ],
+					"midpoints" : [ 135.5, 456.0, 282.0, 456.0, 282.0, 411.0, 279.0, 411.0, 279.0, 381.0, 294.0, 381.0 ],
 					"source" : [ "obj-61", 1 ]
 				}
 
@@ -3146,13 +3117,6 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-8", 0 ],
-					"source" : [ "obj-7", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
 					"destination" : [ "obj-69", 0 ],
 					"source" : [ "obj-70", 0 ]
 				}
@@ -3188,20 +3152,28 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-6", 0 ],
-					"source" : [ "obj-8", 0 ]
+					"destination" : [ "obj-1", 0 ],
+					"midpoints" : [ 439.83331298828125, 378.0, 192.0, 378.0, 192.0, 348.0, 30.0, 348.0, 30.0, 300.0, 54.5, 300.0 ],
+					"source" : [ "obj-81", 0 ]
 				}
 
 			}
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-112", 0 ],
-					"source" : [ "obj-9", 0 ]
+					"source" : [ "obj-81", 1 ]
 				}
 
 			}
  ],
 		"dependency_cache" : [ 			{
+				"name" : "tw.gl.repl.dynamic-size-helper.maxpat",
+				"bootpath" : "~/Documents/Max 8/Packages/tw.gl.repl/patchers",
+				"patcherrelativepath" : "../../patchers",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
 				"name" : "tw.gl.repl.js",
 				"bootpath" : "~/Documents/Max 8/Packages/tw.gl.repl/javascript/dist",
 				"patcherrelativepath" : "../../javascript/dist",
