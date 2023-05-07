@@ -156,7 +156,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 487.0, 278.0, 169.0, 181.0 ],
+					"patching_rect" : [ 487.0, 278.0, 174.0, 181.0 ],
 					"text" : "You should have a new patcher with the objects we described above in it, connected together. Now let's turn it on with the message command:\n\nm toggle0 1\nm toggle1 1\n\nNow you should see the metro running and bangs from the button"
 				}
 

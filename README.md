@@ -66,15 +66,15 @@ See help files for some ideas on what you might do with it!
 
 ### Git clone
 
-If you want to git clone the repo you will need to have npm installed as the compiled
-sources are not included in the repo.
+If you want to git clone the repo you will need to have `npm` and `tsc` installed
+as the compiled sources are not included in the repo.
 
 ```bash
 cd ~/Documents/Max\ 8/Packages
 git clone https://github.com/twhiston/tw.gl.repl.git
 cd tw.gl.repl/javascript
 npm install && npm compile
-//restart Max8
+//start Max8
 ```
 
 ```
@@ -99,10 +99,10 @@ It's undeniably the most useful to have a repl that you can dynamically resize
 and to this end a helper object is included. See the help file for information
 on how to connect this, or hover the inlets and outlets in max. The scaling fits
 some window sizes better than others, and sometimes it might unavoidably break a
-boundary, usually you can just resize the window in a way that sorts this out.
-It's more sensitive to aspect ratio than it is to the size itself, so bear that
-in mind when you are trying to find the right way to visualize your repl
-contents
+boundary, you should just resize the window in a way that sorts this out.
+You can also send a `scale 1.` value to the object, which the current scaling will
+be multiplied by. No guarantee that the current scaling works super well with every
+font either!
 
 ## Config
 
@@ -148,7 +148,7 @@ The config is in the following form:
 
 Settings allow you to set the value of some repl settings instead
 of settings them through messages or in code.
-All available settings are as follows:
+All currently available settings are as follows:
 
 ```json
 "settings": {
@@ -164,6 +164,7 @@ All available settings are as follows:
                 "whitespace",
                 "bracebalanced",
                 "singleline"
+                //can also include your own custom formatters here
             ]
         }
 }
@@ -231,7 +232,7 @@ text in the buffer with the pastebin is an exaxple of this
 One of the ways to extend the repl further is to attach or preload your own functions
 so you can tie them to a key in the config.
 To make this easier the package tries to load a file called `user-repl.js`, max should
-load this up fine if it's in your path. Inside it you have access to `i.glRender`
+load this fine if it's in your patch folder. Inside it you have access to `i.glRender`
 and `i.repl`, you also have access to a Dict of `replkeys.json` in `sKeys`. Which
 will be stringified and passed into the repl on `init()`
 
@@ -263,8 +264,12 @@ to a key
 }
 ```
 
+See the `examples/custom-formatter/user-repl.js` for a working example.
+
+##### Attaching functions directly
+
 Alternatively if, for some reason, you want to configure it in code rather than
-with json you could attach the function directly
+with json you could attach the function directly.
 
 ```javascript
 //i.repl.kp.attachFunctions(id: string, keyCode: number, funcs: Array<KeyProcessor>)
@@ -281,11 +286,10 @@ an array you probably are outputting a string and not an array of strings!
 
 ### JitterObjects
 
-Be very careful about creating JitterObjects in your custom functions or in your code
-at all. Max seems to have serious issues when they are used outside of the top level js
-file. This often results in a crash if you open the patch more than once (even sequentially).
-See the bound `_close` function for how this is handled for the GLRender class's
-`destroy` method.
+Be very careful about creating JitterObjects in your custom functions or in your
+code at all. When they are used outside of the top level js file they are not
+freed automatically, which then results in a crash. See the bound `_close`
+function for how this is handled for the GLRender class's `destroy` method.
 
 ## Alphanumeric Characters
 
@@ -370,8 +374,8 @@ Always prefer preloading over setting formatters directly as failure to do
 so will result in issues when the config is loaded, as this is the point at
 which formatters are resolved and added to the TextBuffer.
 
-To see a full example of a pure javascript text formatter implementation check out the
-`repl-snippet-expander.maxpat` example!
+To see a full example of a pure javascript text formatter implementation check out
+the Custom Formatter example from the Max Extras menu 'tw.gl.repl.overview` patch.
 
 ## Reading and Writing files
 
@@ -482,11 +486,6 @@ simple setup which you can use to help with developing.
 ## TODO
 
 * new core formatters should be automatically added to the init of the repl?
-* support and help patches
-  * patch that makes max objects?
-  * patch which uses processor functions
-  * example with something running in the background continually outputting data
-  * rewrite opengl example as a shortcode processor style version for demo?
 
 ## License
 
