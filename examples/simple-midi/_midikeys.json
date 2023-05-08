@@ -1,8 +1,5 @@
 {
     "settings": {
-        "repl": {
-            "BUFFER_SIZE": 30
-        },
         "textbuffer": {
             "formatters": [
                 "whitespace"
@@ -29,7 +26,7 @@
             "id": "down",
             "asciiCode": -10,
             "functions": [
-                "ctx.addChar(184); if(ctx.tb.lineLength(ctx.c.line()) >= 20){ctx.newLine()}",
+                "ctx.add(\".\"); if(ctx.tb.lineLength(ctx.c.line()) >= 20){ctx.newLine()}",
                 "return ['note down']"
             ]
         },

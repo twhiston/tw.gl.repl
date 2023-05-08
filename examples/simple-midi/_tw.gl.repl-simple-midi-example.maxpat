@@ -4,13 +4,13 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 5,
-			"revision" : 3,
+			"revision" : 4,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 753.0, 68.0, 1023.0, 754.0 ],
+		"rect" : [ 418.0, 570.0, 1023.0, 754.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -39,18 +39,6 @@
 		"subpatcher_template" : "",
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
-				"box" : 				{
-					"id" : "obj-33",
-					"linecount" : 11,
-					"maxclass" : "comment",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 816.5, 311.0, 179.0, 154.0 ],
-					"text" : "\"settings\": {\n        \"repl\": {\n            \"BUFFER_SIZE\": 30,\n            \"MAX_CHARS\": 10\n        }\n\nwould be much easier to use than all the newline logic. You will still need to add a character to the buffer though if you want to see anything!"
-				}
-
-			}
-, 			{
 				"box" : 				{
 					"fontface" : 0,
 					"fontname" : "Arial",
@@ -207,7 +195,7 @@
 					"fontname" : "Arial",
 					"fontsize" : 13.0,
 					"id" : "obj-19",
-					"items" : [ "AU DLS Synth 1", ",", "M4", ",", "from Max 1", ",", "from Max 2" ],
+					"items" : [ "AU DLS Synth 1", ",", "from Max 1", ",", "from Max 2" ],
 					"labelclick" : 1,
 					"maxclass" : "umenu",
 					"numinlets" : 1,
@@ -361,7 +349,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 5,
-							"revision" : 3,
+							"revision" : 4,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -992,12 +980,12 @@
 , 			{
 				"box" : 				{
 					"id" : "obj-24",
-					"linecount" : 12,
+					"linecount" : 11,
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 56.5, 113.0, 906.0, 167.0 ],
-					"text" : "Here we are making a toy midi output script with the repl\n        Arrow Keys: These output simple messages which we handle inside max to produce midi notes.\n        Option+Enter: clear the repl\n\nIt is important to note that all of the repls output message generation and input display is handled in the config file. We have completely overridden the default behaviour of the repl by loading a new configuration file, we have even rebound our usual \"run\" key combination to instead clear the repl\n\nTo each arrow key we attach two functions, one which adds the character to the repl, and creates a newline after a certain length, and one which outputs a message which we then parse in max. Note that in the first section the logic for adding the line break is not actually necessary, it is much simpler to add the repl MAX_CHARS setting to the configuration file.\nTo Option+Enter we simply bind a function which outputs the \"clear\" message, which will then be consumed by the repl, as all repl output is first passed through its own message routing before being passed to the outside world."
+					"patching_rect" : [ 56.5, 113.0, 906.0, 154.0 ],
+					"text" : "Here we are making a toy midi output script with the repl\n        Arrow Keys: These output simple messages which we handle inside max to produce midi notes.\n        Option+Enter: clear the repl\n\nIt is important to note that all of the repls output message generation and input display is handled in the config file. We have completely overridden the default behaviour of the repl by loading a new configuration file, we have even rebound our usual \"run\" key combination to instead clear the repl\n\nTo each arrow key we attach two functions, one which adds the character to the repl and then creates a newline after a certain length, and one which outputs a message to parse in max.\nTo Option+Enter we simply bind a function which outputs the \"clear\" message, which will then be consumed by the repl, as all repl output is first passed through its own message routing before being passed to the outside world."
 				}
 
 			}
@@ -1115,7 +1103,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 5,
-							"revision" : 3,
+							"revision" : 4,
 							"architecture" : "x64",
 							"modernui" : 1
 						}

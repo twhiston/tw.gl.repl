@@ -1,9 +1,5 @@
 {
     "settings": {
-        "repl": {
-            "BUFFER_SIZE": 20,
-            "MAX_CHARS": 20
-        },
         "textbuffer": {
             "formatters": [
                 "whitespace",
