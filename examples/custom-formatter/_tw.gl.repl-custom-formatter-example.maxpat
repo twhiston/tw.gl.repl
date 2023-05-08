@@ -4,13 +4,13 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 5,
-			"revision" : 3,
+			"revision" : 4,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 560.0, 100.0, 918.0, 794.0 ],
+		"rect" : [ 560.0, 100.0, 731.0, 794.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -77,7 +77,7 @@
 					"parameter_enable" : 0,
 					"patching_rect" : [ 110.5, 594.0, 20.0, 20.0 ],
 					"rounded" : 60.0,
-					"text" : "5",
+					"text" : "6",
 					"textcolor" : [ 0.34902, 0.34902, 0.34902, 1.0 ]
 				}
 
@@ -85,12 +85,13 @@
 , 			{
 				"box" : 				{
 					"id" : "obj-33",
-					"linecount" : 9,
+					"linecount" : 12,
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 27.5, 619.0, 150.0, 127.0 ],
-					"text" : "Thes melodies you heard were the same but the file formatting was not, this is the difference between format_writes being on or off. By default format_writes is true, so formatters are applied before saving"
+					"patching_rect" : [ 27.5, 619.0, 150.0, 167.0 ],
+					"presentation_linecount" : 12,
+					"text" : "Thes melodies you heard were the same but the file formatting was not.\nmelody2 is the result of melody1 being saved to disk with formatters being applied. You can see which formatters these are in the config.\n\nBy default format_writes is true."
 				}
 
 			}
@@ -101,8 +102,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 131.5, 563.0, 91.0, 22.0 ],
-					"text" : "format_writes 0"
+					"patching_rect" : [ 127.0, 563.0, 91.0, 22.0 ],
+					"text" : "format_writes 1"
 				}
 
 			}
@@ -164,7 +165,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 5,
-							"revision" : 3,
+							"revision" : 4,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -855,7 +856,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 5,
-							"revision" : 3,
+							"revision" : 4,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -1173,6 +1174,14 @@
 				"patchline" : 				{
 					"destination" : [ "obj-2", 0 ],
 					"source" : [ "obj-3", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-1", 0 ],
+					"midpoints" : [ 136.5, 588.0, 254.5, 588.0 ],
+					"source" : [ "obj-30", 0 ]
 				}
 
 			}
