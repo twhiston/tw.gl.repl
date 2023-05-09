@@ -39,16 +39,12 @@ jobs:
           uses: actions/checkout@v3
           with:
             fetch-depth: 0
-        # Compile output js for max
-        - name: 'compile'
-          working-directory: ./javascript
-          run: npm run compile
 
         - name: git config
           run: |
             git config user.name "${GITHUB_ACTOR}"
             git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
-
+        # Part of the release script is to compile the code, so we don't need to redo this
         - name: 'release'
           working-directory: ./javascript
           run: npx release-it --ci
