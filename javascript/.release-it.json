@@ -1,7 +1,7 @@
 {
   "git": {
     "push": true,
-    "requireCleanWorkingDir": true,
+    "requireCleanWorkingDir": false,
     "commitMessage": "chore: release v${version}",
     "requireBranch": [
       "main",
@@ -9,7 +9,7 @@
     ]
   },
   "hooks": {
-    "before:init": [
+    "after:@release-it/conventional-changelog:bump": [
       "rm -rf ./../.dist",
       "mkdir -p ./../.dist/tw.gl.repl",
       "rsync -av --progress ./../ ./../.dist/tw.gl.repl --exclude ./../.dist",
