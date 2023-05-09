@@ -1,14 +1,15 @@
 {
   "git": {
-    "push": false,
-    "requireCleanWorkingDir": false,
-    "commitMessage": "chore: release v${version}"
+    "push": true,
+    "requireCleanWorkingDir": true,
+    "commitMessage": "chore: release v${version}",
+    "requireBranch": [
+      "main",
+      "dev"
+    ]
   },
   "hooks": {
     "before:init": [
-      "npm install",
-      "npm run test",
-      "npm run compile",
       "rm -rf ./../.dist",
       "mkdir -p ./../.dist/tw.gl.repl",
       "rsync -av --progress ./../ ./../.dist/tw.gl.repl --exclude ./../.dist",
@@ -17,7 +18,7 @@
       "rsync -av --progress ./dist/* ./../.dist/tw.gl.repl/javascript",
       "cd ./../.dist/; zip -r tw.gl.repl.zip ./tw.gl.repl"
     ],
-    "after:bump": "npx auto-changelog -p -o./../CHANGELOG.md"
+    "after:release": "echo Successfully released ${name} v${version} to ${repo.repository}."
   },
   "github": {
     "release": true,
@@ -27,5 +28,11 @@
   },
   "npm": {
     "publish": false
+  },
+  "plugins": {
+    "@release-it/conventional-changelog": {
+      "preset": "conventionalcommits",
+      "infile": "CHANGELOG.md"
+    }
   }
 }

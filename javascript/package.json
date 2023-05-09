@@ -12,16 +12,17 @@
     "compile": "npx tsc; npm run generate-max-binding",
     "test": "nyc --cwd ./../ --report-dir=javascript/coverage --temp-dir=javascript/.nyc_output --reporter=lcov --reporter=text ava",
     "report": "nyc report --reporter=html --exclude-node-modules=false",
-    "release": "release-it"
+    "release": "release-it",
+    "release-beta": "release-it minor --preRelease=beta"
   },
   "author": "",
   "license": "GPL",
   "devDependencies": {
+    "@release-it/conventional-changelog": "^5.1.1",
     "@types/glob": "^8.1.0",
     "@types/maxmsp": "^1.0.0",
     "@types/node": "^18.16.3",
     "@vercel/ncc": "^0.36.1",
-    "auto-changelog": "^2.4.0",
     "ava": "^5.2.0",
     "handlebars": "^4.7.7",
     "nyc": "^15.1.0",

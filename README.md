@@ -478,14 +478,16 @@ Mostly you won't need to touch this stuff, as you can extend the repl using `rep
 and/or `user-repl.js` for most simple use cases. But if you want to build your own
 more complex repl object you will need to recompile and generate the js code.
 
-## Helper Patch
+### Helper Patch
 
 There is a helper patch included `editor-development.maxpat` which has a helpful
 simple setup which you can use to help with developing.
 
-## TODO
+### Releases
 
-* new core formatters should be automatically added to the init of the repl?
+Releases are generated using release-it. Because this project has a lot of generated
+code, and because that code is not comitted to the repo, release-it has a slightly
+convoluted setup.
 
 ## License
 
