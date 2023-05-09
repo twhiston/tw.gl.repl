@@ -18,8 +18,8 @@ jobs:
       # Runs commands using the runners shell
       - name: 'Run tests'
         working-directory: ./javascript
-        run: npm install && npx nyc ava && npx nyc report --reporter cobertura --reporter json-summary
-      
+        run: npm ci && npx nyc ava && npx nyc report --reporter cobertura --reporter json-summary
+
       - name: 'compile'
         working-directory: ./javascript
         run: npm run compile
@@ -48,4 +48,3 @@ jobs:
           style: flat
           source: ./javascript/coverage/coverage-summary.json
           output: ./javascript/coverage/badges.svg
-

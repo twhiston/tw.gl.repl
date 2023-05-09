@@ -1,23 +1,26 @@
 {
   "git": {
-    "push": false,
+    "push": true,
     "requireCleanWorkingDir": false,
-    "commitMessage": "chore: release v${version}"
+    "commitMessage": "chore: release v${version}",
+    "requireBranch": [
+      "main",
+      "dev"
+    ]
   },
   "hooks": {
-    "before:init": [
-      "npm install",
-      "npm run test",
+    "before:git:release": [
       "npm run compile",
       "rm -rf ./../.dist",
       "mkdir -p ./../.dist/tw.gl.repl",
       "rsync -av --progress ./../ ./../.dist/tw.gl.repl --exclude ./../.dist",
       "rm -rf ./../.dist/tw.gl.repl/.git ./../.dist/tw.gl.repl/.dist ./../.dist/tw.gl.repl/.github ./../.dist/tw.gl.repl/.vscode ./../.dist/tw.gl.repl/javascript ./../.dist/tw.gl.repl/.gitignore",
+      "rm -rf ./../.dist/tw.gl.repl/examples/livecode-max/src ./../.dist/tw.gl.repl/examples/livecode-max/node_modules ./../.dist/tw.gl.repl/examples/livecode-max/package* ./../.dist/tw.gl.repl/examples/livecode-max/tsconfig.json",
       "mkdir ./../.dist/tw.gl.repl/javascript",
       "rsync -av --progress ./dist/* ./../.dist/tw.gl.repl/javascript",
       "cd ./../.dist/; zip -r tw.gl.repl.zip ./tw.gl.repl"
     ],
-    "after:bump": "npx auto-changelog -p -o./../CHANGELOG.md"
+    "after:release": "echo Successfully released ${name} v${version} to ${repo.repository}."
   },
   "github": {
     "release": true,
@@ -27,5 +30,12 @@
   },
   "npm": {
     "publish": false
+  },
+  "plugins": {
+    "@release-it/conventional-changelog": {
+      "preset": "conventionalcommits",
+      "header": "# tw.gl.repl changelog",
+      "infile": "./../CHANGELOG.md"
+    }
   }
 }

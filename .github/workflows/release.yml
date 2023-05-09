@@ -1,0 +1,52 @@
+# Name of our workflow
+name: 'Release'
+
+# Events that will trigger our workflow
+on: [ 'push' ]
+
+# List of custom jobs
+jobs:
+  test:
+    # Using a "label" to assign job to a specific hosted runner
+    runs-on: ubuntu-latest
+    if:
+      contains('
+      refs/heads/dev
+      refs/heads/main', github.ref)
+
+    steps:
+      # Checks-out our repository under "$GITHUB_WORKSPACE", so our job can access it
+      - name: 'Checkout repository'
+        uses: actions/checkout@v3
+
+      # Runs commands using the runners shell
+      - name: 'Run tests'
+        working-directory: ./javascript
+        run: npm ci && npx nyc ava
+
+      # Compile output js for max
+      - name: 'compile'
+        working-directory: ./javascript
+        run: npm run compile
+
+  release:
+    needs: ["test"]
+    runs-on: ubuntu-latest
+    if:
+      contains('refs/heads/main', github.ref)
+    steps:
+        - name: 'Checkout repository'
+          uses: actions/checkout@v3
+          with:
+            fetch-depth: 0
+
+        - name: git config
+          run: |
+            git config user.name "${GITHUB_ACTOR}"
+            git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+        # Part of the release script is to compile the code, so we don't need to redo this
+        - name: 'release'
+          working-directory: ./javascript
+          run: npx release-it --ci
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
