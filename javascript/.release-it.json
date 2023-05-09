@@ -32,6 +32,7 @@
   "plugins": {
     "@release-it/conventional-changelog": {
       "preset": "conventionalcommits",
+      "header": "# tw.gl.repl changelog",
       "infile": "./../CHANGELOG.md"
     }
   }
