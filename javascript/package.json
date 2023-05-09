@@ -1,6 +1,6 @@
 {
   "name": "th.gl.texteditor",
-  "version": "1.0.0-beta.6",
+  "version": "1.0.0-beta.10",
   "description": "max msp opengl text editor",
   "main": "th.gl.editor.js",
   "directories": {
