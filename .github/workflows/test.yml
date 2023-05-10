@@ -51,13 +51,13 @@ jobs:
         working-directory: ./javascript
         run: ./build-release.sh
 
-      - name: Set short git commit SHA
-        id: vars
+      - name: Save short sha to env
         run: |
           calculatedSha=$(git rev-parse --short ${{ github.sha }})
-          echo "::set-output name=short_sha::$calculatedSha"
+          echo "short_sha=$calculatedSha" >> "$GITHUB_ENV"
+
       - name: test artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: tw.gl.repl-${{ steps.vars.outputs.short_sha }}
+          name: tw.gl.repl-${{ env.short_sha }}
           path: .dist/tw.gl.repl.zip
