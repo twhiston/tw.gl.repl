@@ -485,9 +485,33 @@ simple setup which you can use to help with developing.
 
 ### Releases
 
-Releases are generated using release-it. Because this project has a lot of generated
-code, and because that code is not comitted to the repo, release-it has a slightly
-convoluted setup.
+Releases are generated using release-it. Any commit into main will produce a release
+and any release without breaking changes included will be a minor version bump.
+Development releases are created as needed by manually running `npm run release-beta-major/minor`
+in the javascript folder. You must have a clean checkout of the develop branch
+to do this.
+
+The changlog is updated automatically on release and thus commits should be in
+the conventional commits format so they can be included.
+Commitlint will enforce this for commit messages and on merges in github actions.
+
+Lefthook is used for local commit linting. Note that because our `package.json`
+is not in our root folder, since this is not a pure node project it is expected
+that you have your own global install of lefthook `npm install -g lefthook` and
+that you manually run `lefthook install`in the root after cloning the repo.
+
+It's worth noting that if you use vscode on OSXyou might have problems with these
+hooks silently failing if the binaries are not found. vscode seems to always use
+bash for git operations, although the default OSX shell is zsh. Therefore you
+might need some specific bash config around node, especially if you are using NVM.
+For me it looks like this:
+
+```.bashrc
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+eval "$(/opt/homebrew/bin/brew shellenv)" # setup homebrew paths for global installs of linting tools
+export NODE_PATH=$NODE_PATH:`npm root -g` # get the correct node path
+```
 
 ## License
 
@@ -496,7 +520,9 @@ The GNU Lesser General Public License v.3
 The artistic and aesthetic output of the software in the examples is licensed under:
 Creative Commons Attribution-ShareAlike 4.0 International License
 
+(c) Tom Whiston 2023
+
 The origin of this project is a refactoring of th.gl.texteditor (c) Timo Hoogland
 2020
 
-(c) Tom Whiston 2023
+TEST

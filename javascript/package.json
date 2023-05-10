@@ -19,6 +19,8 @@
   "author": "",
   "license": "GPL",
   "devDependencies": {
+    "@commitlint/cli": "^17.6.3",
+    "@commitlint/config-conventional": "^17.6.3",
     "@release-it/conventional-changelog": "^5.1.1",
     "@types/glob": "^8.1.0",
     "@types/maxmsp": "^1.0.0",

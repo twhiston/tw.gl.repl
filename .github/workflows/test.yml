@@ -1,5 +1,5 @@
 # Name of our workflow
-name: 'Test'
+name: 'Test and release'
 
 # Events that will trigger our workflow
 on: [ 'pull_request', 'push' ]
@@ -14,11 +14,22 @@ jobs:
       # Checks-out our repository under "$GITHUB_WORKSPACE", so our job can access it
       - name: 'Checkout repository'
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
-      # Runs commands using the runners shell
+        # Test and output coverage report
       - name: 'Run tests'
         working-directory: ./javascript
         run: npm ci && npx nyc ava && npx nyc report --reporter cobertura --reporter json-summary
+
+      # lint the commit message to ensure it can be included in the changelog later
+      - name: Validate current commit (last commit) with commitlint
+        if: github.event_name == 'push'
+        run: NODE_PATH="${{ github.workspace }}/javascript/node_modules" ./javascript/node_modules/.bin/commitlint --from HEAD~1 --to HEAD --verbose
+      # all commits in a PR should conform, in the occasion that we do not squash it
+      - name: Validate PR commits with commitlint
+        if: github.event_name == 'pull_request'
+        run:  NODE_PATH="${{ github.workspace }}/javascript/node_modules" ./javascript/node_modules/.bin/commitlint --from ${{ github.event.pull_request.head.sha }}~${{ github.event.pull_request.commits }} --to ${{ github.event.pull_request.head.sha }} --verbose
 
       # Get the coverage report and add a coverage comment
       - name: Code Coverage Report
@@ -61,3 +72,25 @@ jobs:
         with:
           name: tw.gl.repl-${{ env.short_sha }}
           path: .dist/tw.gl.repl.zip
+
+  release:
+    needs: ["test"]
+    runs-on: ubuntu-latest
+    if:
+        contains('refs/heads/main', github.ref)
+    steps:
+      - name: 'Checkout repository'
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: git config
+        run: |
+          git config user.name "${GITHUB_ACTOR}"
+          git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+      # Part of the release script is to compile the code, so we don't need to redo this
+      - name: 'release'
+        working-directory: ./javascript
+        run: npx release-it --ci
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
