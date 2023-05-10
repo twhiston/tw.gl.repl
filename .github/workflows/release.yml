@@ -1,8 +1,12 @@
 # Name of our workflow
 name: 'Release'
 
-# Events that will trigger our workflow
-on: [ 'push' ]
+# Trigger this workflow on tag pushes
+on:
+  push:
+    # Pattern matched against refs/tags
+    tags:
+      - '**'
 
 # List of custom jobs
 jobs:
@@ -10,9 +14,7 @@ jobs:
     # Using a "label" to assign job to a specific hosted runner
     runs-on: ubuntu-latest
     if:
-      contains('
-      refs/heads/dev
-      refs/heads/main', github.ref)
+      contains('refs/heads/main', github.ref)
 
     steps:
       # Checks-out our repository under "$GITHUB_WORKSPACE", so our job can access it
@@ -24,7 +26,7 @@ jobs:
         working-directory: ./javascript
         run: npm ci && npx nyc ava
 
-      # Compile output js for max
+      # Test compilation of output js for max
       - name: 'compile'
         working-directory: ./javascript
         run: npm run compile

@@ -20,10 +20,7 @@ jobs:
         working-directory: ./javascript
         run: npm ci && npx nyc ava && npx nyc report --reporter cobertura --reporter json-summary
 
-      - name: 'compile'
-        working-directory: ./javascript
-        run: npm run compile
-
+      # Get the coverage report and add a coverage comment
       - name: Code Coverage Report
         uses: irongut/CodeCoverageSummary@v1.3.0
         with:
@@ -48,3 +45,13 @@ jobs:
           style: flat
           source: ./javascript/coverage/coverage-summary.json
           output: ./javascript/coverage/badges.svg
+
+      # Build a release from this version and archive it for testing
+      - name: 'build release'
+        working-directory: ./javascript
+        run: ./build-release.sh
+      - name: test artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: release bundle
+          path: .dist/tw.gl.repl.zip
