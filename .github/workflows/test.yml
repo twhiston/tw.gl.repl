@@ -50,8 +50,14 @@ jobs:
       - name: 'build release'
         working-directory: ./javascript
         run: ./build-release.sh
+
+      - name: Set short git commit SHA
+        id: vars
+        run: |
+          calculatedSha=$(git rev-parse --short ${{ github.sha }})
+          echo "::set-output name=short_sha::$calculatedSha"
       - name: test artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: release bundle
+          name: tw.gl.repl-${{ steps.vars.outputs.short_sha }}
           path: .dist/tw.gl.repl.zip
