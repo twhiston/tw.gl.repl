@@ -1,12 +1,8 @@
 # Name of our workflow
 name: 'Release'
 
-# Trigger this workflow on tag pushes
-on:
-  push:
-    # Pattern matched against refs/tags
-    tags:
-      - '**'
+# Trigger this workflow on pushes, scope to main in jobs
+on: [ 'push' ]
 
 # List of custom jobs
 jobs:
