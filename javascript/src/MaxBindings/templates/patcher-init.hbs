@@ -1,0 +1,39 @@
+function patcher_init(){
+
+    // These objects are manually created in max and are what the generated parts connect with
+    var initpass = this.patcher.getnamed("initpass")
+    var cmdList = this.patcher.getnamed("cmdList")
+    var routedMsgOutput = this.patcher.getnamed("routedMsgOutput")
+    var ourself = this.box
+    // Our generated routepass object
+    var routepass = this.patcher.getnamed("routepass")
+    //delete and remake the routepass object
+    this.patcher.remove(routepass)
+	routepass = this.patcher.newdefault(385, 243, "routepass", {{#each functions}}{{#unless this.noroute}}"{{this.functionName}}"{{#unless @last}},{{/unless}}{{/unless}}{{/each}} )
+    //set the scripting name so we can get it again later
+    routepass.varname = "routepass"
+    routepass.rect = [380., 244., 780, 444]
+    //init pass is our internal first routepass where we filter fixed names
+    //no route output of that goes into our new object
+    this.patcher.connect(initpass, 5, routepass, 0)
+
+    //connect the router outlets to either a custom handler or the simple `t l` object cmdList
+    //handlerInlet is 0 if not set otherwise
+    {{#each functions}}{{~#unless this.noroute}}{{~#if this.customHandler}}
+    {{~#if (maxSelfReference this.customHandler)}}
+    //{{this.functionName}}
+    this.patcher.connect(routepass, {{outletCounter}}, ourself, {{this.handlerInlet}})
+    {{~else}} 
+    //{{this.functionName}}
+    var {{this.customHandler}} = this.patcher.getnamed("{{this.customHandler}}") 
+    this.patcher.connect(routepass, {{outletCounter}}, {{this.customHandler}}, {{this.handlerInlet}})
+    {{/if}}{{~else}}
+    //{{this.functionName}}
+    this.patcher.connect(routepass, {{outletCounter}}, cmdList,{{this.handlerInlet}})
+    {{/if}}{{/unless}}
+    {{~#if @last}}
+    //Unrouted messages are sent to the object output to be routed by the user
+    this.patcher.connect(routepass, {{outletCounter}}, routedMsgOutput, 0)
+    {{/if}}{{/each}}
+}
+patcher_init.local = 1

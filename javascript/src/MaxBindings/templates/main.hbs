@@ -1,0 +1,205 @@
+///////////////////////////////////////////////////////
+//  THIS FILE IS AUTO GENERATED, DO NOT EDIT BY HAND
+//   See README.md and ./src/MaxBindings for more
+///////////////////////////////////////////////////////
+
+
+// This require loads all our source code and importantly gives access to the following items
+// glRender , repl
+var i = require("includes")
+
+inlets = 1;
+outlets = 4;
+
+//Call keybindings with the name of a dict with a repl settings file in and it will
+//reconfigure the repl to use it. This will clear all current content of the repl!
+var sKeys = new Dict(jsarguments[2]);
+function keybindings(dictid) {
+    sKeys = new Dict(dictid);
+    init();
+}
+
+/**
+ * If OUT_MAT === true then additionally output the name of the jitter matrix which contains the text
+ * when you run/execute the code in the repl. it will be prefixed by jit_matrix
+ */
+var OUT_MAT = false;
+function output_matrix(v) {
+    if(v === undefined){
+        OUT_MAT = !OUT_MAT
+    } else {
+        OUT_MAT = v != 0;
+    }
+}
+
+/**
+ * If EPHEMERAL_MODE === true then the buffer will clear every time you run/execute
+ * If you run all it will empty all, if you run line it will empty the current line
+ */
+var EPHEMERAL_MODE = false;
+function ephemeral_mode(v) {
+    if(v === undefined){
+        EPHEMERAL_MODE = !EPHEMERAL_MODE
+    } else {
+        EPHEMERAL_MODE = v != 0;
+    }
+}
+
+/**
+ * If FORMAT_WRITES === true then format the output with any textFormatters before writing it to a File
+ */
+ var FORMAT_WRITES = true;
+ function format_writes(v){
+        if(v === undefined){
+        FORMAT_WRITES = !FORMAT_WRITES
+    } else {
+        FORMAT_WRITES = v != 0;
+    }
+ }
+
+// Contains the generated function to generate the routing objects for the
+// tw.js.repl patch, so no config routing updates if you change what methods
+// are exposed, just compile again and it will update on init.
+include("patcher-init")
+
+// Optionally include a user-repl file where you can define some additional things
+// You will have access to i.glRender and i.repl in ths code at runtime so
+// you can preload or attach your custom functions etc.
+include("user-repl")
+
+/*
+ * Functions below here are handcrafted in a template, and referenced in the generator script.
+ * They should not be edited by hand in the output js file
+ */
+function init() {
+    patcher_init();
+
+    if (jsarguments.length > 1) {
+        i.glRender.drawto(jsarguments[1]);
+		//post("drawing to context: ", jsarguments[1], "\n");
+    }
+    i.repl.clear();
+	//load config from a dict string (ie json)
+    try {
+        i.repl.loadConfigFromJSON(sKeys.stringify())
+    } catch (error) {
+        outlet(0, "error "+error.message)
+    }
+
+    i.glRender.font("Courier New Bold");
+    i.glRender.fontsize(100);
+    i.glRender.leadscale(0.94);
+    i.glRender.tracking(1);
+    i.glRender.line_length(999999);
+    i.glRender.alpha(1);
+
+    draw();
+}
+
+function keyPress(k) {
+	//our functions might return something which we want to output
+	//these will usually be messages for max such as the run command
+	var msgs = i.repl.keyPress(k)
+	for(var a = 0; a < msgs.length; a++){
+		outlet(0, msgs[a]);
+	}
+	draw();
+}
+
+// output the parsed code if output_matrix is disabled
+function run() {
+    try {
+        var formatted = i.repl.tb.format();
+        run_output(formatted);
+        if (EPHEMERAL_MODE)
+            clear();
+    } catch (error){
+        outlet(0, "error "+error.message)
+    }
+}
+
+function run_line() {
+    //If you change this function don't forget to update REPLManager test to reflect it
+    try {
+        var formatted = i.repl.tb.formatLine(i.repl.c.line());
+        run_output(formatted);
+        if (EPHEMERAL_MODE)
+            i.repl.tb.deleteLine(i.repl.c.line());
+    } catch (error){
+        outlet(0, "error "+error.message)
+    }
+}
+
+function run_output(out){
+    for (var a = 0; a < out.length; a++) {
+        outlet(0, out[a]);
+    }
+    if (OUT_MAT) {
+        outlet(0, "jit_matrix " + i.glRender.textMtx.name);
+    }
+    outlet(3, "bang")
+}
+run_output.local = 1;
+
+//output whatever is in the pastebin using formatters
+function output_paste_bin(){
+    outlet(2, i.repl.tb.pasteBinFormat());
+}
+
+// draw the text and output all info
+// this will be called by any generated function which
+// has the draw attribute set true.
+function draw() {
+
+	i.glRender.draw(i.repl.tb.get(), i.repl.c.position())
+
+	//Send some data out about the state
+	var status = i.repl.status()
+	for (var a = 0; a < status.length; a++) {
+  		outlet(1, status[a])
+	}
+
+}
+draw.local = 1
+
+//Read from a filename (provided by opendialog) and replay it's keypresses
+function read(filename) {
+    f = new File(filename, "read")
+    f.open()
+    var data = f.readbytes(f.eof);
+    f.close()
+
+    for (var index = 0; index < data.length; index++) {
+        keyPress(data[index]);
+    }
+    draw()
+}
+
+//write the buffer to a file (provided by savedialog), to be played back later
+function write(filename) {
+    f = new File(filename, "write", "TEXT")
+    f.open()
+    f.eof = 0;
+
+    var data = []
+    if(FORMAT_WRITES){
+        data = i.repl.tb.format()
+    } else {
+        data = i.repl.tb.get()
+    }
+
+    for (var index = 0; index < data.length; index++) {
+        f.writeline(data[index])
+    }
+    f.close()
+}
+
+/*
+ * REPL BINDINGS
+ * Functions below here are generated from class methods decorated with @maxMspBinding
+ * This exposes functions to the max api so they can be called from max
+ */
+
+{{#each functions}}
+{{{rendered }}}
+{{/each}}
