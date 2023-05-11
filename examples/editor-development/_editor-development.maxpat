@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 888.0, 66.0, 392.0, 841.0 ],
+		"rect" : [ 638.0, 66.0, 642.0, 841.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -1002,8 +1002,8 @@
 					"numinlets" : 1,
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "" ],
-					"patching_rect" : [ 244.5, 245.0, 159.0, 22.0 ],
-					"text" : "tw.gl.repl editor-dev 588 258"
+					"patching_rect" : [ 244.5, 245.0, 267.0, 22.0 ],
+					"text" : "tw.gl.repl editor-dev 588 258 @supress_output 1"
 				}
 
 			}
