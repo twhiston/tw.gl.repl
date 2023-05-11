@@ -1,4 +1,5 @@
 # /bin/sh
+set -euo pipefail
 npm run compile
 rm -rf ./../.dist
 mkdir -p ./../.dist/tw.gl.repl

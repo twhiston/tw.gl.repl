@@ -10,7 +10,8 @@
   },
   "hooks": {
     "before:git:release": [
-      "./build-release.sh"
+      "./build-release.sh",
+      "git add ./../CHANGELOG.md"
     ],
     "after:release": "echo Successfully released ${name} v${version} to ${repo.repository}."
   },

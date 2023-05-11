@@ -14,7 +14,8 @@
     "report": "nyc report --reporter=html --exclude-node-modules=false",
     "release": "release-it",
     "release-beta-minor": "release-it minor --preRelease=beta",
-    "release-beta-major": "release-it major --preRelease=beta"
+    "release-beta-major": "release-it major --preRelease=beta",
+    "release-beta": "release-it --preRelease=beta"
   },
   "author": "",
   "license": "GPL",
