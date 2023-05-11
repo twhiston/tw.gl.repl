@@ -207,6 +207,21 @@ function getCustomFunctionDefinitions(): Array<Object> {
         comment: "If true then also output the text matrix name behind the command routing jit_matrix when code is run. Note that this does not stop other messages being output from the repl"
     });
     genFuncs.push({
+        functionName: "supress_output",
+        handlerInlet: 0,
+        isMethod: true,
+        isAttribute: false,
+        paramCount: 1,
+        params: [
+            {
+                name: "v",
+                default: false,
+                type: "bang/int",
+            }
+        ],
+        comment: "If true then dont output the formatted messages. Can be used with output_matrix to only output the jit_matrix name from the repl"
+    });
+    genFuncs.push({
         functionName: "ephemeral_mode",
         handlerInlet: 0,
         isAttribute: true,
