@@ -33,6 +33,19 @@ function output_matrix(v) {
 }
 
 /**
+ * If SUPRESS_OUTPUT === true then dont output the formatted messages.
+ * Can be used with output_matrix to only output the jit_matrix name from the repl
+ */
+var SUPRESS_OUTPUT = false;
+function supress_output(v){
+    if(v === undefined){
+        SUPRESS_OUTPUT = !SUPRESS_OUTPUT
+    } else {
+        SUPRESS_OUTPUT = v != 0;
+    }
+}
+
+/**
  * If EPHEMERAL_MODE === true then the buffer will clear every time you run/execute
  * If you run all it will empty all, if you run line it will empty the current line
  */
@@ -131,8 +144,10 @@ function run_line() {
 }
 
 function run_output(out){
-    for (var a = 0; a < out.length; a++) {
-        outlet(0, out[a]);
+    if(SUPRESS_OUTPUT === false){
+        for (var a = 0; a < out.length; a++) {
+            outlet(0, out[a]);
+        }
     }
     if (OUT_MAT) {
         outlet(0, "jit_matrix " + i.glRender.textMtx.name);

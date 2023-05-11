@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 888.0, 66.0, 545.0, 841.0 ],
+		"rect" : [ 638.0, 66.0, 642.0, 841.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -40,12 +40,36 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-49",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 417.0, 410.0, 101.0, 22.0 ],
+					"text" : "supress_output 1"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-48",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 417.0, 377.0, 101.0, 22.0 ],
+					"text" : "supress_output 0"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-47",
 					"maxclass" : "message",
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 299.0, 477.0, 112.0, 22.0 ],
+					"patching_rect" : [ 292.0, 477.0, 112.0, 22.0 ],
 					"text" : "ephemeral_mode 0"
 				}
 
@@ -57,7 +81,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 299.0, 447.0, 112.0, 22.0 ],
+					"patching_rect" : [ 292.0, 447.0, 112.0, 22.0 ],
 					"text" : "ephemeral_mode 1"
 				}
 
@@ -92,7 +116,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 299.0, 410.0, 113.0, 22.0 ],
+					"patching_rect" : [ 292.0, 410.0, 113.0, 22.0 ],
 					"text" : "ignore_keys_id 100"
 				}
 
@@ -104,7 +128,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 299.0, 377.0, 119.0, 22.0 ],
+					"patching_rect" : [ 292.0, 377.0, 119.0, 22.0 ],
 					"text" : "ignore_keys_id 8706"
 				}
 
@@ -978,8 +1002,8 @@
 					"numinlets" : 1,
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "" ],
-					"patching_rect" : [ 244.5, 245.0, 159.0, 22.0 ],
-					"text" : "tw.gl.repl editor-dev 588 258"
+					"patching_rect" : [ 244.5, 245.0, 267.0, 22.0 ],
+					"text" : "tw.gl.repl editor-dev 588 258 @supress_output 1"
 				}
 
 			}
@@ -1232,6 +1256,20 @@
 				"patchline" : 				{
 					"destination" : [ "obj-31", 0 ],
 					"source" : [ "obj-47", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-31", 0 ],
+					"source" : [ "obj-48", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-31", 0 ],
+					"source" : [ "obj-49", 0 ]
 				}
 
 			}
