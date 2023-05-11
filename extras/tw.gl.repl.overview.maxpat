@@ -77,7 +77,7 @@
 					"parameter_enable" : 0,
 					"patching_rect" : [ 39.0, 318.0, 150.0, 60.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 24.0, 308.0, 150.0, 60.0 ],
+					"presentation_rect" : [ 24.0, 332.0, 150.0, 60.0 ],
 					"text" : "Livecode Max Objects Example",
 					"textoncolor" : [ 0.0, 0.0, 0.0, 1.0 ],
 					"textovercolor" : [ 1.0, 1.0, 1.0, 1.0 ],
@@ -96,7 +96,7 @@
 					"patching_rect" : [ 21.0, 523.0, 497.0, 248.0 ],
 					"presentation" : 1,
 					"presentation_linecount" : 22,
-					"presentation_rect" : [ 180.0, 92.0, 420.0, 301.0 ],
+					"presentation_rect" : [ 180.0, 116.0, 420.0, 301.0 ],
 					"text" : "A fully featured and configurable repl environment made in javascript and opengl for max. A command line text editor (similar to the workflow of the terminal) for the opengl world of Max. Add the object to your setup and initialize it with the name of the render context. Then make sure you send it the render bang in the top inlet. \n\nAttach functions to keypresses, mutate repl contents before output, reading files plays back all functions attached to keys. Configurable through json configuration file and code, easily extensible.\n\nSimple use cases for the repl can be handled entirely in configuration, add a shortkeys.json to your project or load any dict with the `keybindings dictname` message. \nMore complex use cases can be easily managed by including a `user-repl.js` file\ninside your project in which you can further customize behaviour by attaching\nyour own custom functions to keypresses or your own custom formatters for output\nmessage handling. This will be automatically read by the repl on start.\n\nSee README.md in the package folder for extensive information about how the repl works, or try the examples here.",
 					"textcolor" : [ 0.32548999786377, 0.345097988843918, 0.372548997402191, 1.0 ]
 				}
@@ -107,13 +107,15 @@
 					"fontface" : 1,
 					"fontsize" : 12.0,
 					"id" : "obj-21",
+					"linecount" : 3,
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 24.0, 62.0, 367.0, 20.0 ],
+					"patching_rect" : [ 24.0, 62.0, 367.0, 47.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 24.0, 62.0, 367.0, 20.0 ],
-					"text" : "written by Tom Whiston © 2023, www.tomwhiston.com"
+					"presentation_linecount" : 3,
+					"presentation_rect" : [ 24.0, 62.0, 372.0, 47.0 ],
+					"text" : "Written by Tom Whiston © 2023, www.tomwhiston.com\n\nThis project is based on th.gl.texteditor © Timo Hoogland 2020"
 				}
 
 			}
@@ -162,7 +164,7 @@
 					"parameter_enable" : 0,
 					"patching_rect" : [ 32.0, 484.0, 150.0, 23.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 24.0, 370.0, 150.0, 23.0 ],
+					"presentation_rect" : [ 24.0, 394.0, 150.0, 23.0 ],
 					"text" : "go to my website",
 					"textjustification" : 0,
 					"textoncolor" : [ 0.239216, 0.254902, 0.278431, 1.0 ],
@@ -211,7 +213,7 @@
 					"parameter_enable" : 0,
 					"patching_rect" : [ 39.0, 240.0, 150.0, 60.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 24.0, 234.0, 150.0, 60.0 ],
+					"presentation_rect" : [ 24.0, 258.0, 150.0, 60.0 ],
 					"text" : "Custom Formatter Example",
 					"textoncolor" : [ 0.0, 0.0, 0.0, 1.0 ],
 					"textovercolor" : [ 1.0, 1.0, 1.0, 1.0 ],
@@ -259,7 +261,7 @@
 					"parameter_enable" : 0,
 					"patching_rect" : [ 39.0, 166.0, 150.0, 60.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 24.0, 160.0, 150.0, 60.0 ],
+					"presentation_rect" : [ 24.0, 184.0, 150.0, 60.0 ],
 					"text" : "MIDI (SIMPLE) EXAMPLE",
 					"textoncolor" : [ 0.0, 0.0, 0.0, 1.0 ],
 					"textovercolor" : [ 1.0, 1.0, 1.0, 1.0 ],
@@ -319,7 +321,7 @@
 					"parameter_enable" : 0,
 					"patching_rect" : [ 39.0, 98.0, 150.0, 60.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 24.0, 92.0, 150.0, 60.0 ],
+					"presentation_rect" : [ 24.0, 116.0, 150.0, 60.0 ],
 					"text" : "GL EXAMPLE",
 					"textoncolor" : [ 0.0, 0.0, 0.0, 1.0 ],
 					"textovercolor" : [ 1.0, 1.0, 1.0, 1.0 ],

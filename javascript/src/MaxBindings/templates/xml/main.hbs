@@ -11,12 +11,16 @@
 		A configurable repl for opengl in Max. Add the object to your setup and initialize it with the
 		name of the render context. Make sure you send it the render bang in the top inlet. You can execute
 		the text in the repl to pass it through some formatters and output it, where you can do whatever you
-		like with it in max.For example control parameters of gl objects, control musical parameters, 
+		like with it in max.For example control parameters of gl objects, control musical parameters,
 		lighting shows, just use it as a typewriter or whatever you think of!
 		You can also attach functions to each key that the repl processes, this allows you to easily create
 		dsl's or command languages, you could output commands, or output messages that the repl itself responds to.
 		All messages output from functions attached to keys are processed by the repl, and then if not matched
 		are output outlet 2, where you can route them yourself.
+
+		tw.gl.repl (c) Tom Whiston 2023.
+
+		This project is based on th.gl.texteditor (c) Timo Hoogland 2020.
 	</description>
 
 	<!--METADATA-->
@@ -44,7 +48,7 @@
 		<outlet id="0" type="symbol">
 			<digest>message output from repl</digest>
 			<description>
-				any message output from the repl will be filtered through the repls own routepass and if 
+				any message output from the repl will be filtered through the repls own routepass and if
 				not handled then it is output from this outlet for you to handle.
 			</description>
 		</outlet>
