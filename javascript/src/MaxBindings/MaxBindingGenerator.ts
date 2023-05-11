@@ -195,7 +195,7 @@ function getCustomFunctionDefinitions(): Array<Object> {
         functionName: "output_matrix",
         handlerInlet: 0,
         isMethod: true,
-        isAttribute: false,
+        isAttribute: true,
         paramCount: 1,
         params: [
             {
@@ -210,7 +210,7 @@ function getCustomFunctionDefinitions(): Array<Object> {
         functionName: "supress_output",
         handlerInlet: 0,
         isMethod: true,
-        isAttribute: false,
+        isAttribute: true,
         paramCount: 1,
         params: [
             {
