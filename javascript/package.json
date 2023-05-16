@@ -1,5 +1,5 @@
 {
-  "name": "th.gl.texteditor",
+  "name": "tw.gl.repl",
   "version": "1.0.0-beta.1",
   "description": "max msp opengl text editor",
   "main": "th.gl.editor.js",
