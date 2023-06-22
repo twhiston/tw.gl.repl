@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 560.0, 100.0, 731.0, 794.0 ],
+		"rect" : [ 560.0, 100.0, 1015.0, 901.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -39,6 +39,55 @@
 		"subpatcher_template" : "",
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
+				"box" : 				{
+					"id" : "obj-38",
+					"linecount" : 7,
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 527.0, 356.0, 263.0, 100.0 ],
+					"text" : "You can see the code for the user-repl.js file which defines the custom formatters here. This file is loaded automatically by the repl when the patch is loaded, and in normal operation would not be loaded into a js object such as this.\nTo learn more about writing formatters see the README.md in the package root"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"bgcolor" : [ 1.0, 0.788235, 0.470588, 1.0 ],
+					"fontname" : "Arial Bold",
+					"hint" : "",
+					"id" : "obj-35",
+					"ignoreclick" : 1,
+					"legacytextcolor" : 1,
+					"maxclass" : "textbutton",
+					"numinlets" : 1,
+					"numoutlets" : 3,
+					"outlettype" : [ "", "", "int" ],
+					"parameter_enable" : 0,
+					"patching_rect" : [ 496.5, 354.0, 20.0, 20.0 ],
+					"rounded" : 60.0,
+					"text" : "7",
+					"textcolor" : [ 0.34902, 0.34902, 0.34902, 1.0 ]
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-32",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 791.0, 375.0, 80.0, 22.0 ],
+					"saved_object_attributes" : 					{
+						"filename" : "user-repl.js",
+						"parameter_enable" : 0
+					}
+,
+					"text" : "js user-repl.js"
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"id" : "obj-18",
 					"maxclass" : "newobj",
@@ -89,8 +138,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 27.5, 619.0, 150.0, 167.0 ],
-					"presentation_linecount" : 12,
+					"patching_rect" : [ 27.5, 619.0, 157.0, 167.0 ],
 					"text" : "Thes melodies you heard were the same but the file formatting was not.\nmelody2 is the result of melody1 being saved to disk with formatters being applied. You can see which formatters these are in the config.\n\nBy default format_writes is true."
 				}
 
@@ -114,7 +162,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 507.0, 454.5, 229.0, 60.0 ],
+					"patching_rect" : [ 507.0, 467.5, 229.0, 60.0 ],
 					"text" : "send the \"clear\" message, then read melody1.txt and execute.\nsend \"clear\" again and read melody2.txt and execute."
 				}
 
@@ -753,7 +801,7 @@
 					"fontname" : "Arial",
 					"fontsize" : 13.0,
 					"id" : "obj-40",
-					"items" : [ "AU DLS Synth 1", ",", "from Max 1", ",", "from Max 2" ],
+					"items" : [ "AU DLS Synth 1", ",", "M4", ",", "from Max 1", ",", "from Max 2" ],
 					"labelclick" : 1,
 					"maxclass" : "umenu",
 					"numinlets" : 1,
