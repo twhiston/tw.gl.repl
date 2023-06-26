@@ -426,23 +426,23 @@ export class REPLManager {
 
     // move the cursor to the index of the letter in the full text
     @maxMspBinding({ draw: true, isMethod: true })
-    gotoIndex(i: number): void {
+    gotoIndex(idx: number): void {
         // go to beginning if index less then 0
-        if (i < 0) {
+        if (idx < 0) {
             this.jumpTo(0);
             this.jumpTo(2);
             return;
         }
         // else move to the index by checking every line length
         for (var l = 0; l < this.tb.length(); l++) {
-            if (i < this.tb.lineLength(l)) {
+            if (idx < this.tb.lineLength(l)) {
                 this.c.setLine(l)
-                this.c.setChar(i)
+                this.c.setChar(idx)
                 return;
             } else {
                 // curLine = l;
                 // curChar = textBuf[l].length;
-                i -= this.tb.lineLength(l);
+                idx -= this.tb.lineLength(l);
             }
         }
         // else jump to end if index greater than max length;
