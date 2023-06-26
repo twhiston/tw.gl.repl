@@ -4,13 +4,13 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 5,
-			"revision" : 4,
+			"revision" : 5,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 418.0, 570.0, 1023.0, 754.0 ],
+		"rect" : [ 745.0, 226.0, 1023.0, 754.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -185,7 +185,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 212.0, 617.0, 50.0, 22.0 ],
-					"text" : "88"
+					"text" : "93"
 				}
 
 			}
@@ -195,7 +195,7 @@
 					"fontname" : "Arial",
 					"fontsize" : 13.0,
 					"id" : "obj-19",
-					"items" : [ "AU DLS Synth 1", ",", "from Max 1", ",", "from Max 2" ],
+					"items" : [ "AU DLS Synth 1", ",", "M4", ",", "from Max 1", ",", "from Max 2" ],
 					"labelclick" : 1,
 					"maxclass" : "umenu",
 					"numinlets" : 1,
@@ -349,7 +349,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 5,
-							"revision" : 4,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -511,7 +511,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 488.0, 278.0, 50.0, 22.0 ],
-									"text" : "88"
+									"text" : "93"
 								}
 
 							}
@@ -985,7 +985,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 56.5, 113.0, 906.0, 154.0 ],
-					"text" : "Here we are making a toy midi output script with the repl\n        Arrow Keys: These output simple messages which we handle inside max to produce midi notes.\n        Option+Enter: clear the repl\n\nIt is important to note that all of the repls output message generation and input display is handled in the config file. We have completely overridden the default behaviour of the repl by loading a new configuration file, we have even rebound our usual \"run\" key combination to instead clear the repl\n\nTo each arrow key we attach two functions, one which adds the character to the repl and then creates a newline after a certain length, and one which outputs a message to parse in max.\nTo Option+Enter we simply bind a function which outputs the \"clear\" message, which will then be consumed by the repl, as all repl output is first passed through its own message routing before being passed to the outside world."
+					"text" : "Here we are making a toy midi output script with the repl\n        Arrow Keys: These output simple messages which we handle inside max to produce midi notes.\n        Option+Enter/Altgr+Enter: clear the repl\n\nIt is important to note that all of the repls output message generation and input display is handled in the config file. We have completely overridden the default behaviour of the repl by loading a new configuration file, we have even rebound our usual \"run\" key combination to instead clear the repl\n\nTo each arrow key we attach two functions, one which adds the character to the repl and then creates a newline after a certain length, and one which outputs a message to parse in max.\nTo Option+Enter we simply bind a function which outputs the \"clear\" message, which will then be consumed by the repl, as all repl output is first passed through its own message routing before being passed to the outside world."
 				}
 
 			}
@@ -1103,7 +1103,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 5,
-							"revision" : 4,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}

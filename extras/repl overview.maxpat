@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 653.0, 97.0, 855.0, 752.0 ],
+		"rect" : [ 653.0, 96.0, 855.0, 786.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -58,7 +58,7 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 92.0, 691.5, 121.0, 22.0 ],
+					"patching_rect" : [ 719.0, 655.5, 121.0, 22.0 ],
 					"text" : "r interaction-example"
 				}
 
@@ -70,7 +70,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 92.0, 726.0, 51.0, 22.0 ],
+					"patching_rect" : [ 719.0, 690.0, 51.0, 22.0 ],
 					"text" : "pcontrol"
 				}
 
@@ -92,7 +92,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 754.0, 275.0, 683.0, 696.0 ],
+						"rect" : [ 1066.0, 266.0, 683.0, 696.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -637,7 +637,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 92.0, 760.0, 123.0, 22.0 ],
+					"patching_rect" : [ 719.0, 724.0, 123.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -656,7 +656,7 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 492.0, 670.0, 66.0, 22.0 ],
+					"patching_rect" : [ 473.0, 695.0, 66.0, 22.0 ],
 					"text" : "r printbang"
 				}
 
@@ -664,12 +664,12 @@
 , 			{
 				"box" : 				{
 					"id" : "obj-14",
-					"linecount" : 4,
+					"linecount" : 2,
 					"maxclass" : "message",
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 532.0, 697.0, 50.0, 62.0 ],
+					"patching_rect" : [ 473.0, 724.0, 118.0, 35.0 ],
 					"text" : "c3 e4 f#4 a4 g4 e4 c4 g3"
 				}
 
@@ -681,7 +681,7 @@
 					"numinlets" : 3,
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "" ],
-					"patching_rect" : [ 713.666666666666629, 666.5, 122.0, 22.0 ],
+					"patching_rect" : [ 925.0, 655.5, 122.0, 22.0 ],
 					"text" : "routepass loop stop"
 				}
 
@@ -1178,7 +1178,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 591.333333333333371, 733.0, 85.0, 22.0 ],
+					"patching_rect" : [ 517.0388110351563, 660.0, 85.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -1196,7 +1196,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 713.666666666666629, 698.0, 73.0, 22.0 ],
+					"patching_rect" : [ 925.0, 687.0, 73.0, 22.0 ],
 					"text" : "s fromREPL"
 				}
 
@@ -1207,7 +1207,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 620.666666666666629, 698.0, 91.0, 22.0 ],
+					"patching_rect" : [ 619.025874023437609, 764.5, 91.0, 22.0 ],
 					"text" : "print fromREPL"
 				}
 
@@ -1229,9 +1229,9 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 855.0, 726.0 ],
+						"rect" : [ 653.0, 122.0, 855.0, 760.0 ],
 						"bglocked" : 0,
-						"openinpresentation" : 0,
+						"openinpresentation" : 1,
 						"default_fontsize" : 12.0,
 						"default_fontface" : 0,
 						"default_fontname" : "Arial",
@@ -1260,13 +1260,44 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
-									"id" : "obj-2",
-									"linecount" : 20,
+									"fontname" : "<Monospaced>",
+									"id" : "obj-4",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 24.0, 80.0, 687.0, 288.0 ],
-									"text" : "By default the keypresses option+enter on mac and altgr+enter on windows are bound to the command to execute the entire contents of the repl.\nThe keypresses ctrl+option+enter on mac and ctrl+altgr+enter on windows are bound to execute only the line in the repl on which the cursor is currently positioned.\n\nEXAMPLE BUTTON\n\n\nWhen the whole buffer or a single line is executed the text will be parsed through a series of text formatters, which can process the text in various ways, and will then be output from the repl outlet 0, a bang will also be sent to outlet 2.\n\nBy default two formatters are applied to the text, firstly one that normalises the whitespace, and secondly a formatter which ensures that if you are using braces in your repl input the output is balanced.\n\n\nBUTTON\n\nNote that when you push the button above an error is printed to the max console, and the output of the message is not passed to the output. Add a ) in the repl and execute the line. This time in the max console you will see the output printed\n\n"
+									"patching_rect" : [ 28.0, 185.0, 164.0, 20.0 ],
+									"presentation" : 1,
+									"presentation_rect" : [ 28.0, 185.0, 164.0, 20.0 ],
+									"text" : "\"return ['run_line']\""
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"fontname" : "<Monospaced>",
+									"id" : "obj-3",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 28.0, 115.0, 126.0, 20.0 ],
+									"presentation" : 1,
+									"presentation_rect" : [ 28.0, 115.0, 126.0, 20.0 ],
+									"text" : "\"return ['run']\""
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-2",
+									"linecount" : 29,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 24.0, 80.0, 687.0, 409.0 ],
+									"presentation" : 1,
+									"presentation_linecount" : 29,
+									"presentation_rect" : [ 24.0, 80.0, 687.0, 409.0 ],
+									"text" : "By default the keypresses option+enter on mac and altgr+enter on windows are bound to the command to execute the entire contents of the repl.\n\n\n\nThe keypresses ctrl+option+enter on mac and ctrl+altgr+enter on windows are bound to execute only the line in the repl on which the cursor is currently positioned.\n\n\n\n\nWhen the \"run\" or \"run_line\" functions are called the following process occurs:\n\nThe whole buffer or single line is parsed through a series of text formatters, defined in the config file, which can mutate the text in various ways. The result of these operations will then be consumed by the repl itself if the command is recognised, or printed to outlet 0. A bang will also be sent to outlet 2.\n\nIn this case the repl consumes the messages, since run is a repl command, you can see all the repl commands in the help file or reference, or by looking at the autogenerated route object inside the tw.gl.repl object.\n\nBy default two formatters are applied to the text, firstly one that normalises the whitespace, and secondly a formatter which ensures that if you are using braces in your repl input the output is balanced.\n\n\nBUTTON\n\nNote that when you push the button above an error is printed to the max console, and the output of the message is not passed to the output. Add a ) in the repl and execute the line. This time in the max console you will see the output printed\n\n"
 								}
 
 							}
@@ -1279,10 +1310,10 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 24.0, 9.0, 198.0, 51.0 ],
+									"patching_rect" : [ 24.0, 9.0, 365.0, 51.0 ],
 									"presentation" : 1,
 									"presentation_rect" : [ 24.0, 9.0, 367.0, 51.0 ],
-									"text" : "repl - eval",
+									"text" : "repl - eval/print/loop",
 									"textcolor" : [ 0.32548999786377, 0.345097988843918, 0.372548997402191, 1.0 ]
 								}
 
@@ -1291,7 +1322,7 @@
 						"lines" : [  ]
 					}
 ,
-					"patching_rect" : [ 540.0, 189.0, 41.0, 22.0 ],
+					"patching_rect" : [ 562.0, 8.0, 93.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -1299,7 +1330,7 @@
 						"tags" : ""
 					}
 ,
-					"text" : "p eval"
+					"text" : "p eval/print/loop"
 				}
 
 			}
@@ -1322,7 +1353,7 @@
 					"numinlets" : 6,
 					"numoutlets" : 6,
 					"outlettype" : [ "", "", "", "", "", "" ],
-					"patching_rect" : [ 562.0, 613.0, 133.0, 22.0 ],
+					"patching_rect" : [ 415.051748046875105, 616.0, 528.935314941406091, 22.0 ],
 					"text" : "route wo play print c go"
 				}
 
@@ -1378,67 +1409,6 @@
 			}
 , 			{
 				"box" : 				{
-					"id" : "obj-9",
-					"maxclass" : "newobj",
-					"numinlets" : 0,
-					"numoutlets" : 0,
-					"patcher" : 					{
-						"fileversion" : 1,
-						"appversion" : 						{
-							"major" : 8,
-							"minor" : 5,
-							"revision" : 5,
-							"architecture" : "x64",
-							"modernui" : 1
-						}
-,
-						"classnamespace" : "box",
-						"rect" : [ 134.0, 181.0, 640.0, 480.0 ],
-						"bglocked" : 0,
-						"openinpresentation" : 0,
-						"default_fontsize" : 12.0,
-						"default_fontface" : 0,
-						"default_fontname" : "Arial",
-						"gridonopen" : 1,
-						"gridsize" : [ 15.0, 15.0 ],
-						"gridsnaponopen" : 1,
-						"objectsnaponopen" : 1,
-						"statusbarvisible" : 2,
-						"toolbarvisible" : 1,
-						"lefttoolbarpinned" : 0,
-						"toptoolbarpinned" : 0,
-						"righttoolbarpinned" : 0,
-						"bottomtoolbarpinned" : 0,
-						"toolbars_unpinned_last_save" : 0,
-						"tallnewobj" : 0,
-						"boxanimatetime" : 200,
-						"enablehscroll" : 1,
-						"enablevscroll" : 1,
-						"devicewidth" : 0.0,
-						"description" : "",
-						"digest" : "",
-						"tags" : "",
-						"style" : "",
-						"subpatcher_template" : "",
-						"assistshowspatchername" : 0,
-						"boxes" : [  ],
-						"lines" : [  ]
-					}
-,
-					"patching_rect" : [ 540.0, 255.0, 41.0, 22.0 ],
-					"saved_object_attributes" : 					{
-						"description" : "",
-						"digest" : "",
-						"globalpatchername" : "",
-						"tags" : ""
-					}
-,
-					"text" : "p loop"
-				}
-
-			}
-, 			{
-				"box" : 				{
 					"id" : "obj-8",
 					"maxclass" : "newobj",
 					"numinlets" : 0,
@@ -1454,7 +1424,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 855.0, 726.0 ],
+						"rect" : [ 0.0, 26.0, 855.0, 760.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 1,
 						"default_fontsize" : 12.0,
@@ -2148,7 +2118,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 540.0, 224.0, 42.0, 22.0 ],
+					"patching_rect" : [ 662.0, 8.0, 95.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -2156,7 +2126,7 @@
 						"tags" : ""
 					}
 ,
-					"text" : "p print"
+					"text" : "p parsing-output"
 				}
 
 			}
@@ -2177,98 +2147,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 855.0, 726.0 ],
-						"bglocked" : 0,
-						"openinpresentation" : 0,
-						"default_fontsize" : 12.0,
-						"default_fontface" : 0,
-						"default_fontname" : "Arial",
-						"gridonopen" : 1,
-						"gridsize" : [ 15.0, 15.0 ],
-						"gridsnaponopen" : 1,
-						"objectsnaponopen" : 1,
-						"statusbarvisible" : 2,
-						"toolbarvisible" : 1,
-						"lefttoolbarpinned" : 0,
-						"toptoolbarpinned" : 0,
-						"righttoolbarpinned" : 0,
-						"bottomtoolbarpinned" : 0,
-						"toolbars_unpinned_last_save" : 0,
-						"tallnewobj" : 0,
-						"boxanimatetime" : 200,
-						"enablehscroll" : 1,
-						"enablevscroll" : 1,
-						"devicewidth" : 0.0,
-						"description" : "",
-						"digest" : "",
-						"tags" : "",
-						"style" : "",
-						"subpatcher_template" : "",
-						"showontab" : 1,
-						"assistshowspatchername" : 0,
-						"boxes" : [ 							{
-								"box" : 								{
-									"id" : "obj-2",
-									"linecount" : 11,
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 24.0, 80.0, 687.0, 154.0 ],
-									"text" : "The first thing a repl needs to do is read in text. Although typing directly into the repl is the normal way to use it there are a number of ways to enter text which you can read more about in the object help.\n\nBy default when you write text into the repl window keypresses are written into a text buffer, and displayed in the window\nFor many common use cases, the default configuration will be fine, as it enables the usual read-execute-print-loop behaviour. However nothing is stopping you from attaching custom functions to those keypresses\n\nEXAMPLE LOADS A CONFIG AND CHANGES WHAT KEY PRESSES DO\n\nFor convenience by default a number of other functions are bound to keypresses to make navigating the REPL easier. See the default config file for details of all functions which are bound"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"fontface" : 0,
-									"fontname" : "Arial",
-									"fontsize" : 40.0,
-									"id" : "obj-22",
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 24.0, 9.0, 198.0, 51.0 ],
-									"presentation" : 1,
-									"presentation_rect" : [ 24.0, 9.0, 367.0, 51.0 ],
-									"text" : "repl - read",
-									"textcolor" : [ 0.32548999786377, 0.345097988843918, 0.372548997402191, 1.0 ]
-								}
-
-							}
- ],
-						"lines" : [  ]
-					}
-,
-					"patching_rect" : [ 540.0, 156.0, 43.0, 22.0 ],
-					"saved_object_attributes" : 					{
-						"description" : "",
-						"digest" : "",
-						"globalpatchername" : "",
-						"tags" : ""
-					}
-,
-					"text" : "p read"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-5",
-					"maxclass" : "newobj",
-					"numinlets" : 0,
-					"numoutlets" : 0,
-					"patcher" : 					{
-						"fileversion" : 1,
-						"appversion" : 						{
-							"major" : 8,
-							"minor" : 5,
-							"revision" : 5,
-							"architecture" : "x64",
-							"modernui" : 1
-						}
-,
-						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 855.0, 726.0 ],
+						"rect" : [ 0.0, 26.0, 855.0, 760.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 1,
 						"default_fontsize" : 12.0,
@@ -2298,6 +2177,236 @@
 						"showontab" : 1,
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
+								"box" : 								{
+									"fontname" : "<Monospaced>",
+									"id" : "obj-18",
+									"linecount" : 2,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 781.0, 235.0, 188.0, 34.0 ],
+									"presentation" : 1,
+									"presentation_linecount" : 2,
+									"presentation_rect" : [ 32.0, 214.0, 36.0, 34.0 ],
+									"text" : "k\nctx",
+									"textjustification" : 2
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"fontname" : "<Monospaced>",
+									"id" : "obj-16",
+									"linecount" : 6,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 749.0, 537.0, 211.0, 90.0 ],
+									"presentation" : 1,
+									"presentation_linecount" : 6,
+									"presentation_rect" : [ 36.0, 542.0, 211.0, 90.0 ],
+									"text" : "{\n    ...\n    \"functions\": [\n        \"doSomething\"\n    ]\n}"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"fontname" : "<Monospaced>",
+									"id" : "obj-14",
+									"linecount" : 10,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 755.0, 257.0, 202.0, 146.0 ],
+									"presentation" : 1,
+									"presentation_linecount" : 7,
+									"presentation_rect" : [ 36.0, 409.0, 358.0, 104.0 ],
+									"text" : "{\n    ...\n    \"functions\": [\n        \"ctx.tb.pasteBinCopyLine(ctx.c.line())\",\n        \"return ['output_paste_bin']\"\n    ]\n}"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"fontname" : "<Monospaced>",
+									"id" : "obj-12",
+									"linecount" : 7,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 684.0, 236.0, 242.0, 104.0 ],
+									"presentation" : 1,
+									"presentation_linecount" : 7,
+									"presentation_rect" : [ 36.0, 286.0, 198.0, 104.0 ],
+									"text" : "{\n    \"id\": \"alphahandler\",\n    \"asciiCode\": 127,\n    \"functions\": [\n         \"ctx.addChar(k)\"\n    ]\n}"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-10",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 1,
+									"outlettype" : [ "bang" ],
+									"patching_rect" : [ 640.0, 181.0, 58.0, 22.0 ],
+									"text" : "loadbang"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-6",
+									"maxclass" : "dict.view",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 232.0, 233.5, 362.0, 323.0 ],
+									"presentation" : 1,
+									"presentation_rect" : [ 401.0, 180.5, 346.0, 441.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-5",
+									"maxclass" : "newobj",
+									"numinlets" : 2,
+									"numoutlets" : 4,
+									"outlettype" : [ "dictionary", "", "", "" ],
+									"patching_rect" : [ 640.0, 213.0, 194.0, 22.0 ],
+									"saved_object_attributes" : 									{
+										"embed" : 0,
+										"parameter_enable" : 0,
+										"parameter_mappable" : 0
+									}
+,
+									"text" : "dict readexample _replbinding.json"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-2",
+									"linecount" : 50,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 24.0, 80.0, 586.0, 677.0 ],
+									"presentation" : 1,
+									"presentation_linecount" : 49,
+									"presentation_rect" : [ 24.0, 80.0, 723.0, 663.0 ],
+									"text" : "The first thing a REPL does is read in text. By default when you write text into the REPL keypresses are written into a text buffer and displayed. But this is only one possible behaviour as the user can configure the REPL behaviour using a JSON config file. \nFor most livecoding scenarios the default configuration will not need changing.\n\nYou can bind any number of functions to any ascii keycode, the functions will be called in the order they are defined. Functions may return an array of messages which will be output by the REPL. These may be messages to the repl itself, or messages to be parsed externally.\n\nYou have access to the following variables in your function body:\n\n            - the keypress which triggered the event\n            - the REPLManager object\n\nSome examples of binding functions include:\n1. A simple call the REPLManager object.\n\n\n\n\n\n\n\n\n2. A more complex example\n\n\n\n\n\n\n\n\n\n3. Call a custom function directly via name\n\n\n\n\n\n\n\n\nThis third method is a special case and requires you to pre-bind a custom function which you have written in code. See README.md in the package root folder for more information on this.\n\nFor convenience a number of functions are bound to keypresses by default to make navigating the REPL easier. See the object help and the default config file for all functions which are bound.\n\nSee the Midi(Simple) Example, on the examples tab, for an example of rebinding key controls."
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"fontface" : 0,
+									"fontname" : "Arial",
+									"fontsize" : 40.0,
+									"id" : "obj-22",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 24.0, 9.0, 198.0, 51.0 ],
+									"presentation" : 1,
+									"presentation_rect" : [ 24.0, 9.0, 367.0, 51.0 ],
+									"text" : "repl - read",
+									"textcolor" : [ 0.32548999786377, 0.345097988843918, 0.372548997402191, 1.0 ]
+								}
+
+							}
+ ],
+						"lines" : [ 							{
+								"patchline" : 								{
+									"destination" : [ "obj-5", 0 ],
+									"source" : [ "obj-10", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-6", 0 ],
+									"source" : [ "obj-5", 0 ]
+								}
+
+							}
+ ]
+					}
+,
+					"patching_rect" : [ 510.5, 8.0, 43.0, 22.0 ],
+					"saved_object_attributes" : 					{
+						"description" : "",
+						"digest" : "",
+						"globalpatchername" : "",
+						"tags" : ""
+					}
+,
+					"text" : "p read"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-5",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 0,
+					"patcher" : 					{
+						"fileversion" : 1,
+						"appversion" : 						{
+							"major" : 8,
+							"minor" : 5,
+							"revision" : 5,
+							"architecture" : "x64",
+							"modernui" : 1
+						}
+,
+						"classnamespace" : "box",
+						"rect" : [ 0.0, 26.0, 855.0, 760.0 ],
+						"bglocked" : 0,
+						"openinpresentation" : 1,
+						"default_fontsize" : 12.0,
+						"default_fontface" : 0,
+						"default_fontname" : "Arial",
+						"gridonopen" : 1,
+						"gridsize" : [ 15.0, 15.0 ],
+						"gridsnaponopen" : 1,
+						"objectsnaponopen" : 1,
+						"statusbarvisible" : 2,
+						"toolbarvisible" : 1,
+						"lefttoolbarpinned" : 0,
+						"toptoolbarpinned" : 0,
+						"righttoolbarpinned" : 0,
+						"bottomtoolbarpinned" : 0,
+						"toolbars_unpinned_last_save" : 0,
+						"tallnewobj" : 0,
+						"boxanimatetime" : 200,
+						"enablehscroll" : 1,
+						"enablevscroll" : 1,
+						"devicewidth" : 0.0,
+						"description" : "",
+						"digest" : "",
+						"tags" : "",
+						"style" : "",
+						"subpatcher_template" : "",
+						"showontab" : 1,
+						"assistshowspatchername" : 0,
+						"boxes" : [ 							{
+								"box" : 								{
+									"id" : "obj-23",
+									"maxclass" : "textbutton",
+									"numinlets" : 1,
+									"numoutlets" : 3,
+									"outlettype" : [ "", "", "int" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 368.0, 608.5, 100.0, 20.0 ],
+									"presentation" : 1,
+									"presentation_rect" : [ 96.0, 317.0, 100.0, 20.0 ],
+									"text" : "Press Me!"
+								}
+
+							}
+, 							{
 								"box" : 								{
 									"id" : "obj-35",
 									"maxclass" : "message",
@@ -2682,7 +2791,7 @@
 									"parameter_enable" : 0,
 									"patching_rect" : [ 327.5, 454.0, 155.0, 20.0 ],
 									"presentation" : 1,
-									"presentation_rect" : [ 159.5, 446.0, 155.0, 20.0 ],
+									"presentation_rect" : [ 169.5, 482.0, 155.0, 20.0 ],
 									"text" : "Press Me To Clear REPL"
 								}
 
@@ -2710,7 +2819,7 @@
 									"parameter_enable" : 0,
 									"patching_rect" : [ 577.0, 257.0, 100.0, 20.0 ],
 									"presentation" : 1,
-									"presentation_rect" : [ 304.0, 261.0, 100.0, 20.0 ],
+									"presentation_rect" : [ 305.0, 295.0, 100.0, 20.0 ],
 									"text" : "Press Me!"
 								}
 
@@ -2725,7 +2834,7 @@
 									"parameter_enable" : 0,
 									"patching_rect" : [ 549.0, 462.0, 100.0, 20.0 ],
 									"presentation" : 1,
-									"presentation_rect" : [ 65.0, 261.0, 100.0, 20.0 ],
+									"presentation_rect" : [ 62.0, 295.0, 100.0, 20.0 ],
 									"text" : "Press Me!"
 								}
 
@@ -2740,7 +2849,7 @@
 									"parameter_enable" : 0,
 									"patching_rect" : [ 532.0, 54.0, 100.0, 20.0 ],
 									"presentation" : 1,
-									"presentation_rect" : [ 383.0, 80.0, 100.0, 20.0 ],
+									"presentation_rect" : [ 392.0, 80.0, 100.0, 20.0 ],
 									"text" : "Press Me!"
 								}
 
@@ -2755,24 +2864,8 @@
 									"parameter_enable" : 0,
 									"patching_rect" : [ 600.0, 79.0, 100.0, 20.0 ],
 									"presentation" : 1,
-									"presentation_rect" : [ 187.0, 80.0, 100.0, 20.0 ],
+									"presentation_rect" : [ 197.0, 80.0, 100.0, 20.0 ],
 									"text" : "Press Me!"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"fontsize" : 16.0,
-									"id" : "obj-8",
-									"linecount" : 20,
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 24.0, 80.0, 487.0, 364.0 ],
-									"presentation" : 1,
-									"presentation_linecount" : 20,
-									"presentation_rect" : [ 24.0, 80.0, 471.0, 364.0 ],
-									"text" : "A REPL Reads in text                         Evaluates it                          Prints the output and Loops                        .Otherwise known as a language shell, a REPL is commonly used to execute programs which are written in a piecewise manner, which means you build them up by running consecutive commands, rather than first programming and then running the code later. REPL's are probably most well known in an artistic context from livecoding. \n\nNormally a REPL interacts with a programming language, but in this case the REPL designed to interact with patches you build in max                        ,the opengl window                       , and the repl itself.\n\nAt it's heart it is a text input window, which processes the input in various ways depending on how you configure it, and then outputs a series of messages, which you can further process in max to control things. But because of its flexible configuration, and the power of max, you can create very complex interactions.\n\nSee the other tabs to understand how the REPL works."
 								}
 
 							}
@@ -2795,16 +2888,17 @@
 							}
 , 							{
 								"box" : 								{
-									"id" : "obj-23",
-									"maxclass" : "textbutton",
+									"fontsize" : 16.0,
+									"id" : "obj-8",
+									"linecount" : 22,
+									"maxclass" : "comment",
 									"numinlets" : 1,
-									"numoutlets" : 3,
-									"outlettype" : [ "", "", "int" ],
-									"parameter_enable" : 0,
-									"patching_rect" : [ 368.0, 608.5, 100.0, 20.0 ],
+									"numoutlets" : 0,
+									"patching_rect" : [ 24.0, 80.0, 487.0, 400.0 ],
 									"presentation" : 1,
-									"presentation_rect" : [ 99.0, 283.0, 100.0, 20.0 ],
-									"text" : "Press Me!"
+									"presentation_linecount" : 22,
+									"presentation_rect" : [ 24.0, 80.0, 476.0, 400.0 ],
+									"text" : "A REPL - Reads in text                         Evaluates it                          Prints the output and Loops                        .\n\nOtherwise known as a language shell, a REPL is commonly used to execute programs which are written in a piecewise manner, which means you build them up by running consecutive commands, rather than fully programming the code first and then executing it later. REPL's are probably most well known in an artistic context from livecoding. \n\nNormally a REPL interacts with a programming language, but in this case the REPL designed to interact with patches you build in max                        ,the opengl window                       , and the repl itself                        .\n\nAt it's heart it is a text input window, which processes the input in various ways depending on how you configure it, and then outputs a series of messages, which you can further process in max to control things. But because of its flexible configuration, and the power of max, you can create very complex interactions.\n\nSee the other tabs to understand how the REPL works."
 								}
 
 							}
@@ -3093,7 +3187,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 540.0, 121.0, 95.0, 22.0 ],
+					"patching_rect" : [ 409.0, 8.0, 95.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -3122,9 +3216,9 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 653.0, 123.0, 855.0, 726.0 ],
+						"rect" : [ 0.0, 26.0, 855.0, 760.0 ],
 						"bglocked" : 0,
-						"openinpresentation" : 0,
+						"openinpresentation" : 1,
 						"default_fontsize" : 12.0,
 						"default_fontface" : 0,
 						"default_fontname" : "Arial",
@@ -3159,7 +3253,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 42.0, 300.0, 159.0, 141.0 ],
+									"patching_rect" : [ 42.0, 300.0, 160.0, 141.0 ],
 									"presentation" : 1,
 									"presentation_linecount" : 3,
 									"presentation_rect" : [ 16.0, 300.0, 597.0, 47.0 ],
@@ -3174,7 +3268,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 179.0, 316.0, 150.0, 33.0 ],
+									"patching_rect" : [ 296.0, 314.0, 150.0, 33.0 ],
 									"presentation" : 1,
 									"presentation_rect" : [ 175.0, 349.0, 438.0, 20.0 ],
 									"text" : "Visit my website to see more of my work"
@@ -3558,7 +3652,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 599.0, 156.0, 100.0, 22.0 ],
+					"patching_rect" : [ 765.0, 8.0, 100.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -3718,7 +3812,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-10", 0 ],
-					"order" : 0,
+					"order" : 1,
 					"source" : [ "obj-44", 1 ]
 				}
 
@@ -3733,7 +3827,8 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-14", 1 ],
-					"order" : 1,
+					"midpoints" : [ 526.5388110351563, 653.0, 612.0, 653.0, 612.0, 690.0, 612.0, 690.0, 612.0, 711.0, 581.5, 711.0 ],
+					"order" : 0,
 					"source" : [ "obj-44", 1 ]
 				}
 
@@ -3755,7 +3850,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-2", 0 ],
-					"midpoints" : [ 571.5, 637.0, 21.0, 637.0, 21.0, 475.0, 33.5, 475.0 ],
+					"midpoints" : [ 424.551748046875105, 661.0, 16.0, 661.0, 16.0, 475.0, 33.5, 475.0 ],
 					"source" : [ "obj-44", 0 ]
 				}
 
