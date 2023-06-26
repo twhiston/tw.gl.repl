@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 590.0, 100.0, 683.0, 794.0 ],
+		"rect" : [ 768.0, 240.0, 752.0, 794.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -37,8 +37,7 @@
 		"tags" : "",
 		"style" : "",
 		"subpatcher_template" : "",
-		"showrootpatcherontab" : 0,
-		"showontab" : 0,
+		"showontab" : 1,
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
@@ -57,7 +56,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 683.0, 768.0 ],
+						"rect" : [ 0.0, 26.0, 752.0, 742.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -84,7 +83,7 @@
 						"tags" : "",
 						"style" : "",
 						"subpatcher_template" : "",
-						"showontab" : 2,
+						"showontab" : 1,
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
@@ -189,7 +188,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 220.0, 375.0, 289.0, 47.0 ],
+									"patching_rect" : [ 220.0, 375.0, 291.0, 47.0 ],
 									"text" : "If true then text in the repl will be passed through the formatters, as if it is being output, before it is written to disk. Defaults to true"
 								}
 
@@ -411,7 +410,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 683.0, 768.0 ],
+						"rect" : [ 0.0, 26.0, 752.0, 742.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -438,7 +437,7 @@
 						"tags" : "",
 						"style" : "",
 						"subpatcher_template" : "",
-						"showontab" : 2,
+						"showontab" : 1,
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
@@ -1054,7 +1053,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 683.0, 768.0 ],
+						"rect" : [ 0.0, 26.0, 752.0, 742.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1081,7 +1080,7 @@
 						"tags" : "",
 						"style" : "",
 						"subpatcher_template" : "",
-						"showontab" : 2,
+						"showontab" : 1,
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
@@ -1841,7 +1840,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 683.0, 768.0 ],
+						"rect" : [ 0.0, 26.0, 752.0, 742.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1868,7 +1867,7 @@
 						"tags" : "",
 						"style" : "",
 						"subpatcher_template" : "",
-						"showontab" : 2,
+						"showontab" : 1,
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
@@ -2521,7 +2520,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 683.0, 768.0 ],
+						"rect" : [ 0.0, 26.0, 752.0, 742.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -2548,7 +2547,7 @@
 						"tags" : "",
 						"style" : "",
 						"subpatcher_template" : "",
-						"showontab" : 2,
+						"showontab" : 1,
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
@@ -3167,7 +3166,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 683.0, 768.0 ],
+						"rect" : [ 0.0, 26.0, 752.0, 742.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -3194,7 +3193,7 @@
 						"tags" : "",
 						"style" : "",
 						"subpatcher_template" : "",
-						"showontab" : 2,
+						"showontab" : 1,
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
@@ -4517,7 +4516,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 590.0, 126.0, 683.0, 768.0 ],
+						"rect" : [ 768.0, 292.0, 752.0, 742.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -4544,18 +4543,63 @@
 						"tags" : "",
 						"style" : "",
 						"subpatcher_template" : "",
-						"showontab" : 2,
+						"showontab" : 1,
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
-									"fontsize" : 12.0,
-									"id" : "obj-7",
+									"fontname" : "<Monospaced>",
+									"fontsize" : 10.0,
+									"id" : "obj-13",
+									"linecount" : 13,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 424.0, 67.0, 363.0, 158.0 ],
+									"presentation_linecount" : 13,
+									"text" : "Option+Enter / AltGr+Enter - run contents of REPL\nOption+Ctrl+Enter / AltGr+Ctrl+Enter - Run line under cursor\n\nOption+G/AltGr+G - enable/disable ephemeral mode (buffer contents or line contents are deleted when run)\n\nOption+/ / AltGr+/ - comment line\n\nOption+z / AltGr+z - clear REPL contents\n\nBackspace - delete characted behind cursor\nDelete - delete character in front of cursor"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"fontname" : "<Monospaced>",
+									"fontsize" : 10.0,
+									"id" : "obj-11",
 									"linecount" : 7,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 43.0, 371.5, 371.0, 100.0 ],
-									"text" : "Any command in the repl [routepass] is callable from inside the repl itself, so even if there is not a key combination assigned you could use the full route and execute the buffer or the line. \nEg:\n\nfont \"Courier New Bold\"\nblink_time 70"
+									"patching_rect" : [ 420.5, 259.0, 373.0, 88.0 ],
+									"presentation_linecount" : 19,
+									"text" : "Option+x / AltGr+x - cut line to internal clipboard\nOption+c / AltGr+c - copy line to internal clipboard\nOption+k / AltGr+k - copy all to internal clipboard\nOption+v / AltGr+v - paste contents of internal clipboard to \n                     REPL\nOption+p / AltGr+p - replace current line with contents of \n                     internal clipboard"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"fontname" : "<Monospaced>",
+									"fontsize" : 10.0,
+									"id" : "obj-9",
+									"linecount" : 10,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 420.5, 370.0, 370.0, 123.0 ],
+									"presentation_linecount" : 10,
+									"text" : "Up Arrow                            - Go up one line\nDown Arrow                          - Go down one line\nLeft Arrow                          - Go left one character\nRight Arrow                         - Go right one character\nOption+Up / AltGr+Up                - Jump to top\nOption+Down / AltGr+Down            - Jump to bottom\nOption+Left / AltGr+Left            - Jump to start of line\nOption+Right / AltGr+Right          - Jump to end of line\nOption+Ctrl+Left / AltGr+Ctrl+Left  - Jump word left\nOption+Ctrl+Right/ AltGr+Ctrl+Right - Jump word right"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"fontsize" : 12.0,
+									"id" : "obj-7",
+									"linecount" : 8,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 43.0, 392.0, 371.0, 114.0 ],
+									"text" : "Any command in the repl [routepass] is callable from inside the repl itself, so even if there is not a key combination assigned you could use the full route and execute the buffer or the line. \nEg:\n\ncursor *!\njumpLine 0\nblink_time 70"
 								}
 
 							}
@@ -4567,7 +4611,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 43.0, 349.5, 367.0, 20.0 ],
+									"patching_rect" : [ 43.0, 370.0, 367.0, 20.0 ],
 									"text" : "REPL Commands:"
 								}
 
@@ -4601,12 +4645,13 @@
 								"box" : 								{
 									"fontsize" : 12.0,
 									"id" : "obj-2",
-									"linecount" : 29,
+									"linecount" : 31,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 422.0, 67.0, 367.0, 395.0 ],
-									"text" : "var ALT_Q //move to top of page\nvar ALT_SHFT_Q //move to bottom of page\n\nvar ALT_Z //undo edit\nvar ALT_SHFT_Z //redo edit\n\nvar ALT_X //delete a line of code\nvar ALT_C //copy a line of code\nvar ALT_V //paste-insert a line of code\nvar ALT_P //copy+paste line\n\nvar ALT_B //backspace a character\nvar ALT_FS //(un)comment a line of code\n\nvar OPT+, //jump 1 word left\nvar OPT+. //jump 1 word right\n\n- You cannot bind ALT + char. But you can bind ALTGR + char\n\n- Backspace works to delete a character behind the cursor\n\n- Delete deletes the character in front of the cursor\n\n- Option+Enter (osx) AltGr+Enter (windows outputs the contents of the text buffer\n- Option+Control+Enter (osx) AltGr+Control+Enter (windows) outputs the currently selected line of the text buffer\n\n- Use the arrow's up/down/left/right to navigate with the cursor"
+									"patching_rect" : [ 420.5, 67.0, 370.0, 435.0 ],
+									"presentation_linecount" : 31,
+									"text" : "\n\n\n\n\n\n\n\n\n\n\n\nClipboard:\n\n\n\n\n\n\n\n\nNavigation:\n\n\n\n\n\n\n\n\n\n"
 								}
 
 							}
@@ -4642,12 +4687,13 @@
 								"box" : 								{
 									"fontsize" : 12.0,
 									"id" : "obj-41",
-									"linecount" : 9,
+									"linecount" : 11,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 43.0, 214.0, 371.0, 127.0 ],
-									"text" : "- You can bind all characters and some special characters that work with SHFT + char (all characters most be part of ASCII table 0-128)\n\n- Binding a function to keycode 127 it will apply to all non modified keypresses (so you do not need to bind a function individually to every alphanumeric key)\n\n- Option+D will enable and disable the editor. This cannot be overriden in the configuration file!"
+									"patching_rect" : [ 43.0, 214.0, 371.0, 154.0 ],
+									"presentation_linecount" : 11,
+									"text" : "- You can bind all characters and some special characters (all characters most be part of ASCII table)\n\n- Binding a function to keycode 127 it will apply to all non modified keypresses (so you do not need to bind a function individually to every alphanumeric key)\n\n- You cannot bind ALT + char. But you can bind ALTGR + char\n\n- Option+D/AltGr+D will enable and disable the editor. This cannot be overriden in the configuration file!"
 								}
 
 							}
@@ -4691,7 +4737,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 601.0, 397.0, 70.0, 22.0 ],
+					"patching_rect" : [ 601.0, 397.0, 83.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -4699,7 +4745,7 @@
 						"tags" : ""
 					}
 ,
-					"text" : "p shortkeys"
+					"text" : "p keyBindings"
 				}
 
 			}
@@ -4720,7 +4766,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 683.0, 768.0 ],
+						"rect" : [ 0.0, 26.0, 752.0, 742.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -4789,7 +4835,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 677.5, 397.0, 27.0, 22.0 ],
+					"patching_rect" : [ 688.5, 397.0, 27.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -4886,8 +4932,9 @@
 						"tags" : "",
 						"style" : "",
 						"subpatcher_template" : "",
-						"showontab" : 1,
+						"showontab" : 0,
 						"assistshowspatchername" : 0,
+						"visible" : 1,
 						"boxes" : [ 							{
 								"box" : 								{
 									"id" : "obj-20",
@@ -5091,7 +5138,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 45.0, 374.0, 175.0, 194.0 ],
+									"patching_rect" : [ 45.0, 374.0, 176.0, 194.0 ],
 									"text" : "try the following code commands\n\nhit OPTION + ENTER (osx) ALTGR + ENTER (windows) to execute\n\nw erase_color 0 0 0 0.7\ngs mesh auto_colors 1\ngs shape opencube\ngs anim turn 0.5 0.5 0.5\ngs mesh poly_mode 1 1\ngs mesh scale 0.5 0.5 10\ngs mesh draw_mode line_strip"
 								}
 
