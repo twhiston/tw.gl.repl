@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 100.0, 100.0, 683.0, 794.0 ],
+		"rect" : [ 590.0, 100.0, 683.0, 794.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -141,7 +141,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 221.0, 260.0, 286.0, 33.0 ],
+									"patching_rect" : [ 220.0, 260.0, 286.0, 33.0 ],
 									"text" : "read, with optional filename, will play some text back into the buffer from a .txt file"
 								}
 
@@ -153,7 +153,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 183.0, 252.0, 33.0, 22.0 ],
+									"patching_rect" : [ 183.0, 248.0, 33.0, 22.0 ],
 									"text" : "read"
 								}
 
@@ -190,7 +190,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 220.0, 375.0, 289.0, 47.0 ],
-									"text" : "If true then text in the repl will be formatted, as if it is being output, before it is written to disk. Defaults to true"
+									"text" : "If true then text in the repl will be passed through the formatters, as if it is being output, before it is written to disk. Defaults to true"
 								}
 
 							}
@@ -304,6 +304,7 @@
 						"lines" : [ 							{
 								"patchline" : 								{
 									"destination" : [ "obj-1", 0 ],
+									"midpoints" : [ 98.5, 130.5, 41.5, 130.5 ],
 									"source" : [ "obj-12", 0 ]
 								}
 
@@ -311,6 +312,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-1", 0 ],
+									"midpoints" : [ 98.5, 166.5, 41.5, 166.5 ],
 									"source" : [ "obj-15", 0 ]
 								}
 
@@ -325,6 +327,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-1", 0 ],
+									"midpoints" : [ 81.5, 68.0, 41.5, 68.0 ],
 									"source" : [ "obj-2", 0 ]
 								}
 
@@ -332,6 +335,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-1", 0 ],
+									"midpoints" : [ 119.5, 219.0, 41.5, 219.0 ],
 									"source" : [ "obj-21", 0 ]
 								}
 
@@ -339,6 +343,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-1", 0 ],
+									"midpoints" : [ 192.5, 277.0, 41.5, 277.0 ],
 									"source" : [ "obj-25", 0 ]
 								}
 
@@ -346,6 +351,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-1", 0 ],
+									"midpoints" : [ 114.5, 362.5, 41.5, 362.5 ],
 									"source" : [ "obj-28", 0 ]
 								}
 
@@ -360,6 +366,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-1", 0 ],
+									"midpoints" : [ 192.5, 360.0, 41.5, 360.0 ],
 									"source" : [ "obj-32", 0 ]
 								}
 
@@ -367,6 +374,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-1", 0 ],
+									"midpoints" : [ 81.5, 97.0, 41.5, 97.0 ],
 									"source" : [ "obj-8", 0 ]
 								}
 
@@ -4509,7 +4517,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 683.0, 768.0 ],
+						"rect" : [ 590.0, 126.0, 683.0, 768.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -4542,12 +4550,12 @@
 								"box" : 								{
 									"fontsize" : 12.0,
 									"id" : "obj-7",
-									"linecount" : 6,
+									"linecount" : 7,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 422.0, 334.5, 371.0, 87.0 ],
-									"text" : "Any command in the repl routepass is callable from inside the repl itself, so even if there is not a shortkey assigned you could use the full route and run the buffer or the line to output it. Eg\n\nfont \"Courier New Bold\"\nblink_time 70"
+									"patching_rect" : [ 43.0, 371.5, 371.0, 100.0 ],
+									"text" : "Any command in the repl [routepass] is callable from inside the repl itself, so even if there is not a key combination assigned you could use the full route and execute the buffer or the line. \nEg:\n\nfont \"Courier New Bold\"\nblink_time 70"
 								}
 
 							}
@@ -4559,7 +4567,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 422.0, 312.5, 367.0, 20.0 ],
+									"patching_rect" : [ 43.0, 349.5, 367.0, 20.0 ],
 									"text" : "REPL Commands:"
 								}
 
@@ -4572,7 +4580,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 45.0, 98.0, 369.0, 74.0 ],
-									"text" : "All functionality is totally customisable by the user, so the descriptions here relate to the default shortkeys.json file which comes with the repl.\nIf you are making your own configuration it's probably useful to look closely at the default file to see how function calls are handled"
+									"text" : "All functionality is totally customisable by the user, so the descriptions here relate to the default replkeys.json file which comes with the repl.\nIf you are making your own configuration it's probably useful to look closely at the default file to see how function calls are handled"
 								}
 
 							}
@@ -4593,12 +4601,12 @@
 								"box" : 								{
 									"fontsize" : 12.0,
 									"id" : "obj-2",
-									"linecount" : 16,
+									"linecount" : 29,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 422.0, 67.0, 367.0, 221.0 ],
-									"text" : "var ALT_Q //move to top of page\nvar ALT_SHFT_Q //move to bottom of page\n\nvar ALT_Z //undo edit\nvar ALT_SHFT_Z //redo edit\n\nvar ALT_X //delete a line of code\nvar ALT_C //copy a line of code\nvar ALT_V //paste-insert a line of code\nvar ALT_P //copy+paste line\n\nvar ALT_B //backspace a character\nvar ALT_FS //(un)comment a line of code\n\nvar OPT+, //jump 1 word left\nvar OPT+. //jump 1 word right"
+									"patching_rect" : [ 422.0, 67.0, 367.0, 395.0 ],
+									"text" : "var ALT_Q //move to top of page\nvar ALT_SHFT_Q //move to bottom of page\n\nvar ALT_Z //undo edit\nvar ALT_SHFT_Z //redo edit\n\nvar ALT_X //delete a line of code\nvar ALT_C //copy a line of code\nvar ALT_V //paste-insert a line of code\nvar ALT_P //copy+paste line\n\nvar ALT_B //backspace a character\nvar ALT_FS //(un)comment a line of code\n\nvar OPT+, //jump 1 word left\nvar OPT+. //jump 1 word right\n\n- You cannot bind ALT + char. But you can bind ALTGR + char\n\n- Backspace works to delete a character behind the cursor\n\n- Delete deletes the character in front of the cursor\n\n- Option+Enter (osx) AltGr+Enter (windows outputs the contents of the text buffer\n- Option+Control+Enter (osx) AltGr+Control+Enter (windows) outputs the currently selected line of the text buffer\n\n- Use the arrow's up/down/left/right to navigate with the cursor"
 								}
 
 							}
@@ -4611,7 +4619,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 43.0, 192.0, 367.0, 20.0 ],
-									"text" : "REPL Functionalities:"
+									"text" : "Config File Functionalities:"
 								}
 
 							}
@@ -4634,12 +4642,12 @@
 								"box" : 								{
 									"fontsize" : 12.0,
 									"id" : "obj-41",
-									"linecount" : 15,
+									"linecount" : 9,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 43.0, 214.0, 371.0, 208.0 ],
-									"text" : "- You can type all characters and some special characters that work with SHFT + char (all characters most be part of ASCII table 0-128)\n\n- Not included are ALT + char.\n\n- Backspace works to delete a character behind the cursor\n- Delete deletes the character in front of the cursor\n\n- Option+Return outputs the contents of the text buffer\n- Option+Control+Return outputs the currently selected line of the text buffer\n\n- Use the arrow's up/down/left/right to navigate with the cursor\n\n- Option+D will enable and disable the editor"
+									"patching_rect" : [ 43.0, 214.0, 371.0, 127.0 ],
+									"text" : "- You can bind all characters and some special characters that work with SHFT + char (all characters most be part of ASCII table 0-128)\n\n- Binding a function to keycode 127 it will apply to all non modified keypresses (so you do not need to bind a function individually to every alphanumeric key)\n\n- Option+D will enable and disable the editor. This cannot be overriden in the configuration file!"
 								}
 
 							}
@@ -4851,7 +4859,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 100.0, 126.0, 683.0, 768.0 ],
+						"rect" : [ 0.0, 26.0, 683.0, 768.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -5079,12 +5087,12 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-15",
-									"linecount" : 12,
+									"linecount" : 14,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 45.0, 374.0, 175.0, 167.0 ],
-									"text" : "try the following code commands\n\nhit ALT + ENTER to execute\n\nw erase_color 0 0 0 0.7\ngs mesh auto_colors 1\ngs shape opencube\ngs anim turn 0.5 0.5 0.5\ngs mesh poly_mode 1 1\ngs mesh scale 0.5 0.5 10\ngs mesh draw_mode line_strip"
+									"patching_rect" : [ 45.0, 374.0, 175.0, 194.0 ],
+									"text" : "try the following code commands\n\nhit OPTION + ENTER (osx) ALTGR + ENTER (windows) to execute\n\nw erase_color 0 0 0 0.7\ngs mesh auto_colors 1\ngs shape opencube\ngs anim turn 0.5 0.5 0.5\ngs mesh poly_mode 1 1\ngs mesh scale 0.5 0.5 10\ngs mesh draw_mode line_strip"
 								}
 
 							}
