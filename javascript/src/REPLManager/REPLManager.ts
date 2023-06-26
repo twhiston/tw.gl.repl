@@ -352,6 +352,7 @@ export class REPLManager {
 
     // move one line up or down
     //NB used to be called gotoLine
+    @maxMspBinding({ draw: true, isMethod: true })
     jumpLine(k: Direction) {
         var pos = this.c.position()
         //k = k * 2 - 1;
@@ -370,6 +371,7 @@ export class REPLManager {
 
     // jump to the next or previous word (looks for seprated by spaces)
     //NB used to be called gotoWord
+    @maxMspBinding({ draw: true, isMethod: true })
     jumpWord(k: Direction) {
         var pos = this.c.position()
         if (k === -1) {
