@@ -198,14 +198,14 @@
             ]
         },
         {
-            "id": "jumpWord-alt-ctrl-left",
+            "id": "jumpWord-left-cmd-left",
             "asciiCode": 6133,
             "functions": [
                 "ctx.jumpWord(-1)"
             ]
         },
         {
-            "id": "jumpWord-alt-ctrl-right",
+            "id": "jumpWord-right-cmd-right",
             "asciiCode": 6132,
             "functions": [
                 "ctx.jumpWord(1)"
