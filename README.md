@@ -163,7 +163,8 @@ All currently available settings are as follows:
             "formatters": [
                 "whitespace",
                 "bracebalanced",
-                "singleline"
+                "singleline",
+                "commentremover"
                 //can also include your own custom formatters here
             ]
         }

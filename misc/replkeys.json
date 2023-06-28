@@ -2,6 +2,7 @@
     "settings": {
         "textbuffer": {
             "formatters": [
+                "commentremover",
                 "whitespace",
                 "bracebalanced"
             ]
