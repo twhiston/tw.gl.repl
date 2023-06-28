@@ -6,23 +6,20 @@ import './../extensions/array.extensions';
 class TestWhiteSpaceTrimFormatter implements TextFormatter {
     id = "TestWhiteSpaceTrimFormatter"
     format(strArr: Array<string>, ctx: {}): Array<string> {
-        // Your implementation goes here
-        return strArr.map(str => str.trim()); // Example implementation that returns all strings in uppercase
+        return strArr.map(str => str.trim());
     }
 }
 
 class TestWhiteSpaceReplacerFormatter implements TextFormatter {
     id = "TestWhiteSpaceReplacerFormatter"
     format(strArr: Array<string>, ctx: {}): Array<string> {
-        // Your implementation goes here
-        return strArr.map(str => str.replace(/\{/g, '').replace(/\}/g, '').trim()); // Example implementation that returns all strings in uppercase
+        return strArr.map(str => str.replace(/\{/g, '').replace(/\}/g, '').trim());
     }
 }
 
 class TestUppercaseFormatter implements TextFormatter {
     id = "TestUppercaseFormatter"
     format(strArr: Array<string>, ctx: {}): Array<string> {
-        // Your implementation goes here
         return strArr.map(str => str.toUpperCase()); // Example implementation that returns all strings in uppercase
     }
 }

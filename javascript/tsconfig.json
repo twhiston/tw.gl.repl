@@ -61,6 +61,9 @@
       "SingleLineOutputFormatter": [
         "TextBuffer/formatters/SingleLineOutputFormatter"
       ],
+      "CommentRemoverFormatter": [
+        "TextBuffer/formatters/CommentRemoverFormatter"
+      ],
       "string.extensions": [
         "extensions/string.extensions"
       ],
