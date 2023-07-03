@@ -10,15 +10,29 @@
     },
     "bindings": [
         {
-            "id": "execute",
+            "id": "execute-opt+enter-mac",
             "asciiCode": 2044,
             "functions": [
                 "return ['run']"
             ]
         },
         {
-            "id": "execute-line",
+            "id": "execute-ctrl+enter-win",
+            "asciiCode": 4348,
+            "functions": [
+                "return ['run']"
+            ]
+        },
+        {
+            "id": "execute_line+ctrl+opt+enter-mac",
             "asciiCode": 6140,
+            "functions": [
+                "return ['run_line']"
+            ]
+        },
+        {
+            "id": "execute_line+shift+ctrl+enter-win",
+            "asciiCode": 4860,
             "functions": [
                 "return ['run_line']"
             ]
@@ -28,13 +42,6 @@
             "asciiCode": 127,
             "functions": [
                 "ctx.addChar(k)"
-            ]
-        },
-        {
-            "id": "ephemeral_mode-alt-g",
-            "asciiCode": 169,
-            "functions": [
-                "return ['ephemeral_mode']"
             ]
         },
         {
@@ -94,50 +101,99 @@
             ]
         },
         {
-            "id": "comment-alt-/",
+            "id": "comment-opt+/-mac",
             "asciiCode": 247,
             "functions": [
                 "ctx.commentLine()"
             ]
         },
         {
-            "id": "clear-alt-z",
+            "id": "comment-ctrl+/-win",
+            "asciiCode": 4399,
+            "functions": [
+                "ctx.commentLine()"
+            ]
+        },
+        {
+            "id": "clear-opt+z-mac",
             "asciiCode": 937,
             "functions": [
                 "ctx.clear()"
             ]
         },
         {
-            "id": "cutLine-alt-x",
+            "id": "clear-ctrl+z-win",
+            "asciiCode": 4474,
+            "functions": [
+                "ctx.clear()"
+            ]
+        },
+        {
+            "id": "cutLine-opt+x-mac",
             "asciiCode": 8776,
             "functions": [
                 "ctx.tb.pasteBinCopyLine(ctx.c.line());ctx.deleteLine();return ['output_paste_bin']"
             ]
         },
         {
-            "id": "copyLine-alt-c",
+            "id": "cutLine-ctrl+x-win",
+            "asciiCode": 4472,
+            "functions": [
+                "ctx.tb.pasteBinCopyLine(ctx.c.line());ctx.deleteLine();return ['output_paste_bin']"
+            ]
+        },
+        {
+            "id": "copyLine-opt+c-mac",
             "asciiCode": 231,
             "functions": [
                 "ctx.tb.pasteBinCopyLine(ctx.c.line());return ['output_paste_bin']"
             ]
         },
         {
-            "id": "copyAll-alt-k",
+            "id": "copyLine-ctrl+c-win",
+            "asciiCode": 4451,
+            "functions": [
+                "ctx.tb.pasteBinCopyLine(ctx.c.line());return ['output_paste_bin']"
+            ]
+        },
+        {
+            "id": "copyAll-opt+k-mac",
             "asciiCode": 730,
             "functions": [
                 "ctx.tb.pasteBinCopyAll();return ['output_paste_bin']"
             ]
         },
         {
-            "id": "paste-alt-v",
+            "id": "copyAll-ctrl+k-win",
+            "asciiCode": 4459,
+            "functions": [
+                "ctx.tb.pasteBinCopyAll();return ['output_paste_bin']"
+            ]
+        },
+        {
+            "id": "paste-opt+v-mac",
             "asciiCode": 8730,
             "functions": [
                 "var pb = ctx.tb.pasteBinGet(); for(var i = 0; i < pb.length; i++){for (var a = 0; a < pb[i].length; a++) {var char = pb[i].charCodeAt(a); ctx.keyPress(char)}};"
             ]
         },
         {
-            "id": "replaceLine-alt-p",
+            "id": "paste-ctrl+v-win",
+            "asciiCode": 4470,
+            "functions": [
+                "var pb = ctx.tb.pasteBinGet(); for(var i = 0; i < pb.length; i++){for (var a = 0; a < pb[i].length; a++) {var char = pb[i].charCodeAt(a); ctx.keyPress(char)}};"
+            ]
+        },
+        {
+            "id": "replaceLine-opt+p-mac",
             "asciiCode": 960,
+            "functions": [
+                "var pb = ctx.tb.pasteBinGet(); var startLine = ctx.c.line(); ctx.deleteLine(); if(ctx.c.line() < ctx.tb.length()-1){ctx.jumpLine(-1);ctx.jumpTo(1);} if(startLine === 0){ctx.jumpTo(0); ctx.newLine(); ctx.jumpTo(2); }else { ctx.newLine(); } for(var i = 0; i < pb.length; i++){for (var a = 0; a < pb[i].length; a++) {var char = pb[i].charCodeAt(a); ctx.keyPress(char)}}"
+            ]
+        },
+        {
+            "id": "replaceLine-ctrl+p-win",
+            "asciiCode": 4464,
             "functions": [
                 "var pb = ctx.tb.pasteBinGet(); var startLine = ctx.c.line(); ctx.deleteLine(); if(ctx.c.line() < ctx.tb.length()-1){ctx.jumpLine(-1);ctx.jumpTo(1);} if(startLine === 0){ctx.jumpTo(0); ctx.newLine(); ctx.jumpTo(2); }else { ctx.newLine(); } for(var i = 0; i < pb.length; i++){for (var a = 0; a < pb[i].length; a++) {var char = pb[i].charCodeAt(a); ctx.keyPress(char)}}"
             ]
@@ -171,45 +227,101 @@
             ]
         },
         {
-            "id": "jump-top-alt-up",
+            "id": "jump_top-opt+up-mac",
             "asciiCode": 2039,
             "functions": [
                 "ctx.jumpTo(2)"
             ]
         },
         {
-            "id": "jump-bottom-alt-down",
+            "id": "jump_top-ctrl+up-win",
+            "asciiCode": 4343,
+            "functions": [
+                "ctx.jumpTo(2)"
+            ]
+        },
+        {
+            "id": "jump_bottom-opt+down-mac",
             "asciiCode": 2038,
             "functions": [
                 "ctx.jumpTo(3)"
             ]
         },
         {
-            "id": "jump-begin-alt-left",
+            "id": "jump_bottom-opt+down-win",
+            "asciiCode": 4342,
+            "functions": [
+                "ctx.jumpTo(3)"
+            ]
+        },
+        {
+            "id": "jump_startline-opt+left-mac",
             "asciiCode": 2037,
             "functions": [
                 "ctx.jumpTo(0)"
             ]
         },
         {
-            "id": "jump-end-alt-right",
+            "id": "jump_startline-ctrl+left-win",
+            "asciiCode": 4341,
+            "functions": [
+                "ctx.jumpTo(0)"
+            ]
+        },
+        {
+            "id": "jump_endline-opt+right-mac",
             "asciiCode": 2036,
             "functions": [
                 "ctx.jumpTo(1)"
             ]
         },
         {
-            "id": "jumpWord-left-cmd-left",
-            "asciiCode": 8804,
+            "id": "jump_endline-ctrl+right-win",
+            "asciiCode": 4340,
+            "functions": [
+                "ctx.jumpTo(1)"
+            ]
+        },
+        {
+            "id": "jumpWord_left-cmd+left-mac",
+            "asciiCode": 245,
             "functions": [
                 "ctx.jumpWord(-1)"
             ]
         },
         {
-            "id": "jumpWord-right-cmd-right",
-            "asciiCode": 8805,
+            "id": "jumpWord_left-ctrl+shift+left-win",
+            "asciiCode": 4853,
+            "functions": [
+                "ctx.jumpWord(-1)"
+            ]
+        },
+        {
+            "id": "jumpWord_right-cmd+right-mac",
+            "asciiCode": 244,
             "functions": [
                 "ctx.jumpWord(1)"
+            ]
+        },
+        {
+            "id": "jumpWord_right-ctrl+shift+right-win",
+            "asciiCode": 4852,
+            "functions": [
+                "ctx.jumpWord(1)"
+            ]
+        },
+        {
+            "id": "ephemeral_mode-opt+g-mac",
+            "asciiCode": 169,
+            "functions": [
+                "return ['ephemeral_mode']"
+            ]
+        },
+        {
+            "id": "ephemeral_mode-ctrl+g-win",
+            "asciiCode": 4455,
+            "functions": [
+                "return ['ephemeral_mode']"
             ]
         }
     ]
