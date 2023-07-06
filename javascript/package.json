@@ -1,12 +1,8 @@
 {
-  "name": "tw.gl.repl",
+  "name": "glrepl",
   "version": "1.0.0-beta.3",
-  "description": "max msp opengl text editor",
-  "main": "th.gl.editor.js",
-  "directories": {
-    "doc": "docs",
-    "example": "examples"
-  },
+  "description": "GLRepl is a max/msp opengl REPL that you can use with your patches",
+  "main": "tw.gl.repl.maxpat",
   "scripts": {
     "generate-max-binding": "npx ts-node --skip-project ./src/MaxBindings/generateMaxBindings.ts",
     "compile": "npx tsc; npm run generate-max-binding",
@@ -17,7 +13,7 @@
     "release-beta-major": "release-it major --preRelease=beta",
     "release-beta": "release-it --preRelease=beta"
   },
-  "author": "",
+  "author": "Tom Whiston",
   "license": "GPL",
   "devDependencies": {
     "@commitlint/cli": "^17.6.3",
