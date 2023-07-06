@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 485.0, 99.0, 775.0, 486.0 ],
+		"rect" : [ 662.0, 328.0, 771.0, 511.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -42,6 +42,23 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
+					"fontface" : 0,
+					"fontname" : "Arial",
+					"fontsize" : 40.0,
+					"id" : "obj-22",
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 24.0, 9.0, 150.0, 51.0 ],
+					"presentation" : 1,
+					"presentation_rect" : [ 24.0, 9.0, 146.0, 51.0 ],
+					"text" : "GLRepl",
+					"textcolor" : [ 0.32548999786377, 0.345097988843918, 0.372548997402191, 1.0 ]
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-7",
 					"maxclass" : "newobj",
 					"numinlets" : 0,
@@ -57,7 +74,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 775.0, 460.0 ],
+						"rect" : [ 0.0, 26.0, 771.0, 485.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 1,
 						"default_fontsize" : 12.0,
@@ -88,6 +105,24 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
+									"fontface" : 0,
+									"fontname" : "Arial",
+									"fontsize" : 40.0,
+									"id" : "obj-1",
+									"linecount" : 6,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 24.0, 9.0, 83.0, 275.0 ],
+									"presentation" : 1,
+									"presentation_rect" : [ 24.0, 9.0, 364.0, 51.0 ],
+									"text" : "GLRepl - print/loop",
+									"textcolor" : [ 0.32548999786377, 0.345097988843918, 0.372548997402191, 1.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"id" : "obj-2",
 									"linecount" : 11,
 									"maxclass" : "comment",
@@ -97,24 +132,7 @@
 									"presentation" : 1,
 									"presentation_linecount" : 9,
 									"presentation_rect" : [ 24.0, 80.0, 723.0, 127.0 ],
-									"text" : "To prepare the text for printing it is passed through a series of formatters. By default two formatters are applied, firstly one which normalises whitespace, and secondly a formatter which ensures that you have balanced braces in your input.\n\n\nNote that when you push the button above an error is printed to the max console, and the output of the message is not passed to the output. Add a ) in the repl and execute the line. This time in the max console you will see the output printed.\n\n\nEPHEMERAL MODE"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"fontface" : 0,
-									"fontname" : "Arial",
-									"fontsize" : 40.0,
-									"id" : "obj-22",
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 24.0, 9.0, 281.0, 51.0 ],
-									"presentation" : 1,
-									"presentation_rect" : [ 24.0, 9.0, 367.0, 51.0 ],
-									"text" : "repl - print/loop",
-									"textcolor" : [ 0.32548999786377, 0.345097988843918, 0.372548997402191, 1.0 ]
+									"text" : "To prepare the text for printing it is passed through a series of formatters. By default three formatters are applied, firstly one which normalises whitespace, and secondly a formatter which ensures that you have balanced braces in your input.\n\n\nNote that when you push the button above an error is printed to the max console, and the output of the message is not passed to the output. Add a ) in the repl and execute the line. This time in the max console you will see the output printed.\n\n\nEPHEMERAL MODE"
 								}
 
 							}
@@ -123,7 +141,6 @@
 					}
 ,
 					"patching_rect" : [ 609.5, 8.0, 68.0, 22.0 ],
-					"presentation_linecount" : 3,
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -190,8 +207,8 @@
 					"numinlets" : 1,
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "" ],
-					"patching_rect" : [ 578.0, 577.0, 159.0, 22.0 ],
-					"text" : "tw.gl.repl launcher 1280 720"
+					"patching_rect" : [ 578.0, 577.0, 152.0, 22.0 ],
+					"text" : "tw.gl.repl launcher 527 399"
 				}
 
 			}
@@ -203,7 +220,7 @@
 					"numoutlets" : 3,
 					"outlettype" : [ "jit_matrix", "bang", "" ],
 					"patching_rect" : [ 40.0, 479.0, 557.0, 22.0 ],
-					"text" : "jit.world launcher @floating 1 @enable 1 @fsaa 1 @fsmenubar 0 @size 480 270 @erase_color 0 0 0 1"
+					"text" : "jit.world launcher @floating 1 @enable 1 @fsaa 1 @fsmenubar 0 @size 527 399 @erase_color 0 0 0 1"
 				}
 
 			}
@@ -224,7 +241,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 775.0, 460.0 ],
+						"rect" : [ 0.0, 26.0, 771.0, 485.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 1,
 						"default_fontsize" : 12.0,
@@ -254,6 +271,24 @@
 						"showontab" : 1,
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
+								"box" : 								{
+									"fontface" : 0,
+									"fontname" : "Arial",
+									"fontsize" : 40.0,
+									"id" : "obj-1",
+									"linecount" : 4,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 24.0, 9.0, 83.0, 185.0 ],
+									"presentation" : 1,
+									"presentation_rect" : [ 24.0, 9.0, 270.0, 51.0 ],
+									"text" : "GLRepl - eval",
+									"textcolor" : [ 0.32548999786377, 0.345097988843918, 0.372548997402191, 1.0 ]
+								}
+
+							}
+, 							{
 								"box" : 								{
 									"autofit" : 1,
 									"embed" : 1,
@@ -300,23 +335,6 @@
 							}
 , 							{
 								"box" : 								{
-									"fontface" : 0,
-									"fontname" : "Arial",
-									"fontsize" : 40.0,
-									"id" : "obj-22",
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 24.0, 9.0, 365.0, 51.0 ],
-									"presentation" : 1,
-									"presentation_rect" : [ 24.0, 9.0, 367.0, 51.0 ],
-									"text" : "repl - eval",
-									"textcolor" : [ 0.32548999786377, 0.345097988843918, 0.372548997402191, 1.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
 									"angle" : 270.0,
 									"grad1" : [ 0.16078431372549, 0.16078431372549, 0.16078431372549, 1.0 ],
 									"grad2" : [ 0.07843137254902, 0.07843137254902, 0.07843137254902, 1.0 ],
@@ -343,7 +361,7 @@
 									"presentation" : 1,
 									"presentation_linecount" : 28,
 									"presentation_rect" : [ 24.0, 62.0, 701.0, 395.0 ],
-									"text" : "\n\nBy default the keypresses option+enter on mac and altgr+enter on \nwindows are bound to a function which tells the REPL to return the \nmessage 'run'.\n\n\n\n\n\n\nThe keypresses ctrl+option+enter on mac and ctrl+altgr+enter on \nwindows are bound to a function which tells the REPL to return the \nmessage 'run_line'.\n\n\n\n\n\n\n\nWhen these functions are called the following  process occurs:\n\n* The whole text, or the selected line, is retrieved from the buffer.\n* The text is parsed through a series of text formatters, defined in the configuration json\n* These formatters mutate the text in turn\n* The formatted text is passed back to the command router, where it is either routed back to the repl or passed to outlet 1\n* A bang is sent to outlet 3\n"
+									"text" : "\n\nBy default the keypresses option+enter on mac and ctrl+enter on \nwindows are bound to a function which tells the REPL to return the \nmessage 'run'.\n\n\n\n\n\n\nThe keypresses ctrl+option+enter on mac and shift+ctrl+enter on \nwindows are bound to a function which tells the REPL to return the \nmessage 'run_line'.\n\n\n\n\n\n\n\nWhen these functions are called the following  process occurs:\n\n* The whole text, or the selected line, is retrieved from the buffer.\n* The text is parsed through a series of text formatters, defined in the configuration json\n* These formatters mutate the text in the order in which they appear in the configuration\n* The formatted text is passed back to the command router, where it is either routed back to the repl or passed to outlet 1\n* A bang is sent to outlet 3\n"
 								}
 
 							}
@@ -380,7 +398,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 775.0, 460.0 ],
+						"rect" : [ 0.0, 26.0, 771.0, 485.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -411,6 +429,165 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
+									"bgcolor" : [ 1.0, 0.788235, 0.470588, 1.0 ],
+									"fontname" : "Arial Bold",
+									"hint" : "",
+									"id" : "obj-37",
+									"ignoreclick" : 1,
+									"legacytextcolor" : 1,
+									"maxclass" : "textbutton",
+									"numinlets" : 1,
+									"numoutlets" : 3,
+									"outlettype" : [ "", "", "int" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 324.948251953124895, 143.0, 20.0, 20.0 ],
+									"rounded" : 60.0,
+									"text" : "6",
+									"textcolor" : [ 0.34902, 0.34902, 0.34902, 1.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"bgcolor" : [ 1.0, 0.788235, 0.470588, 1.0 ],
+									"fontname" : "Arial Bold",
+									"hint" : "",
+									"id" : "obj-34",
+									"ignoreclick" : 1,
+									"legacytextcolor" : 1,
+									"maxclass" : "textbutton",
+									"numinlets" : 1,
+									"numoutlets" : 3,
+									"outlettype" : [ "", "", "int" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 371.5, 234.0, 20.0, 20.0 ],
+									"rounded" : 60.0,
+									"text" : "5",
+									"textcolor" : [ 0.34902, 0.34902, 0.34902, 1.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-32",
+									"linecount" : 3,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 500.5, 116.0, 237.0, 47.0 ],
+									"text" : "Once the REPL has received the run_line message it will format the input and output it from outlet 1, which is then received here"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-30",
+									"linecount" : 4,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 126.0, 280.0, 150.0, 60.0 ],
+									"text" : "The list of messages in the message box above are sent to inlet 1 of [tw.gl.repl]"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"bgcolor" : [ 1.0, 0.788235, 0.470588, 1.0 ],
+									"fontname" : "Arial Bold",
+									"hint" : "",
+									"id" : "obj-26",
+									"ignoreclick" : 1,
+									"legacytextcolor" : 1,
+									"maxclass" : "textbutton",
+									"numinlets" : 1,
+									"numoutlets" : 3,
+									"outlettype" : [ "", "", "int" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 371.5, 171.5, 20.0, 20.0 ],
+									"rounded" : 60.0,
+									"text" : "4",
+									"textcolor" : [ 0.34902, 0.34902, 0.34902, 1.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"bgcolor" : [ 1.0, 0.788235, 0.470588, 1.0 ],
+									"fontname" : "Arial Bold",
+									"hint" : "",
+									"id" : "obj-25",
+									"ignoreclick" : 1,
+									"legacytextcolor" : 1,
+									"maxclass" : "textbutton",
+									"numinlets" : 1,
+									"numoutlets" : 3,
+									"outlettype" : [ "", "", "int" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 482.5, 120.0, 20.0, 20.0 ],
+									"rounded" : 60.0,
+									"text" : "3",
+									"textcolor" : [ 0.34902, 0.34902, 0.34902, 1.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"bgcolor" : [ 1.0, 0.788235, 0.470588, 1.0 ],
+									"fontname" : "Arial Bold",
+									"hint" : "",
+									"id" : "obj-24",
+									"ignoreclick" : 1,
+									"legacytextcolor" : 1,
+									"maxclass" : "textbutton",
+									"numinlets" : 1,
+									"numoutlets" : 3,
+									"outlettype" : [ "", "", "int" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 104.0, 300.0, 20.0, 20.0 ],
+									"rounded" : 60.0,
+									"text" : "2",
+									"textcolor" : [ 0.34902, 0.34902, 0.34902, 1.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"bgcolor" : [ 1.0, 0.788235, 0.470588, 1.0 ],
+									"fontname" : "Arial Bold",
+									"hint" : "",
+									"id" : "obj-22",
+									"ignoreclick" : 1,
+									"legacytextcolor" : 1,
+									"maxclass" : "textbutton",
+									"numinlets" : 1,
+									"numoutlets" : 3,
+									"outlettype" : [ "", "", "int" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 11.0, 143.0, 20.0, 20.0 ],
+									"rounded" : 60.0,
+									"text" : "1",
+									"textcolor" : [ 0.34902, 0.34902, 0.34902, 1.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"fontface" : 0,
+									"fontname" : "Arial",
+									"fontsize" : 40.0,
+									"id" : "obj-18",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 24.0, 9.0, 499.0, 51.0 ],
+									"text" : "GLRepl - parsing output",
+									"textcolor" : [ 0.32548999786377, 0.345097988843918, 0.372548997402191, 1.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"id" : "obj-23",
 									"maxclass" : "button",
 									"numinlets" : 1,
@@ -427,7 +604,7 @@
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 629.935314941406091, 486.0, 121.0, 22.0 ],
+									"patching_rect" : [ 619.935314941406091, 486.0, 121.0, 22.0 ],
 									"text" : "print unmatchedInput"
 								}
 
@@ -583,7 +760,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 16.0, 344.0, 416.0, 20.0 ],
+									"patching_rect" : [ 16.0, 352.0, 416.0, 20.0 ],
 									"text" : "Below you can see the routing for all of the tabs in this overview patch"
 								}
 
@@ -1215,11 +1392,11 @@
 								"box" : 								{
 									"id" : "obj-11",
 									"maxclass" : "newobj",
-									"numinlets" : 4,
-									"numoutlets" : 4,
-									"outlettype" : [ "", "", "", "" ],
-									"patching_rect" : [ 525.935314941406091, 454.5, 123.0, 22.0 ],
-									"text" : "routepass loop stop //"
+									"numinlets" : 3,
+									"numoutlets" : 3,
+									"outlettype" : [ "", "", "" ],
+									"patching_rect" : [ 525.935314941406091, 454.5, 113.0, 22.0 ],
+									"text" : "routepass loop stop"
 								}
 
 							}
@@ -1778,7 +1955,7 @@
 										}
 ,
 										"classnamespace" : "box",
-										"rect" : [ 624.0, 482.0, 688.0, 480.0 ],
+										"rect" : [ 1151.0, 452.0, 688.0, 480.0 ],
 										"bglocked" : 0,
 										"openinpresentation" : 0,
 										"default_fontsize" : 12.0,
@@ -2421,7 +2598,7 @@
 									"numinlets" : 0,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 500.5, 153.0, 71.0, 22.0 ],
+									"patching_rect" : [ 500.5, 165.0, 71.0, 22.0 ],
 									"text" : "r fromREPL"
 								}
 
@@ -2434,22 +2611,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 24.0, 79.0, 705.5, 33.0 ],
-									"text" : "Messages from the repl are printed from the first outlet and the expectation is that you use [route] and [routepass] objects to build ways to use the formatted text to interact with your patches."
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"fontface" : 0,
-									"fontname" : "Arial",
-									"fontsize" : 40.0,
-									"id" : "obj-22",
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 24.0, 21.0, 504.0, 51.0 ],
-									"text" : "repl - parsing output",
-									"textcolor" : [ 0.32548999786377, 0.345097988843918, 0.372548997402191, 1.0 ]
+									"text" : "Messages from the repl are printed from the first outlet of [tw.gl.repl] and the expectation is that you use [route] and [routepass] objects to build ways to use the formatted text to interact with your patches."
 								}
 
 							}
@@ -2457,7 +2619,7 @@
 						"lines" : [ 							{
 								"patchline" : 								{
 									"destination" : [ "obj-41", 0 ],
-									"source" : [ "obj-11", 3 ]
+									"source" : [ "obj-11", 2 ]
 								}
 
 							}
@@ -2692,7 +2854,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 775.0, 460.0 ],
+						"rect" : [ 0.0, 26.0, 771.0, 485.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 1,
 						"default_fontsize" : 12.0,
@@ -2722,6 +2884,24 @@
 						"showontab" : 1,
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
+								"box" : 								{
+									"fontface" : 0,
+									"fontname" : "Arial",
+									"fontsize" : 40.0,
+									"id" : "obj-1",
+									"linecount" : 5,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 24.0, 9.0, 83.0, 230.0 ],
+									"presentation" : 1,
+									"presentation_rect" : [ 24.0, 9.0, 281.0, 51.0 ],
+									"text" : "GLRepl - read",
+									"textcolor" : [ 0.32548999786377, 0.345097988843918, 0.372548997402191, 1.0 ]
+								}
+
+							}
+, 							{
 								"box" : 								{
 									"fontname" : "<Monospaced>",
 									"id" : "obj-18",
@@ -2843,23 +3023,6 @@
 								}
 
 							}
-, 							{
-								"box" : 								{
-									"fontface" : 0,
-									"fontname" : "Arial",
-									"fontsize" : 40.0,
-									"id" : "obj-22",
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 24.0, 9.0, 198.0, 51.0 ],
-									"presentation" : 1,
-									"presentation_rect" : [ 24.0, 9.0, 367.0, 51.0 ],
-									"text" : "repl - read",
-									"textcolor" : [ 0.32548999786377, 0.345097988843918, 0.372548997402191, 1.0 ]
-								}
-
-							}
  ],
 						"lines" : [ 							{
 								"patchline" : 								{
@@ -2907,7 +3070,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 485.0, 125.0, 775.0, 460.0 ],
+						"rect" : [ 662.0, 354.0, 771.0, 485.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 1,
 						"default_fontsize" : 12.0,
@@ -2946,7 +3109,7 @@
 									"parameter_enable" : 0,
 									"patching_rect" : [ 368.0, 608.5, 100.0, 20.0 ],
 									"presentation" : 1,
-									"presentation_rect" : [ 257.0, 262.0, 100.0, 20.0 ],
+									"presentation_rect" : [ 410.0, 266.0, 100.0, 20.0 ],
 									"text" : "Press Me!"
 								}
 
@@ -3151,7 +3314,7 @@
 									"parameter_enable" : 0,
 									"patching_rect" : [ 90.0, 462.0, 100.0, 20.0 ],
 									"presentation" : 1,
-									"presentation_rect" : [ 77.0, 103.0, 100.0, 20.0 ],
+									"presentation_rect" : [ 28.0, 106.0, 100.0, 20.0 ],
 									"text" : "Press Me!"
 								}
 
@@ -3176,7 +3339,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "bang", "run" ],
-									"patching_rect" : [ 532.0, 100.0, 43.0, 22.0 ],
+									"patching_rect" : [ 738.0, 96.0, 43.0, 22.0 ],
 									"text" : "t b run"
 								}
 
@@ -3188,7 +3351,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 600.0, 171.0, 210.0, 22.0 ],
+									"patching_rect" : [ 806.0, 167.0, 210.0, 22.0 ],
 									"text" : "replay \"play c3 e4 f#4 a4 g4 e4 c4 g3\""
 								}
 
@@ -3200,7 +3363,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 642.0, 138.0, 188.0, 22.0 ],
+									"patching_rect" : [ 848.0, 134.0, 188.0, 22.0 ],
 									"text" : "replay \"// lets write a midi melody\""
 								}
 
@@ -3211,7 +3374,7 @@
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 600.0, 211.0, 91.0, 22.0 ],
+									"patching_rect" : [ 806.0, 207.0, 91.0, 22.0 ],
 									"text" : "s launcher-msg"
 								}
 
@@ -3223,7 +3386,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 3,
 									"outlettype" : [ "bang", "bang", "clear" ],
-									"patching_rect" : [ 600.0, 108.0, 103.0, 22.0 ],
+									"patching_rect" : [ 806.0, 104.0, 103.0, 22.0 ],
 									"text" : "t b b clear"
 								}
 
@@ -3257,7 +3420,7 @@
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 577.0, 387.0, 91.0, 22.0 ],
+									"patching_rect" : [ 738.0, 382.0, 91.0, 22.0 ],
 									"text" : "s launcher-msg"
 								}
 
@@ -3292,7 +3455,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 3,
 									"outlettype" : [ "run", "bang", "clear" ],
-									"patching_rect" : [ 577.0, 288.0, 72.0, 22.0 ],
+									"patching_rect" : [ 738.0, 283.0, 72.0, 22.0 ],
 									"text" : "t run b clear"
 								}
 
@@ -3304,7 +3467,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 603.5, 350.0, 162.0, 22.0 ],
+									"patching_rect" : [ 764.5, 345.0, 162.0, 22.0 ],
 									"text" : "add \"wo erase_color 0 1 0 1\""
 								}
 
@@ -3321,7 +3484,7 @@
 									"patching_rect" : [ 108.0, 13.0, 303.5, 47.0 ],
 									"presentation" : 1,
 									"presentation_linecount" : 3,
-									"presentation_rect" : [ 111.0, 13.0, 372.0, 47.0 ],
+									"presentation_rect" : [ 172.0, 11.0, 372.0, 47.0 ],
 									"text" : "Written by Tom Whiston © 2023\n \nwww.tomwhiston.com"
 								}
 
@@ -3336,21 +3499,8 @@
 									"parameter_enable" : 0,
 									"patching_rect" : [ 327.5, 454.0, 155.0, 20.0 ],
 									"presentation" : 1,
-									"presentation_rect" : [ 243.5, 414.0, 155.0, 20.0 ],
+									"presentation_rect" : [ 283.0, 454.0, 155.0, 20.0 ],
 									"text" : "Press Me To Clear REPL"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-13",
-									"maxclass" : "textbutton",
-									"numinlets" : 1,
-									"numoutlets" : 3,
-									"outlettype" : [ "", "", "int" ],
-									"parameter_enable" : 0,
-									"patching_rect" : [ 851.0, 421.0, 100.0, 20.0 ],
-									"text" : "Press Me!"
 								}
 
 							}
@@ -3362,9 +3512,9 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 577.0, 257.0, 100.0, 20.0 ],
+									"patching_rect" : [ 738.0, 252.0, 100.0, 20.0 ],
 									"presentation" : 1,
-									"presentation_rect" : [ 24.0, 262.0, 100.0, 20.0 ],
+									"presentation_rect" : [ 28.0, 266.0, 100.0, 20.0 ],
 									"text" : "Press Me!"
 								}
 
@@ -3379,7 +3529,7 @@
 									"parameter_enable" : 0,
 									"patching_rect" : [ 549.0, 462.0, 100.0, 20.0 ],
 									"presentation" : 1,
-									"presentation_rect" : [ 388.0, 244.0, 100.0, 20.0 ],
+									"presentation_rect" : [ 450.0, 244.0, 100.0, 20.0 ],
 									"text" : "Press Me!"
 								}
 
@@ -3392,9 +3542,9 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 532.0, 54.0, 100.0, 20.0 ],
+									"patching_rect" : [ 738.0, 50.0, 100.0, 20.0 ],
 									"presentation" : 1,
-									"presentation_rect" : [ 392.0, 80.0, 100.0, 20.0 ],
+									"presentation_rect" : [ 392.0, 81.0, 100.0, 20.0 ],
 									"text" : "Press Me!"
 								}
 
@@ -3407,9 +3557,9 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 600.0, 79.0, 100.0, 20.0 ],
+									"patching_rect" : [ 806.0, 75.0, 100.0, 20.0 ],
 									"presentation" : 1,
-									"presentation_rect" : [ 197.0, 80.0, 100.0, 20.0 ],
+									"presentation_rect" : [ 197.0, 81.0, 100.0, 20.0 ],
 									"text" : "Press Me!"
 								}
 
@@ -3420,13 +3570,14 @@
 									"fontname" : "Arial",
 									"fontsize" : 40.0,
 									"id" : "obj-22",
+									"linecount" : 3,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 24.0, 9.0, 83.0, 51.0 ],
+									"patching_rect" : [ 24.0, 9.0, 83.0, 141.0 ],
 									"presentation" : 1,
-									"presentation_rect" : [ 24.0, 9.0, 91.0, 51.0 ],
-									"text" : "repl",
+									"presentation_rect" : [ 24.0, 9.0, 146.0, 51.0 ],
+									"text" : "GLRepl",
 									"textcolor" : [ 0.32548999786377, 0.345097988843918, 0.372548997402191, 1.0 ]
 								}
 
@@ -3435,15 +3586,15 @@
 								"box" : 								{
 									"fontsize" : 16.0,
 									"id" : "obj-8",
-									"linecount" : 21,
+									"linecount" : 20,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 24.0, 80.0, 579.0, 382.0 ],
+									"patching_rect" : [ 24.0, 80.0, 653.0, 364.0 ],
 									"presentation" : 1,
-									"presentation_linecount" : 18,
-									"presentation_rect" : [ 24.0, 80.0, 631.0, 328.0 ],
-									"text" : "A REPL - Reads in text                         Evaluates it                          Prints the output and Loops                        .\n\nOtherwise known as a language shell, a REPL is commonly used to execute programs which are written in a piecewise manner, which means you build them up by running consecutive commands rather than fully programming the code first and then executing it later. REPL's are probably most well known in an artistic context from livecoding. \n\nNormally a REPL interacts with a programming language, but in this case the REPL designed to interact with patches you build in max                        ,the opengl window                                                                           ,                      and the repl itself                       \n\nAt it's heart it is a text input window, which processes the input in various ways depending on how you configure it, and then outputs a series of messages, which you can further process in max to control things. But because of its flexible configuration, and the power of max, you can create very complex interactions.\n\nSee the other tabs to understand how the REPL works."
+									"presentation_linecount" : 20,
+									"presentation_rect" : [ 24.0, 81.0, 732.0, 364.0 ],
+									"text" : "A REPL - Reads in text                         Evaluates it                          Prints the output and Loops                        .\n\nOtherwise known as a language shell, a REPL is commonly used to execute programs which are written in a piecewise manner, which means you build them up by running consecutive commands rather than fully programming the code first and then executing it later. REPL's are probably most well known in an artistic context from live coding. \n\nA REPL interacts with a programming language and in this case you can think of Max as that! The REPL is designed to interact with patches you build in max                         ,it's own opengl window         ,                      and GLRepl's own internal functionality                       \n\nAt it's heart GLRepl is a keypress processor, whose input is manipulated and displayed in various ways. The repl, when sent the `run` or `run_line` messages will output a series of formatted messages. This means that integrating GLRepl with your patch can be as simple as using a few [route] and [routepass] objects to direct the output, but could also be as complex as you can imagine. GLRepl's flexible user configuration, defined in json, coupled with the power of max, allows you can create very complex interactions in a very easy way.\n\nSee the other tabs to understand how the REPL works."
 								}
 
 							}
@@ -3761,7 +3912,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 775.0, 460.0 ],
+						"rect" : [ 0.0, 26.0, 771.0, 485.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 1,
 						"default_fontsize" : 12.0,
@@ -3792,6 +3943,24 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
+									"fontface" : 0,
+									"fontname" : "Arial",
+									"fontsize" : 40.0,
+									"id" : "obj-22",
+									"linecount" : 6,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 24.0, 9.0, 83.0, 275.0 ],
+									"presentation" : 1,
+									"presentation_rect" : [ 24.0, 9.0, 542.0, 51.0 ],
+									"text" : "GLRepl - examples",
+									"textcolor" : [ 0.32548999786377, 0.345097988843918, 0.372548997402191, 1.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"id" : "obj-9",
 									"linecount" : 6,
 									"maxclass" : "comment",
@@ -3800,7 +3969,7 @@
 									"patching_rect" : [ 35.0, 21.0, 152.0, 87.0 ],
 									"presentation" : 1,
 									"presentation_linecount" : 2,
-									"presentation_rect" : [ 16.0, 18.0, 731.0, 33.0 ],
+									"presentation_rect" : [ 12.0, 62.0, 732.0, 33.0 ],
 									"text" : "The max patches below show how you can use these basic ideas to build up more complex interfaces and interactions within max using the REPL"
 								}
 
@@ -3816,7 +3985,7 @@
 									"patching_rect" : [ 42.0, 300.0, 160.0, 141.0 ],
 									"presentation" : 1,
 									"presentation_linecount" : 2,
-									"presentation_rect" : [ 16.0, 367.0, 731.0, 33.0 ],
+									"presentation_rect" : [ 12.0, 404.0, 731.0, 33.0 ],
 									"text" : "For further information on the REPL please check the object help, which explains how to implement the object in your patch, and the README.md in the module folder, which explains how to extend the REPL with Javascript."
 								}
 
@@ -3830,7 +3999,7 @@
 									"numoutlets" : 0,
 									"patching_rect" : [ 296.0, 314.0, 150.0, 33.0 ],
 									"presentation" : 1,
-									"presentation_rect" : [ 175.0, 424.0, 438.0, 20.0 ],
+									"presentation_rect" : [ 171.0, 454.0, 438.0, 20.0 ],
 									"text" : "Visit my website to see more of my work"
 								}
 
@@ -3845,7 +4014,7 @@
 									"patching_rect" : [ 39.0, 233.0, 403.0, 47.0 ],
 									"presentation" : 1,
 									"presentation_linecount" : 2,
-									"presentation_rect" : [ 175.0, 289.0, 572.0, 33.0 ],
+									"presentation_rect" : [ 171.0, 333.0, 572.0, 33.0 ],
 									"text" : "An example of how you can use the repl together with a javascript parser to create an environment which you can livecode the creation and connection of max objects"
 								}
 
@@ -3878,7 +4047,7 @@
 									"parameter_enable" : 0,
 									"patching_rect" : [ 453.0, 314.0, 150.0, 23.0 ],
 									"presentation" : 1,
-									"presentation_rect" : [ 16.0, 424.0, 150.0, 23.0 ],
+									"presentation_rect" : [ 12.0, 454.0, 150.0, 23.0 ],
 									"text" : "go to my website",
 									"textjustification" : 0,
 									"textoncolor" : [ 0.239216, 0.254902, 0.278431, 1.0 ],
@@ -3927,7 +4096,7 @@
 									"parameter_enable" : 0,
 									"patching_rect" : [ 453.0, 233.0, 150.0, 60.0 ],
 									"presentation" : 1,
-									"presentation_rect" : [ 16.0, 289.0, 150.0, 60.0 ],
+									"presentation_rect" : [ 12.0, 333.0, 150.0, 60.0 ],
 									"text" : "Livecode Max Objects Example",
 									"textoncolor" : [ 0.0, 0.0, 0.0, 1.0 ],
 									"textovercolor" : [ 1.0, 1.0, 1.0, 1.0 ],
@@ -3975,7 +4144,7 @@
 									"parameter_enable" : 0,
 									"patching_rect" : [ 453.0, 155.0, 150.0, 60.0 ],
 									"presentation" : 1,
-									"presentation_rect" : [ 16.0, 215.0, 150.0, 60.0 ],
+									"presentation_rect" : [ 12.0, 259.0, 150.0, 60.0 ],
 									"text" : "Custom Formatter Example",
 									"textoncolor" : [ 0.0, 0.0, 0.0, 1.0 ],
 									"textovercolor" : [ 1.0, 1.0, 1.0, 1.0 ],
@@ -4023,7 +4192,7 @@
 									"parameter_enable" : 0,
 									"patching_rect" : [ 453.0, 81.0, 150.0, 60.0 ],
 									"presentation" : 1,
-									"presentation_rect" : [ 16.0, 141.0, 150.0, 60.0 ],
+									"presentation_rect" : [ 12.0, 185.0, 150.0, 60.0 ],
 									"text" : "MIDI (SIMPLE) EXAMPLE",
 									"textoncolor" : [ 0.0, 0.0, 0.0, 1.0 ],
 									"textovercolor" : [ 1.0, 1.0, 1.0, 1.0 ],
@@ -4083,7 +4252,7 @@
 									"parameter_enable" : 0,
 									"patching_rect" : [ 453.0, 13.0, 150.0, 60.0 ],
 									"presentation" : 1,
-									"presentation_rect" : [ 16.0, 73.0, 150.0, 60.0 ],
+									"presentation_rect" : [ 12.0, 117.0, 150.0, 60.0 ],
 									"text" : "GL EXAMPLE",
 									"textoncolor" : [ 0.0, 0.0, 0.0, 1.0 ],
 									"textovercolor" : [ 1.0, 1.0, 1.0, 1.0 ],
@@ -4102,7 +4271,7 @@
 									"patching_rect" : [ 12.0, 155.0, 430.0, 33.0 ],
 									"presentation" : 1,
 									"presentation_linecount" : 2,
-									"presentation_rect" : [ 175.0, 215.0, 572.0, 33.0 ],
+									"presentation_rect" : [ 171.0, 259.0, 572.0, 33.0 ],
 									"text" : "An example showing how you can implement custom formatters to both validate input and expand a compact language into more verbose output."
 								}
 
@@ -4117,7 +4286,7 @@
 									"patching_rect" : [ 12.0, 81.0, 438.0, 60.0 ],
 									"presentation" : 1,
 									"presentation_linecount" : 3,
-									"presentation_rect" : [ 175.0, 141.0, 572.0, 47.0 ],
+									"presentation_rect" : [ 171.0, 185.0, 575.0, 47.0 ],
 									"text" : "An example showing how you can completely reprogam the functionality of the repl by only using the config file. Instead of simply capturing the input in a buffer for printing later we immediately emit messages to be parsed by a midi handler and print a character to the display"
 								}
 
@@ -4131,7 +4300,7 @@
 									"numoutlets" : 0,
 									"patching_rect" : [ 12.0, 13.0, 348.0, 33.0 ],
 									"presentation" : 1,
-									"presentation_rect" : [ 175.0, 73.0, 572.0, 20.0 ],
+									"presentation_rect" : [ 171.0, 117.0, 572.0, 20.0 ],
 									"text" : "An example using openGL commands in the repl to draw inside the repl itself in a livecoding like manner"
 								}
 
@@ -4256,23 +4425,6 @@
 				}
 
 			}
-, 			{
-				"box" : 				{
-					"fontface" : 0,
-					"fontname" : "Arial",
-					"fontsize" : 40.0,
-					"id" : "obj-22",
-					"maxclass" : "comment",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 24.0, 9.0, 367.0, 51.0 ],
-					"presentation" : 1,
-					"presentation_rect" : [ 24.0, 9.0, 367.0, 51.0 ],
-					"text" : "repl",
-					"textcolor" : [ 0.32548999786377, 0.345097988843918, 0.372548997402191, 1.0 ]
-				}
-
-			}
  ],
 		"lines" : [ 			{
 				"patchline" : 				{
@@ -4358,28 +4510,28 @@
 			}
 , 			{
 				"name" : "tw.gl.repl.dynamic-size-helper.maxpat",
-				"bootpath" : "~/Documents/Max 8/Packages/tw.gl.repl/patchers",
+				"bootpath" : "~/Documents/Max 8/Packages/GLRepl/patchers",
 				"patcherrelativepath" : "../patchers",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "tw.gl.repl.js",
-				"bootpath" : "~/Documents/Max 8/Packages/tw.gl.repl/javascript/dist",
+				"bootpath" : "~/Documents/Max 8/Packages/GLRepl/javascript/dist",
 				"patcherrelativepath" : "../javascript/dist",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "tw.gl.repl.maxpat",
-				"bootpath" : "~/Documents/Max 8/Packages/tw.gl.repl/patchers",
+				"bootpath" : "~/Documents/Max 8/Packages/GLRepl/patchers",
 				"patcherrelativepath" : "../patchers",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "user-repl.js",
-				"bootpath" : "~/Documents/Max 8/Packages/tw.gl.repl/examples/custom-formatter",
+				"bootpath" : "~/Documents/Max 8/Packages/GLRepl/examples/custom-formatter",
 				"patcherrelativepath" : "../examples/custom-formatter",
 				"type" : "TEXT",
 				"implicit" : 1
