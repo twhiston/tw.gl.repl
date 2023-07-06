@@ -1,11 +1,16 @@
 # /bin/sh
 set -euo pipefail
+
+PKGROOT="./../.dist/"
+PKGNAME="GLRepl"
+PKGPATH=$PKGROOT$PKGNAME
+
 npm run compile
-rm -rf ./../.dist
-mkdir -p ./../.dist/tw.gl.repl
-rsync -av  ./../ ./../.dist/tw.gl.repl --exclude ./../.dist
-rm -rf ./../.dist/tw.gl.repl/.git ./../.dist/tw.gl.repl/.dist ./../.dist/tw.gl.repl/.github ./../.dist/tw.gl.repl/.vscode ./../.dist/tw.gl.repl/javascript ./../.dist/tw.gl.repl/.gitignore
-rm -rf ./../.dist/tw.gl.repl/examples/livecode-max/src ./../.dist/tw.gl.repl/examples/livecode-max/node_modules ./../.dist/tw.gl.repl/examples/livecode-max/package* ./../.dist/tw.gl.repl/examples/livecode-max/tsconfig.json
-mkdir ./../.dist/tw.gl.repl/javascript
-rsync -av ./dist/* ./../.dist/tw.gl.repl/javascript
-cd ./../.dist/; zip -r tw.gl.repl.zip ./tw.gl.repl
+rm -rf $PKGROOT
+mkdir -p $PKGPATH
+rsync -av  ./../ $PKGPATH --exclude $PKGROOT
+rm -rf $PKGPATH/.git $PKGPATH/.dist $PKGPATH/.github $PKGPATH/.vscode $PKGPATH/javascript $PKGPATH/.gitignore
+rm -rf $PKGPATH/examples/livecode-max/src $PKGPATH/examples/livecode-max/node_modules $PKGPATH/examples/livecode-max/package* $PKGPATH/examples/livecode-max/tsconfig.json
+mkdir $PKGPATH/javascript
+rsync -av ./dist/* $PKGPATH/javascript
+cd $PKGROOT; zip -r $PKGNAME.zip ./$PKGNAME
