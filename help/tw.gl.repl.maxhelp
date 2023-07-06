@@ -10,9 +10,9 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 768.0, 240.0, 752.0, 794.0 ],
+		"rect" : [ 743.0, 125.0, 752.0, 794.0 ],
 		"bglocked" : 0,
-		"openinpresentation" : 0,
+		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
 		"default_fontface" : 0,
 		"default_fontname" : "Arial",
@@ -56,7 +56,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 752.0, 742.0 ],
+						"rect" : [ 0.0, 26.0, 752.0, 768.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -410,7 +410,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 752.0, 742.0 ],
+						"rect" : [ 0.0, 26.0, 752.0, 768.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1053,7 +1053,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 752.0, 742.0 ],
+						"rect" : [ 0.0, 26.0, 752.0, 768.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1840,7 +1840,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 752.0, 742.0 ],
+						"rect" : [ 0.0, 26.0, 752.0, 768.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -2520,7 +2520,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 752.0, 742.0 ],
+						"rect" : [ 0.0, 26.0, 752.0, 768.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -3166,7 +3166,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 752.0, 742.0 ],
+						"rect" : [ 743.0, 151.0, 752.0, 768.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -4516,7 +4516,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 768.0, 292.0, 752.0, 742.0 ],
+						"rect" : [ 0.0, 26.0, 752.0, 768.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -4555,7 +4555,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 424.0, 67.0, 363.0, 158.0 ],
-									"presentation_linecount" : 13,
 									"text" : "Option+Enter / AltGr+Enter - run contents of REPL\nOption+Ctrl+Enter / AltGr+Ctrl+Enter - Run line under cursor\n\nOption+G/AltGr+G - enable/disable ephemeral mode (buffer contents or line contents are deleted when run)\n\nOption+/ / AltGr+/ - comment line\n\nOption+z / AltGr+z - clear REPL contents\n\nBackspace - delete characted behind cursor\nDelete - delete character in front of cursor"
 								}
 
@@ -4569,8 +4568,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 420.5, 259.0, 373.0, 88.0 ],
-									"presentation_linecount" : 19,
+									"patching_rect" : [ 420.5, 259.0, 376.0, 88.0 ],
 									"text" : "Option+x / AltGr+x - cut line to internal clipboard\nOption+c / AltGr+c - copy line to internal clipboard\nOption+k / AltGr+k - copy all to internal clipboard\nOption+v / AltGr+v - paste contents of internal clipboard to \n                     REPL\nOption+p / AltGr+p - replace current line with contents of \n                     internal clipboard"
 								}
 
@@ -4585,7 +4583,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 420.5, 370.0, 370.0, 123.0 ],
-									"presentation_linecount" : 10,
 									"text" : "Up Arrow                            - Go up one line\nDown Arrow                          - Go down one line\nLeft Arrow                          - Go left one character\nRight Arrow                         - Go right one character\nOption+Up / AltGr+Up                - Jump to top\nOption+Down / AltGr+Down            - Jump to bottom\nOption+Left / AltGr+Left            - Jump to start of line\nOption+Right / AltGr+Right          - Jump to end of line\nOption+Ctrl+Left / AltGr+Ctrl+Left  - Jump word left\nOption+Ctrl+Right/ AltGr+Ctrl+Right - Jump word right"
 								}
 
@@ -4650,7 +4647,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 420.5, 67.0, 370.0, 435.0 ],
-									"presentation_linecount" : 31,
 									"text" : "\n\n\n\n\n\n\n\n\n\n\n\nClipboard:\n\n\n\n\n\n\n\n\nNavigation:\n\n\n\n\n\n\n\n\n\n"
 								}
 
@@ -4692,7 +4688,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 43.0, 214.0, 371.0, 154.0 ],
-									"presentation_linecount" : 11,
 									"text" : "- You can bind all characters and some special characters (all characters most be part of ASCII table)\n\n- Binding a function to keycode 127 it will apply to all non modified keypresses (so you do not need to bind a function individually to every alphanumeric key)\n\n- You cannot bind ALT + char. But you can bind ALTGR + char\n\n- Option+D/AltGr+D will enable and disable the editor. This cannot be overriden in the configuration file!"
 								}
 
@@ -4766,7 +4761,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 752.0, 742.0 ],
+						"rect" : [ 0.0, 26.0, 752.0, 768.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -4856,6 +4851,8 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 45.0, 98.0, 367.0, 20.0 ],
+					"presentation" : 1,
+					"presentation_rect" : [ 45.0, 98.0, 367.0, 20.0 ],
 					"text" : "written by Tom Whiston © 2023, www.tomwhiston.com"
 				}
 
@@ -4868,6 +4865,9 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 45.0, 124.0, 497.0, 248.0 ],
+					"presentation" : 1,
+					"presentation_linecount" : 18,
+					"presentation_rect" : [ 45.0, 124.0, 497.0, 248.0 ],
 					"text" : "A fully featured and configurable repl environment made in javascript and opengl for max. A command line text editor (similar to the workflow of the terminal) for the opengl world of Max. Add the object to your setup and initialize it with the name of the render context. Then make sure you send it the render bang in the top inlet. \n\nAttach functions to keypresses, mutate repl contents before output, reading files plays back all functions attached to keys. Configurable through json configuration file and code, easily extensible.\n\nSimple use cases for the repl can be handled entirely in configuration, add a shortkeys.json to your project or load any dict with the `keybindings dictname` message. \nMore complex use cases can be easily managed by including a `user-repl.js` file\ninside your project in which you can further customize behaviour by attaching\nyour own custom functions to keypresses or your own custom formatters for output\nmessage handling. This will be automatically read by the repl on start.\n\nSee README.md in the package folder for extensive information about how the repl works, or try the examples here.",
 					"textcolor" : [ 0.32548999786377, 0.345097988843918, 0.372548997402191, 1.0 ]
 				}
@@ -4883,6 +4883,8 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 45.0, 45.0, 367.0, 51.0 ],
+					"presentation" : 1,
+					"presentation_rect" : [ 45.0, 45.0, 367.0, 51.0 ],
 					"text" : "tw.gl.repl",
 					"textcolor" : [ 0.32548999786377, 0.345097988843918, 0.372548997402191, 1.0 ]
 				}
@@ -4905,7 +4907,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 683.0, 768.0 ],
+						"rect" : [ 748.0, 278.0, 683.0, 768.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -4934,7 +4936,6 @@
 						"subpatcher_template" : "",
 						"showontab" : 0,
 						"assistshowspatchername" : 0,
-						"visible" : 1,
 						"boxes" : [ 							{
 								"box" : 								{
 									"id" : "obj-20",
@@ -5821,21 +5822,21 @@
 			}
 , 			{
 				"name" : "tw.gl.repl.js",
-				"bootpath" : "~/Documents/Max 8/Packages/tw.gl.repl/javascript/dist",
+				"bootpath" : "~/Documents/Max 8/Packages/GLRepl/javascript/dist",
 				"patcherrelativepath" : "../javascript/dist",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "tw.gl.repl.maxpat",
-				"bootpath" : "~/Documents/Max 8/Packages/tw.gl.repl/patchers",
+				"bootpath" : "~/Documents/Max 8/Packages/GLRepl/patchers",
 				"patcherrelativepath" : "../patchers",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "user-repl.js",
-				"bootpath" : "~/Documents/Max 8/Packages/tw.gl.repl/examples/custom-formatter",
+				"bootpath" : "~/Documents/Max 8/Packages/GLRepl/examples/custom-formatter",
 				"patcherrelativepath" : "../examples/custom-formatter",
 				"type" : "TEXT",
 				"implicit" : 1
