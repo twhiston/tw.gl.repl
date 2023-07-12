@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 662.0, 328.0, 820.0, 511.0 ],
+		"rect" : [ 997.0, 222.0, 820.0, 511.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -2876,7 +2876,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 662.0, 354.0, 820.0, 485.0 ],
+						"rect" : [ 997.0, 248.0, 820.0, 485.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 1,
 						"default_fontsize" : 12.0,
@@ -2907,6 +2907,185 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
+									"id" : "obj-36",
+									"linecount" : 3,
+									"maxclass" : "message",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 160.5, 1097.0, 298.0, 49.0 ],
+									"text" : "replay \"// this is the contents of the user-repl.js file\", replay \"// you can find it in the root folder of this patcher\""
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-33",
+									"maxclass" : "message",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 257.0, 1065.0, 95.0, 22.0 ],
+									"text" : "read user-repl.js"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-27",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 428.0, 1148.0, 91.0, 22.0 ],
+									"text" : "s launcher-msg"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-28",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 3,
+									"outlettype" : [ "bang", "bang", "clear" ],
+									"patching_rect" : [ 428.0, 1049.0, 61.0, 22.0 ],
+									"text" : "t b b clear"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-30",
+									"maxclass" : "textbutton",
+									"numinlets" : 1,
+									"numoutlets" : 3,
+									"outlettype" : [ "", "", "int" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 428.0, 1018.0, 100.0, 20.0 ],
+									"presentation" : 1,
+									"presentation_rect" : [ 420.5, 768.0, 100.0, 20.0 ],
+									"text" : "Press Me!"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-24",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 1,
+									"outlettype" : [ "bang" ],
+									"patching_rect" : [ 891.0, 838.0, 58.0, 22.0 ],
+									"text" : "loadbang"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-25",
+									"maxclass" : "message",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 823.5, 869.0, 29.5, 22.0 ],
+									"text" : "set"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-23",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 1,
+									"outlettype" : [ "bang" ],
+									"patching_rect" : [ 823.5, 838.0, 63.0, 22.0 ],
+									"text" : "closebang"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-4",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 644.0, 1172.0, 91.0, 22.0 ],
+									"text" : "s launcher-msg"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-19",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 1,
+									"outlettype" : [ "bang" ],
+									"patching_rect" : [ 644.0, 1073.0, 22.0, 22.0 ],
+									"text" : "t b"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-21",
+									"maxclass" : "message",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 644.0, 1117.0, 81.0, 22.0 ],
+									"text" : "keyPress 356"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-22",
+									"maxclass" : "textbutton",
+									"numinlets" : 1,
+									"numoutlets" : 3,
+									"outlettype" : [ "", "", "int" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 644.0, 1042.0, 100.0, 20.0 ],
+									"presentation" : 1,
+									"presentation_rect" : [ 278.5, 686.0, 100.0, 20.0 ],
+									"text" : "Press Me!"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-17",
+									"linecount" : 2,
+									"maxclass" : "message",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 733.5, 906.0, 243.0, 35.0 ],
+									"presentation" : 1,
+									"presentation_linecount" : 2,
+									"presentation_rect" : [ 30.0, 575.0, 370.0, 35.0 ],
+									"text" : "all these keypresses have been routed through the alphanumeric handler"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-3",
+									"maxclass" : "newobj",
+									"numinlets" : 0,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 857.5, 869.0, 87.0, 22.0 ],
+									"presentation" : 1,
+									"presentation_rect" : [ 301.0, 548.0, 87.0, 22.0 ],
+									"text" : "r replClipboard"
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"id" : "obj-9",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
@@ -2921,10 +3100,10 @@
 									"id" : "obj-11",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
-									"numoutlets" : 2,
-									"outlettype" : [ "run", "bang" ],
-									"patching_rect" : [ 644.0, 885.0, 43.0, 22.0 ],
-									"text" : "t run b"
+									"numoutlets" : 1,
+									"outlettype" : [ "bang" ],
+									"patching_rect" : [ 644.0, 884.0, 22.0, 22.0 ],
+									"text" : "t b"
 								}
 
 							}
@@ -2935,8 +3114,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 668.0, 932.0, 154.0, 22.0 ],
-									"text" : "jumpLine -1, keyPress 355,"
+									"patching_rect" : [ 644.0, 944.0, 237.0, 22.0 ],
+									"text" : "jumpLine -1, keyPress 231, keyPress 4451"
 								}
 
 							}
@@ -2948,9 +3127,9 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 644.0, 854.0, 100.0, 20.0 ],
+									"patching_rect" : [ 644.0, 853.0, 100.0, 20.0 ],
 									"presentation" : 1,
-									"presentation_rect" : [ 251.0, 375.0, 100.0, 20.0 ],
+									"presentation_rect" : [ 286.0, 470.0, 100.0, 20.0 ],
 									"text" : "Press Me!"
 								}
 
@@ -2986,8 +3165,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 670.5, 775.0, 312.0, 35.0 ],
-									"text" : "replay \"// all these keypresses have been routed through the alphanumeric handler\""
+									"patching_rect" : [ 670.5, 764.0, 302.0, 35.0 ],
+									"text" : "replay \"all these keypresses have been routed through the alphanumeric handler\""
 								}
 
 							}
@@ -3001,7 +3180,7 @@
 									"parameter_enable" : 0,
 									"patching_rect" : [ 644.0, 682.0, 100.0, 20.0 ],
 									"presentation" : 1,
-									"presentation_rect" : [ 236.0, 360.0, 100.0, 20.0 ],
+									"presentation_rect" : [ 286.0, 360.0, 100.0, 20.0 ],
 									"text" : "Press Me!"
 								}
 
@@ -3051,8 +3230,8 @@
 									"patching_rect" : [ 749.0, 537.0, 211.0, 90.0 ],
 									"presentation" : 1,
 									"presentation_linecount" : 6,
-									"presentation_rect" : [ 36.0, 614.0, 211.0, 90.0 ],
-									"text" : "{\n    ...\n    \"functions\": [\n        \"doSomething\"\n    ]\n}"
+									"presentation_rect" : [ 36.0, 651.0, 211.0, 90.0 ],
+									"text" : "{\n    ...\n    \"functions\": [\n        \"deckardsDream\"\n    ]\n}"
 								}
 
 							}
@@ -3133,15 +3312,15 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-2",
-									"linecount" : 60,
+									"linecount" : 65,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 24.0, 80.0, 586.0, 811.0 ],
+									"patching_rect" : [ 24.0, 80.0, 586.0, 878.0 ],
 									"presentation" : 1,
-									"presentation_linecount" : 57,
-									"presentation_rect" : [ 24.0, 80.0, 723.0, 771.0 ],
-									"text" : "The first thing a REPL does is read in text. By default when you write text into the REPL window keypresses are written into a text buffer and displayed. But this is only one possible behaviour as the user can change the REPL behaviour using a JSON config file. \nFor most livecoding scenarios the default configuration will not need changing.\n\nYou can bind any number of functions to any ascii keycode, the functions will be called in the order they are defined. Functions may return an array of messages which will be output by the REPL. These may be messages to the repl itself, or messages to be parsed externally.\n\nYou have access to the following variables in your function body:\n\n            - the keypress which triggered the event\n            - the REPLManager object\n\nSome examples of binding functions include:\n1. A simple call the REPLManager object. This uses ascii code 127 \n    which is a special value in the REPL reserved to attach a function \n    which will be run on any alphanumerical keypress.\n\n\n\n\n\n\n\n\n\n2. A more complex example, which copied the line under the cursor to\nthe clipboard and outputs it from outlet 2\n\n\n\n\n\n\n\n\n\n3. Call a custom function you have written directly.\nThis function must have the signature (k, ctx)\n\n\n\n\n\n\n\n\nThis third method is a special case and requires you to pre-bind a custom function which you have written in code. See README.md in the package root folder for more information on this. You will only need this if you plan on extending the repl with your own code.\n\n\nTo understand what objects and methods are available on ctx please check the javascript folder in the package.\n\nFor convenience a number of functions are bound to keypresses by default to make navigating the REPL easier. See the object help and the default config file for more details.\n\nSee the Midi(Simple) Example, on the examples tab, for an example of rebinding key controls."
+									"presentation_linecount" : 63,
+									"presentation_rect" : [ 24.0, 80.0, 726.0, 851.0 ],
+									"text" : "The first thing a REPL does is read in text. By default when you write text into the REPL window keypresses are written into a text buffer and displayed. But this is only one possible behaviour as the user can change the REPL behaviour using a JSON config file. \nFor most livecoding scenarios the default configuration will not need changing.\n\nYou can bind any number of functions to any ascii keycode, the functions will be called in the order they are defined. Functions may return an array of messages which will be output by the REPL. These may be messages to the repl itself, or messages to be parsed externally.\n\nYou have access to the following variables in your function body:\n\n            - the keypress which triggered the event\n            - the REPLManager object\n\nSome examples of binding functions include:\n1. A simple call the REPLManager object. This uses ascii code 127 \n    which is a special value in the REPL reserved to attach a function \n    which will be run on any alphanumerical keypress.\n\n\n\n\n\n\n\n\n\n2. A more complex example, which copied the line under the cursor to\nthe clipboard and outputs it from outlet 2\n\n\n\n\n\n\n\n\n\n\n\n\n3. Call a custom function you have written directly.\nThis function must have the signature (k, ctx)\n\n\n\n\n\n\n\n\nThis third method is a special case and requires you to pre-bind a custom function which you have written in code. This overview patch contains a special user-repl.js file which is autoloaded by the repl on start\n\nSee README.md in the package root folder for more information on this. You will only need this if you plan on extending the repl with your own code.\n\n\nTo understand what objects and methods are available on ctx please check the javascript folder in the package.\n\nFor convenience a number of functions are bound to keypresses by default to make navigating the REPL easier. See the object help and the default config file for more details.\n\nSee the Midi(Simple) Example, on the examples tab, for an example of rebinding key controls."
 								}
 
 							}
@@ -3156,13 +3335,6 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-13", 0 ],
-									"source" : [ "obj-11", 1 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-9", 0 ],
 									"source" : [ "obj-11", 0 ]
 								}
 
@@ -3178,6 +3350,13 @@
 								"patchline" : 								{
 									"destination" : [ "obj-11", 0 ],
 									"source" : [ "obj-15", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-21", 0 ],
+									"source" : [ "obj-19", 0 ]
 								}
 
 							}
@@ -3199,6 +3378,90 @@
 								"patchline" : 								{
 									"destination" : [ "obj-7", 0 ],
 									"source" : [ "obj-20", 1 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-4", 0 ],
+									"source" : [ "obj-21", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-19", 0 ],
+									"source" : [ "obj-22", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-25", 0 ],
+									"source" : [ "obj-23", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-25", 0 ],
+									"source" : [ "obj-24", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-17", 0 ],
+									"source" : [ "obj-25", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-27", 0 ],
+									"source" : [ "obj-28", 2 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-33", 0 ],
+									"source" : [ "obj-28", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-36", 0 ],
+									"source" : [ "obj-28", 1 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-17", 1 ],
+									"source" : [ "obj-3", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-28", 0 ],
+									"source" : [ "obj-30", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-27", 0 ],
+									"source" : [ "obj-33", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-27", 0 ],
+									"source" : [ "obj-36", 0 ]
 								}
 
 							}
@@ -3771,11 +4034,11 @@
 								"box" : 								{
 									"fontsize" : 16.0,
 									"id" : "obj-8",
-									"linecount" : 20,
+									"linecount" : 19,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 24.0, 80.0, 672.0, 364.0 ],
+									"patching_rect" : [ 24.0, 80.0, 783.0, 346.0 ],
 									"presentation" : 1,
 									"presentation_linecount" : 19,
 									"presentation_rect" : [ 24.0, 81.0, 783.0, 346.0 ],
@@ -4723,8 +4986,8 @@
 			}
 , 			{
 				"name" : "user-repl.js",
-				"bootpath" : "~/Documents/Max 8/Packages/GLRepl/examples/custom-formatter",
-				"patcherrelativepath" : "../examples/custom-formatter",
+				"bootpath" : "~/Documents/Max 8/Packages/GLRepl/extras",
+				"patcherrelativepath" : ".",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
