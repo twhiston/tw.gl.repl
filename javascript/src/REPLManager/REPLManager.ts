@@ -90,8 +90,9 @@ export class REPLManager {
      if a function which is called throws it is expected that
      it should return some info about why in the error, which will
      be output with the word error prepended as a msg
+     Manually bound to max in the main binding template
     */
-    keyPress(k: number) {
+    keyPress(k: number): Array<string> {
         const res = this.kp.processKeypress(k)
         let msgs: Array<string> = [];
         for (const func of res) {
@@ -110,16 +111,18 @@ export class REPLManager {
     /*
      * Replay some text into the repl, passing it through the keyPress function
      * This may or may not insert it into the buffer depending on configuration
+     * Manually bound to max in the main binding template
      */
-    @maxMspBinding({ draw: true, isMethod: true, useArgsForText: true })
-    replay(text: Array<string>) {
+    replay(text: Array<string>): Array<string> {
+        let msgs: Array<string> = [];
         for (const k of text) {
             for (var i = 0; i < k.length; i++) {
                 var char = k.charCodeAt(i);
-                this.keyPress(char);
+                msgs.concat(this.keyPress(char));
             }
             this.newLine()
         }
+        return msgs;
     }
 
     status(): Array<string> {
@@ -550,7 +553,6 @@ export class REPLManager {
 
         this.tb = newTB;
 
-        this.kp = new KeypressProcessor()
         this.kp.loadConfigFromJSON(dictstring)
     }
 

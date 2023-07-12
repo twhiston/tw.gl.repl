@@ -125,6 +125,15 @@ function getCustomFunctionDefinitions(): Array<Object> {
         comment: "Process a keypress with the repl. This method is usually only called internally, but it is useful to expose in the router for functionality related to clipboard pasting. If in doubt you probably shouldn't be calling this from your code or configuration!"
     });
     genFuncs.push({
+        functionName: "replay",
+        noroute: false,
+        isMethod: true,
+        isAttribute: false,
+        paramCount: 0,
+        handlerInlet: 0,
+        comment: "Replay some text into the repl, passing it through the keyPress function. This may or may not insert it into the buffer depending on configuration"
+    });
+    genFuncs.push({
         functionName: "run",
         customHandler: "runHandler",
         handlerInlet: 0,

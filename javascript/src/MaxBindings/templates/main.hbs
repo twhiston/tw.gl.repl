@@ -119,6 +119,15 @@ function keyPress(k) {
 	draw();
 }
 
+function replay(text) {
+    var slicedArgs = arrayfromargs(arguments)
+    var msgs = i.repl.replay(slicedArgs)
+    for(var a = 0; a < msgs.length; a++){
+		outlet(0, msgs[a]);
+	}
+    draw()
+}
+
 // output the parsed code if output_matrix is disabled
 function run() {
     try {

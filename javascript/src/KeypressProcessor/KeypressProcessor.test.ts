@@ -171,6 +171,33 @@ test('loadConfigFromJSON should attach functions specified in JSON config', (t) 
   t.is(res2, "Function Two called with key: 65 and context: [object Object]")
 });
 
+test('preloading a function to a non alphanumerical key works without override true', (t) => {
+  const processor = new KeypressProcessor();
+
+  const functionOne = (k: number, ctx: {}) => {
+    return `Function One called with key: ${k} and context: ${ctx}`;
+  };
+  processor.preloadFunction('deckardsDream', functionOne);
+
+  const config = JSON.stringify({
+    "bindings": [
+      {
+        id: 'testConfig',
+        asciiCode: 356,
+        functions: ['deckardsDream'],
+      },
+    ]
+  });
+
+  processor.loadConfigFromJSON(config);
+
+  const res = processor.processKeypress(356);
+
+  t.is(res.length, 1);
+  const res1 = res[0](356, {})
+  t.is(res1, "Function One called with key: 356 and context: [object Object]")
+});
+
 test('processKeypress method overrides alphaNum processing if overrideAlphaNum is true', (t) => {
   const keypressProcessor = new KeypressProcessor();
   // Attach test functions to ASCII code 127 (used for general alphanumeric keys if overrideAlphaNum is false)
