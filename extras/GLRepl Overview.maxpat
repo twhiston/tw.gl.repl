@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 662.0, 328.0, 771.0, 511.0 ],
+		"rect" : [ 662.0, 328.0, 820.0, 511.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -37,10 +37,20 @@
 		"tags" : "",
 		"style" : "",
 		"subpatcher_template" : "",
-		"showrootpatcherontab" : 0,
-		"showontab" : 0,
+		"showontab" : 1,
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
+				"box" : 				{
+					"id" : "obj-9",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 644.5, 617.0, 89.0, 22.0 ],
+					"text" : "s replClipboard"
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"fontface" : 0,
 					"fontname" : "Arial",
@@ -74,7 +84,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 771.0, 485.0 ],
+						"rect" : [ 0.0, 26.0, 820.0, 485.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 1,
 						"default_fontsize" : 12.0,
@@ -241,7 +251,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 771.0, 485.0 ],
+						"rect" : [ 0.0, 26.0, 820.0, 485.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 1,
 						"default_fontsize" : 12.0,
@@ -398,7 +408,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 771.0, 485.0 ],
+						"rect" : [ 0.0, 26.0, 820.0, 485.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -429,6 +439,18 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
+									"id" : "obj-31",
+									"linecount" : 2,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 212.0, 136.0, 200.0, 33.0 ],
+									"text" : "stop the loop playing by jumping to line 1 and running it"
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"bgcolor" : [ 1.0, 0.788235, 0.470588, 1.0 ],
 									"fontname" : "Arial Bold",
 									"hint" : "",
@@ -440,7 +462,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 324.948251953124895, 143.0, 20.0, 20.0 ],
+									"patching_rect" : [ 323.948251953124895, 172.0, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "6",
 									"textcolor" : [ 0.34902, 0.34902, 0.34902, 1.0 ]
@@ -460,7 +482,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 371.5, 234.0, 20.0, 20.0 ],
+									"patching_rect" : [ 370.5, 263.0, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "5",
 									"textcolor" : [ 0.34902, 0.34902, 0.34902, 1.0 ]
@@ -474,7 +496,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 500.5, 116.0, 237.0, 47.0 ],
+									"patching_rect" : [ 499.5, 145.0, 237.0, 47.0 ],
 									"text" : "Once the REPL has received the run_line message it will format the input and output it from outlet 1, which is then received here"
 								}
 
@@ -486,7 +508,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 126.0, 280.0, 150.0, 60.0 ],
+									"patching_rect" : [ 125.0, 309.0, 150.0, 60.0 ],
 									"text" : "The list of messages in the message box above are sent to inlet 1 of [tw.gl.repl]"
 								}
 
@@ -504,7 +526,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 371.5, 171.5, 20.0, 20.0 ],
+									"patching_rect" : [ 370.5, 200.5, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "4",
 									"textcolor" : [ 0.34902, 0.34902, 0.34902, 1.0 ]
@@ -524,7 +546,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 482.5, 120.0, 20.0, 20.0 ],
+									"patching_rect" : [ 481.5, 149.0, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "3",
 									"textcolor" : [ 0.34902, 0.34902, 0.34902, 1.0 ]
@@ -544,7 +566,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 104.0, 300.0, 20.0, 20.0 ],
+									"patching_rect" : [ 103.0, 329.0, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "2",
 									"textcolor" : [ 0.34902, 0.34902, 0.34902, 1.0 ]
@@ -564,7 +586,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 11.0, 143.0, 20.0, 20.0 ],
+									"patching_rect" : [ 10.0, 172.0, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "1",
 									"textcolor" : [ 0.34902, 0.34902, 0.34902, 1.0 ]
@@ -594,7 +616,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 524.0, 227.5, 24.0, 24.0 ]
+									"patching_rect" : [ 523.0, 256.5, 24.0, 24.0 ]
 								}
 
 							}
@@ -604,7 +626,7 @@
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 619.935314941406091, 486.0, 121.0, 22.0 ],
+									"patching_rect" : [ 618.935314941406091, 515.0, 121.0, 22.0 ],
 									"text" : "print unmatchedInput"
 								}
 
@@ -617,7 +639,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 624.5, 227.5, 24.0, 24.0 ]
+									"patching_rect" : [ 623.5, 256.5, 24.0, 24.0 ]
 								}
 
 							}
@@ -628,7 +650,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 393.5, 234.0, 109.0, 74.0 ],
+									"patching_rect" : [ 392.5, 263.0, 109.0, 74.0 ],
 									"text" : "our seperate note list and stop message can now be handled in our max patch ----->"
 								}
 
@@ -640,7 +662,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 393.5, 171.5, 105.0, 47.0 ],
+									"patching_rect" : [ 392.5, 200.5, 105.0, 47.0 ],
 									"text" : "our loop and stop messages are routed here ----->"
 								}
 
@@ -653,7 +675,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 213.0, 143.0, 109.948251953124895, 20.0 ],
+									"patching_rect" : [ 212.0, 172.0, 109.948251953124895, 20.0 ],
 									"text" : "Press Me To Stop!"
 								}
 
@@ -665,7 +687,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 262.0, 212.5, 67.0, 22.0 ],
+									"patching_rect" : [ 261.0, 241.5, 67.0, 22.0 ],
 									"text" : "jumpLine 1"
 								}
 
@@ -677,7 +699,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "run_line", "bang" ],
-									"patching_rect" : [ 213.0, 177.0, 68.0, 22.0 ],
+									"patching_rect" : [ 212.0, 206.0, 68.0, 22.0 ],
 									"text" : "t run_line b"
 								}
 
@@ -690,7 +712,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 33.0, 143.0, 118.0, 20.0 ],
+									"patching_rect" : [ 32.0, 172.0, 118.0, 20.0 ],
 									"text" : "Press Me To Start!"
 								}
 
@@ -701,7 +723,7 @@
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 16.0, 454.5, 97.0, 22.0 ],
+									"patching_rect" : [ 15.0, 483.5, 97.0, 22.0 ],
 									"text" : "s launcher-world"
 								}
 
@@ -713,7 +735,7 @@
 									"numinlets" : 0,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 16.0, 380.0, 62.0, 22.0 ],
+									"patching_rect" : [ 15.0, 409.0, 62.0, 22.0 ],
 									"text" : "r toRouter"
 								}
 
@@ -726,7 +748,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 33.0, 214.0, 165.0, 49.0 ],
+									"patching_rect" : [ 32.0, 243.0, 165.0, 49.0 ],
 									"text" : "replay \"loop f2 500, c4 1000, d3 200, c3 100\", replay stop, gotoIndex 0, run_line"
 								}
 
@@ -738,7 +760,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "bang", "clear" ],
-									"patching_rect" : [ 33.0, 183.0, 51.0, 22.0 ],
+									"patching_rect" : [ 32.0, 212.0, 51.0, 22.0 ],
 									"text" : "t b clear"
 								}
 
@@ -749,7 +771,7 @@
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 33.0, 276.0, 91.0, 22.0 ],
+									"patching_rect" : [ 32.0, 305.0, 91.0, 22.0 ],
 									"text" : "s launcher-msg"
 								}
 
@@ -760,7 +782,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 16.0, 352.0, 416.0, 20.0 ],
+									"patching_rect" : [ 15.0, 381.0, 416.0, 20.0 ],
 									"text" : "Below you can see the routing for all of the tabs in this overview patch"
 								}
 
@@ -772,7 +794,7 @@
 									"numinlets" : 0,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 295.0, 454.5, 121.0, 22.0 ],
+									"patching_rect" : [ 294.0, 483.5, 121.0, 22.0 ],
 									"text" : "r interaction-example"
 								}
 
@@ -784,7 +806,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 295.0, 489.0, 51.0, 22.0 ],
+									"patching_rect" : [ 294.0, 518.0, 51.0, 22.0 ],
 									"text" : "pcontrol"
 								}
 
@@ -1351,7 +1373,7 @@
  ]
 									}
 ,
-									"patching_rect" : [ 319.948251953124895, 523.0, 123.0, 22.0 ],
+									"patching_rect" : [ 318.948251953124895, 552.0, 123.0, 22.0 ],
 									"saved_object_attributes" : 									{
 										"description" : "",
 										"digest" : "",
@@ -1370,7 +1392,7 @@
 									"numinlets" : 0,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 73.948251953124895, 494.0, 66.0, 22.0 ],
+									"patching_rect" : [ 72.948251953124895, 523.0, 66.0, 22.0 ],
 									"text" : "r printbang"
 								}
 
@@ -1383,7 +1405,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 73.948251953124895, 523.0, 118.0, 35.0 ],
+									"patching_rect" : [ 72.948251953124895, 552.0, 118.0, 35.0 ],
 									"text" : "c3 e4 f#4 a4 g4 e4 c4 g3"
 								}
 
@@ -1395,7 +1417,7 @@
 									"numinlets" : 3,
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "" ],
-									"patching_rect" : [ 525.935314941406091, 454.5, 113.0, 22.0 ],
+									"patching_rect" : [ 524.935314941406091, 483.5, 113.0, 22.0 ],
 									"text" : "routepass loop stop"
 								}
 
@@ -1892,7 +1914,7 @@
  ]
 									}
 ,
-									"patching_rect" : [ 117.987062988281195, 459.0, 85.0, 22.0 ],
+									"patching_rect" : [ 116.987062988281195, 488.0, 85.0, 22.0 ],
 									"saved_object_attributes" : 									{
 										"description" : "",
 										"digest" : "",
@@ -1910,7 +1932,7 @@
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 525.935314941406091, 486.0, 73.0, 22.0 ],
+									"patching_rect" : [ 524.935314941406091, 515.0, 73.0, 22.0 ],
 									"text" : "s fromREPL"
 								}
 
@@ -1921,7 +1943,7 @@
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 219.974125976562505, 563.5, 91.0, 22.0 ],
+									"patching_rect" : [ 218.974125976562505, 592.5, 91.0, 22.0 ],
 									"text" : "print fromREPL"
 								}
 
@@ -1933,7 +1955,7 @@
 									"numinlets" : 6,
 									"numoutlets" : 6,
 									"outlettype" : [ "", "", "", "", "", "" ],
-									"patching_rect" : [ 16.0, 415.0, 528.935314941406091, 22.0 ],
+									"patching_rect" : [ 15.0, 444.0, 528.935314941406091, 22.0 ],
 									"text" : "route wo play print c go"
 								}
 
@@ -2567,7 +2589,7 @@
  ]
 									}
 ,
-									"patching_rect" : [ 500.5, 286.0, 124.0, 22.0 ],
+									"patching_rect" : [ 499.5, 315.0, 124.0, 22.0 ],
 									"saved_object_attributes" : 									{
 										"description" : "",
 										"digest" : "",
@@ -2586,7 +2608,7 @@
 									"numinlets" : 3,
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "" ],
-									"patching_rect" : [ 500.5, 195.0, 229.0, 22.0 ],
+									"patching_rect" : [ 499.5, 224.0, 229.0, 22.0 ],
 									"text" : "route loop stop"
 								}
 
@@ -2598,7 +2620,7 @@
 									"numinlets" : 0,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 500.5, 165.0, 71.0, 22.0 ],
+									"patching_rect" : [ 499.5, 194.0, 71.0, 22.0 ],
 									"text" : "r fromREPL"
 								}
 
@@ -2610,7 +2632,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 24.0, 79.0, 705.5, 33.0 ],
+									"patching_rect" : [ 24.0, 69.0, 705.5, 33.0 ],
 									"text" : "Messages from the repl are printed from the first outlet of [tw.gl.repl] and the expectation is that you use [route] and [routepass] objects to build ways to use the formatted text to interact with your patches."
 								}
 
@@ -2661,7 +2683,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-13", 0 ],
-									"midpoints" : [ 74.5, 207.0, 18.0, 207.0, 18.0, 270.0, 42.5, 270.0 ],
+									"midpoints" : [ 73.5, 236.0, 17.0, 236.0, 17.0, 299.0, 41.5, 299.0 ],
 									"source" : [ "obj-19", 1 ]
 								}
 
@@ -2683,7 +2705,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-13", 0 ],
-									"midpoints" : [ 271.5, 273.0, 42.5, 273.0 ],
+									"midpoints" : [ 270.5, 302.0, 41.5, 302.0 ],
 									"source" : [ "obj-27", 0 ]
 								}
 
@@ -2759,7 +2781,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-14", 1 ],
-									"midpoints" : [ 127.487062988281224, 452.0, 212.948251953124895, 452.0, 212.948251953124895, 489.0, 212.948251953124895, 489.0, 212.948251953124895, 510.0, 182.448251953124895, 510.0 ],
+									"midpoints" : [ 126.487062988281224, 481.0, 211.948251953124895, 481.0, 211.948251953124895, 518.0, 211.948251953124895, 518.0, 211.948251953124895, 539.0, 181.448251953124895, 539.0 ],
 									"order" : 0,
 									"source" : [ "obj-44", 1 ]
 								}
@@ -2803,7 +2825,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-13", 0 ],
-									"midpoints" : [ 222.5, 273.0, 42.5, 273.0 ],
+									"midpoints" : [ 221.5, 302.0, 41.5, 302.0 ],
 									"source" : [ "obj-8", 0 ]
 								}
 
@@ -2854,7 +2876,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 771.0, 485.0 ],
+						"rect" : [ 662.0, 354.0, 820.0, 485.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 1,
 						"default_fontsize" : 12.0,
@@ -2885,15 +2907,115 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
+									"id" : "obj-9",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 644.0, 984.0, 91.0, 22.0 ],
+									"text" : "s launcher-msg"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-11",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 2,
+									"outlettype" : [ "run", "bang" ],
+									"patching_rect" : [ 644.0, 885.0, 43.0, 22.0 ],
+									"text" : "t run b"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-13",
+									"maxclass" : "message",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 668.0, 932.0, 154.0, 22.0 ],
+									"text" : "jumpLine -1, keyPress 355,"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-15",
+									"maxclass" : "textbutton",
+									"numinlets" : 1,
+									"numoutlets" : 3,
+									"outlettype" : [ "", "", "int" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 644.0, 854.0, 100.0, 20.0 ],
+									"presentation" : 1,
+									"presentation_rect" : [ 251.0, 375.0, 100.0, 20.0 ],
+									"text" : "Press Me!"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-26",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 644.0, 812.0, 91.0, 22.0 ],
+									"text" : "s launcher-msg"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-20",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 3,
+									"outlettype" : [ "run", "bang", "clear" ],
+									"patching_rect" : [ 644.0, 713.0, 72.0, 22.0 ],
+									"text" : "t run b clear"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-7",
+									"linecount" : 2,
+									"maxclass" : "message",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 670.5, 775.0, 312.0, 35.0 ],
+									"text" : "replay \"// all these keypresses have been routed through the alphanumeric handler\""
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-8",
+									"maxclass" : "textbutton",
+									"numinlets" : 1,
+									"numoutlets" : 3,
+									"outlettype" : [ "", "", "int" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 644.0, 682.0, 100.0, 20.0 ],
+									"presentation" : 1,
+									"presentation_rect" : [ 236.0, 360.0, 100.0, 20.0 ],
+									"text" : "Press Me!"
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"fontface" : 0,
 									"fontname" : "Arial",
 									"fontsize" : 40.0,
 									"id" : "obj-1",
-									"linecount" : 5,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 24.0, 9.0, 83.0, 230.0 ],
+									"patching_rect" : [ 24.0, 9.0, 527.0, 51.0 ],
 									"presentation" : 1,
 									"presentation_rect" : [ 24.0, 9.0, 281.0, 51.0 ],
 									"text" : "GLRepl - read",
@@ -2929,7 +3051,7 @@
 									"patching_rect" : [ 749.0, 537.0, 211.0, 90.0 ],
 									"presentation" : 1,
 									"presentation_linecount" : 6,
-									"presentation_rect" : [ 36.0, 588.0, 211.0, 90.0 ],
+									"presentation_rect" : [ 36.0, 614.0, 211.0, 90.0 ],
 									"text" : "{\n    ...\n    \"functions\": [\n        \"doSomething\"\n    ]\n}"
 								}
 
@@ -2945,7 +3067,7 @@
 									"patching_rect" : [ 749.0, 389.0, 202.0, 146.0 ],
 									"presentation" : 1,
 									"presentation_linecount" : 7,
-									"presentation_rect" : [ 36.0, 446.0, 358.0, 104.0 ],
+									"presentation_rect" : [ 36.0, 466.0, 358.0, 104.0 ],
 									"text" : "{\n    ...\n    \"functions\": [\n        \"ctx.tb.pasteBinCopyLine(ctx.c.line())\",\n        \"return ['output_paste_bin']\"\n    ]\n}"
 								}
 
@@ -2984,9 +3106,9 @@
 									"maxclass" : "dict.view",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 232.0, 233.5, 362.0, 323.0 ],
+									"patching_rect" : [ 519.0, 234.5, 199.0, 111.0 ],
 									"presentation" : 1,
-									"presentation_rect" : [ 401.0, 180.5, 346.0, 441.0 ]
+									"presentation_rect" : [ 401.0, 180.5, 346.0, 538.0 ]
 								}
 
 							}
@@ -3011,15 +3133,15 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-2",
-									"linecount" : 58,
+									"linecount" : 60,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 24.0, 80.0, 586.0, 784.0 ],
+									"patching_rect" : [ 24.0, 80.0, 586.0, 811.0 ],
 									"presentation" : 1,
-									"presentation_linecount" : 55,
-									"presentation_rect" : [ 24.0, 80.0, 723.0, 744.0 ],
-									"text" : "The first thing a REPL does is read in text. By default when you write text into the REPL window keypresses are written into a text buffer and displayed. But this is only one possible behaviour as the user can change the REPL behaviour using a JSON config file. \nFor most livecoding scenarios the default configuration will not need changing.\n\nYou can bind any number of functions to any ascii keycode, the functions will be called in the order they are defined. Functions may return an array of messages which will be output by the REPL. These may be messages to the repl itself, or messages to be parsed externally.\n\nYou have access to the following variables in your function body:\n\n            - the keypress which triggered the event\n            - the REPLManager object\n\nSome examples of binding functions include:\n1. A simple call the REPLManager object. This uses ascii code 127 \n    which is a special value in the REPL reserved to attach a function \n    which will be run on any alphanumerical keypress.\n\n\n\n\n\n\n\n\n\n2. A more complex example\n\n\n\n\n\n\n\n\n\n3. Call a custom function directly via name\n\n\n\n\n\n\n\n\nThis third method is a special case and requires you to pre-bind a custom function which you have written in code. See README.md in the package root folder for more information on this. You will only need this if you plan on extending the repl with your own code.\n\n\nTo understand what objects and methods are available on ctx please check the javascript folder in the package.\n\nFor convenience a number of functions are bound to keypresses by default to make navigating the REPL easier. See the object help and the default config file for more details.\n\nSee the Midi(Simple) Example, on the examples tab, for an example of rebinding key controls."
+									"presentation_linecount" : 57,
+									"presentation_rect" : [ 24.0, 80.0, 723.0, 771.0 ],
+									"text" : "The first thing a REPL does is read in text. By default when you write text into the REPL window keypresses are written into a text buffer and displayed. But this is only one possible behaviour as the user can change the REPL behaviour using a JSON config file. \nFor most livecoding scenarios the default configuration will not need changing.\n\nYou can bind any number of functions to any ascii keycode, the functions will be called in the order they are defined. Functions may return an array of messages which will be output by the REPL. These may be messages to the repl itself, or messages to be parsed externally.\n\nYou have access to the following variables in your function body:\n\n            - the keypress which triggered the event\n            - the REPLManager object\n\nSome examples of binding functions include:\n1. A simple call the REPLManager object. This uses ascii code 127 \n    which is a special value in the REPL reserved to attach a function \n    which will be run on any alphanumerical keypress.\n\n\n\n\n\n\n\n\n\n2. A more complex example, which copied the line under the cursor to\nthe clipboard and outputs it from outlet 2\n\n\n\n\n\n\n\n\n\n3. Call a custom function you have written directly.\nThis function must have the signature (k, ctx)\n\n\n\n\n\n\n\n\nThis third method is a special case and requires you to pre-bind a custom function which you have written in code. See README.md in the package root folder for more information on this. You will only need this if you plan on extending the repl with your own code.\n\n\nTo understand what objects and methods are available on ctx please check the javascript folder in the package.\n\nFor convenience a number of functions are bound to keypresses by default to make navigating the REPL easier. See the object help and the default config file for more details.\n\nSee the Midi(Simple) Example, on the examples tab, for an example of rebinding key controls."
 								}
 
 							}
@@ -3033,8 +3155,71 @@
 							}
 , 							{
 								"patchline" : 								{
+									"destination" : [ "obj-13", 0 ],
+									"source" : [ "obj-11", 1 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-9", 0 ],
+									"source" : [ "obj-11", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-9", 0 ],
+									"source" : [ "obj-13", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-11", 0 ],
+									"source" : [ "obj-15", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-26", 0 ],
+									"source" : [ "obj-20", 2 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-26", 0 ],
+									"source" : [ "obj-20", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-7", 0 ],
+									"source" : [ "obj-20", 1 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
 									"destination" : [ "obj-6", 0 ],
 									"source" : [ "obj-5", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-26", 0 ],
+									"source" : [ "obj-7", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-20", 0 ],
+									"source" : [ "obj-8", 0 ]
 								}
 
 							}
@@ -3070,7 +3255,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 662.0, 354.0, 771.0, 485.0 ],
+						"rect" : [ 0.0, 26.0, 820.0, 485.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 1,
 						"default_fontsize" : 12.0,
@@ -3109,7 +3294,7 @@
 									"parameter_enable" : 0,
 									"patching_rect" : [ 368.0, 608.5, 100.0, 20.0 ],
 									"presentation" : 1,
-									"presentation_rect" : [ 410.0, 266.0, 100.0, 20.0 ],
+									"presentation_rect" : [ 310.5, 266.0, 100.0, 20.0 ],
 									"text" : "Press Me!"
 								}
 
@@ -3514,7 +3699,7 @@
 									"parameter_enable" : 0,
 									"patching_rect" : [ 738.0, 252.0, 100.0, 20.0 ],
 									"presentation" : 1,
-									"presentation_rect" : [ 28.0, 266.0, 100.0, 20.0 ],
+									"presentation_rect" : [ 668.0, 244.0, 100.0, 20.0 ],
 									"text" : "Press Me!"
 								}
 
@@ -3529,7 +3714,7 @@
 									"parameter_enable" : 0,
 									"patching_rect" : [ 549.0, 462.0, 100.0, 20.0 ],
 									"presentation" : 1,
-									"presentation_rect" : [ 450.0, 244.0, 100.0, 20.0 ],
+									"presentation_rect" : [ 385.0, 244.0, 100.0, 20.0 ],
 									"text" : "Press Me!"
 								}
 
@@ -3590,10 +3775,10 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 24.0, 80.0, 653.0, 364.0 ],
+									"patching_rect" : [ 24.0, 80.0, 672.0, 364.0 ],
 									"presentation" : 1,
-									"presentation_linecount" : 20,
-									"presentation_rect" : [ 24.0, 81.0, 732.0, 364.0 ],
+									"presentation_linecount" : 19,
+									"presentation_rect" : [ 24.0, 81.0, 783.0, 346.0 ],
 									"text" : "A REPL - Reads in text                         Evaluates it                          Prints the output and Loops                        .\n\nOtherwise known as a language shell, a REPL is commonly used to execute programs which are written in a piecewise manner, which means you build them up by running consecutive commands rather than fully programming the code first and then executing it later. REPL's are probably most well known in an artistic context from live coding. \n\nA REPL interacts with a programming language and in this case you can think of Max as that! The REPL is designed to interact with patches you build in max                         ,it's own opengl window         ,                      and GLRepl's own internal functionality                       \n\nAt it's heart GLRepl is a keypress processor, whose input is manipulated and displayed in various ways. The repl, when sent the `run` or `run_line` messages will output a series of formatted messages. This means that integrating GLRepl with your patch can be as simple as using a few [route] and [routepass] objects to direct the output, but could also be as complex as you can imagine. GLRepl's flexible user configuration, defined in json, coupled with the power of max, allows you can create very complex interactions in a very easy way.\n\nSee the other tabs to understand how the REPL works."
 								}
 
@@ -3912,7 +4097,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 771.0, 485.0 ],
+						"rect" : [ 0.0, 26.0, 820.0, 485.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 1,
 						"default_fontsize" : 12.0,
@@ -4437,6 +4622,13 @@
 				"patchline" : 				{
 					"destination" : [ "obj-3", 0 ],
 					"source" : [ "obj-112", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-9", 0 ],
+					"source" : [ "obj-112", 1 ]
 				}
 
 			}

@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 743.0, 125.0, 752.0, 794.0 ],
+		"rect" : [ 666.0, 189.0, 938.0, 794.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -56,7 +56,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 752.0, 768.0 ],
+						"rect" : [ 0.0, 26.0, 938.0, 768.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -410,7 +410,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 752.0, 768.0 ],
+						"rect" : [ 0.0, 26.0, 938.0, 768.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1053,7 +1053,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 752.0, 768.0 ],
+						"rect" : [ 0.0, 26.0, 938.0, 768.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1840,7 +1840,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 752.0, 768.0 ],
+						"rect" : [ 0.0, 26.0, 938.0, 768.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -2520,7 +2520,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 752.0, 768.0 ],
+						"rect" : [ 0.0, 26.0, 938.0, 768.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -3166,7 +3166,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 743.0, 151.0, 752.0, 768.0 ],
+						"rect" : [ 666.0, 215.0, 938.0, 768.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -3197,6 +3197,39 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
+									"id" : "obj-4",
+									"linecount" : 2,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 518.0, 576.0, 372.0, 33.0 ],
+									"presentation_linecount" : 4,
+									"text" : "This is an example of how you can configure these options from the object itself rather than passing in messages"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"bgcolor" : [ 1.0, 0.788235, 0.470588, 1.0 ],
+									"fontname" : "Arial Bold",
+									"hint" : "",
+									"id" : "obj-13",
+									"ignoreclick" : 1,
+									"legacytextcolor" : 1,
+									"maxclass" : "textbutton",
+									"numinlets" : 1,
+									"numoutlets" : 3,
+									"outlettype" : [ "", "", "int" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 496.0, 576.0, 20.0, 20.0 ],
+									"rounded" : 60.0,
+									"text" : "6",
+									"textcolor" : [ 0.34902, 0.34902, 0.34902, 1.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"id" : "obj-9",
 									"maxclass" : "message",
 									"numinlets" : 2,
@@ -3214,7 +3247,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 523.0, 482.0, 79.0, 22.0 ],
+									"patching_rect" : [ 523.0, 479.0, 79.0, 22.0 ],
 									"text" : "loadmess init"
 								}
 
@@ -3330,7 +3363,7 @@
 									"parameter_enable" : 0,
 									"patching_rect" : [ 508.0, 188.0, 20.0, 20.0 ],
 									"rounded" : 60.0,
-									"text" : "6",
+									"text" : "5",
 									"textcolor" : [ 0.34902, 0.34902, 0.34902, 1.0 ]
 								}
 
@@ -3409,7 +3442,7 @@
 									"parameter_enable" : 0,
 									"patching_rect" : [ 294.5, 368.0, 20.0, 20.0 ],
 									"rounded" : 60.0,
-									"text" : "5",
+									"text" : "4",
 									"textcolor" : [ 0.34902, 0.34902, 0.34902, 1.0 ]
 								}
 
@@ -4385,6 +4418,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-75", 0 ],
+									"midpoints" : [ 634.0, 504.0, 532.5, 504.0 ],
 									"order" : 1,
 									"source" : [ "obj-74", 1 ]
 								}
@@ -4516,7 +4550,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 752.0, 768.0 ],
+						"rect" : [ 0.0, 26.0, 938.0, 768.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -4761,7 +4795,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 752.0, 768.0 ],
+						"rect" : [ 0.0, 26.0, 938.0, 768.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -4934,8 +4968,9 @@
 						"tags" : "",
 						"style" : "",
 						"subpatcher_template" : "",
-						"showontab" : 0,
+						"showontab" : 1,
 						"assistshowspatchername" : 0,
+						"visible" : 1,
 						"boxes" : [ 							{
 								"box" : 								{
 									"id" : "obj-20",
@@ -4996,7 +5031,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 439.0, 363.5, 148.0, 22.0 ],
-									"text" : "blink_time 250"
+									"text" : "cursor <CRSR"
 								}
 
 							}
@@ -5025,7 +5060,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 421.0, 404.0, 20.0, 20.0 ],
+									"patching_rect" : [ 532.0, 424.0, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "7",
 									"textcolor" : [ 0.34902, 0.34902, 0.34902, 1.0 ]
@@ -5333,7 +5368,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 313.0, 481.0, 152.0, 74.0 ],
+									"patching_rect" : [ 253.0, 411.5, 152.0, 74.0 ],
 									"text" : "type some text and press enter to output the \"code\".\nNote that we don't need to go from a symbol or [iter] here"
 								}
 
@@ -5403,7 +5438,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 30.0, 193.0, 20.0, 20.0 ],
+									"patching_rect" : [ 167.0, 225.0, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "1",
 									"textcolor" : [ 0.34902, 0.34902, 0.34902, 1.0 ]
@@ -5416,7 +5451,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 45.0, 203.0, 90.0, 20.0 ],
+									"patching_rect" : [ 196.0, 225.0, 90.0, 20.0 ],
 									"text" : "turn world on"
 								}
 
@@ -5624,11 +5659,11 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-44",
-									"linecount" : 4,
+									"linecount" : 5,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 291.0, 404.0, 150.0, 60.0 ],
+									"patching_rect" : [ 439.0, 435.0, 131.0, 74.0 ],
 									"text" : "If you use the copy bindings alt+x or alt+c it will also output the copied text from this output"
 								}
 
