@@ -16,4 +16,5 @@
         "formatters",
         "extras-patch"
     ],
+    "GitHooks.hooksDirectory": "/Users/twhiston/Documents/Max 8/Packages/GLRepl/.git/hooks",
 }

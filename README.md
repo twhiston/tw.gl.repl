@@ -6,10 +6,7 @@
 
 GLRepl is a max/msp Repl (Read/Execute/Print/Loop) environment based on the
 excellent th.gl.texteditor. It consists of two objects `[tw.gl.repl]` and
-`[tw.gl.repl.dynamic-size-helper]` It was partly built as a way to learn how to
-take a more modern approach to building javascript code for Max, but it
-significantly extends the original functionality, to provide a more fully
-featured and configurable repl environment.
+`[tw.gl.repl.dynamic-size-helper]`.
 
 At it's core this is the same idea as th.gl.texteditor but the way in which
 functions can be attached to keys now significantly extends what it is possible
@@ -235,8 +232,8 @@ text in the buffer with the pastebin is an exaxple of this
 One of the ways to extend the repl further is to attach or preload your own functions
 so you can tie them to a key in the config.
 To make this easier the package tries to load a file called `user-repl.js`, max should
-load this fine if it's in your patch folder. Inside it you have access to `i.glRender`
-and `i.repl`, you also have access to a Dict of `replkeys.json` in `sKeys`. Which
+load this fine if it's in your patch folder. Inside it you have access to `glrepl.renderer`
+and `glrepl.manager`, you also have access to a Dict of `replkeys.json` in `sKeys`. Which
 will be stringified and passed into the repl on `init()`
 
 Most basic usage will be something like:
@@ -247,7 +244,7 @@ Most basic usage will be something like:
 const functionOne = (k, ctx) => {
     return `some message`;
 };
-i.repl.kp.preloadFunction('doSomething', functionOne);
+glrepl.manager.kp.preloadFunction('doSomething', functionOne);
 ```
 
 You can then use this in your `replkeys.json` app config by binding it
@@ -275,8 +272,8 @@ Alternatively if, for some reason, you want to configure it in code rather than
 with json you could attach the function directly.
 
 ```javascript
-//i.repl.kp.attachFunctions(id: string, keyCode: number, funcs: Array<KeyProcessor>)
-i.repl.kp.attachFunctions("arbitraryName", -2, [functionOne])
+//glrepl.manager.kp.attachFunctions(id: string, keyCode: number, funcs: Array<KeyProcessor>)
+glrepl.manager.kp.attachFunctions("arbitraryName", -2, [functionOne])
 ```
 
 which will then be run when the key is pressed. All custom function should be of
@@ -304,7 +301,7 @@ being called:
 
 ```javascript
 //user-repl.js in your path
-i.repl.kp.customAlphaNum(true);
+glrepl.manager.kp.customAlphaNum(true);
 ```
 
 or
@@ -369,7 +366,7 @@ class UppercaseFormatter implements TextFormatter {
         return strArr.map(str => str.toUpperCase());
     }
 }
-i.repl.preloadFormatter(new UppercaseFormatter);
+glrepl.manager.preloadFormatter(new UppercaseFormatter);
 //include via repl json config: {"settings"{"textbuffer": {"formatters": ["uppercase"]}}}
 ```
 

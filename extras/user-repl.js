@@ -9,4 +9,4 @@ function overviewCustomFunction(k, ctx) {
     return [newStr];
 };
 
-i.repl.kp.preloadFunction('deckardsDream', overviewCustomFunction);
+glrepl.manager.kp.preloadFunction('deckardsDream', overviewCustomFunction);

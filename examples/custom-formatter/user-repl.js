@@ -147,5 +147,5 @@ var SnippetExpander = /** @class */ (function () {
 
 var ctmn = new ConstrainToMidiNumbers()
 var se = new SnippetExpander()
-i.repl.preloadFormatter(ctmn)
-i.repl.preloadFormatter(se)
+glrepl.manager.preloadFormatter(ctmn)
+glrepl.manager.preloadFormatter(se)

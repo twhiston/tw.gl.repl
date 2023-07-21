@@ -95,7 +95,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 821.0, 605.0 ],
+						"rect" : [ 702.0, 366.0, 821.0, 605.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 1,
 						"default_fontsize" : 12.0,
@@ -299,7 +299,6 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 836.0, 490.0, 121.0, 22.0 ],
-									"presentation_linecount" : 3,
 									"text" : "jumpLine -1, run_line"
 								}
 
@@ -311,7 +310,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 90.0, 481.0, 150.0, 47.0 ],
+									"patching_rect" : [ 90.0, 481.0, 151.0, 47.0 ],
 									"presentation" : 1,
 									"presentation_rect" : [ 80.0, 462.0, 368.0, 20.0 ],
 									"text" : "Number of run commands sent while this overview has been open"
@@ -401,13 +400,13 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-23",
-									"linecount" : 8,
+									"linecount" : 9,
 									"maxclass" : "message",
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 480.0, 523.0, 222.0, 116.0 ],
-									"text" : "jumpLine 1, replay \"// we just  sent the run_line command. \", replay \"// This output the line from the repl\", replay \"// because it could not be routed internally.\", replay \"// You can see it in the max console\", jumpLine -1, jumpLine -1, jumpLine -1, jumpLine -1, jumpLine -1"
+									"patching_rect" : [ 480.0, 523.0, 202.0, 129.0 ],
+									"text" : "jumpLine 1, replay \"// we just  sent the run_line command. \", replay \"// This output the line under the cursor from the repl\", replay \"// because it could not be routed internally.\", replay \"// You can see it in the max console\", jumpLine -1, jumpLine -1, jumpLine -1, jumpLine -1, jumpLine -1"
 								}
 
 							}
@@ -1882,11 +1881,13 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-14",
+									"linecount" : 2,
 									"maxclass" : "message",
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 72.948251953124895, 542.0, 118.0, 22.0 ]
+									"patching_rect" : [ 72.948251953124895, 542.0, 118.0, 35.0 ],
+									"text" : "c3 e4 f#4 a4 g4 e4 c4 g3"
 								}
 
 							}
@@ -3537,16 +3538,13 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-17",
-									"linecount" : 2,
 									"maxclass" : "message",
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 733.5, 906.0, 243.0, 35.0 ],
+									"patching_rect" : [ 733.5, 906.0, 243.0, 22.0 ],
 									"presentation" : 1,
-									"presentation_linecount" : 2,
-									"presentation_rect" : [ 30.0, 575.0, 370.0, 35.0 ],
-									"text" : "all these keypresses have been replayed through the alphanumeric handler"
+									"presentation_rect" : [ 30.0, 575.0, 370.0, 22.0 ]
 								}
 
 							}
@@ -3590,12 +3588,13 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-13",
+									"linecount" : 2,
 									"maxclass" : "message",
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 644.0, 944.0, 237.0, 22.0 ],
-									"text" : "jumpLine -1, keyPress 231, keyPress 4451"
+									"patching_rect" : [ 644.0, 944.0, 680.0, 35.0 ],
+									"text" : "jumpLine -1, keyPress 231, keyPress 4451, keyPress -4, replay \"//check the msg box below the button you pressed to see the clipboard output\""
 								}
 
 							}
@@ -4517,10 +4516,10 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 24.0, 80.0, 783.0, 364.0 ],
+									"patching_rect" : [ 24.0, 80.0, 785.0, 364.0 ],
 									"presentation" : 1,
 									"presentation_linecount" : 20,
-									"presentation_rect" : [ 24.0, 81.0, 783.0, 364.0 ],
+									"presentation_rect" : [ 24.0, 81.0, 785.0, 364.0 ],
 									"text" : "A REPL - Reads in text                         Evaluates it                          Prints the output and Loops                        .\n\nOtherwise known as a language shell, a REPL is commonly used to execute programs which are written in a piecewise manner, which means you build them up by running consecutive commands rather than fully programming the code first and then executing it later. REPL's are probably most well known in an artistic context from live coding. \n\nA REPL interacts with a programming language and in this case you can think of Max as that! The REPL is designed to interact with patches you build in max                         ,it's own opengl window         ,                      and GLRepl's own internal functionality                         . It does all of this with simple routing!                       \n\nAt it's heart GLRepl is a keypress processor, whose input is manipulated and displayed in various ways. The repl, when sent the `run` or `run_line` commands will output a series of formatted messages. This means that integrating GLRepl with your patch can be as simple as using a few [route] and [routepass] objects to direct the output, but could also be as complex as you can imagine! GLRepl's flexible user configuration, defined in json, coupled with the power of max and javascript, allows you to create very complex interactions in a very easy way.\n\nSee the other tabs to understand how the REPL works."
 								}
 
@@ -4839,7 +4838,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 702.0, 366.0, 821.0, 605.0 ],
+						"rect" : [ 0.0, 26.0, 821.0, 605.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 1,
 						"default_fontsize" : 12.0,

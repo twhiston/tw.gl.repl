@@ -52,7 +52,7 @@ export enum JumpDirection {
     END
 }
 
-@maxMspBinding({ instanceName: 'i.repl' })
+@maxMspBinding({ instanceName: 'glrepl.manager' })
 export class REPLManager {
 
     tb: TextBuffer
