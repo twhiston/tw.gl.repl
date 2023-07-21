@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 702.0, 340.0, 821.0, 631.0 ],
+		"rect" : [ 657.0, 318.0, 821.0, 631.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -95,7 +95,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 702.0, 366.0, 821.0, 605.0 ],
+						"rect" : [ 0.0, 26.0, 821.0, 605.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 1,
 						"default_fontsize" : 12.0,
@@ -126,15 +126,177 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
+									"id" : "obj-14",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 137.0, 869.0, 91.0, 22.0 ],
+									"text" : "s launcher-msg"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-15",
+									"maxclass" : "message",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 105.0, 839.0, 182.0, 22.0 ],
+									"text" : "replay \"jseval 9-5/(8-3)*2+6\", run"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-16",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 2,
+									"outlettype" : [ "bang", "clear" ],
+									"patching_rect" : [ 105.0, 810.0, 51.0, 22.0 ],
+									"text" : "t b clear"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-17",
+									"maxclass" : "textbutton",
+									"numinlets" : 1,
+									"numoutlets" : 3,
+									"outlettype" : [ "", "", "int" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 105.0, 785.0, 100.0, 20.0 ],
+									"presentation" : 1,
+									"presentation_rect" : [ 29.0, 275.0, 100.0, 20.0 ],
+									"text" : "Press Me!"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-8",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 137.0, 741.0, 91.0, 22.0 ],
+									"text" : "s launcher-msg"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-9",
+									"maxclass" : "message",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 105.0, 711.0, 178.0, 22.0 ],
+									"text" : "replay \"jseval 9-5/(8-3*2+6\", run"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-10",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 2,
+									"outlettype" : [ "bang", "clear" ],
+									"patching_rect" : [ 105.0, 682.0, 51.0, 22.0 ],
+									"text" : "t b clear"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-11",
+									"maxclass" : "textbutton",
+									"numinlets" : 1,
+									"numoutlets" : 3,
+									"outlettype" : [ "", "", "int" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 105.0, 657.0, 100.0, 20.0 ],
+									"presentation" : 1,
+									"presentation_rect" : [ 29.0, 234.0, 100.0, 20.0 ],
+									"text" : "Press Me!"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-25",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 126.0, 610.0, 91.0, 22.0 ],
+									"text" : "s launcher-msg"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-7",
+									"maxclass" : "message",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 5.0, 567.0, 542.0, 22.0 ],
+									"text" : "replay \"// this line will not appear in the max console\", replay \"this line will appear in the console\", run"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-6",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 3,
+									"outlettype" : [ "bang", "clear", "bang" ],
+									"patching_rect" : [ 105.0, 502.0, 61.0, 22.0 ],
+									"text" : "t b clear b"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-4",
+									"maxclass" : "textbutton",
+									"numinlets" : 1,
+									"numoutlets" : 3,
+									"outlettype" : [ "", "", "int" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 105.0, 477.0, 100.0, 20.0 ],
+									"presentation" : 1,
+									"presentation_rect" : [ 29.0, 181.0, 100.0, 20.0 ],
+									"text" : "Press Me!"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-3",
+									"linecount" : 2,
+									"maxclass" : "message",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 147.0, 530.0, 101.0, 35.0 ],
+									"text" : ";\rmax maxwindow"
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"fontface" : 0,
 									"fontname" : "Arial",
 									"fontsize" : 40.0,
 									"id" : "obj-1",
-									"linecount" : 6,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 24.0, 9.0, 83.0, 275.0 ],
+									"patching_rect" : [ 24.0, 9.0, 354.0, 51.0 ],
 									"presentation" : 1,
 									"presentation_rect" : [ 24.0, 9.0, 364.0, 51.0 ],
 									"text" : "GLRepl - print/loop",
@@ -145,20 +307,111 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-2",
-									"linecount" : 19,
+									"linecount" : 18,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 24.0, 80.0, 586.0, 261.0 ],
+									"patching_rect" : [ 24.0, 80.0, 740.0, 261.0 ],
 									"presentation" : 1,
 									"presentation_linecount" : 18,
-									"presentation_rect" : [ 24.0, 80.0, 723.0, 248.0 ],
-									"text" : "As mentioned in the eval tab, to prepare the text for printing it is passed through a series of formatters. By default three formatters are applied:\n\n- the comment lines are stripped from the text\n- whitespace is normalized \n- your output is checked for balanced braces\n\n\n\n\n\n\n\nNote that when you push the button above an error is printed to the max console, and the output of the message is not passed to the output. Add a ) in the repl and execute the line. This time in the max console you will see the output printed.\n\n\nEPHEMERAL MODE"
+									"presentation_rect" : [ 24.0, 80.0, 725.0, 261.0 ],
+									"text" : "As mentioned in the eval tab, to prepare the text for printing it is passed through a series of formatters. By default three formatters are applied:\n\ncommentremover   -   the comment lines are stripped from the text\nwhitespace             -   whitespace is normalized \nbracebalanced       -    your output is checked for balanced braces\n\n\n\nWhen you push the button above some text is replayed into the repl and the run command is executed. Because the commentremover formatter is active line 0 will not be output from the repl. You can see line1 printed to the max console.\n\n\nWhen you push the button above an error is printed to the max console, and the output of the message is not passed to the output. \n\n\nWhen you push the button above the run command is executed on a correctly balanced version of the expression. This time the expression is output from the repl and then evaluated.\n"
 								}
 
 							}
  ],
-						"lines" : [  ]
+						"lines" : [ 							{
+								"patchline" : 								{
+									"destination" : [ "obj-8", 0 ],
+									"source" : [ "obj-10", 1 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-9", 0 ],
+									"source" : [ "obj-10", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-10", 0 ],
+									"source" : [ "obj-11", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-14", 0 ],
+									"source" : [ "obj-15", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-14", 0 ],
+									"source" : [ "obj-16", 1 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-15", 0 ],
+									"source" : [ "obj-16", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-16", 0 ],
+									"source" : [ "obj-17", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-6", 0 ],
+									"source" : [ "obj-4", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-25", 0 ],
+									"source" : [ "obj-6", 1 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-3", 0 ],
+									"source" : [ "obj-6", 2 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-7", 0 ],
+									"source" : [ "obj-6", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-25", 0 ],
+									"source" : [ "obj-7", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-8", 0 ],
+									"source" : [ "obj-9", 0 ]
+								}
+
+							}
+ ]
 					}
 ,
 					"patching_rect" : [ 609.5, 8.0, 68.0, 22.0 ],
@@ -262,7 +515,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 821.0, 605.0 ],
+						"rect" : [ 657.0, 344.0, 821.0, 605.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 1,
 						"default_fontsize" : 12.0,
@@ -292,6 +545,19 @@
 						"showontab" : 1,
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
+								"box" : 								{
+									"id" : "obj-11",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 267.0, 527.0, 150.0, 20.0 ],
+									"presentation" : 1,
+									"presentation_rect" : [ 267.0, 527.0, 150.0, 20.0 ],
+									"text" : "EPHEMERAL MODE!"
+								}
+
+							}
+, 							{
 								"box" : 								{
 									"id" : "obj-36",
 									"maxclass" : "message",
@@ -405,7 +671,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 480.0, 523.0, 202.0, 129.0 ],
+									"patching_rect" : [ 480.0, 523.0, 204.0, 129.0 ],
 									"text" : "jumpLine 1, replay \"// we just  sent the run_line command. \", replay \"// This output the line under the cursor from the repl\", replay \"// because it could not be routed internally.\", replay \"// You can see it in the max console\", jumpLine -1, jumpLine -1, jumpLine -1, jumpLine -1, jumpLine -1"
 								}
 
@@ -900,6 +1166,23 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
+									"id" : "obj-38",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 610.268648274739462, 532.5, 91.0, 22.0 ],
+									"saved_object_attributes" : 									{
+										"filename" : "_dirty_eval.js",
+										"parameter_enable" : 0
+									}
+,
+									"text" : "js _dirty_eval.js"
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"bgcolor" : [ 1.0, 0.788235, 0.470588, 1.0 ],
 									"fontname" : "Arial Bold",
 									"hint" : "",
@@ -1107,7 +1390,7 @@
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 618.935314941406091, 505.0, 121.0, 22.0 ],
+									"patching_rect" : [ 652.935314941406091, 505.0, 121.0, 22.0 ],
 									"text" : "print unmatchedInput"
 								}
 
@@ -1895,11 +2178,11 @@
 								"box" : 								{
 									"id" : "obj-11",
 									"maxclass" : "newobj",
-									"numinlets" : 3,
-									"numoutlets" : 3,
-									"outlettype" : [ "", "", "" ],
-									"patching_rect" : [ 524.935314941406091, 473.5, 113.0, 22.0 ],
-									"text" : "routepass loop stop"
+									"numinlets" : 4,
+									"numoutlets" : 4,
+									"outlettype" : [ "", "", "", "" ],
+									"patching_rect" : [ 524.935314941406091, 473.5, 147.0, 22.0 ],
+									"text" : "routepass loop stop jseval"
 								}
 
 							}
@@ -2436,7 +2719,7 @@
 									"numinlets" : 6,
 									"numoutlets" : 6,
 									"outlettype" : [ "", "", "", "", "", "" ],
-									"patching_rect" : [ 15.0, 434.0, 528.935314941406091, 22.0 ],
+									"patching_rect" : [ 15.0, 434.0, 528.935314941406205, 22.0 ],
 									"text" : "route wo play print c go"
 								}
 
@@ -3121,8 +3404,15 @@
  ],
 						"lines" : [ 							{
 								"patchline" : 								{
-									"destination" : [ "obj-41", 0 ],
+									"destination" : [ "obj-38", 0 ],
 									"source" : [ "obj-11", 2 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-41", 0 ],
+									"source" : [ "obj-11", 3 ]
 								}
 
 							}
@@ -3262,7 +3552,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-14", 1 ],
-									"midpoints" : [ 126.487062988281224, 471.0, 211.948251953124895, 471.0, 211.948251953124895, 508.0, 211.948251953124895, 508.0, 211.948251953124895, 529.0, 181.448251953124895, 529.0 ],
+									"midpoints" : [ 126.487062988281238, 471.0, 211.948251953124895, 471.0, 211.948251953124895, 508.0, 211.948251953124895, 508.0, 211.948251953124895, 529.0, 181.448251953124895, 529.0 ],
 									"order" : 0,
 									"source" : [ "obj-44", 1 ]
 								}
@@ -3538,13 +3828,16 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-17",
+									"linecount" : 2,
 									"maxclass" : "message",
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 733.5, 906.0, 243.0, 22.0 ],
+									"patching_rect" : [ 733.5, 906.0, 243.0, 35.0 ],
 									"presentation" : 1,
-									"presentation_rect" : [ 30.0, 575.0, 370.0, 22.0 ]
+									"presentation_linecount" : 2,
+									"presentation_rect" : [ 30.0, 575.0, 370.0, 35.0 ],
+									"text" : "all these keypresses have been replayed through the alphanumeric handler"
 								}
 
 							}
@@ -5442,6 +5735,13 @@
 		}
 ,
 		"dependency_cache" : [ 			{
+				"name" : "_dirty_eval.js",
+				"bootpath" : "~/Documents/Max 8/Packages/GLRepl/extras",
+				"patcherrelativepath" : ".",
+				"type" : "TEXT",
+				"implicit" : 1
+			}
+, 			{
 				"name" : "eval-loop.svg",
 				"bootpath" : "~/Downloads",
 				"patcherrelativepath" : "../../../../../Downloads",
