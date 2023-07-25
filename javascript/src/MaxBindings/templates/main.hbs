@@ -138,18 +138,24 @@ function run() {
     } catch (error){
         outlet(0, "error "+error.message)
     }
+    draw()
 }
 
 function run_line() {
-    //If you change this function don't forget to update REPLManager test to reflect it
     try {
-        var formatted = glrepl.manager.tb.formatLine(glrepl.manager.c.line());
+        var currentLine = glrepl.manager.c.line();
+        var formatted = glrepl.manager.tb.formatLine(currentLine);
         run_output(formatted);
-        if (EPHEMERAL_MODE)
+        if (EPHEMERAL_MODE) {
             glrepl.manager.tb.deleteLine(glrepl.manager.c.line());
-    } catch (error){
-        outlet(0, "error "+error.message)
+            glrepl.manager.c.decrementLine();
+            if (glrepl.manager.c.line() == 0)
+                glrepl.manager.jumpLine(-1);
+        }
+    } catch (error) {
+        outlet(0, "error " + error.message)
     }
+    draw()
 }
 
 function run_output(out){
