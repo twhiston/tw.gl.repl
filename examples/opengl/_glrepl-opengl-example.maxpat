@@ -4,13 +4,13 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 5,
-			"revision" : 4,
+			"revision" : 5,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 500.0, 100.0, 974.0, 783.0 ],
+		"rect" : [ 832.0, 198.0, 974.0, 783.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -717,7 +717,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 5,
-							"revision" : 4,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -803,7 +803,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 5,
-											"revision" : 4,
+											"revision" : 5,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -1063,7 +1063,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 5,
-											"revision" : 4,
+											"revision" : 5,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -1323,7 +1323,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 5,
-											"revision" : 4,
+											"revision" : 5,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -1681,7 +1681,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 5,
-											"revision" : 4,
+											"revision" : 5,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -2362,11 +2362,12 @@
 					"fontface" : 1,
 					"fontsize" : 12.0,
 					"id" : "obj-158",
+					"linecount" : 2,
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 45.0, 159.0, 515.0, 20.0 ],
-					"text" : "This example originally written by Timo Hoogland © 2020, www.timohoogland.com"
+					"patching_rect" : [ 45.0, 102.0, 515.0, 33.0 ],
+					"text" : "This example originally written for [th.gl.texteditor]  by Timo Hoogland © 2020, www.timohoogland.com"
 				}
 
 			}
@@ -2380,7 +2381,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 45.0, 6.0, 510.0, 42.0 ],
-					"text" : "tw.gl.repl - opengl example",
+					"text" : "GLRepl - opengl example",
 					"textcolor" : [ 0.32548999786377, 0.345097988843918, 0.372548997402191, 1.0 ]
 				}
 
@@ -2397,7 +2398,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 5,
-							"revision" : 4,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -2670,12 +2671,12 @@
 					"fontface" : 2,
 					"fontsize" : 18.0,
 					"id" : "obj-21",
-					"linecount" : 5,
+					"linecount" : 2,
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 45.0, 50.0, 515.0, 107.0 ],
-					"text" : "control parameters of jit.gl.plato, jit.gl.gridshape, camera and lights to live code with your own patch.\nThe only difference between this and the original example from th.gl.texteditor is that we do not need to iter or fromsymbol the output"
+					"patching_rect" : [ 45.0, 50.0, 515.0, 47.0 ],
+					"text" : "control parameters of jit.gl.plato, jit.gl.gridshape, camera and lights to live code with your own patch."
 				}
 
 			}
@@ -3169,28 +3170,28 @@
  ],
 		"dependency_cache" : [ 			{
 				"name" : "tw.gl.repl.dynamic-size-helper.maxpat",
-				"bootpath" : "~/Documents/Max 8/Packages/tw.gl.repl/patchers",
+				"bootpath" : "~/Documents/Max 8/Packages/GLRepl/patchers",
 				"patcherrelativepath" : "../../patchers",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "tw.gl.repl.js",
-				"bootpath" : "~/Documents/Max 8/Packages/tw.gl.repl/javascript/dist",
+				"bootpath" : "~/Documents/Max 8/Packages/GLRepl/javascript/dist",
 				"patcherrelativepath" : "../../javascript/dist",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "tw.gl.repl.maxpat",
-				"bootpath" : "~/Documents/Max 8/Packages/tw.gl.repl/patchers",
+				"bootpath" : "~/Documents/Max 8/Packages/GLRepl/patchers",
 				"patcherrelativepath" : "../../patchers",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "user-repl.js",
-				"bootpath" : "~/Documents/Max 8/Packages/tw.gl.repl/examples/custom-formatter",
+				"bootpath" : "~/Documents/Max 8/Packages/GLRepl/examples/custom-formatter",
 				"patcherrelativepath" : "../custom-formatter",
 				"type" : "TEXT",
 				"implicit" : 1

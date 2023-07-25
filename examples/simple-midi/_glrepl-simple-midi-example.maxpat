@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 745.0, 226.0, 1023.0, 754.0 ],
+		"rect" : [ 807.0, 191.0, 1023.0, 754.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -40,6 +40,26 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
+					"bgcolor" : [ 1.0, 0.788235, 0.470588, 1.0 ],
+					"fontname" : "Arial Bold",
+					"hint" : "",
+					"id" : "obj-14",
+					"ignoreclick" : 1,
+					"legacytextcolor" : 1,
+					"maxclass" : "textbutton",
+					"numinlets" : 1,
+					"numoutlets" : 3,
+					"outlettype" : [ "", "", "int" ],
+					"parameter_enable" : 0,
+					"patching_rect" : [ 593.5, 238.0, 20.0, 20.0 ],
+					"rounded" : 60.0,
+					"text" : "5",
+					"textcolor" : [ 0.34902, 0.34902, 0.34902, 1.0 ]
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"fontface" : 0,
 					"fontname" : "Arial",
 					"fontsize" : 40.0,
@@ -47,8 +67,8 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 60.0, 60.0, 585.0, 51.0 ],
-					"text" : "tw.gl.repl - simple midi example",
+					"patching_rect" : [ 20.0, 7.0, 585.0, 51.0 ],
+					"text" : "GLRepl - simple midi example",
 					"textcolor" : [ 0.32548999786377, 0.345097988843918, 0.372548997402191, 1.0 ]
 				}
 
@@ -66,7 +86,7 @@
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "int" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 25.0, 511.0, 20.0, 20.0 ],
+					"patching_rect" : [ 324.0, 270.0, 20.0, 20.0 ],
 					"rounded" : 60.0,
 					"text" : "4",
 					"textcolor" : [ 0.34902, 0.34902, 0.34902, 1.0 ]
@@ -80,7 +100,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 18.0, 527.0, 244.0, 60.0 ],
+					"patching_rect" : [ 317.0, 286.0, 244.0, 60.0 ],
 					"text" : "UP ARROW        -  increase pitch and play\nDOWN ARROW  - decrease pitch and play\nRIGHT ARROW  - play current pitch\nLEFT ARROW    - play current pitch -1"
 				}
 
@@ -88,12 +108,12 @@
 , 			{
 				"box" : 				{
 					"id" : "obj-17",
-					"linecount" : 4,
+					"linecount" : 8,
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 13.0, 767.0, 566.0, 60.0 ],
-					"text" : "Here we attach some functions to the arrow keys. firstly we do some housekeeping to add the character to the text buffer and add a newline if our current line is over 20 chars long. Secondly we return a message, it is this which we route in max to respond to. As such this is one of the simplest non \"process all alphanumerical keys\" programs we could create with the repl."
+					"patching_rect" : [ 615.5, 238.0, 338.0, 114.0 ],
+					"text" : "In our config file we attach some functions to the arrow keys. Firstly the function does some housekeeping to add the character to the text buffer and add a newline if our current line is over 20 chars long. \nSecondly we return a message, which we route in max and process in the midiHandler subpathch. As such this is one of the simplest non \"process all alphanumerical keys\" programs we could create with the repl."
 				}
 
 			}
@@ -110,7 +130,7 @@
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "int" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 509.5, 672.0, 20.0, 20.0 ],
+					"patching_rect" : [ 469.5, 636.0, 20.0, 20.0 ],
 					"rounded" : 60.0,
 					"text" : "1",
 					"textcolor" : [ 0.34902, 0.34902, 0.34902, 1.0 ]
@@ -120,11 +140,10 @@
 , 			{
 				"box" : 				{
 					"id" : "obj-10",
-					"linecount" : 2,
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 524.5, 682.0, 90.0, 33.0 ],
+					"patching_rect" : [ 488.0, 636.0, 117.0, 20.0 ],
 					"text" : "select a midi output"
 				}
 
@@ -136,7 +155,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 174.25, 470.0, 29.5, 22.0 ],
+					"patching_rect" : [ 134.25, 417.0, 29.5, 22.0 ],
 					"text" : "init"
 				}
 
@@ -148,7 +167,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 174.25, 503.0, 33.0, 22.0 ],
+					"patching_rect" : [ 134.25, 450.0, 33.0, 22.0 ],
 					"text" : "read"
 				}
 
@@ -160,7 +179,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 212.25, 503.0, 34.0, 22.0 ],
+					"patching_rect" : [ 172.25, 450.0, 34.0, 22.0 ],
 					"text" : "write"
 				}
 
@@ -172,7 +191,7 @@
 					"numinlets" : 4,
 					"numoutlets" : 3,
 					"outlettype" : [ "float", "float", "float" ],
-					"patching_rect" : [ 260.5, 640.0, 118.0, 22.0 ],
+					"patching_rect" : [ 220.5, 604.0, 118.0, 22.0 ],
 					"text" : "makenote 100 500 1"
 				}
 
@@ -184,7 +203,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 212.0, 617.0, 50.0, 22.0 ],
+					"patching_rect" : [ 172.0, 581.0, 50.0, 22.0 ],
 					"text" : "93"
 				}
 
@@ -202,7 +221,7 @@
 					"numoutlets" : 3,
 					"outlettype" : [ "int", "", "" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 433.5, 647.0, 100.0, 23.0 ]
+					"patching_rect" : [ 393.5, 611.0, 100.0, 23.0 ]
 				}
 
 			}
@@ -215,7 +234,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 433.5, 612.0, 55.0, 23.0 ],
+					"patching_rect" : [ 393.5, 576.0, 55.0, 23.0 ],
 					"text" : "midiinfo"
 				}
 
@@ -227,7 +246,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 433.5, 581.0, 70.0, 22.0 ],
+					"patching_rect" : [ 393.5, 545.0, 70.0, 22.0 ],
 					"text" : "loadmess 0"
 				}
 
@@ -238,7 +257,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 3,
 					"numoutlets" : 0,
-					"patching_rect" : [ 260.5, 683.0, 118.0, 22.0 ],
+					"patching_rect" : [ 220.5, 647.0, 118.0, 22.0 ],
 					"text" : "noteout"
 				}
 
@@ -256,7 +275,7 @@
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "int" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 519.0, 481.0, 20.0, 20.0 ],
+					"patching_rect" : [ 337.0, 483.0, 20.0, 20.0 ],
 					"rounded" : 60.0,
 					"text" : "2",
 					"textcolor" : [ 0.34902, 0.34902, 0.34902, 1.0 ]
@@ -266,11 +285,10 @@
 , 			{
 				"box" : 				{
 					"id" : "obj-13",
-					"linecount" : 2,
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 534.0, 491.0, 90.0, 33.0 ],
+					"patching_rect" : [ 355.5, 476.5, 140.0, 20.0 ],
 					"text" : "Select a key and mode"
 				}
 
@@ -282,7 +300,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "int", "bang" ],
-					"patching_rect" : [ 409.0, 496.5, 29.5, 22.0 ],
+					"patching_rect" : [ 240.5, 475.5, 29.5, 22.0 ],
 					"text" : "t i b"
 				}
 
@@ -294,7 +312,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 334.0, 496.5, 70.0, 22.0 ],
+					"patching_rect" : [ 287.0, 450.0, 70.0, 22.0 ],
 					"text" : "loadmess 3"
 				}
 
@@ -308,7 +326,7 @@
 					"numoutlets" : 3,
 					"outlettype" : [ "int", "", "" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 524.0, 527.0, 100.0, 22.0 ]
+					"patching_rect" : [ 355.5, 506.0, 100.0, 22.0 ]
 				}
 
 			}
@@ -321,7 +339,7 @@
 					"numoutlets" : 3,
 					"outlettype" : [ "int", "", "" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 409.0, 527.0, 100.0, 22.0 ]
+					"patching_rect" : [ 240.5, 506.0, 100.0, 22.0 ]
 				}
 
 			}
@@ -332,7 +350,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 174.25, 443.0, 73.0, 22.0 ],
+					"patching_rect" : [ 134.25, 390.0, 73.0, 22.0 ],
 					"text" : "ignore_keys"
 				}
 
@@ -953,7 +971,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 260.5, 585.0, 83.0, 22.0 ],
+					"patching_rect" : [ 220.5, 549.0, 83.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -972,7 +990,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 212.25, 470.0, 35.0, 22.0 ],
+					"patching_rect" : [ 172.25, 417.0, 35.0, 22.0 ],
 					"text" : "clear"
 				}
 
@@ -984,7 +1002,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 56.5, 113.0, 906.0, 154.0 ],
+					"patching_rect" : [ 16.5, 60.0, 906.0, 154.0 ],
 					"text" : "Here we are making a toy midi output script with the repl\n        Arrow Keys: These output simple messages which we handle inside max to produce midi notes.\n        Option+Enter/Altgr+Enter: clear the repl\n\nIt is important to note that all of the repls output message generation and input display is handled in the config file. We have completely overridden the default behaviour of the repl by loading a new configuration file, we have even rebound our usual \"run\" key combination to instead clear the repl\n\nTo each arrow key we attach two functions, one which adds the character to the repl and then creates a newline after a certain length, and one which outputs a message to parse in max.\nTo Option+Enter we simply bind a function which outputs the \"clear\" message, which will then be consumed by the repl, as all repl output is first passed through its own message routing before being passed to the outside world."
 				}
 
@@ -996,7 +1014,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 260.5, 503.0, 63.0, 22.0 ],
+					"patching_rect" : [ 220.5, 446.0, 63.0, 22.0 ],
 					"text" : "route note"
 				}
 
@@ -1008,7 +1026,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 280.5, 443.0, 177.0, 22.0 ],
+					"patching_rect" : [ 240.5, 390.0, 177.0, 22.0 ],
 					"text" : "loadmess keybindings midikeys"
 				}
 
@@ -1020,7 +1038,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "bang" ],
-					"patching_rect" : [ 695.5, 412.0, 58.0, 22.0 ],
+					"patching_rect" : [ 655.5, 359.0, 58.0, 22.0 ],
 					"text" : "loadbang"
 				}
 
@@ -1032,7 +1050,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 462.5, 443.0, 114.0, 22.0 ],
+					"patching_rect" : [ 422.5, 390.0, 114.0, 22.0 ],
 					"text" : "keybindings midiout"
 				}
 
@@ -1044,7 +1062,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 655.5, 412.0, 33.0, 22.0 ],
+					"patching_rect" : [ 615.5, 359.0, 33.0, 22.0 ],
 					"text" : "read"
 				}
 
@@ -1055,7 +1073,7 @@
 					"maxclass" : "dict.view",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 655.5, 470.0, 344.0, 245.0 ]
+					"patching_rect" : [ 615.5, 417.0, 344.0, 245.0 ]
 				}
 
 			}
@@ -1066,7 +1084,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 4,
 					"outlettype" : [ "dictionary", "", "", "" ],
-					"patching_rect" : [ 655.5, 439.0, 159.0, 22.0 ],
+					"patching_rect" : [ 615.5, 386.0, 159.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"embed" : 0,
 						"parameter_enable" : 0,
@@ -1087,7 +1105,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 78.0, 353.0, 150.0, 22.0 ]
+					"patching_rect" : [ 38.0, 300.0, 150.0, 22.0 ]
 				}
 
 			}
@@ -1229,7 +1247,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 108.0, 383.0, 70.0, 22.0 ],
+					"patching_rect" : [ 68.0, 330.0, 70.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -1254,7 +1272,7 @@
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "int" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 63.0, 291.0, 20.0, 20.0 ],
+					"patching_rect" : [ 168.0, 271.0, 20.0, 20.0 ],
 					"rounded" : 60.0,
 					"text" : "3",
 					"textcolor" : [ 0.34902, 0.34902, 0.34902, 1.0 ]
@@ -1267,7 +1285,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 78.0, 301.0, 90.0, 20.0 ],
+					"patching_rect" : [ 194.0, 272.0, 90.0, 20.0 ],
 					"text" : "turn world on"
 				}
 
@@ -1279,7 +1297,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 3,
 					"outlettype" : [ "jit_matrix", "bang", "" ],
-					"patching_rect" : [ 78.0, 414.0, 402.0, 22.0 ],
+					"patching_rect" : [ 38.0, 361.0, 402.0, 22.0 ],
 					"text" : "jit.world midi-example @fsaa 1 @fsmenubar 0 @size 640 480 @floating 1"
 				}
 
@@ -1294,7 +1312,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 78.0, 323.0, 150.0, 22.0 ]
+					"patching_rect" : [ 38.0, 270.0, 150.0, 22.0 ]
 				}
 
 			}
@@ -1305,7 +1323,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "" ],
-					"patching_rect" : [ 260.5, 470.0, 177.0, 22.0 ],
+					"patching_rect" : [ 220.5, 417.0, 177.0, 22.0 ],
 					"text" : "tw.gl.repl midi-example 640 480"
 				}
 
@@ -1456,7 +1474,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-22", 0 ],
-					"midpoints" : [ 429.0, 520.0, 533.5, 520.0 ],
+					"midpoints" : [ 260.5, 499.0, 362.0, 499.0, 362.0, 502.0, 365.0, 502.0 ],
 					"source" : [ "obj-4", 1 ]
 				}
 
@@ -1499,7 +1517,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-4", 0 ],
-					"midpoints" : [ 343.5, 520.0, 333.0, 520.0, 333.0, 493.0, 418.5, 493.0 ],
+					"midpoints" : [ 296.5, 475.0, 250.0, 475.0 ],
 					"source" : [ "obj-7", 0 ]
 				}
 
@@ -1521,28 +1539,28 @@
  ],
 		"dependency_cache" : [ 			{
 				"name" : "_generate_scale.js",
-				"bootpath" : "~/Documents/Max 8/Packages/tw.gl.repl/examples/simple-midi",
+				"bootpath" : "~/Documents/Max 8/Packages/GLRepl/examples/simple-midi",
 				"patcherrelativepath" : ".",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "tw.gl.repl.js",
-				"bootpath" : "~/Documents/Max 8/Packages/tw.gl.repl/javascript/dist",
+				"bootpath" : "~/Documents/Max 8/Packages/GLRepl/javascript/dist",
 				"patcherrelativepath" : "../../javascript/dist",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "tw.gl.repl.maxpat",
-				"bootpath" : "~/Documents/Max 8/Packages/tw.gl.repl/patchers",
+				"bootpath" : "~/Documents/Max 8/Packages/GLRepl/patchers",
 				"patcherrelativepath" : "../../patchers",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "user-repl.js",
-				"bootpath" : "~/Documents/Max 8/Packages/tw.gl.repl/examples/custom-formatter",
+				"bootpath" : "~/Documents/Max 8/Packages/GLRepl/examples/custom-formatter",
 				"patcherrelativepath" : "../custom-formatter",
 				"type" : "TEXT",
 				"implicit" : 1

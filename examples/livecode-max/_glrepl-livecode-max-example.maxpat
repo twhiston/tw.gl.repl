@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 89.0, 180.0, 990.0, 754.0 ],
+		"rect" : [ 826.0, 190.0, 693.0, 754.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -47,8 +47,8 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 45.0, 45.0, 593.0, 51.0 ],
-					"text" : "tw.gl.repl - livecode max objects",
+					"patching_rect" : [ 40.5, 13.0, 593.0, 51.0 ],
+					"text" : "GLRepl - livecode max objects",
 					"textcolor" : [ 0.32548999786377, 0.345097988843918, 0.372548997402191, 1.0 ]
 				}
 
@@ -60,7 +60,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 45.0, 98.0, 858.0, 60.0 ],
+					"patching_rect" : [ 40.5, 66.0, 858.0, 60.0 ],
 					"text" : "Here is an example of how you might use the repl and the max javascript api to livecode max patches and interact with them.\nThis exposes a small number of api calls (new, connect, disconnect, remove, message) to create and manipulate objects. See interpreter.js and the original interpreter.ts in the example folder to see how this is coded. It could be easily expanded to cover more of the API interface as needed.\nYou must create objects with the API"
 				}
 
@@ -78,9 +78,9 @@
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "int" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 544.0, 529.0, 20.0, 20.0 ],
+					"patching_rect" : [ 523.0, 480.0, 20.0, 20.0 ],
 					"rounded" : 60.0,
-					"text" : "5",
+					"text" : "4",
 					"textcolor" : [ 0.34902, 0.34902, 0.34902, 1.0 ]
 				}
 
@@ -92,8 +92,8 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 569.0, 529.0, 246.0, 221.0 ],
-					"text" : "We can see all the objects we created in the max console with the ls command\n\nls\n\nthis gives us the id's of all the objects which we can use to address messages to them. Note that items are id's with their type and a sequential numbering per type. Let's clean up by deleting the patcher we made\n\nrm patcher0\n\nif we run ls again we will see that all the objects in the patcher are also deleted and can no longer be addressed"
+					"patching_rect" : [ 548.0, 480.0, 248.0, 221.0 ],
+					"text" : "We can see all the objects we created in the max console with the ls command\n\nls gives us the id's of all the objects. We can use these ids to address messages to objects, this is how we manipulated the toggle switches in point 3. Note that item id's are made up of their object type and a sequential numbering per type. Let's clean up by deleting the patcher we made\n\nrm patcher0\n\nif we run ls again we will see that all the objects in the patcher are also deleted and can no longer be addressed"
 				}
 
 			}
@@ -110,9 +110,9 @@
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "int" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 84.0, 638.0, 20.0, 20.0 ],
+					"patching_rect" : [ 63.0, 589.0, 20.0, 20.0 ],
 					"rounded" : 60.0,
-					"text" : "4",
+					"text" : "5",
 					"textcolor" : [ 0.34902, 0.34902, 0.34902, 1.0 ]
 				}
 
@@ -124,7 +124,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 109.0, 638.0, 246.0, 60.0 ],
+					"patching_rect" : [ 88.0, 589.0, 246.0, 60.0 ],
 					"text" : "Open this text object and see everything we have typed into the repl, a history of your livecoding session, which you will be prompted to save on patch exit"
 				}
 
@@ -142,7 +142,7 @@
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "int" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 565.0, 256.0, 20.0, 20.0 ],
+					"patching_rect" : [ 466.0, 207.0, 20.0, 20.0 ],
 					"rounded" : 60.0,
 					"text" : "3",
 					"textcolor" : [ 0.34902, 0.34902, 0.34902, 1.0 ]
@@ -156,7 +156,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 487.0, 278.0, 174.0, 181.0 ],
+					"patching_rect" : [ 466.0, 229.0, 174.0, 181.0 ],
 					"text" : "You should have a new patcher with the objects we described above in it, connected together. Now let's turn it on with the message command:\n\nm toggle0 1\nm toggle1 1\n\nNow you should see the metro running and bangs from the button"
 				}
 
@@ -168,7 +168,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 312.0, 238.5, 150.0, 141.0 ],
+					"patching_rect" : [ 291.0, 189.5, 150.0, 141.0 ],
 					"text" : "n patcher\nn toggle\nn toggle 150\nn gate 20 80\nn metro 150 80 100\nn button 20 120\nc toggle0 0 gate0 0\nc toggle1 0 metro0 0\nc metro0 0 gate0 1\nc gate0 0 button0 0"
 				}
 
@@ -186,7 +186,7 @@
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "int" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 287.0, 208.0, 20.0, 20.0 ],
+					"patching_rect" : [ 266.0, 159.0, 20.0, 20.0 ],
 					"rounded" : 60.0,
 					"text" : "2",
 					"textcolor" : [ 0.34902, 0.34902, 0.34902, 1.0 ]
@@ -200,8 +200,8 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 312.0, 208.0, 246.0, 33.0 ],
-					"text" : "Type the following in the repl and hit the run/execute command (option+enter)"
+					"patching_rect" : [ 291.0, 159.0, 246.0, 33.0 ],
+					"text" : "Type the following in the repl and execute the run command (option+enter)"
 				}
 
 			}
@@ -212,7 +212,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 194.25, 597.0, 35.0, 22.0 ],
+					"patching_rect" : [ 55.5, 558.0, 35.0, 22.0 ],
 					"text" : "open"
 				}
 
@@ -224,7 +224,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 145.0, 557.0, 62.0, 22.0 ],
+					"patching_rect" : [ 124.0, 508.0, 62.0, 22.0 ],
 					"text" : "append cr"
 				}
 
@@ -236,7 +236,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "write" ],
-					"patching_rect" : [ 85.5, 559.0, 41.0, 22.0 ],
+					"patching_rect" : [ 64.5, 510.0, 41.0, 22.0 ],
 					"text" : "t write"
 				}
 
@@ -248,7 +248,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "bang" ],
-					"patching_rect" : [ 85.5, 529.0, 63.0, 22.0 ],
+					"patching_rect" : [ 64.5, 480.0, 63.0, 22.0 ],
 					"text" : "closebang"
 				}
 
@@ -260,7 +260,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 3,
 					"outlettype" : [ "", "bang", "int" ],
-					"patching_rect" : [ 145.0, 597.0, 40.0, 22.0 ],
+					"patching_rect" : [ 124.0, 548.0, 40.0, 22.0 ],
 					"text" : "text"
 				}
 
@@ -272,7 +272,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 253.5, 607.0, 167.0, 22.0 ],
+					"patching_rect" : [ 232.5, 558.0, 167.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"filename" : "interpreter.js",
 						"parameter_enable" : 0
@@ -289,7 +289,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 254.5, 458.0, 201.5, 22.0 ],
+					"patching_rect" : [ 233.5, 409.0, 201.5, 22.0 ],
 					"text" : "tw.gl.repl.dynamic-size-helper"
 				}
 
@@ -301,7 +301,7 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 194.25, 500.0, 51.0, 22.0 ],
+					"patching_rect" : [ 173.25, 451.0, 51.0, 22.0 ],
 					"text" : "r toRepl"
 				}
 
@@ -313,7 +313,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 337.0, 568.5, 188.0, 22.0 ],
+					"patching_rect" : [ 316.0, 519.5, 188.0, 22.0 ],
 					"text" : "print tw.gl.repl-Clipboard @level 3"
 				}
 
@@ -325,7 +325,7 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 240.0, 356.0, 64.0, 22.0 ],
+					"patching_rect" : [ 219.0, 307.0, 64.0, 22.0 ],
 					"text" : "r codeText"
 				}
 
@@ -337,7 +337,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 240.0, 386.0, 48.0, 22.0 ],
+					"patching_rect" : [ 219.0, 337.0, 48.0, 22.0 ],
 					"text" : "route w"
 				}
 
@@ -352,7 +352,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 72.0, 351.0, 150.0, 22.0 ]
+					"patching_rect" : [ 51.0, 302.0, 150.0, 22.0 ]
 				}
 
 			}
@@ -494,7 +494,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 102.0, 381.0, 70.0, 22.0 ],
+					"patching_rect" : [ 81.0, 332.0, 70.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -519,7 +519,7 @@
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "int" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 57.0, 289.0, 20.0, 20.0 ],
+					"patching_rect" : [ 180.75, 272.0, 20.0, 20.0 ],
 					"rounded" : 60.0,
 					"text" : "1",
 					"textcolor" : [ 0.34902, 0.34902, 0.34902, 1.0 ]
@@ -532,7 +532,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 72.0, 299.0, 90.0, 20.0 ],
+					"patching_rect" : [ 138.0, 250.0, 90.0, 20.0 ],
 					"text" : "turn world on"
 				}
 
@@ -544,7 +544,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 3,
 					"outlettype" : [ "jit_matrix", "bang", "" ],
-					"patching_rect" : [ 72.0, 424.0, 387.0, 22.0 ],
+					"patching_rect" : [ 51.0, 375.0, 387.0, 22.0 ],
 					"text" : "jit.world max-coder @fsaa 1 @fsmenubar 0 @size 640 480 @floating 1"
 				}
 
@@ -559,7 +559,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 72.0, 321.0, 150.0, 22.0 ]
+					"patching_rect" : [ 51.0, 272.0, 150.0, 22.0 ]
 				}
 
 			}
@@ -570,7 +570,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "" ],
-					"patching_rect" : [ 253.5, 529.0, 281.0, 22.0 ],
+					"patching_rect" : [ 232.5, 480.0, 281.0, 22.0 ],
 					"text" : "tw.gl.repl max-coder 640 480 @ephemeral_mode 1"
 				}
 
@@ -709,35 +709,35 @@
  ],
 		"dependency_cache" : [ 			{
 				"name" : "interpreter.js",
-				"bootpath" : "~/Documents/Max 8/Packages/tw.gl.repl/examples/livecode-max/dist",
+				"bootpath" : "~/Documents/Max 8/Packages/GLRepl/examples/livecode-max/dist",
 				"patcherrelativepath" : "./dist",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "tw.gl.repl.dynamic-size-helper.maxpat",
-				"bootpath" : "~/Documents/Max 8/Packages/tw.gl.repl/patchers",
+				"bootpath" : "~/Documents/Max 8/Packages/GLRepl/patchers",
 				"patcherrelativepath" : "../../patchers",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "tw.gl.repl.js",
-				"bootpath" : "~/Documents/Max 8/Packages/tw.gl.repl/javascript/dist",
+				"bootpath" : "~/Documents/Max 8/Packages/GLRepl/javascript/dist",
 				"patcherrelativepath" : "../../javascript/dist",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "tw.gl.repl.maxpat",
-				"bootpath" : "~/Documents/Max 8/Packages/tw.gl.repl/patchers",
+				"bootpath" : "~/Documents/Max 8/Packages/GLRepl/patchers",
 				"patcherrelativepath" : "../../patchers",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "user-repl.js",
-				"bootpath" : "~/Documents/Max 8/Packages/tw.gl.repl/examples/custom-formatter",
+				"bootpath" : "~/Documents/Max 8/Packages/GLRepl/examples/custom-formatter",
 				"patcherrelativepath" : "../custom-formatter",
 				"type" : "TEXT",
 				"implicit" : 1

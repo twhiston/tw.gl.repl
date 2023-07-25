@@ -8,7 +8,7 @@ cursor *!
 // Consider the original REPL script:
 //   clear
 //   read _readexample.txt
-//   replay run
+//   run
 //   replay "// we have just executed a chain of commands"
 //
 // We have now seen this executed:
