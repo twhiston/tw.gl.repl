@@ -250,14 +250,14 @@ export class REPLManager {
     @maxMspBinding({ draw: true, throws: true, isMethod: true, useArgsForText: true })
     insert(idx: number, text: Array<string>) {
         // if insert between totalLines
-        if (idx < this.tb.lines()) {
+        if (idx < this.tb.length()) {
             var u = this.tb.textBuf.slice(0, Math.max(0, idx));
             u = Array.isArray(u) ? u : [u];
             u = u.concat(text);
             this.tb.set(u.concat(this.tb.textBuf.slice(idx)))
         } else {
             // else append to code and insert empty strings
-            var diff = idx - this.tb.lines();
+            var diff = idx - this.tb.length();
             for (var d = 0; d < diff; d++) {
                 this.tb.textBuf.push('');
             }

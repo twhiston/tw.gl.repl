@@ -250,7 +250,7 @@ test('setFormatters sets the formatters array', t => {
 test('lines returns the number of lines in the buffer', t => {
     const tb = new TextBuffer();
     tb.set(['Line 1', 'Line 2', 'Line 3']);
-    t.is(tb.lines(), 3);
+    t.is(tb.length(), 3);
 });
 
 test('length returns the number of lines in the buffer', t => {
@@ -393,4 +393,9 @@ test('TextBuffer.pasteBinFormat applies formatters to the pasteBin', t => {
     const actualResult = textBuffer.pasteBinFormat();
 
     t.deepEqual(actualResult, expectedResult);
+});
+
+test('minimumIndex does not return negative values', t => {
+    const textBuffer = new TextBuffer();
+    t.true(textBuffer.minimumIndex() >= 0);
 });
