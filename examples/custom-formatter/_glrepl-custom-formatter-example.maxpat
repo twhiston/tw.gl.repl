@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 560.0, 100.0, 1015.0, 901.0 ],
+		"rect" : [ 371.0, 100.0, 1444.0, 848.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -45,7 +45,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 503.5, 356.0, 286.5, 141.0 ],
+					"patching_rect" : [ 503.5, 356.0, 291.0, 141.0 ],
 					"text" : "You can see the code for the user-repl.js file which defines the custom formatters here. This file is loaded automatically by the repl when the patch is loaded, and in normal operation would not be loaded into a js object such as this.\nTo learn more about writing formatters see the README.md in the package root.\nThe error you see in the console that i is not defined  is there because user-repl is loaded here for viewing convenience and can be ignored!"
 				}
 
@@ -107,7 +107,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 759.0, 497.0, 144.0, 87.0 ],
-					"text" : "This is the config for the repl. If you place a shortkeys.json in your project folder it will automatically override the default configuration"
+					"text" : "This is the config for the repl. If you place a replkeys.json in your project folder it will automatically override the default configuration"
 				}
 
 			}
@@ -162,7 +162,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 507.0, 502.5, 229.0, 60.0 ],
+					"patching_rect" : [ 485.0, 516.0, 229.0, 60.0 ],
 					"text" : "send the \"clear\" message, then read melody1.txt and execute.\nsend \"clear\" again and read melody2.txt and execute."
 				}
 
@@ -180,7 +180,7 @@
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "int" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 485.0, 536.0, 20.0, 20.0 ],
+					"patching_rect" : [ 485.0, 576.0, 20.0, 20.0 ],
 					"rounded" : 60.0,
 					"text" : "5",
 					"textcolor" : [ 0.34902, 0.34902, 0.34902, 1.0 ]
@@ -801,7 +801,7 @@
 					"fontname" : "Arial",
 					"fontsize" : 13.0,
 					"id" : "obj-40",
-					"items" : [ "AU DLS Synth 1", ",", "M4", ",", "from Max 1", ",", "from Max 2" ],
+					"items" : [ "AU DLS Synth 1", ",", "from Max 1", ",", "from Max 2" ],
 					"labelclick" : 1,
 					"maxclass" : "umenu",
 					"numinlets" : 1,

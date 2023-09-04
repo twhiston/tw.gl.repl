@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 826.0, 190.0, 693.0, 754.0 ],
+		"rect" : [ 592.0, 190.0, 886.0, 754.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -60,7 +60,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 40.5, 66.0, 858.0, 60.0 ],
+					"patching_rect" : [ 40.5, 66.0, 834.0, 60.0 ],
 					"text" : "Here is an example of how you might use the repl and the max javascript api to livecode max patches and interact with them.\nThis exposes a small number of api calls (new, connect, disconnect, remove, message) to create and manipulate objects. See interpreter.js and the original interpreter.ts in the example folder to see how this is coded. It could be easily expanded to cover more of the API interface as needed.\nYou must create objects with the API"
 				}
 
@@ -110,7 +110,7 @@
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "int" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 63.0, 589.0, 20.0, 20.0 ],
+					"patching_rect" : [ 51.0, 576.0, 20.0, 20.0 ],
 					"rounded" : 60.0,
 					"text" : "5",
 					"textcolor" : [ 0.34902, 0.34902, 0.34902, 1.0 ]
@@ -124,7 +124,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 88.0, 589.0, 246.0, 60.0 ],
+					"patching_rect" : [ 67.75, 588.0, 246.0, 60.0 ],
 					"text" : "Open this text object and see everything we have typed into the repl, a history of your livecoding session, which you will be prompted to save on patch exit"
 				}
 
@@ -212,7 +212,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 55.5, 558.0, 35.0, 22.0 ],
+					"patching_rect" : [ 55.5, 552.0, 35.0, 22.0 ],
 					"text" : "open"
 				}
 
@@ -236,7 +236,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "write" ],
-					"patching_rect" : [ 64.5, 510.0, 41.0, 22.0 ],
+					"patching_rect" : [ 59.5, 489.0, 41.0, 22.0 ],
 					"text" : "t write"
 				}
 
@@ -248,7 +248,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "bang" ],
-					"patching_rect" : [ 64.5, 480.0, 63.0, 22.0 ],
+					"patching_rect" : [ 59.5, 459.0, 63.0, 22.0 ],
 					"text" : "closebang"
 				}
 
@@ -737,8 +737,8 @@
 			}
 , 			{
 				"name" : "user-repl.js",
-				"bootpath" : "~/Documents/Max 8/Packages/GLRepl/examples/custom-formatter",
-				"patcherrelativepath" : "../custom-formatter",
+				"bootpath" : "~/Documents/Max 8/Packages/GLRepl/extras",
+				"patcherrelativepath" : "../../extras",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
