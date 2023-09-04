@@ -11,5 +11,5 @@ const wsf = new WhitespaceFormatter();
 const slf = new SingleLineOutputFormatter("");
 const crf = new CommentRemoverFormatter();
 
-exports.glRender = new GLRender(Date.now());
-exports.repl = new REPLManager(new REPLSettings(), [], [wsf, bbf, slf, crf]);
+exports.renderer = new GLRender(Date.now());
+exports.manager = new REPLManager(new REPLSettings(), [], [wsf, bbf, slf, crf]);

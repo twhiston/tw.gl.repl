@@ -50,8 +50,8 @@ export class TextBuffer {
         return this.textBuf.length;
     }
 
-    lines() {
-        return this.length();
+    minimumIndex(): number {
+        return (this.length() > 0) ? this.length() - 1 : 0;
     }
 
     lineLength(line: number): number {

@@ -116,14 +116,14 @@ test('decrementLine method should reduce curLine by 1', t => {
     t.is(cursor.line(), 0);
 });
 
-test('decrementLine method should not reduce curLine below -1', t => {
+test('decrementLine method should not reduce curLine below 0', t => {
     const cursor = new Cursor();
     cursor.decrementLine();
-    t.is(cursor.line(), -1);
+    t.is(cursor.line(), 0);
     cursor.incrementLine();
     cursor.decrementLine();
     cursor.decrementLine();
-    t.is(cursor.line(), -1);
+    t.is(cursor.line(), 0);
 });
 
 test('cursor mutation', t => {

@@ -1,13 +1,12 @@
-# tw.gl.repl
+# GLRepl
 
 [![Test](https://github.com/twhiston/th.gl.texteditor/actions/workflows/test.yml/badge.svg)](https://github.com/twhiston/th.gl.texteditor/actions/workflows/test.yml)
 
 ## About
 
-This is a repl based on the excellent th.gl.texteditor. It was partly built as a
-way to learn how to take a more modern approach to building javascript code for
-Max, but it significantly extends the original functionality, to provide a more
-fully featured and configurable repl environment.
+GLRepl is a max/msp Repl (Read/Execute/Print/Loop) environment based on the
+excellent th.gl.texteditor. It consists of two objects `[tw.gl.repl]` and
+`[tw.gl.repl.dynamic-size-helper]`.
 
 At it's core this is the same idea as th.gl.texteditor but the way in which
 functions can be attached to keys now significantly extends what it is possible
@@ -52,13 +51,13 @@ See the patch in the extras menu for a few examples of how you might use the rep
 
 ## Install
 
-You should install this inside your Max packages directory, in a folder called `tw.gl.repl`,
+You should install this inside your Max packages directory, in a folder called `GLRepl`,
 it should then be available in max after a restart.
 See help files for some ideas on what you might do with it!
 
 ### Download zip
 
-```
+```bash
 1. download a release from the github release page for this project
 2. unzip and place in Max Searchpath (eg. MacOS ~/Documents/Max 8/Packages)
 3. restart Max8
@@ -72,13 +71,13 @@ as the compiled sources are not included in the repo.
 ```bash
 cd ~/Documents/Max\ 8/Packages
 git clone https://github.com/twhiston/tw.gl.repl.git
-cd tw.gl.repl/javascript
+cd GLRepl/javascript
 npm install && npm compile
 //start Max8
 ```
 
-```
-4. Go to the extras menu and open the getting started patch
+```bash
+4. Go to the extras menu and open the "GLRepl Overview" patch
 ```
 
 All source files loaded by max are in the `dist` folder and the typescript which
@@ -233,8 +232,8 @@ text in the buffer with the pastebin is an exaxple of this
 One of the ways to extend the repl further is to attach or preload your own functions
 so you can tie them to a key in the config.
 To make this easier the package tries to load a file called `user-repl.js`, max should
-load this fine if it's in your patch folder. Inside it you have access to `i.glRender`
-and `i.repl`, you also have access to a Dict of `replkeys.json` in `sKeys`. Which
+load this fine if it's in your patch folder. Inside it you have access to `glrepl.renderer`
+and `glrepl.manager`, you also have access to a Dict of `replkeys.json` in `sKeys`. Which
 will be stringified and passed into the repl on `init()`
 
 Most basic usage will be something like:
@@ -245,7 +244,7 @@ Most basic usage will be something like:
 const functionOne = (k, ctx) => {
     return `some message`;
 };
-i.repl.kp.preloadFunction('doSomething', functionOne);
+glrepl.manager.kp.preloadFunction('doSomething', functionOne);
 ```
 
 You can then use this in your `replkeys.json` app config by binding it
@@ -273,8 +272,8 @@ Alternatively if, for some reason, you want to configure it in code rather than
 with json you could attach the function directly.
 
 ```javascript
-//i.repl.kp.attachFunctions(id: string, keyCode: number, funcs: Array<KeyProcessor>)
-i.repl.kp.attachFunctions("arbitraryName", -2, [functionOne])
+//glrepl.manager.kp.attachFunctions(id: string, keyCode: number, funcs: Array<KeyProcessor>)
+glrepl.manager.kp.attachFunctions("arbitraryName", -2, [functionOne])
 ```
 
 which will then be run when the key is pressed. All custom function should be of
@@ -302,7 +301,7 @@ being called:
 
 ```javascript
 //user-repl.js in your path
-i.repl.kp.customAlphaNum(true);
+glrepl.manager.kp.customAlphaNum(true);
 ```
 
 or
@@ -367,7 +366,7 @@ class UppercaseFormatter implements TextFormatter {
         return strArr.map(str => str.toUpperCase());
     }
 }
-i.repl.preloadFormatter(new UppercaseFormatter);
+glrepl.manager.preloadFormatter(new UppercaseFormatter);
 //include via repl json config: {"settings"{"textbuffer": {"formatters": ["uppercase"]}}}
 ```
 
@@ -486,7 +485,7 @@ simple setup which you can use to help with developing.
 
 ### Releases
 
-Releases are generated using release-it. Any commit into main will produce a release
+Releases are generated using `release-it`. Any commit into main will produce a release
 and any release without breaking changes included will be a minor version bump.
 Development releases are created as needed by manually running `npm run release-beta-major/minor`
 in the javascript folder. You must have a clean checkout of the develop branch
@@ -499,7 +498,7 @@ Commitlint will enforce this for commit messages and on merges in github actions
 Lefthook is used for local commit linting. Note that because our `package.json`
 is not in our root folder, since this is not a pure node project it is expected
 that you have your own global install of lefthook `npm install -g lefthook` and
-that you manually run `lefthook install`in the root after cloning the repo.
+that you manually run `lefthook install` in the root after cloning the repo.
 
 It's worth noting that if you use vscode on OSXyou might have problems with these
 hooks silently failing if the binaries are not found. vscode seems to always use
@@ -525,5 +524,3 @@ Creative Commons Attribution-ShareAlike 4.0 International License
 
 The origin of this project is a refactoring of th.gl.texteditor (c) Timo Hoogland
 2020
-
-TEST

@@ -67,7 +67,7 @@ function d(fromId: string, fromPort: number, toId: string, toPort: number) {
 	p.disconnect(fromObj?.obj, fromPort, toObj?.obj, toPort);
 }
 
-function rm(id: string) {
+function rm(this: any, id: string) {
 	const obj = has(id, objects);
 	const idx = objects.findIndex(x => x.id === id);
 	objects.splice(idx, 1);
@@ -80,6 +80,7 @@ function rm(id: string) {
 			rm(objects[child].id)
 			child = objects.findIndex(x => x.patcher === obj.name)
 		}
+		p = (<any>this).patcher
 	}
 	p.remove(obj?.obj);
 }

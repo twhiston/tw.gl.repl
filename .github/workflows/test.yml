@@ -70,8 +70,8 @@ jobs:
       - name: test artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: tw.gl.repl-${{ env.short_sha }}
-          path: .dist/tw.gl.repl.zip
+          name: GLRepl-${{ env.short_sha }}
+          path: .dist/GLRepl.zip
 
   release:
     needs: ["test"]

@@ -74,6 +74,7 @@ function rm(id) {
             rm(objects[child].id);
             child = objects.findIndex(function (x) { return x.patcher === obj.name; });
         }
+        p = this.patcher;
     }
     p.remove(obj === null || obj === void 0 ? void 0 : obj.obj);
 }

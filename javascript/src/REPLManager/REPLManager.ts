@@ -52,7 +52,7 @@ export enum JumpDirection {
     END
 }
 
-@maxMspBinding({ instanceName: 'i.repl' })
+@maxMspBinding({ instanceName: 'glrepl.manager' })
 export class REPLManager {
 
     tb: TextBuffer
@@ -90,8 +90,9 @@ export class REPLManager {
      if a function which is called throws it is expected that
      it should return some info about why in the error, which will
      be output with the word error prepended as a msg
+     Manually bound to max in the main binding template
     */
-    keyPress(k: number) {
+    keyPress(k: number): Array<string> {
         const res = this.kp.processKeypress(k)
         let msgs: Array<string> = [];
         for (const func of res) {
@@ -110,16 +111,18 @@ export class REPLManager {
     /*
      * Replay some text into the repl, passing it through the keyPress function
      * This may or may not insert it into the buffer depending on configuration
+     * Manually bound to max in the main binding template
      */
-    @maxMspBinding({ draw: true, isMethod: true, useArgsForText: true })
-    replay(text: Array<string>) {
+    replay(text: Array<string>): Array<string> {
+        let msgs: Array<string> = [];
         for (const k of text) {
             for (var i = 0; i < k.length; i++) {
                 var char = k.charCodeAt(i);
-                this.keyPress(char);
+                msgs.concat(this.keyPress(char));
             }
             this.newLine()
         }
+        return msgs;
     }
 
     status(): Array<string> {
@@ -247,14 +250,14 @@ export class REPLManager {
     @maxMspBinding({ draw: true, throws: true, isMethod: true, useArgsForText: true })
     insert(idx: number, text: Array<string>) {
         // if insert between totalLines
-        if (idx < this.tb.lines()) {
+        if (idx < this.tb.length()) {
             var u = this.tb.textBuf.slice(0, Math.max(0, idx));
             u = Array.isArray(u) ? u : [u];
             u = u.concat(text);
             this.tb.set(u.concat(this.tb.textBuf.slice(idx)))
         } else {
             // else append to code and insert empty strings
-            var diff = idx - this.tb.lines();
+            var diff = idx - this.tb.length();
             for (var d = 0; d < diff; d++) {
                 this.tb.textBuf.push('');
             }
@@ -352,6 +355,7 @@ export class REPLManager {
 
     // move one line up or down
     //NB used to be called gotoLine
+    @maxMspBinding({ draw: true, isMethod: true })
     jumpLine(k: Direction) {
         var pos = this.c.position()
         //k = k * 2 - 1;
@@ -370,6 +374,7 @@ export class REPLManager {
 
     // jump to the next or previous word (looks for seprated by spaces)
     //NB used to be called gotoWord
+    @maxMspBinding({ draw: true, isMethod: true })
     jumpWord(k: Direction) {
         var pos = this.c.position()
         if (k === -1) {
@@ -426,23 +431,23 @@ export class REPLManager {
 
     // move the cursor to the index of the letter in the full text
     @maxMspBinding({ draw: true, isMethod: true })
-    gotoIndex(i: number): void {
+    gotoIndex(idx: number): void {
         // go to beginning if index less then 0
-        if (i < 0) {
+        if (idx < 0) {
             this.jumpTo(0);
             this.jumpTo(2);
             return;
         }
         // else move to the index by checking every line length
         for (var l = 0; l < this.tb.length(); l++) {
-            if (i < this.tb.lineLength(l)) {
+            if (idx < this.tb.lineLength(l)) {
                 this.c.setLine(l)
-                this.c.setChar(i)
+                this.c.setChar(idx)
                 return;
             } else {
                 // curLine = l;
                 // curChar = textBuf[l].length;
-                i -= this.tb.lineLength(l);
+                idx -= this.tb.lineLength(l);
             }
         }
         // else jump to end if index greater than max length;
@@ -548,7 +553,6 @@ export class REPLManager {
 
         this.tb = newTB;
 
-        this.kp = new KeypressProcessor()
         this.kp.loadConfigFromJSON(dictstring)
     }
 

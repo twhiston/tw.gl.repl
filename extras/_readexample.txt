@@ -1,0 +1,19 @@
+// This file was read by the REPL directly
+// using the command "read _readexample.txt"
+// this can be sent to the inlet or called
+// directly inside the repl itself.
+
+cursor *!
+
+// Consider the original REPL script:
+//   clear
+//   read _readexample.txt
+//   run
+//   replay "// we have just executed a chain of commands"
+//
+// We have now seen this executed:
+// The screen was cleared
+// this file was loaded in
+// it was executed and the cursor changed
+// and finally a comment will be appended
+// below this final line of the file.

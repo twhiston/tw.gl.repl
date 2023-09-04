@@ -30,5 +30,8 @@
       "header": "# tw.gl.repl changelog",
       "infile": "./../CHANGELOG.md"
     }
+  },
+  "src": {
+    "commitMessage": "Release: v%s"
   }
 }

@@ -23,9 +23,9 @@ function patcher_init(){
     {{~#if (maxSelfReference this.customHandler)}}
     //{{this.functionName}}
     this.patcher.connect(routepass, {{outletCounter}}, ourself, {{this.handlerInlet}})
-    {{~else}} 
+    {{~else}}
     //{{this.functionName}}
-    var {{this.customHandler}} = this.patcher.getnamed("{{this.customHandler}}") 
+    var {{this.customHandler}} = this.patcher.getnamed("{{this.customHandler}}")
     this.patcher.connect(routepass, {{outletCounter}}, {{this.customHandler}}, {{this.handlerInlet}})
     {{/if}}{{~else}}
     //{{this.functionName}}

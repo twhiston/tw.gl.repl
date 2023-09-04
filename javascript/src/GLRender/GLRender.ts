@@ -105,7 +105,7 @@ export class Color {
 
 //There's a lot of casting to any in this class to make typescript happy, it's a bit tedious
 //but hopefully it never has to be touched ;)
-@maxMspBinding({ instanceName: 'i.glRender', isMethod: true, isAttribute: true })
+@maxMspBinding({ instanceName: 'glrepl.renderer', isMethod: true, isAttribute: true })
 export class GLRender {
 
     // the main node that all text is drawn to

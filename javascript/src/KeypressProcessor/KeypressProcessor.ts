@@ -22,9 +22,6 @@ export class KeypressProcessor {
     overrideAlphaNum: boolean
 
     constructor() {
-        // Object to store arrays of functions attached to specific ASCII codes
-        this.attachedFunctions = {};
-        this.preloadedFunctions = {};
         //this.attachFunctions('alphanum hint', 127, () => { return 'to customize call replaceFunctions on 127' });
         this.overrideAlphaNum = false
     }
@@ -91,9 +88,10 @@ export class KeypressProcessor {
             this.overrideAlphaNum = json.settings.keypressProcessor.overrideAlphaNum
         }
 
+        this.attachedFunctions = {};
+
         if (json.bindings === undefined)
             return;
-
 
         json.bindings.forEach((item: FunctionBinding) => {
             const id = item.id;
@@ -111,7 +109,7 @@ export class KeypressProcessor {
                     f = new Function('k', 'ctx', funcString);
                 }
                 return f;
-            });
+            }, this);
             this.replaceFunctions(id, asciiCode, parsedFunctions);
         });
     }
