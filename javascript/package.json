@@ -1,6 +1,6 @@
 {
   "name": "glrepl",
-  "version": "1.0.0-beta.3",
+  "version": "1.0.0-beta.4",
   "description": "GLRepl is a max/msp opengl REPL that you can use with your patches",
   "main": "tw.gl.repl.maxpat",
   "scripts": {
