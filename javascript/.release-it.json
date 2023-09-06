@@ -12,7 +12,8 @@
   "hooks": {
     "before:git:release": [
       "./build-release.sh",
-      "git add ./../CHANGELOG.md"
+      "git add ./../CHANGELOG.md",
+      "git add ./../package-info.json"
     ],
     "after:release": "echo Successfully released ${name} v${version} to ${repo.repository}."
   },
@@ -27,16 +28,18 @@
   },
   "plugins": {
     "@release-it/conventional-changelog": {
-      "preset": "conventionalcommits",
+      "preset": {
+        "name": "conventionalcommits"
+      },
       "header": "# tw.gl.repl changelog",
       "infile": "./../CHANGELOG.md"
     },
     "@j-ulrich/release-it-regex-bumper": {
       "out": [
         {
-          "file": "package-info.json",
-          "search": "version \\d+\\.\\d+\\.\\d+",
-          "replace": "version {{versionWithoutPrerelease}}"
+          "file": "./../package-info.json",
+          "search": "\"version\":\\s*\"([0-9.]+)\"",
+          "replace": "\"version\": \"{{version}}\""
         }
       ]
     }
