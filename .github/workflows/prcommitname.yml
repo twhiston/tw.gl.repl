@@ -14,6 +14,10 @@ jobs:
         with:
           task_types: '["build", "chore", "ci", "docs", "feat", "fix", "perf", "refactor", "revert", "style", "test", "release"]'
           add_label: 'false'
+      # we need to install our node modules to get access to commitlint for the next step
+      - name: 'Install Node Modules'
+        working-directory: ./javascript
+        run: npm ci
       # lint the commit message to ensure it can be included in the changelog later
       - name: Validate current commit (last commit) with commitlint
         if: github.event_name == 'push'
