@@ -18,7 +18,8 @@
   "devDependencies": {
     "@commitlint/cli": "^17.6.3",
     "@commitlint/config-conventional": "^17.6.3",
-    "@release-it/conventional-changelog": "^5.1.1",
+    "@j-ulrich/release-it-regex-bumper": "^5.0.0",
+    "@release-it/conventional-changelog": "^7.0.1",
     "@types/glob": "^8.1.0",
     "@types/maxmsp": "^1.0.0",
     "@types/node": "^18.16.3",
@@ -27,7 +28,7 @@
     "handlebars": "^4.7.7",
     "nyc": "^15.1.0",
     "reflect-metadata": "^0.1.13",
-    "release-it": "^15.10.1",
+    "release-it": "^16.1.5",
     "sinon": "^15.0.4",
     "ts-node": "^10.9.1",
     "tsconfig-paths": "^4.2.0",
