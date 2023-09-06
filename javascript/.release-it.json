@@ -5,7 +5,8 @@
     "commitMessage": "chore: release v${version}",
     "requireBranch": [
       "main",
-      "dev"
+      "dev",
+      "package-info"
     ]
   },
   "hooks": {
@@ -29,9 +30,15 @@
       "preset": "conventionalcommits",
       "header": "# tw.gl.repl changelog",
       "infile": "./../CHANGELOG.md"
+    },
+    "@j-ulrich/release-it-regex-bumper": {
+      "out": [
+        {
+          "file": "package-info.json",
+          "search": "version \\d+\\.\\d+\\.\\d+",
+          "replace": "version {{versionWithoutPrerelease}}"
+        }
+      ]
     }
-  },
-  "src": {
-    "commitMessage": "Release: v%s"
   }
 }
