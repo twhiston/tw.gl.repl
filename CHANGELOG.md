@@ -1,5 +1,12 @@
 # tw.gl.repl changelog
 
+## [1.0.0-beta.5](https://github.com/twhiston/tw.gl.repl/compare/1.0.0-beta.4...1.0.0-beta.5) (2023-09-06)
+
+
+### Features
+
+* add package-info.json ([#13](https://github.com/twhiston/tw.gl.repl/issues/13)) ([41ec4de](https://github.com/twhiston/tw.gl.repl/commit/41ec4deccadf0f5fc32c6c1a5ba10a419d522ae7))
+
 ## [1.0.0-beta.4](https://github.com/twhiston/tw.gl.repl/compare/1.0.0-beta.3...1.0.0-beta.4) (2023-09-04)
 
 ### Features
