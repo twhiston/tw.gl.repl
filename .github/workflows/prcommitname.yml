@@ -15,6 +15,10 @@ jobs:
           task_types: '["build", "chore", "ci", "docs", "feat", "fix", "perf", "refactor", "revert", "style", "test", "release"]'
           add_label: 'false'
       # we need to install our node modules to get access to commitlint for the next step
+      - name: 'Checkout repository'
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
       - name: 'Install Node Modules'
         working-directory: ./javascript
         run: npm ci
