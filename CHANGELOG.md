@@ -1,5 +1,12 @@
 # tw.gl.repl changelog
 
+## [1.0.0-beta.6](https://github.com/twhiston/tw.gl.repl/compare/1.0.0-beta.5...1.0.0-beta.6) (2023-09-07)
+
+
+### Bug Fixes
+
+* fix polarity of ignore_keys option and shortcode, add to help file ([#14](https://github.com/twhiston/tw.gl.repl/issues/14)) ([3571ba9](https://github.com/twhiston/tw.gl.repl/commit/3571ba9423005d6da5b9557420b090a3858c9baa))
+
 ## [1.0.0-beta.5](https://github.com/twhiston/tw.gl.repl/compare/1.0.0-beta.4...1.0.0-beta.5) (2023-09-06)
 
 
