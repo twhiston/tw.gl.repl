@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 666.0, 189.0, 938.0, 794.0 ],
+		"rect" : [ 100.0, 100.0, 938.0, 794.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -86,6 +86,42 @@
 						"showontab" : 1,
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
+								"box" : 								{
+									"id" : "obj-13",
+									"linecount" : 3,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 220.0, 444.0, 291.0, 47.0 ],
+									"text" : "Ignore incoming keypresses in the repl.\nDoes the same as the harcoded Option+D/AltGr+D binding but in option form"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-9",
+									"maxclass" : "message",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 134.0, 475.0, 83.0, 22.0 ],
+									"text" : "ignore_keys 0"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-6",
+									"maxclass" : "message",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 134.0, 444.0, 83.0, 22.0 ],
+									"text" : "ignore_keys 1"
+								}
+
+							}
+, 							{
 								"box" : 								{
 									"id" : "obj-2",
 									"maxclass" : "message",
@@ -294,7 +330,7 @@
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 32.0, 423.0, 72.0, 22.0 ],
+									"patching_rect" : [ 32.0, 511.0, 72.0, 22.0 ],
 									"text" : "s customize"
 								}
 
@@ -373,8 +409,22 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-1", 0 ],
+									"source" : [ "obj-6", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-1", 0 ],
 									"midpoints" : [ 81.5, 97.0, 41.5, 97.0 ],
 									"source" : [ "obj-8", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-1", 0 ],
+									"source" : [ "obj-9", 0 ]
 								}
 
 							}
@@ -3166,7 +3216,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 666.0, 215.0, 938.0, 768.0 ],
+						"rect" : [ 0.0, 26.0, 938.0, 768.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -3203,7 +3253,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 518.0, 576.0, 372.0, 33.0 ],
-									"presentation_linecount" : 4,
 									"text" : "This is an example of how you can configure these options from the object itself rather than passing in messages"
 								}
 
@@ -4674,13 +4723,14 @@
 							}
 , 							{
 								"box" : 								{
+									"fontface" : 1,
 									"fontsize" : 12.0,
 									"id" : "obj-2",
 									"linecount" : 31,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 420.5, 67.0, 370.0, 435.0 ],
+									"patching_rect" : [ 420.5, 67.0, 397.0, 435.0 ],
 									"text" : "\n\n\n\n\n\n\n\n\n\n\n\nClipboard:\n\n\n\n\n\n\n\n\nNavigation:\n\n\n\n\n\n\n\n\n\n"
 								}
 
@@ -5031,7 +5081,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 439.0, 363.5, 148.0, 22.0 ],
-									"text" : "cursor <CRSR"
+									"text" : "blink_time 250"
 								}
 
 							}
