@@ -1,5 +1,7 @@
 # tw.gl.repl changelog
 
+## [1.0.0-beta.7](https://github.com/twhiston/tw.gl.repl/compare/1.0.0-beta.6...1.0.0-beta.7) (2023-09-09)
+
 ## [1.0.0-beta.6](https://github.com/twhiston/tw.gl.repl/compare/1.0.0-beta.5...1.0.0-beta.6) (2023-09-07)
 
 
