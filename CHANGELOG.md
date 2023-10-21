@@ -1,5 +1,12 @@
 # tw.gl.repl changelog
 
+## [1.0.0-beta.8](https://github.com/twhiston/tw.gl.repl/compare/1.0.0-beta.7...1.0.0-beta.8) (2023-10-21)
+
+
+### Bug Fixes
+
+* c74 feedback adjustments ([#15](https://github.com/twhiston/tw.gl.repl/issues/15)) ([51dfec4](https://github.com/twhiston/tw.gl.repl/commit/51dfec48305f53a137a05a3154b0d4796fbc246e))
+
 ## [1.0.0-beta.7](https://github.com/twhiston/tw.gl.repl/compare/1.0.0-beta.6...1.0.0-beta.7) (2023-09-09)
 
 ## [1.0.0-beta.6](https://github.com/twhiston/tw.gl.repl/compare/1.0.0-beta.5...1.0.0-beta.6) (2023-09-07)
