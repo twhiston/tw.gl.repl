@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 680.0, 193.0, 1113.0, 794.0 ],
+		"rect" : [ 615.0, 122.0, 1113.0, 794.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -1089,793 +1089,6 @@
 			}
 , 			{
 				"box" : 				{
-					"id" : "obj-5",
-					"maxclass" : "newobj",
-					"numinlets" : 0,
-					"numoutlets" : 0,
-					"patcher" : 					{
-						"fileversion" : 1,
-						"appversion" : 						{
-							"major" : 8,
-							"minor" : 5,
-							"revision" : 5,
-							"architecture" : "x64",
-							"modernui" : 1
-						}
-,
-						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 1113.0, 768.0 ],
-						"bglocked" : 0,
-						"openinpresentation" : 0,
-						"default_fontsize" : 12.0,
-						"default_fontface" : 0,
-						"default_fontname" : "Arial",
-						"gridonopen" : 1,
-						"gridsize" : [ 15.0, 15.0 ],
-						"gridsnaponopen" : 1,
-						"objectsnaponopen" : 1,
-						"statusbarvisible" : 2,
-						"toolbarvisible" : 1,
-						"lefttoolbarpinned" : 0,
-						"toptoolbarpinned" : 0,
-						"righttoolbarpinned" : 0,
-						"bottomtoolbarpinned" : 0,
-						"toolbars_unpinned_last_save" : 0,
-						"tallnewobj" : 0,
-						"boxanimatetime" : 200,
-						"enablehscroll" : 1,
-						"enablevscroll" : 1,
-						"devicewidth" : 0.0,
-						"description" : "",
-						"digest" : "",
-						"tags" : "",
-						"style" : "",
-						"subpatcher_template" : "",
-						"showontab" : 1,
-						"assistshowspatchername" : 0,
-						"boxes" : [ 							{
-								"box" : 								{
-									"id" : "obj-110",
-									"maxclass" : "newobj",
-									"numinlets" : 2,
-									"numoutlets" : 1,
-									"outlettype" : [ "" ],
-									"patching_rect" : [ 256.0, 439.5, 32.0, 22.0 ],
-									"text" : "gate"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-108",
-									"linecount" : 4,
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 104.0, 663.0, 320.0, 60.0 ],
-									"text" : "pbcopy is a bit of a special option and it does not automatically have things in its buffer that you copy from other apps, so ymmv with exactly how useful writing back things are, but none the less it's possible!"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"bgcolor" : [ 1.0, 0.788235, 0.470588, 1.0 ],
-									"fontname" : "Arial Bold",
-									"hint" : "",
-									"id" : "obj-109",
-									"ignoreclick" : 1,
-									"legacytextcolor" : 1,
-									"maxclass" : "textbutton",
-									"numinlets" : 1,
-									"numoutlets" : 3,
-									"outlettype" : [ "", "", "int" ],
-									"parameter_enable" : 0,
-									"parameter_mappable" : 0,
-									"patching_rect" : [ 82.0, 674.5, 24.0, 20.0 ],
-									"rounded" : 60.0,
-									"text" : "10",
-									"textcolor" : [ 0.34902, 0.34902, 0.34902, 1.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-106",
-									"linecount" : 9,
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 88.0, 529.5, 152.0, 127.0 ],
-									"text" : "try going to a new line and adding the letter \"p\".\nThen trigger the run line command (Opt+Ctrl+Rtn)\nThe P will be deleted by the back command and the clipboard contents will be processed a letter at a time"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"bgcolor" : [ 1.0, 0.788235, 0.470588, 1.0 ],
-									"fontname" : "Arial Bold",
-									"hint" : "",
-									"id" : "obj-107",
-									"ignoreclick" : 1,
-									"legacytextcolor" : 1,
-									"maxclass" : "textbutton",
-									"numinlets" : 1,
-									"numoutlets" : 3,
-									"outlettype" : [ "", "", "int" ],
-									"parameter_enable" : 0,
-									"parameter_mappable" : 0,
-									"patching_rect" : [ 229.0, 618.5, 20.0, 20.0 ],
-									"rounded" : 60.0,
-									"text" : "9",
-									"textcolor" : [ 0.34902, 0.34902, 0.34902, 1.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-105",
-									"maxclass" : "message",
-									"numinlets" : 2,
-									"numoutlets" : 1,
-									"outlettype" : [ "" ],
-									"patching_rect" : [ 374.0, 601.0, 34.0, 22.0 ],
-									"text" : "back"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-103",
-									"maxclass" : "newobj",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 303.0, 546.0, 96.0, 22.0 ],
-									"text" : "print shell.stdout"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-101",
-									"linecount" : 5,
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 325.0, 376.5, 151.0, 74.0 ],
-									"text" : "If we were really smart we could add a command to our repl which does the paste for us when we execute it"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"bgcolor" : [ 1.0, 0.788235, 0.470588, 1.0 ],
-									"fontname" : "Arial Bold",
-									"hint" : "",
-									"id" : "obj-99",
-									"ignoreclick" : 1,
-									"legacytextcolor" : 1,
-									"maxclass" : "textbutton",
-									"numinlets" : 1,
-									"numoutlets" : 3,
-									"outlettype" : [ "", "", "int" ],
-									"parameter_enable" : 0,
-									"parameter_mappable" : 0,
-									"patching_rect" : [ 303.0, 403.5, 20.0, 20.0 ],
-									"rounded" : 60.0,
-									"text" : "8",
-									"textcolor" : [ 0.34902, 0.34902, 0.34902, 1.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-85",
-									"maxclass" : "newobj",
-									"numinlets" : 2,
-									"numoutlets" : 2,
-									"outlettype" : [ "", "" ],
-									"patching_rect" : [ 256.0, 575.5, 47.0, 22.0 ],
-									"text" : "zl.iter 1"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-82",
-									"maxclass" : "newobj",
-									"numinlets" : 3,
-									"numoutlets" : 1,
-									"outlettype" : [ "list" ],
-									"patching_rect" : [ 256.0, 546.0, 40.0, 22.0 ],
-									"text" : "atoi"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"bgcolor" : [ 1.0, 0.788235, 0.470588, 1.0 ],
-									"fontname" : "Arial Bold",
-									"hint" : "",
-									"id" : "obj-75",
-									"ignoreclick" : 1,
-									"legacytextcolor" : 1,
-									"maxclass" : "textbutton",
-									"numinlets" : 1,
-									"numoutlets" : 3,
-									"outlettype" : [ "", "", "int" ],
-									"parameter_enable" : 0,
-									"parameter_mappable" : 0,
-									"patching_rect" : [ 229.0, 494.5, 20.0, 20.0 ],
-									"rounded" : 60.0,
-									"text" : "7",
-									"textcolor" : [ 0.34902, 0.34902, 0.34902, 1.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-74",
-									"linecount" : 6,
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 55.0, 427.5, 187.0, 87.0 ],
-									"text" : "So how can we get the text from our clipboard back into our repl? We need to call pbpaste on a [shell] and iterate the ascii output as keypresses. Click the pbpaste message and see!"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"bgcolor" : [ 1.0, 0.788235, 0.470588, 1.0 ],
-									"fontname" : "Arial Bold",
-									"hint" : "",
-									"id" : "obj-73",
-									"ignoreclick" : 1,
-									"legacytextcolor" : 1,
-									"maxclass" : "textbutton",
-									"numinlets" : 1,
-									"numoutlets" : 3,
-									"outlettype" : [ "", "", "int" ],
-									"parameter_enable" : 0,
-									"parameter_mappable" : 0,
-									"patching_rect" : [ 44.0, 368.5, 20.0, 20.0 ],
-									"rounded" : 60.0,
-									"text" : "6",
-									"textcolor" : [ 0.34902, 0.34902, 0.34902, 1.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-72",
-									"linecount" : 3,
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 332.0, 199.5, 150.0, 47.0 ],
-									"text" : "open the gate to let messages pass to the clipboard handling"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-70",
-									"maxclass" : "toggle",
-									"numinlets" : 1,
-									"numoutlets" : 1,
-									"outlettype" : [ "int" ],
-									"parameter_enable" : 0,
-									"patching_rect" : [ 275.5, 199.5, 24.0, 24.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-68",
-									"maxclass" : "newobj",
-									"numinlets" : 2,
-									"numoutlets" : 1,
-									"outlettype" : [ "" ],
-									"patching_rect" : [ 241.0, 217.5, 32.0, 22.0 ],
-									"text" : "gate"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-67",
-									"linecount" : 2,
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 68.5, 163.5, 150.0, 33.0 ],
-									"text" : "make sure you have the shell object installed"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-66",
-									"maxclass" : "newobj",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 241.0, 335.0, 96.0, 22.0 ],
-									"text" : "print shell.stdout"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-65",
-									"maxclass" : "newobj",
-									"numinlets" : 1,
-									"numoutlets" : 1,
-									"outlettype" : [ "" ],
-									"patching_rect" : [ 241.0, 245.0, 57.0, 22.0 ],
-									"text" : "tosymbol"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-40",
-									"maxclass" : "newobj",
-									"numinlets" : 0,
-									"numoutlets" : 1,
-									"outlettype" : [ "" ],
-									"patching_rect" : [ 241.0, 373.0, 64.0, 22.0 ],
-									"text" : "r codeText"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-20",
-									"maxclass" : "newobj",
-									"numinlets" : 1,
-									"numoutlets" : 1,
-									"outlettype" : [ "" ],
-									"patching_rect" : [ 256.0, 601.0, 114.0, 22.0 ],
-									"text" : "sprintf keyPress %s"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-54",
-									"maxclass" : "newobj",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 256.0, 634.5, 72.0, 22.0 ],
-									"text" : "s customize"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-32",
-									"maxclass" : "newobj",
-									"numinlets" : 1,
-									"numoutlets" : 2,
-									"outlettype" : [ "", "bang" ],
-									"patching_rect" : [ 256.0, 519.5, 33.0, 22.0 ],
-									"saved_object_attributes" : 									{
-										"shell" : "(default)"
-									}
-,
-									"text" : "shell"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-29",
-									"maxclass" : "newobj",
-									"numinlets" : 1,
-									"numoutlets" : 2,
-									"outlettype" : [ "bang", "bang" ],
-									"patching_rect" : [ 256.0, 466.5, 137.0, 22.0 ],
-									"text" : "t b b"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"fontname" : "Geneva",
-									"fontsize" : 9.0,
-									"id" : "obj-34",
-									"maxclass" : "message",
-									"numinlets" : 2,
-									"numoutlets" : 1,
-									"outlettype" : [ "" ],
-									"patching_rect" : [ 256.0, 494.5, 58.0, 20.0 ],
-									"text" : "pbpaste"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-37",
-									"maxclass" : "newobj",
-									"numinlets" : 2,
-									"numoutlets" : 2,
-									"outlettype" : [ "", "" ],
-									"patching_rect" : [ 241.0, 402.5, 46.0, 22.0 ],
-									"text" : "route p"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"fontname" : "Geneva",
-									"fontsize" : 9.0,
-									"id" : "obj-4",
-									"maxclass" : "message",
-									"numinlets" : 2,
-									"numoutlets" : 1,
-									"outlettype" : [ "" ],
-									"patching_rect" : [ 241.0, 275.0, 93.0, 20.0 ],
-									"text" : "echo $1 | pbcopy #"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-2",
-									"maxclass" : "newobj",
-									"numinlets" : 1,
-									"numoutlets" : 2,
-									"outlettype" : [ "", "bang" ],
-									"patching_rect" : [ 241.0, 306.0, 33.0, 22.0 ],
-									"saved_object_attributes" : 									{
-										"shell" : "(default)"
-									}
-,
-									"text" : "shell"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"bgcolor" : [ 1.0, 0.788235, 0.470588, 1.0 ],
-									"fontname" : "Arial Bold",
-									"hint" : "",
-									"id" : "obj-16",
-									"ignoreclick" : 1,
-									"legacytextcolor" : 1,
-									"maxclass" : "textbutton",
-									"numinlets" : 1,
-									"numoutlets" : 3,
-									"outlettype" : [ "", "", "int" ],
-									"parameter_enable" : 0,
-									"patching_rect" : [ 44.0, 320.0, 20.0, 20.0 ],
-									"rounded" : 60.0,
-									"text" : "5",
-									"textcolor" : [ 0.34902, 0.34902, 0.34902, 1.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-12",
-									"linecount" : 3,
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 68.5, 368.5, 157.0, 47.0 ],
-									"text" : "See that your REPL text has been pasted, so it's in your real clipboard!"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"bgcolor" : [ 1.0, 0.788235, 0.470588, 1.0 ],
-									"fontname" : "Arial Bold",
-									"hint" : "",
-									"id" : "obj-36",
-									"ignoreclick" : 1,
-									"legacytextcolor" : 1,
-									"maxclass" : "textbutton",
-									"numinlets" : 1,
-									"numoutlets" : 3,
-									"outlettype" : [ "", "", "int" ],
-									"parameter_enable" : 0,
-									"patching_rect" : [ 44.0, 285.0, 20.0, 20.0 ],
-									"rounded" : 60.0,
-									"text" : "4",
-									"textcolor" : [ 0.34902, 0.34902, 0.34902, 1.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-11",
-									"linecount" : 3,
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 68.5, 313.5, 157.0, 47.0 ],
-									"text" : "switch to another app and use the system paste shortcut (command+v)"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"bgcolor" : [ 1.0, 0.788235, 0.470588, 1.0 ],
-									"fontname" : "Arial Bold",
-									"hint" : "",
-									"id" : "obj-31",
-									"ignoreclick" : 1,
-									"legacytextcolor" : 1,
-									"maxclass" : "textbutton",
-									"numinlets" : 1,
-									"numoutlets" : 3,
-									"outlettype" : [ "", "", "int" ],
-									"parameter_enable" : 0,
-									"patching_rect" : [ 44.0, 250.0, 20.0, 20.0 ],
-									"rounded" : 60.0,
-									"text" : "3",
-									"textcolor" : [ 0.34902, 0.34902, 0.34902, 1.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-10",
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 68.5, 285.0, 157.0, 20.0 ],
-									"text" : "copy the line with Option+C"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"bgcolor" : [ 1.0, 0.788235, 0.470588, 1.0 ],
-									"fontname" : "Arial Bold",
-									"hint" : "",
-									"id" : "obj-28",
-									"ignoreclick" : 1,
-									"legacytextcolor" : 1,
-									"maxclass" : "textbutton",
-									"numinlets" : 1,
-									"numoutlets" : 3,
-									"outlettype" : [ "", "", "int" ],
-									"parameter_enable" : 0,
-									"patching_rect" : [ 310.0, 199.5, 20.0, 20.0 ],
-									"rounded" : 60.0,
-									"text" : "2",
-									"textcolor" : [ 0.34902, 0.34902, 0.34902, 1.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-7",
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 68.5, 250.0, 150.0, 20.0 ],
-									"text" : "write something in the repl"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"bgcolor" : [ 1.0, 0.788235, 0.470588, 1.0 ],
-									"fontname" : "Arial Bold",
-									"hint" : "",
-									"id" : "obj-27",
-									"ignoreclick" : 1,
-									"legacytextcolor" : 1,
-									"maxclass" : "textbutton",
-									"numinlets" : 1,
-									"numoutlets" : 3,
-									"outlettype" : [ "", "", "int" ],
-									"parameter_enable" : 0,
-									"patching_rect" : [ 44.0, 163.5, 20.0, 20.0 ],
-									"rounded" : 60.0,
-									"text" : "1",
-									"textcolor" : [ 0.34902, 0.34902, 0.34902, 1.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-3",
-									"linecount" : 3,
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 45.0, 102.0, 367.0, 47.0 ],
-									"text" : "If you install the shell object you can use the clipboard output functionality to integrate with your real system clipboard.\nThis is tested on OSX only"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"fontface" : 0,
-									"fontname" : "Arial",
-									"fontsize" : 40.0,
-									"id" : "obj-22",
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 45.0, 45.0, 367.0, 51.0 ],
-									"text" : "tw.gl.repl",
-									"textcolor" : [ 0.32548999786377, 0.345097988843918, 0.372548997402191, 1.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-1",
-									"maxclass" : "newobj",
-									"numinlets" : 0,
-									"numoutlets" : 1,
-									"outlettype" : [ "" ],
-									"patching_rect" : [ 254.0, 163.5, 115.0, 22.0 ],
-									"text" : "r replFromClipboard"
-								}
-
-							}
- ],
-						"lines" : [ 							{
-								"patchline" : 								{
-									"destination" : [ "obj-68", 1 ],
-									"source" : [ "obj-1", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-54", 0 ],
-									"source" : [ "obj-105", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-29", 0 ],
-									"source" : [ "obj-110", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-66", 0 ],
-									"source" : [ "obj-2", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-54", 0 ],
-									"source" : [ "obj-20", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-105", 0 ],
-									"source" : [ "obj-29", 1 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-34", 0 ],
-									"source" : [ "obj-29", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-103", 0 ],
-									"order" : 0,
-									"source" : [ "obj-32", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-82", 0 ],
-									"order" : 1,
-									"source" : [ "obj-32", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-32", 0 ],
-									"source" : [ "obj-34", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-110", 1 ],
-									"source" : [ "obj-37", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-2", 0 ],
-									"source" : [ "obj-4", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-37", 0 ],
-									"source" : [ "obj-40", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-4", 0 ],
-									"source" : [ "obj-65", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-65", 0 ],
-									"source" : [ "obj-68", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-110", 0 ],
-									"midpoints" : [ 285.0, 240.0, 319.0, 240.0, 319.0, 261.0, 349.0, 261.0, 349.0, 372.0, 307.0, 372.0, 307.0, 399.0, 289.0, 399.0, 289.0, 432.0, 265.5, 432.0 ],
-									"order" : 0,
-									"source" : [ "obj-70", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-68", 0 ],
-									"order" : 1,
-									"source" : [ "obj-70", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-85", 0 ],
-									"source" : [ "obj-82", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-20", 0 ],
-									"source" : [ "obj-85", 0 ]
-								}
-
-							}
- ]
-					}
-,
-					"patching_rect" : [ 402.0, 397.0, 108.0, 22.0 ],
-					"saved_object_attributes" : 					{
-						"description" : "",
-						"digest" : "",
-						"globalpatchername" : "",
-						"tags" : ""
-					}
-,
-					"text" : "p systemClipboard"
-				}
-
-			}
-, 			{
-				"box" : 				{
 					"id" : "obj-3",
 					"maxclass" : "newobj",
 					"numinlets" : 0,
@@ -1923,12 +1136,12 @@
 						"boxes" : [ 							{
 								"box" : 								{
 									"id" : "obj-8",
-									"linecount" : 3,
+									"linecount" : 6,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 49.0, 531.0, 503.0, 47.0 ],
-									"text" : "You could implement more advanced functionality easily once your text is captured.\nYou can even use the shell object and pbcopy/pbpaste messages to read/write it to the real system clipboard!"
+									"patching_rect" : [ 49.0, 531.0, 503.0, 87.0 ],
+									"text" : "You could implement more advanced functionality easily once your text is captured.\nYou can even use the [shell] object and pbcopy/pbpaste messages to read/write it to the real system clipboard! \nTo see an example of how this works check this GLRepl-system_clipboard_example.maxpat patch in the packages \"misc\" folder (but be aware you will need the [shell] object installed for this example to work)"
 								}
 
 							}
@@ -2474,7 +1687,8 @@
 									"numoutlets" : 4,
 									"outlettype" : [ "", "int", "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 212.0, 305.0, 250.0, 211.0 ]
+									"patching_rect" : [ 212.0, 305.0, 250.0, 211.0 ],
+									"text" : "w erase_color 0 0 0 0.7\r"
 								}
 
 							}
@@ -2897,17 +2111,6 @@
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 395.5, 211.0, 261.0, 22.0 ],
 									"text" : "prepend \"before all the text\" \"comes this line\" ..."
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-13",
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 60.0, 624.0, 150.0, 20.0 ],
-									"text" : "one symbol per line"
 								}
 
 							}
@@ -4992,7 +4195,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 680.0, 219.0, 1113.0, 768.0 ],
+						"rect" : [ 615.0, 148.0, 1113.0, 768.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -5220,12 +4423,12 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-15",
-									"linecount" : 14,
+									"linecount" : 10,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 45.0, 374.0, 176.0, 194.0 ],
-									"text" : "try the following code commands\n\nhit OPTION + ENTER (osx) ALTGR + ENTER (windows) to execute\n\nw erase_color 0 0 0 0.7\ngs mesh auto_colors 1\ngs shape opencube\ngs anim turn 0.5 0.5 0.5\ngs mesh poly_mode 1 1\ngs mesh scale 0.5 0.5 10\ngs mesh draw_mode line_strip"
+									"patching_rect" : [ 45.0, 374.0, 176.0, 141.0 ],
+									"text" : "try the following code commands and execute them\n\nw erase_color 0 0 0 0.7\ngs mesh auto_colors 1\ngs shape opencube\ngs anim turn 0.5 0.5 0.5\ngs mesh poly_mode 1 1\ngs mesh scale 0.5 0.5 10\ngs mesh draw_mode line_strip"
 								}
 
 							}
@@ -5414,12 +4617,12 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-35",
-									"linecount" : 5,
+									"linecount" : 7,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 253.0, 411.5, 152.0, 74.0 ],
-									"text" : "type some text and press enter to output the \"code\".\nNote that we don't need to go from a symbol or [iter] here"
+									"patching_rect" : [ 235.0, 411.5, 174.0, 100.0 ],
+									"text" : "type some text and \npresss OPTION + ENTER (osx) ALTGR + ENTER (windows) to execute the \"code\". Note that we don't need to go from a symbol or [iter] here"
 								}
 
 							}
@@ -5436,7 +4639,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 291.0, 486.5, 20.0, 20.0 ],
+									"patching_rect" : [ 290.0, 495.0, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "3",
 									"textcolor" : [ 0.34902, 0.34902, 0.34902, 1.0 ]
@@ -5522,12 +4725,12 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-88",
-									"linecount" : 4,
+									"linecount" : 5,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 45.0, 120.0, 447.0, 60.0 ],
-									"text" : "A repl for max in gl, with lots of customizable functionality which you can use to do some exciting things.\nThis is a simple example which you can use to understand some basic functionality.",
+									"patching_rect" : [ 45.0, 120.0, 447.0, 74.0 ],
+									"text" : "A repl for max in gl, with lots of customizable functionality which you can use to do some exciting things.\nThis is a simple example which you can use to understand some basic functionality. For further examples please see the GLRepl Overview in the Extras menu",
 									"textcolor" : [ 0.32548999786377, 0.345097988843918, 0.372548997402191, 1.0 ]
 								}
 
@@ -5649,7 +4852,7 @@
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 222.0, 486.5, 66.0, 22.0 ],
+									"patching_rect" : [ 222.0, 517.0, 66.0, 22.0 ],
 									"text" : "s codeText"
 								}
 
@@ -5709,12 +4912,12 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-44",
-									"linecount" : 5,
+									"linecount" : 8,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 439.0, 435.0, 131.0, 74.0 ],
-									"text" : "If you use the copy bindings alt+x or alt+c it will also output the copied text from this output"
+									"patching_rect" : [ 439.0, 435.0, 134.0, 114.0 ],
+									"text" : "If you use the copy bindings: option+x/Altgr+x option+c/Altgr+c \nit will also output the copied text from output 2. See the clipboard tab for more about this"
 								}
 
 							}
@@ -5902,10 +5105,6 @@
  ],
 		"lines" : [  ],
 		"dependency_cache" : [ 			{
-				"name" : "shell.mxo",
-				"type" : "iLaX"
-			}
-, 			{
 				"name" : "tw.gl.repl.js",
 				"bootpath" : "~/Documents/Max 8/Packages/GLRepl/javascript/dist",
 				"patcherrelativepath" : "../javascript/dist",

@@ -10,9 +10,9 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 759.0, 126.0, 821.0, 631.0 ],
+		"rect" : [ 803.0, 273.0, 845.0, 631.0 ],
 		"bglocked" : 0,
-		"openinpresentation" : 1,
+		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
 		"default_fontface" : 0,
 		"default_fontname" : "Arial",
@@ -37,8 +37,7 @@
 		"tags" : "",
 		"style" : "",
 		"subpatcher_template" : "",
-		"showrootpatcherontab" : 0,
-		"showontab" : 0,
+		"showontab" : 1,
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
@@ -47,6 +46,8 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 764.5, 617.0, 88.0, 22.0 ],
+					"presentation" : 1,
+					"presentation_rect" : [ 764.5, 617.0, 88.0, 22.0 ],
 					"text" : "s replRunBang"
 				}
 
@@ -58,6 +59,8 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 671.25, 617.0, 89.0, 22.0 ],
+					"presentation" : 1,
+					"presentation_rect" : [ 671.25, 617.0, 89.0, 22.0 ],
 					"text" : "s replClipboard"
 				}
 
@@ -81,6 +84,7 @@
 			}
 , 			{
 				"box" : 				{
+					"hidden" : 1,
 					"id" : "obj-7",
 					"maxclass" : "newobj",
 					"numinlets" : 0,
@@ -96,7 +100,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 821.0, 605.0 ],
+						"rect" : [ 0.0, 26.0, 845.0, 605.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 1,
 						"default_fontsize" : 12.0,
@@ -621,6 +625,8 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 578.0, 617.0, 64.0, 22.0 ],
+					"presentation" : 1,
+					"presentation_rect" : [ 578.0, 617.0, 64.0, 22.0 ],
 					"text" : "s toRouter"
 				}
 
@@ -632,7 +638,9 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 40.0, 441.0, 95.0, 22.0 ],
+					"patching_rect" : [ 40.0, 429.0, 95.0, 22.0 ],
+					"presentation" : 1,
+					"presentation_rect" : [ 40.0, 441.0, 95.0, 22.0 ],
 					"text" : "r launcher-world"
 				}
 
@@ -645,6 +653,8 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 599.0, 541.0, 89.0, 22.0 ],
+					"presentation" : 1,
+					"presentation_rect" : [ 599.0, 541.0, 89.0, 22.0 ],
 					"text" : "r launcher-msg"
 				}
 
@@ -657,6 +667,8 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
 					"patching_rect" : [ 309.0, 513.0, 288.0, 22.0 ],
+					"presentation" : 1,
+					"presentation_rect" : [ 309.0, 513.0, 288.0, 22.0 ],
 					"text" : "tw.gl.repl.dynamic-size-helper"
 				}
 
@@ -670,6 +682,8 @@
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "" ],
 					"patching_rect" : [ 578.0, 577.0, 205.5, 22.0 ],
+					"presentation" : 1,
+					"presentation_rect" : [ 578.0, 577.0, 205.5, 22.0 ],
 					"text" : "tw.gl.repl launcher 527 399"
 				}
 
@@ -682,12 +696,15 @@
 					"numoutlets" : 3,
 					"outlettype" : [ "jit_matrix", "bang", "" ],
 					"patching_rect" : [ 40.0, 479.0, 557.0, 22.0 ],
+					"presentation" : 1,
+					"presentation_rect" : [ 40.0, 479.0, 557.0, 22.0 ],
 					"text" : "jit.world launcher @floating 1 @enable 1 @fsaa 1 @fsmenubar 0 @size 527 399 @erase_color 0 0 0 1"
 				}
 
 			}
 , 			{
 				"box" : 				{
+					"hidden" : 1,
 					"id" : "obj-35",
 					"maxclass" : "newobj",
 					"numinlets" : 0,
@@ -703,7 +720,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 821.0, 605.0 ],
+						"rect" : [ 0.0, 26.0, 845.0, 605.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 1,
 						"default_fontsize" : 12.0,
@@ -1295,6 +1312,7 @@
 			}
 , 			{
 				"box" : 				{
+					"hidden" : 1,
 					"id" : "obj-8",
 					"maxclass" : "newobj",
 					"numinlets" : 0,
@@ -1310,7 +1328,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 821.0, 605.0 ],
+						"rect" : [ 0.0, 26.0, 845.0, 605.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -2403,11 +2421,13 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-14",
+									"linecount" : 2,
 									"maxclass" : "message",
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 72.948251953124895, 542.0, 118.0, 22.0 ]
+									"patching_rect" : [ 72.948251953124895, 542.0, 118.0, 35.0 ],
+									"text" : "c3 e4 f#4 a4 g4 e4 c4 g3"
 								}
 
 							}
@@ -3885,6 +3905,7 @@
 			}
 , 			{
 				"box" : 				{
+					"hidden" : 1,
 					"id" : "obj-6",
 					"maxclass" : "newobj",
 					"numinlets" : 0,
@@ -3900,7 +3921,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 821.0, 605.0 ],
+						"rect" : [ 0.0, 26.0, 845.0, 605.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 1,
 						"default_fontsize" : 12.0,
@@ -4525,6 +4546,7 @@
 			}
 , 			{
 				"box" : 				{
+					"hidden" : 1,
 					"id" : "obj-5",
 					"maxclass" : "newobj",
 					"numinlets" : 0,
@@ -4540,7 +4562,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 759.0, 152.0, 821.0, 605.0 ],
+						"rect" : [ 0.0, 26.0, 845.0, 605.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 1,
 						"default_fontsize" : 12.0,
@@ -5366,6 +5388,7 @@
 			}
 , 			{
 				"box" : 				{
+					"hidden" : 1,
 					"id" : "obj-4",
 					"maxclass" : "newobj",
 					"numinlets" : 0,
@@ -5381,7 +5404,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 821.0, 605.0 ],
+						"rect" : [ 0.0, 26.0, 845.0, 605.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 1,
 						"default_fontsize" : 12.0,
@@ -5982,9 +6005,9 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 24.0, 121.0, 497.0, 248.0 ],
 					"presentation" : 1,
-					"presentation_linecount" : 22,
-					"presentation_rect" : [ 24.0, 113.0, 420.0, 301.0 ],
-					"text" : "A fully featured and configurable repl environment made in javascript and opengl for max. A command line text editor (similar to the workflow of the terminal) for the opengl world of Max. Add the object to your setup and initialize it with the name of the render context. Then make sure you send it the render bang in the top inlet. \n\nAttach functions to keypresses, mutate repl contents before output, reading files plays back all functions attached to keys. Configurable through json configuration file and code, easily extensible.\n\nSimple use cases for the repl can be handled entirely in configuration, add a shortkeys.json to your project or load any dict with the `keybindings dictname` message. \nMore complex use cases can be easily managed by including a `user-repl.js` file\ninside your project in which you can further customize behaviour by attaching\nyour own custom functions to keypresses or your own custom formatters for output\nmessage handling. This will be automatically read by the repl on start.\n\nSee README.md in the package folder for extensive information about how the repl works, or try the examples here.",
+					"presentation_linecount" : 23,
+					"presentation_rect" : [ 24.0, 113.0, 420.0, 315.0 ],
+					"text" : "A fully featured and configurable repl environment made in javascript and opengl for max. A command line text editor (similar to the workflow of the terminal) for the opengl world of Max. Add the object to your setup and initialize it with the name of the render context. Then make sure you send it the render bang in the top inlet. \n\nAttach functions to keypresses, mutate repl contents before output, and read files as a succession of keypresses. Configurable through both a json configuration file and code means that it's easily extensible for whatever your use case.\n\nSimple use cases for the repl can be handled entirely in configuration, add a shortkeys.json to your project or load any dict with the `keybindings dictname` message. \nMore complex use cases can be easily managed by including a `user-repl.js` file\ninside your project in which you can further customize behaviour by attaching\nyour own custom functions to keypresses or your own custom formatters for output\nmessage handling. This will be automatically read by the repl on start.\n\nSee README.md in the package folder for extensive information about how the repl works, or try the examples here.",
 					"textcolor" : [ 0.32548999786377, 0.345097988843918, 0.372548997402191, 1.0 ]
 				}
 
