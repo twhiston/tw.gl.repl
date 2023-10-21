@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 803.0, 273.0, 845.0, 631.0 ],
+		"rect" : [ 803.0, 273.0, 938.0, 656.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -41,11 +41,49 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-17",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 523.0, 342.0, 131.0, 22.0 ],
+					"text" : "load tw.gl.repl.maxhelp"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-15",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 523.0, 372.0, 51.0, 22.0 ],
+					"text" : "pcontrol"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-12",
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 346.0, 602.0, 285.0, 20.0 ],
+					"presentation" : 1,
+					"presentation_linecount" : 2,
+					"presentation_rect" : [ 476.0, 582.0, 150.0, 33.0 ],
+					"text" : "The router can be found on the \"parsing-output\" tab"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-10",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 764.5, 617.0, 88.0, 22.0 ],
+					"patching_rect" : [ 748.5, 578.0, 88.0, 22.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 764.5, 617.0, 88.0, 22.0 ],
 					"text" : "s replRunBang"
@@ -58,7 +96,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 671.25, 617.0, 89.0, 22.0 ],
+					"patching_rect" : [ 655.25, 578.0, 89.0, 22.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 671.25, 617.0, 89.0, 22.0 ],
 					"text" : "s replClipboard"
@@ -100,7 +138,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 845.0, 605.0 ],
+						"rect" : [ 0.0, 26.0, 938.0, 630.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 1,
 						"default_fontsize" : 12.0,
@@ -624,7 +662,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 578.0, 617.0, 64.0, 22.0 ],
+					"patching_rect" : [ 562.0, 578.0, 64.0, 22.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 578.0, 617.0, 64.0, 22.0 ],
 					"text" : "s toRouter"
@@ -638,7 +676,7 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 40.0, 429.0, 95.0, 22.0 ],
+					"patching_rect" : [ 24.0, 398.0, 95.0, 22.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 40.0, 441.0, 95.0, 22.0 ],
 					"text" : "r launcher-world"
@@ -652,7 +690,7 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 599.0, 541.0, 89.0, 22.0 ],
+					"patching_rect" : [ 583.0, 502.0, 89.0, 22.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 599.0, 541.0, 89.0, 22.0 ],
 					"text" : "r launcher-msg"
@@ -666,7 +704,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 309.0, 513.0, 288.0, 22.0 ],
+					"patching_rect" : [ 293.0, 474.0, 288.0, 22.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 309.0, 513.0, 288.0, 22.0 ],
 					"text" : "tw.gl.repl.dynamic-size-helper"
@@ -681,7 +719,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "" ],
-					"patching_rect" : [ 578.0, 577.0, 205.5, 22.0 ],
+					"patching_rect" : [ 562.0, 538.0, 205.5, 22.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 578.0, 577.0, 205.5, 22.0 ],
 					"text" : "tw.gl.repl launcher 527 399"
@@ -695,7 +733,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 3,
 					"outlettype" : [ "jit_matrix", "bang", "" ],
-					"patching_rect" : [ 40.0, 479.0, 557.0, 22.0 ],
+					"patching_rect" : [ 24.0, 440.0, 557.0, 22.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 40.0, 479.0, 557.0, 22.0 ],
 					"text" : "jit.world launcher @floating 1 @enable 1 @fsaa 1 @fsmenubar 0 @size 527 399 @erase_color 0 0 0 1"
@@ -720,7 +758,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 845.0, 605.0 ],
+						"rect" : [ 0.0, 26.0, 938.0, 630.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 1,
 						"default_fontsize" : 12.0,
@@ -1328,7 +1366,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 845.0, 605.0 ],
+						"rect" : [ 0.0, 26.0, 938.0, 630.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -3921,7 +3959,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 845.0, 605.0 ],
+						"rect" : [ 0.0, 26.0, 938.0, 630.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 1,
 						"default_fontsize" : 12.0,
@@ -4562,7 +4600,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 845.0, 605.0 ],
+						"rect" : [ 0.0, 26.0, 938.0, 630.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 1,
 						"default_fontsize" : 12.0,
@@ -4966,23 +5004,6 @@
 							}
 , 							{
 								"box" : 								{
-									"fontface" : 1,
-									"fontsize" : 12.0,
-									"id" : "obj-21",
-									"linecount" : 3,
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 175.0, 11.0, 303.5, 47.0 ],
-									"presentation" : 1,
-									"presentation_linecount" : 3,
-									"presentation_rect" : [ 172.0, 11.0, 372.0, 47.0 ],
-									"text" : "Written by Tom Whiston © 2023\n \nwww.tomwhiston.com"
-								}
-
-							}
-, 							{
-								"box" : 								{
 									"id" : "obj-14",
 									"maxclass" : "textbutton",
 									"numinlets" : 1,
@@ -5062,13 +5083,14 @@
 									"fontname" : "Arial",
 									"fontsize" : 40.0,
 									"id" : "obj-22",
+									"linecount" : 4,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 24.0, 9.0, 147.0, 51.0 ],
+									"patching_rect" : [ 24.0, 9.0, 155.0, 185.0 ],
 									"presentation" : 1,
-									"presentation_rect" : [ 24.0, 9.0, 146.0, 51.0 ],
-									"text" : "GLRepl",
+									"presentation_rect" : [ 24.0, 9.0, 456.0, 51.0 ],
+									"text" : "GLRepl - Getting Started",
 									"textcolor" : [ 0.32548999786377, 0.345097988843918, 0.372548997402191, 1.0 ]
 								}
 
@@ -5404,7 +5426,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 845.0, 605.0 ],
+						"rect" : [ 0.0, 26.0, 938.0, 630.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 1,
 						"default_fontsize" : 12.0,
@@ -5537,7 +5559,7 @@
 									"presentation" : 1,
 									"presentation_linecount" : 5,
 									"presentation_rect" : [ 12.0, 62.0, 732.0, 74.0 ],
-									"text" : "The max patches below show how you can use these basic ideas to build up more complex interfaces and interactions within max using the REPL.\n\nYou should stop the jit.world for this overview before you open these patches so your keypresses are not registered in two different environments"
+									"text" : "The max patches below show how you can use these basic ideas to build up more complex interfaces and interactions within Max using the REPL.\n\nYou should stop the jit.world for this overview before you open these patches so your keypresses are not registered in two different environments"
 								}
 
 							}
@@ -5999,15 +6021,15 @@
 , 			{
 				"box" : 				{
 					"id" : "obj-88",
-					"linecount" : 18,
+					"linecount" : 20,
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 24.0, 121.0, 497.0, 248.0 ],
+					"patching_rect" : [ 24.0, 121.0, 497.0, 275.0 ],
 					"presentation" : 1,
-					"presentation_linecount" : 23,
-					"presentation_rect" : [ 24.0, 113.0, 420.0, 315.0 ],
-					"text" : "A fully featured and configurable repl environment made in javascript and opengl for max. A command line text editor (similar to the workflow of the terminal) for the opengl world of Max. Add the object to your setup and initialize it with the name of the render context. Then make sure you send it the render bang in the top inlet. \n\nAttach functions to keypresses, mutate repl contents before output, and read files as a succession of keypresses. Configurable through both a json configuration file and code means that it's easily extensible for whatever your use case.\n\nSimple use cases for the repl can be handled entirely in configuration, add a shortkeys.json to your project or load any dict with the `keybindings dictname` message. \nMore complex use cases can be easily managed by including a `user-repl.js` file\ninside your project in which you can further customize behaviour by attaching\nyour own custom functions to keypresses or your own custom formatters for output\nmessage handling. This will be automatically read by the repl on start.\n\nSee README.md in the package folder for extensive information about how the repl works, or try the examples here.",
+					"presentation_linecount" : 25,
+					"presentation_rect" : [ 24.0, 113.0, 420.0, 342.0 ],
+					"text" : "A fully featured and configurable repl environment made in javascript and opengl for Max. A command line text editor (similar to the workflow of the terminal) for the opengl world of Max. Add the object to your setup and initialize it with the name of the render context. Then make sure you send it the render bang in the top inlet. \n\nAttach functions to keypresses, mutate repl contents before output, and read files as a succession of keypresses. Configurable through both a json configuration file and code means that it's easily extensible for whatever your use case.\n\nSimple use cases for the repl can be handled entirely in configuration, add a shortkeys.json to your project or load any dict with the `keybindings dictname` message. \nMore complex use cases can be easily managed by including a `user-repl.js` file\ninside your project in which you can further customize behaviour by attaching\nyour own custom functions to keypresses or your own custom formatters for output\nmessage handling. This will be automatically read by the repl on start.\n\nFor a simple example of how you can start using the router you may wish to check the [tw.gl.repl] help file.\nSee README.md in the package folder for extensive information about how the repl works, or try the examples tab here.",
 					"textcolor" : [ 0.32548999786377, 0.345097988843918, 0.372548997402191, 1.0 ]
 				}
 
@@ -6060,8 +6082,15 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-15", 0 ],
+					"source" : [ "obj-17", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-112", 0 ],
-					"midpoints" : [ 318.5, 509.0, 295.0, 509.0, 295.0, 568.0, 574.0, 568.0, 574.0, 569.0, 587.5, 569.0 ],
+					"midpoints" : [ 302.5, 470.0, 279.0, 470.0, 279.0, 529.0, 558.0, 529.0, 558.0, 530.0, 571.5, 530.0 ],
 					"order" : 0,
 					"source" : [ "obj-2", 1 ]
 				}
@@ -6099,7 +6128,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-2", 0 ],
-					"midpoints" : [ 318.5, 542.0, 31.0, 542.0, 31.0, 471.0, 49.5, 471.0 ],
+					"midpoints" : [ 302.5, 503.0, 15.0, 503.0, 15.0, 432.0, 33.5, 432.0 ],
 					"source" : [ "obj-81", 0 ]
 				}
 
