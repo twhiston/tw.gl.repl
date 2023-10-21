@@ -159,6 +159,10 @@ function run_line() {
 }
 
 function run_output(out){
+    //guard against input which is only the run command and nothing else
+    //as this will cause a stack overflow
+    if(out.length == 1 && out[0] == "run")
+		return
     if(SUPRESS_OUTPUT === false){
         for (var a = 0; a < out.length; a++) {
             outlet(0, out[a]);

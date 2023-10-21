@@ -4,7 +4,7 @@
 
 ## About
 
-GLRepl is a max/msp Repl (Read/Execute/Print/Loop) environment based on the
+GLRepl is a Max Repl (Read/Execute/Print/Loop) environment based on the
 excellent th.gl.texteditor. It consists of two objects `[tw.gl.repl]` and
 `[tw.gl.repl.dynamic-size-helper]`.
 
