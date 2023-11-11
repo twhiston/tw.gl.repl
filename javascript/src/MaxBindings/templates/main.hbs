@@ -228,6 +228,18 @@ function write(filename) {
     f.close()
 }
 
+//hide the text in the REPL from being drawn
+var HIDE_TEXT = false;
+function hide_text(hide) {
+    if(hide === undefined){
+        HIDE_TEXT = !HIDE_TEXT
+    } else {
+        HIDE_TEXT = hide != 0;
+    }
+    glrepl.renderer.hideText(HIDE_TEXT)
+    draw()
+}
+
 /*
  * REPL BINDINGS
  * Functions below here are generated from class methods decorated with @maxMspBinding
