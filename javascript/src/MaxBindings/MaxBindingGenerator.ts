@@ -269,6 +269,21 @@ function getCustomFunctionDefinitions(): Array<Object> {
         paramCount: 0,
         comment: "output the current contents of the pastebin from the second outlet. You should bind this to a key. See default bindings for example"
     });
+    genFuncs.push({
+        functionName: "hide_text",
+        handlerInlet: 0,
+        isAttribute: true,
+        isMethod: true,
+        paramCount: 1,
+        params: [
+            {
+                name: "hide",
+                default: false,
+                type: "bang/int",
+            }
+        ],
+        comment: "if true then hide all text rendering in the repl"
+    })
 
     return genFuncs;
 }

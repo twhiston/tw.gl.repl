@@ -165,6 +165,8 @@ export class GLRender {
     private cursorColor = new Color(1, 0.501961, 0, 1);
     private blinkColor = new Color(0.4, 0.8, 1, 1);
 
+    private hideDisplay: boolean = false;
+
     // THE HORROR!!
     constructor(uuid: number) {
 
@@ -283,10 +285,20 @@ export class GLRender {
         (<any>this.animNode).scale = [this.SCALING, this.SCALING, 0];
     }
 
+    hideText(hide: boolean) {
+        this.hideDisplay = hide;
+    }
+
     draw(textBuf: Array<string>, pos: CursorPosition) {
-        this.drawText(textBuf); //place the strings as text in a matrix
-        this.drawCursor(textBuf, pos); //draw the cursor position in a matrix
-        this.drawNumbers(textBuf, pos); //draw the line numbers in a matrix
+        if (this.hideDisplay) {
+            this.textMtx.setall([0]);
+            this.crsrMtx.setall([0]);
+            this.nmbrMtx.setall([0]);
+        } else {
+            this.drawText(textBuf); //place the strings as text in a matrix
+            this.drawCursor(textBuf, pos); //draw the cursor position in a matrix
+            this.drawNumbers(textBuf, pos); //draw the line numbers in a matrix
+        }
         this.matrixToText(); //set the matrices to the gl text objects
     }
 

@@ -323,6 +323,20 @@
             "functions": [
                 "return ['ephemeral_mode']"
             ]
+        },
+        {
+            "id": "hide_text-opt+h-mac",
+            "asciiCode": 729,
+            "functions": [
+                "return ['hide_text']"
+            ]
+        },
+        {
+            "id": "hide_text-ctrl+h-win",
+            "asciiCode": 4456,
+            "functions": [
+                "return ['hide_text']"
+            ]
         }
     ]
 }

@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 694.0, 209.0, 917.0, 794.0 ],
+		"rect" : [ 673.0, 110.0, 917.0, 794.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 917.0, 768.0 ],
+						"rect" : [ 673.0, 136.0, 917.0, 768.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -87,6 +87,42 @@
 						"showontab" : 1,
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
+								"box" : 								{
+									"id" : "obj-11",
+									"linecount" : 8,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 220.0, 511.0, 291.0, 114.0 ],
+									"text" : "hide the text in the repl window. This is useful if you have set up some openGL display and just want to show it for a while without clearing the window contents.\nNOTE: Keystokes will still be registered into the buffer when the text is hidden. so if you want to really disable the text fully for a while you should send both a hide_text 1 and an ignore_keys 1 message."
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-16",
+									"maxclass" : "message",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 144.0, 541.0, 67.0, 22.0 ],
+									"text" : "hide_text 0"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-4",
+									"maxclass" : "message",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 144.0, 511.0, 67.0, 22.0 ],
+									"text" : "hide_text 1"
+								}
+
+							}
+, 							{
 								"box" : 								{
 									"id" : "obj-13",
 									"linecount" : 3,
@@ -331,7 +367,7 @@
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 32.0, 511.0, 72.0, 22.0 ],
+									"patching_rect" : [ 32.0, 563.0, 72.0, 22.0 ],
 									"text" : "s customize"
 								}
 
@@ -350,6 +386,13 @@
 									"destination" : [ "obj-1", 0 ],
 									"midpoints" : [ 98.5, 166.5, 41.5, 166.5 ],
 									"source" : [ "obj-15", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-1", 0 ],
+									"source" : [ "obj-16", 0 ]
 								}
 
 							}
@@ -404,6 +447,13 @@
 									"destination" : [ "obj-1", 0 ],
 									"midpoints" : [ 192.5, 360.0, 41.5, 360.0 ],
 									"source" : [ "obj-32", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-1", 0 ],
+									"source" : [ "obj-4", 0 ]
 								}
 
 							}
@@ -4241,7 +4291,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 694.0, 235.0, 917.0, 768.0 ],
+						"rect" : [ 0.0, 26.0, 917.0, 768.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -4330,7 +4380,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 439.0, 363.5, 148.0, 22.0 ],
-									"text" : "blink_time 250"
+									"text" : "hide_text 0"
 								}
 
 							}
