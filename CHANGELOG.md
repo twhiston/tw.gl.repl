@@ -1,5 +1,17 @@
 # tw.gl.repl changelog
 
+## [1.0.0-beta.9](https://github.com/twhiston/tw.gl.repl/compare/1.0.0-beta.8...1.0.0-beta.9) (2023-11-11)
+
+
+### Features
+
+* add ability to hide text in the repl with key command and max message ([#16](https://github.com/twhiston/tw.gl.repl/issues/16)) ([fc6b2ee](https://github.com/twhiston/tw.gl.repl/commit/fc6b2ee20fbe739b258586eea88b93fc34676946))
+
+
+### Bug Fixes
+
+* fixes via c74 ([0b3ec8e](https://github.com/twhiston/tw.gl.repl/commit/0b3ec8ec88142d35bb89b3d5fc61d4f96b370476))
+
 ## [1.0.0-beta.8](https://github.com/twhiston/tw.gl.repl/compare/1.0.0-beta.7...1.0.0-beta.8) (2023-10-21)
 
 
