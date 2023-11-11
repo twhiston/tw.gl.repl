@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 803.0, 273.0, 938.0, 656.0 ],
+		"rect" : [ 721.0, 302.0, 938.0, 656.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -1863,7 +1863,6 @@
 										"style" : "",
 										"subpatcher_template" : "",
 										"assistshowspatchername" : 0,
-										"visible" : 1,
 										"boxes" : [ 											{
 												"box" : 												{
 													"id" : "obj-7",
@@ -5457,12 +5456,24 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
+									"id" : "obj-42",
+									"maxclass" : "newobj",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "int" ],
+									"patching_rect" : [ 467.0, 474.0, 29.5, 22.0 ],
+									"text" : "!= 1"
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"id" : "obj-33",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 467.0, 472.0, 121.0, 22.0 ],
+									"patching_rect" : [ 467.0, 518.0, 121.0, 22.0 ],
 									"text" : "prepend ignore_keys"
 								}
 
@@ -5473,7 +5484,7 @@
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 467.0, 505.5, 91.0, 22.0 ],
+									"patching_rect" : [ 467.0, 551.5, 91.0, 22.0 ],
 									"text" : "s launcher-msg"
 								}
 
@@ -5497,7 +5508,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 320.0, 468.0, 92.0, 22.0 ],
+									"patching_rect" : [ 320.0, 514.0, 92.0, 22.0 ],
 									"text" : "prepend enable"
 								}
 
@@ -5525,7 +5536,7 @@
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 320.0, 505.5, 97.0, 22.0 ],
+									"patching_rect" : [ 320.0, 551.5, 97.0, 22.0 ],
 									"text" : "s launcher-world"
 								}
 
@@ -5912,7 +5923,7 @@
 							}
 , 							{
 								"patchline" : 								{
-									"destination" : [ "obj-33", 0 ],
+									"destination" : [ "obj-42", 0 ],
 									"order" : 0,
 									"source" : [ "obj-16", 0 ]
 								}
@@ -5984,6 +5995,13 @@
 									"destination" : [ "obj-41", 0 ],
 									"hidden" : 1,
 									"source" : [ "obj-34", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-33", 0 ],
+									"source" : [ "obj-42", 0 ]
 								}
 
 							}
