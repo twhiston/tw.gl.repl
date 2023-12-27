@@ -1,19 +1,22 @@
 # tw.gl.repl changelog
 
-## [1.0.0-beta.9](https://github.com/twhiston/tw.gl.repl/compare/1.0.0-beta.8...1.0.0-beta.9) (2023-11-11)
+## 1.0.0 (2023-12-27)
 
+### Features
+
+* Initial release of tw.gl.repl object. See README.md and max help files for more information
+
+## [1.0.0-beta.9](https://github.com/twhiston/tw.gl.repl/compare/1.0.0-beta.8...1.0.0-beta.9) (2023-11-11)
 
 ### Features
 
 * add ability to hide text in the repl with key command and max message ([#16](https://github.com/twhiston/tw.gl.repl/issues/16)) ([fc6b2ee](https://github.com/twhiston/tw.gl.repl/commit/fc6b2ee20fbe739b258586eea88b93fc34676946))
-
 
 ### Bug Fixes
 
 * fixes via c74 ([0b3ec8e](https://github.com/twhiston/tw.gl.repl/commit/0b3ec8ec88142d35bb89b3d5fc61d4f96b370476))
 
 ## [1.0.0-beta.8](https://github.com/twhiston/tw.gl.repl/compare/1.0.0-beta.7...1.0.0-beta.8) (2023-10-21)
-
 
 ### Bug Fixes
 
@@ -23,13 +26,11 @@
 
 ## [1.0.0-beta.6](https://github.com/twhiston/tw.gl.repl/compare/1.0.0-beta.5...1.0.0-beta.6) (2023-09-07)
 
-
 ### Bug Fixes
 
 * fix polarity of ignore_keys option and shortcode, add to help file ([#14](https://github.com/twhiston/tw.gl.repl/issues/14)) ([3571ba9](https://github.com/twhiston/tw.gl.repl/commit/3571ba9423005d6da5b9557420b090a3858c9baa))
 
 ## [1.0.0-beta.5](https://github.com/twhiston/tw.gl.repl/compare/1.0.0-beta.4...1.0.0-beta.5) (2023-09-06)
-
 
 ### Features
 
