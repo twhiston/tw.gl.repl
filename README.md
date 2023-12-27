@@ -375,7 +375,7 @@ so will result in issues when the config is loaded, as this is the point at
 which formatters are resolved and added to the TextBuffer.
 
 To see a full example of a pure javascript text formatter implementation check out
-the Custom Formatter example from the Max Extras menu 'tw.gl.repl.overview` patch.
+the Custom Formatter example from the Max Extras menu `tw.gl.repl.overview` patch.
 
 ## Reading and Writing files
 
