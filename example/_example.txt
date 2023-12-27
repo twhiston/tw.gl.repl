@@ -1,0 +1,27 @@
+// th.gl.texteditor example
+// by timo hoogland (c) 2020
+
+wo erase_color 0.1 0.4 0.3 1
+
+gs shape cube
+gs poly_mode 0 0
+
+gs lighting_enable 1
+gs fog 1
+gs fog_range 2 10
+
+mp dim 7 7 7
+mp distance 2
+mp scale random 0.1 0.9
+
+mp rotatexyz 45 45 0
+mp anim turn 0.2 0.03 0.01
+
+cam ortho 1
+cam position 0 0 8
+cam lens_angle 110
+
+light_1 diffuse 0 0.2 0.6 
+light_2 diffuse 0.2 0.8 0
+light_3 diffuse 0. 1 0.4
+
