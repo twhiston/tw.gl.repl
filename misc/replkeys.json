@@ -1,0 +1,342 @@
+{
+    "settings": {
+        "textbuffer": {
+            "formatters": [
+                "commentremover",
+                "whitespace",
+                "bracebalanced"
+            ]
+        }
+    },
+    "bindings": [
+        {
+            "id": "execute-opt+enter-mac",
+            "asciiCode": 2044,
+            "functions": [
+                "return ['run']"
+            ]
+        },
+        {
+            "id": "execute-ctrl+enter-win",
+            "asciiCode": 4348,
+            "functions": [
+                "return ['run']"
+            ]
+        },
+        {
+            "id": "execute_line+ctrl+opt+enter-mac",
+            "asciiCode": 6140,
+            "functions": [
+                "return ['run_line']"
+            ]
+        },
+        {
+            "id": "execute_line+shift+ctrl+enter-win",
+            "asciiCode": 4860,
+            "functions": [
+                "return ['run_line']"
+            ]
+        },
+        {
+            "id": "alphahandler",
+            "asciiCode": 127,
+            "functions": [
+                "ctx.addChar(k)"
+            ]
+        },
+        {
+            "id": "addSpace",
+            "asciiCode": -2,
+            "functions": [
+                "ctx.addChar(32)"
+            ]
+        },
+        {
+            "id": "addSpace",
+            "asciiCode": 32,
+            "functions": [
+                "ctx.addChar(32)"
+            ]
+        },
+        {
+            "id": "newLine",
+            "asciiCode": -4,
+            "functions": [
+                "ctx.newLine()"
+            ]
+        },
+        {
+            "id": "newLine",
+            "asciiCode": 10,
+            "functions": [
+                "ctx.newLine()"
+            ]
+        },
+        {
+            "id": "newLine",
+            "asciiCode": 13,
+            "functions": [
+                "ctx.newLine()"
+            ]
+        },
+        {
+            "id": "addTab",
+            "asciiCode": -5,
+            "functions": [
+                "ctx.addTab()"
+            ]
+        },
+        {
+            "id": "delete",
+            "asciiCode": -6,
+            "functions": [
+                "ctx.deleteChar()"
+            ]
+        },
+        {
+            "id": "backspace",
+            "asciiCode": -7,
+            "functions": [
+                "ctx.backSpace()"
+            ]
+        },
+        {
+            "id": "comment-opt+/-mac",
+            "asciiCode": 247,
+            "functions": [
+                "ctx.commentLine()"
+            ]
+        },
+        {
+            "id": "comment-ctrl+/-win",
+            "asciiCode": 4399,
+            "functions": [
+                "ctx.commentLine()"
+            ]
+        },
+        {
+            "id": "clear-opt+z-mac",
+            "asciiCode": 937,
+            "functions": [
+                "ctx.clear()"
+            ]
+        },
+        {
+            "id": "clear-ctrl+z-win",
+            "asciiCode": 4474,
+            "functions": [
+                "ctx.clear()"
+            ]
+        },
+        {
+            "id": "cutLine-opt+x-mac",
+            "asciiCode": 8776,
+            "functions": [
+                "ctx.tb.pasteBinCopyLine(ctx.c.line());ctx.deleteLine();return ['output_paste_bin']"
+            ]
+        },
+        {
+            "id": "cutLine-ctrl+x-win",
+            "asciiCode": 4472,
+            "functions": [
+                "ctx.tb.pasteBinCopyLine(ctx.c.line());ctx.deleteLine();return ['output_paste_bin']"
+            ]
+        },
+        {
+            "id": "copyLine-opt+c-mac",
+            "asciiCode": 231,
+            "functions": [
+                "ctx.tb.pasteBinCopyLine(ctx.c.line());return ['output_paste_bin']"
+            ]
+        },
+        {
+            "id": "copyLine-ctrl+c-win",
+            "asciiCode": 4451,
+            "functions": [
+                "ctx.tb.pasteBinCopyLine(ctx.c.line());return ['output_paste_bin']"
+            ]
+        },
+        {
+            "id": "copyAll-opt+k-mac",
+            "asciiCode": 730,
+            "functions": [
+                "ctx.tb.pasteBinCopyAll();return ['output_paste_bin']"
+            ]
+        },
+        {
+            "id": "copyAll-ctrl+k-win",
+            "asciiCode": 4459,
+            "functions": [
+                "ctx.tb.pasteBinCopyAll();return ['output_paste_bin']"
+            ]
+        },
+        {
+            "id": "paste-opt+v-mac",
+            "asciiCode": 8730,
+            "functions": [
+                "var pb = ctx.tb.pasteBinGet(); for(var i = 0; i < pb.length; i++){for (var a = 0; a < pb[i].length; a++) {var char = pb[i].charCodeAt(a); ctx.keyPress(char)}};"
+            ]
+        },
+        {
+            "id": "paste-ctrl+v-win",
+            "asciiCode": 4470,
+            "functions": [
+                "var pb = ctx.tb.pasteBinGet(); for(var i = 0; i < pb.length; i++){for (var a = 0; a < pb[i].length; a++) {var char = pb[i].charCodeAt(a); ctx.keyPress(char)}};"
+            ]
+        },
+        {
+            "id": "replaceLine-opt+p-mac",
+            "asciiCode": 960,
+            "functions": [
+                "var pb = ctx.tb.pasteBinGet(); var startLine = ctx.c.line(); ctx.deleteLine(); if(ctx.c.line() < ctx.tb.length()-1){ctx.jumpLine(-1);ctx.jumpTo(1);} if(startLine === 0){ctx.jumpTo(0); ctx.newLine(); ctx.jumpTo(2); }else { ctx.newLine(); } for(var i = 0; i < pb.length; i++){for (var a = 0; a < pb[i].length; a++) {var char = pb[i].charCodeAt(a); ctx.keyPress(char)}}"
+            ]
+        },
+        {
+            "id": "replaceLine-ctrl+p-win",
+            "asciiCode": 4464,
+            "functions": [
+                "var pb = ctx.tb.pasteBinGet(); var startLine = ctx.c.line(); ctx.deleteLine(); if(ctx.c.line() < ctx.tb.length()-1){ctx.jumpLine(-1);ctx.jumpTo(1);} if(startLine === 0){ctx.jumpTo(0); ctx.newLine(); ctx.jumpTo(2); }else { ctx.newLine(); } for(var i = 0; i < pb.length; i++){for (var a = 0; a < pb[i].length; a++) {var char = pb[i].charCodeAt(a); ctx.keyPress(char)}}"
+            ]
+        },
+        {
+            "id": "up",
+            "asciiCode": -9,
+            "functions": [
+                "ctx.jumpLine(-1)"
+            ]
+        },
+        {
+            "id": "down",
+            "asciiCode": -10,
+            "functions": [
+                "ctx.jumpLine(1)"
+            ]
+        },
+        {
+            "id": "left",
+            "asciiCode": -11,
+            "functions": [
+                "ctx.jumpChar(-1)"
+            ]
+        },
+        {
+            "id": "right",
+            "asciiCode": -12,
+            "functions": [
+                "ctx.jumpChar(1)"
+            ]
+        },
+        {
+            "id": "jump_top-opt+up-mac",
+            "asciiCode": 2039,
+            "functions": [
+                "ctx.jumpTo(2)"
+            ]
+        },
+        {
+            "id": "jump_top-ctrl+up-win",
+            "asciiCode": 4343,
+            "functions": [
+                "ctx.jumpTo(2)"
+            ]
+        },
+        {
+            "id": "jump_bottom-opt+down-mac",
+            "asciiCode": 2038,
+            "functions": [
+                "ctx.jumpTo(3)"
+            ]
+        },
+        {
+            "id": "jump_bottom-opt+down-win",
+            "asciiCode": 4342,
+            "functions": [
+                "ctx.jumpTo(3)"
+            ]
+        },
+        {
+            "id": "jump_startline-opt+left-mac",
+            "asciiCode": 2037,
+            "functions": [
+                "ctx.jumpTo(0)"
+            ]
+        },
+        {
+            "id": "jump_startline-ctrl+left-win",
+            "asciiCode": 4341,
+            "functions": [
+                "ctx.jumpTo(0)"
+            ]
+        },
+        {
+            "id": "jump_endline-opt+right-mac",
+            "asciiCode": 2036,
+            "functions": [
+                "ctx.jumpTo(1)"
+            ]
+        },
+        {
+            "id": "jump_endline-ctrl+right-win",
+            "asciiCode": 4340,
+            "functions": [
+                "ctx.jumpTo(1)"
+            ]
+        },
+        {
+            "id": "jumpWord_left-cmd+left-mac",
+            "asciiCode": 245,
+            "functions": [
+                "ctx.jumpWord(-1)"
+            ]
+        },
+        {
+            "id": "jumpWord_left-ctrl+shift+left-win",
+            "asciiCode": 4853,
+            "functions": [
+                "ctx.jumpWord(-1)"
+            ]
+        },
+        {
+            "id": "jumpWord_right-cmd+right-mac",
+            "asciiCode": 244,
+            "functions": [
+                "ctx.jumpWord(1)"
+            ]
+        },
+        {
+            "id": "jumpWord_right-ctrl+shift+right-win",
+            "asciiCode": 4852,
+            "functions": [
+                "ctx.jumpWord(1)"
+            ]
+        },
+        {
+            "id": "ephemeral_mode-opt+g-mac",
+            "asciiCode": 169,
+            "functions": [
+                "return ['ephemeral_mode']"
+            ]
+        },
+        {
+            "id": "ephemeral_mode-ctrl+g-win",
+            "asciiCode": 4455,
+            "functions": [
+                "return ['ephemeral_mode']"
+            ]
+        },
+        {
+            "id": "hide_text-opt+h-mac",
+            "asciiCode": 729,
+            "functions": [
+                "return ['hide_text']"
+            ]
+        },
+        {
+            "id": "hide_text-ctrl+h-win",
+            "asciiCode": 4456,
+            "functions": [
+                "return ['hide_text']"
+            ]
+        }
+    ]
+}

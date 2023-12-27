@@ -1,0 +1,32 @@
+name: PR Conventional Commit Validation
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, edited]
+
+jobs:
+  validate-pr-title:
+    runs-on: ubuntu-latest
+    steps:
+      # check PR title for conventional commit format
+      - name: PR Conventional Commit Validation
+        uses:  ytanikin/PRConventionalCommits@1.1.0
+        with:
+          task_types: '["build", "chore", "ci", "docs", "feat", "fix", "perf", "refactor", "revert", "style", "test", "release"]'
+          add_label: 'false'
+      # we need to install our node modules to get access to commitlint for the next step
+      - name: 'Checkout repository'
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: 'Install Node Modules'
+        working-directory: ./javascript
+        run: npm ci
+      # lint the commit message to ensure it can be included in the changelog later
+      - name: Validate current commit (last commit) with commitlint
+        if: github.event_name == 'push'
+        run: NODE_PATH="${{ github.workspace }}/javascript/node_modules" ./javascript/node_modules/.bin/commitlint --from HEAD~1 --to HEAD --verbose
+      # all commits in a PR should conform, in the occasion that we do not squash it
+      - name: Validate PR commits with commitlint
+        if: github.event_name == 'pull_request'
+        run:  NODE_PATH="${{ github.workspace }}/javascript/node_modules" ./javascript/node_modules/.bin/commitlint --from ${{ github.event.pull_request.head.sha }}~${{ github.event.pull_request.commits }} --to ${{ github.event.pull_request.head.sha }} --verbose

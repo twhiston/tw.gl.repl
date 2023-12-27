@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
+
+<c74object name="tw.gl.repl.dynamic-size-helper">
+
+	<digest>
+		Make tw.gl.repl resizable easily
+	</digest>
+
+	<description>
+		A small wrapper object for the logic needed to make the repl rescale nicely in a dynamic way.
+		Using this object should allow the text to rescale well to almost any window size, and will
+		do so as you drag it around.
+	</description>
+
+	<!--METADATA-->
+	<metadatalist>
+		<metadata name="author">Tom Whiston</metadata>
+		<metadata name="tag">tw.gl.repl</metadata>
+		<metadata name="tag">max</metadata>
+		<metadata name="tag">jitter</metadata>
+		<metadata name="tag">opengl</metadata>
+		<metadata name="tag">repl</metadata>
+	</metadatalist>
+
+	<!--INLETS-->
+	<inletlist>
+		<inlet id="0" type="bang">
+			<digest>bang from jit.world</digest>
+			<description>
+				Connect outlet 2 of jit.world to this inlet. Used to refresh display
+			</description>
+		</inlet>
+		<inlet id="1" type="symbol">
+			<digest>dumpout from jit.world</digest>
+			<description>
+				Connect outlet 3 of jit.world to this inlet.
+				Used to receive, rate-limit and pass on size messages to the repl.
+			</description>
+		</inlet>
+	</inletlist>
+
+	<!--OUTLETS-->
+	<outletlist>
+		<outlet id="0" type="symbol">
+			<digest>to jit.world</digest>
+			<description>
+				Connect to inlet of jit.world. Sends rate limited getsize command
+			</description>
+		</outlet>
+		<outlet id="1" type="symbol">
+			<digest>to tw.gl.repl</digest>
+			<description>
+				Connect to inlet of tw.gl.repl. Sends rate limited size commands
+			</description>
+		</outlet>
+	</outletlist>
+
+	<!--ARGUMENTS-->
+	<objarglist>
+	</objarglist>
+
+	<!--MESSAGES-->
+	<methodlist>
+	</methodlist>
+
+	<!--ATTRIBUTES-->
+	<attributelist>
+	</attributelist>
+
+	<!--SEEALSO-->
+	<seealsolist>
+		<seealso name="tw.gl.repl" />
+	</seealsolist>
+
+</c74object>

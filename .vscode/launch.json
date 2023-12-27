@@ -1,0 +1,23 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Debug AVA test file",
+            "runtimeExecutable": "/Users/twhiston/.nvm/versions/node/v18.16.0/bin/node",
+            "program": "${workspaceFolder}/javascript/node_modules/ava/entrypoints/cli.mjs",
+            "args": [
+                "${file}"
+            ],
+            "cwd": "${fileDirname}",
+            "outputCapture": "std",
+            "skipFiles": [
+                "<node_internals>/**/*.js"
+            ]
+        }
+    ]
+}

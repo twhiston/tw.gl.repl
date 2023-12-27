@@ -1,0 +1,20 @@
+{
+    "markiscodecoverage.searchCriteria": "javascript/coverage/lcov.info",
+    "editor.formatOnSave": true,
+    "coverage-gutters.coverageBaseDir": "./javascript/coverage",
+    "coverage-gutters.coverageFileNames": [
+        "lcov.info",
+        "cov.xml",
+        "coverage.xml",
+        "jacoco.xml",
+        "coverage.cobertura.xml"
+    ],
+    "[handlebars]": {
+        "editor.formatOnSave": false
+    },
+    "conventionalCommits.scopes": [
+        "formatters",
+        "extras-patch"
+    ],
+    "GitHooks.hooksDirectory": "/Users/twhiston/Documents/Max 8/Packages/GLRepl/.git/hooks",
+}

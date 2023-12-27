@@ -1,0 +1,20 @@
+{{#if options.comment}}{{options.comment}}{{else}}//auto-bound to max via annotation{{/if}}
+function {{options.functionName}}({{#each options.params}}{{this.name}}{{#unless @last}},{{/unless}}{{/each}}) {
+    {{#if options.throws}}
+    try {
+    {{/if}}
+{{#if options.useArgsForText~}}
+    var slicedArgs = arrayfromargs(arguments)
+{{#moreThanOne options.params}}
+    slicedArgs = Array.prototype.slice.call(slicedArgs, 1);
+{{/moreThanOne}}
+    {{options.instanceName}}.{{options.callName}}({{#each options.params}}{{#isTextArgument this.name}}slicedArgs{{else}}{{this.name}}{{/isTextArgument}}{{#unless @last}},{{/unless}}{{/each}})
+{{else}}
+    {{options.instanceName}}.{{options.callName}}({{#each options.params}}{{this.name}}{{#unless @last}},{{/unless}}{{/each}})
+{{/if}}
+{{#if options.throws}}
+    } catch (error){
+        post(error.message);
+    }{{/if~}}
+{{#if options.draw}}    draw(){{/if}}
+}

@@ -1,0 +1,4 @@
+commit-msg:
+  commands:
+    commit-msg-lint:
+      run: commitlint --from HEAD~1 --to HEAD --verbose
